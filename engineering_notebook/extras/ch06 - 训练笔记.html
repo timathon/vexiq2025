@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 第六章：训练日记全集 (10篇)</title>
+    <style>
+        /* ================= 基础设置 ================= */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: #525659;
+            font-family: "KaiTi", "STKaiti", "Microsoft YaHei", cursive; /* 优先使用楷体模仿手写 */
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        /* A4 纸张样式 */
+        .sheet {
+            width: 210mm;
+            height: 297mm;
+            padding: 15mm 20mm; /* 留出打孔位置 */
+            background-color: #fff;
+            /* 模仿方格纸背景 */
+            background-image: 
+                linear-gradient(#e0e0e0 1px, transparent 1px),
+                linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+            background-size: 8mm 8mm; /* 格子大小 */
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 0 auto 20px auto;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        /* 左侧装订孔效果 */
+        .binder-holes {
+            position: absolute;
+            left: 8mm;
+            top: 0;
+            bottom: 0;
+            width: 10mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .hole {
+            width: 6mm;
+            height: 6mm;
+            background-color: #525659;
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* ================= 顶部装饰与标题 ================= */
+        .header-tape {
+            height: 12mm;
+            background-color: #FFCC80; /* 橙色胶带 */
+            border: 2px solid #E67E22;
+            border-radius: 5px;
+            margin-bottom: 10mm;
+            position: relative;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        .header-tape::after {
+            content: "❤❤❤";
+            position: absolute;
+            right: -5px;
+            top: -10px;
+            font-size: 20px;
+            color: #E74C3C;
+            letter-spacing: 2px;
+        }
+        
+        /* 不同颜色的胶带 */
+        .tape-blue { background-color: #AED6F1; border-color: #3498DB; }
+        .tape-green { background-color: #A9DFBF; border-color: #27AE60; }
+        .tape-red { background-color: #F5B7B1; border-color: #E74C3C; }
+
+        h1 {
+            font-size: 28px;
+            font-weight: normal;
+            margin: -5mm 0 10mm 5mm;
+            color: #333;
+        }
+
+        /* ================= 表格样式 (核心) ================= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #333;
+            background-color: rgba(255, 255, 255, 0.95); /* 半透明白底，遮挡格子 */
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            vertical-align: middle;
+        }
+
+        /* 表头行高度 */
+        tr.meta-row { height: 12mm; }
+        
+        /* 内容行布局 */
+        .col-label {
+            width: 15%;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: rgba(255,255,255,0.5);
+        }
+        
+        .col-content {
+            vertical-align: top;
+            padding: 15px;
+        }
+
+        /* 内容内部的小节 */
+        .log-entry {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px dashed #aaa;
+            padding-bottom: 15px;
+        }
+        .log-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .log-text {
+            flex: 1;
+            padding-right: 10px;
+        }
+        
+        .log-text h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #d35400;
+        }
+        
+        .log-text ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+
+        /* 图片占位符 */
+        .log-img {
+            width: 130px;
+            height: 90px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+            transform: rotate(1deg); /* 模仿贴照片 */
+            box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .log-img.rotate-neg { transform: rotate(-2deg); }
+
+        /* 总结栏 */
+        .summary-row {
+            height: 35mm;
+        }
+
+        /* ================= 装饰贴纸 ================= */
+        .sticker-corner {
+            position: absolute;
+            bottom: 20mm;
+            left: 20mm;
+            width: 70px;
+            height: 70px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            background-color: #FFECB3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            transform: rotate(-5deg);
+            z-index: 10;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 18px;
+            font-family: cursive;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: absolute;
+            bottom: 10mm;
+            right: 10mm;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 强调文字 */
+        .highlight {
+            color: #C0392B;
+            font-weight: bold;
+        }
+        .rule-ref {
+            background-color: #D6EAF8;
+            padding: 0 4px;
+            border-radius: 3px;
+            font-size: 14px;
+            color: #2980B9;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= 页面 1: 基础操控 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape"></div>
+        <h1>(一) 训练记录：一代车初试</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">8月17日 - 8月18日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>学校机器人训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">宋书月（主操作）、叶恒嘉、叶恒瑞、印涵邸</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.17 目标：单项测试底盘与抓取</h3>
+                            <p><strong>过程：</strong> 熟悉“一代车”的2倍速底盘，练习在场地上绕行并抓取 Pin。</p>
+                            <p><strong>问题发现：</strong></p>
+                            <ul>
+                                <li>车速太快，像在冰上漂移，很难对准。</li>
+                                <li>急转弯时，爪子里的 Pin 容易被甩飞。</li>
+                                <li>违反规则 <span class="rule-ref">&lt;SG4&gt;</span>：好几次 Pin 飞出场地了。</li>
+                            </ul>
+                        </div>
+                        <div class="log-img">[图片：抓拍到机器人急转弯时，橙色的 Pin 从爪子里滑落模糊的瞬间]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.18 目标：改进抓取稳定性</h3>
+                            <p><strong>改进措施：</strong>在爪子内侧增加了防滑垫片；增加两根 #64 皮筋。</p>
+                            <p><strong>结果：</strong> 稳定性大幅提升！即使故意撞墙，Pin 也没有掉落。</p>
+                        </div>
+                        <div class="log-img rotate-neg">[图片：特写，爪子紧紧夹住一个红色的 Pin，皮筋勒得很紧]</div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>能够完成基本的抓取动作。熟悉了一代车的“漂移”手感。操作手需要练习“点按”摇杆来控制刹车。</p>
+                    <div class="signature">签名：宋书月</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner">🤖</div>
+        <div class="page-num">133</div>
+    </div>
+
+    <!-- ================= 页面 2: 堆叠与V叉 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-blue"></div>
+        <h1>(二) 训练记录：堆叠特训</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">8月19日 - 8月20日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>学校机器人训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">全员出席</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.19 目标：堆叠 Pin (Stacking)</h3>
+                            <p><strong>尝试：</strong> 尝试将一个 Pin 放在另一个 Pin 上形成 <span class="rule-ref">&lt;SC3&gt;</span> Stack。</p>
+                            <p><strong>困难：</strong> 只有两根手指的爪子很难对准圆形的 Pin，经常就把下面的撞倒了。</p>
+                        </div>
+                        <div class="log-img">[图片：两个倒下的黄色 Pin，机器人停在旁边]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.20 目标：解决对准问题</h3>
+                            <p><strong>改进：</strong> 叶恒嘉加装了一个“V形定位叉”在车头。</p>
+                            <p><strong>原理：</strong> 把车开过去，Pin 顺着 V 形槽自动对准。</p>
+                            <p><strong>结果：</strong> 成功率80%！成功堆叠了 3 层！触发了 <span class="rule-ref">&lt;SC4&gt;</span> 颜色奖励。</p>
+                        </div>
+                        <div class="log-img rotate-neg">[图片：场地上成功堆起的一个红-黄-蓝三色 Stack]</div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>“定位叉”是神来之笔！不需要复杂的程序，纯机械结构解决了大问题。现在我们能稳定得分了。</p>
+                    <div class="signature">签名：叶恒嘉</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #D6EAF8;">🏗️</div>
+        <div class="page-num">134</div>
+    </div>
+
+    <!-- ================= 页面 3: Beam 拖拽 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-green"></div>
+        <h1>(三) 训练记录：笨重的 Beam</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">8月22日 - 8月23日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>学校机器人训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">宋书月、叶恒瑞</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.22 目标：测试后挂钩拖拽 Beam</h3>
+                            <p><strong>规则：</strong> <span class="rule-ref">&lt;SC3&gt;</span> Beam 连接得分高（10分）。</p>
+                            <p><strong>过程：</strong> 倒车钩住 Beam，然后尝试带着它跑。</p>
+                            <p><strong>问题：</strong> Beam 太长了！带着它转弯半径变得巨大，车子经常卡在墙角动不了。</p>
+                        </div>
+                        <div class="log-img">[图片：机器人拖着灰色的 Beam，卡在了场地角落的 PVC 管旁边]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.23 目标：优化路线</h3>
+                            <p><strong>策略：</strong> 既然不好转弯，就只走直线。把 Beam 拖到场地中间就放下，不再带着它到处跑。</p>
+                            <p><strong>结果：</strong> 效率提高，但还是觉得 Beam 是个累赘。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>为了这 10 分和匹配奖励 <span class="rule-ref">&lt;SC6&gt;</span>，牺牲了太多的机动性。我们在讨论是否值得。</p>
+                    <div class="signature">签名：叶恒瑞</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #ABEBC6;">🐢</div>
+        <div class="page-num">135</div>
+    </div>
+
+    <!-- ================= 页面 4: 自动化 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-red"></div>
+        <h1>(四) 训练记录：传感器升级</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">8月25日 - 8月26日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>编程教室</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">印涵邸（代码）、宋书月（测试）</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.25 目标：减轻操作手负担</h3>
+                            <p><strong>痛点：</strong> 每次抓取都要手动按键，时机很难把握。早了抓空，晚了撞飞。</p>
+                            <p><strong>方案：</strong> 安装距离传感器 (Distance Sensor)。</p>
+                        </div>
+                        <div class="log-img">[图片：VEXcode 界面截图，显示距离判断逻辑]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>8.26 目标：实测自动抓取</h3>
+                            <p><strong>逻辑：</strong> <code>if (Distance < 50mm) { 闭合爪子; 举臂; }</code></p>
+                            <p><strong>效果：</strong> 太爽了！宋书月只要把车开过去，机器人就“嗷呜”一口自动吃掉 Pin。</p>
+                            <p><strong>效率：</strong> 每次抓取节省约 1-2 秒。</p>
+                        </div>
+                        <div class="log-img rotate-neg">[图片：距离传感器特写，安装在爪子内部]</div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>自动化是提高分数的关键。印涵邸的代码立大功！</p>
+                    <div class="signature">签名：印涵邸</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #F9E79F;">⚡</div>
+        <div class="page-num">136</div>
+    </div>
+
+    <!-- ================= 页面 5: 换手规则 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape"></div>
+        <h1>(五) 训练记录：人肉闹钟</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">9月5日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">全员</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>目标：适应规则 <span class="rule-ref">&lt;GG11&gt;</span></h3>
+                            <p><strong>规则：</strong> 必须在 25s-35s 之间交换遥控器。早换或晚换都会导致 DQ (取消资格)。</p>
+                            <p><strong>状况：</strong> 第一次模拟时，宋书月开得太投入，完全忘了看时间，一直开到了 20秒。</p>
+                            <p><strong>后果：</strong> 如果是比赛，这一场就是 0 分。</p>
+                        </div>
+                        <div class="log-img">[图片：两个操作手慌乱交接遥控器，背景计时器模糊显示0:24]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>解决：建立报时机制</h3>
+                            <p><strong>方案：</strong> 指定印涵邸作为“人肉闹钟”。</p>
+                            <p><strong>口令：</strong> 40秒时喊“准备！”，35秒时喊“换！”，25秒时喊“必须换！”。</p>
+                            <p><strong>练习：</strong> 连续练了 10 次交接，形成了肌肉记忆。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>规则就是红线，绝对不能碰。现在我们能在 30秒左右平稳交接。</p>
+                    <div class="signature">签名：印涵邸</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #F5B7B1;">⏰</div>
+        <div class="page-num">137</div>
+    </div>
+
+    <!-- ================= 页面 6: 边界与得分 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-blue"></div>
+        <h1>(六) 训练记录：别出界！</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">9月8日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">全员</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>目标：强化规则 <span class="rule-ref">&lt;SG4&gt;</span></h3>
+                            <p><strong>规则：</strong> Pin 离开场地必须由 Loader 重新放入 Load Zone。</p>
+                            <p><strong>问题：</strong> 一代车速度快惯性大，经常把场边的 Pin 撞飞出去。一旦出界，Loader 就要跑去捡，浪费大量时间。</p>
+                        </div>
+                        <div class="log-img">[图片：一个蓝色的 Pin 掉在了场地围栏外面的地板上]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>练习：算分规则 <span class="rule-ref">&lt;SC1&gt;</span></h3>
+                            <p><strong>情况：</strong> 比赛结束时，有一个 Pin 还在车上没放下来。</p>
+                            <p><strong>判定：</strong> 根据 <span class="rule-ref">&lt;SC3&gt;</span>，接触机器人的 Pin 不算分！</p>
+                            <p><strong>教训：</strong> 最后一秒必须松手并后退，确保 Pin 独立站立。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>宁可慢一点，也不要出界。最后一秒的操作至关重要，不能贪心。</p>
+                    <div class="signature">签名：叶恒瑞</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #D2B4DE;">🚫</div>
+        <div class="page-num">138</div>
+    </div>
+
+    <!-- ================= 页面 7: 配合训练 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-green"></div>
+        <h1>(七) 训练记录：双机配合</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">9月15日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">宋书月、叶恒瑞</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>目标：模拟联队配合</h3>
+                            <p><strong>设置：</strong> 在场地上放了一个空箱子代表队友机器人。</p>
+                            <p><strong>发现：</strong> 场地其实很拥挤！如果不提前沟通，两台车很容易在抢中间 Pin 的时候撞在一起。</p>
+                        </div>
+                        <div class="log-img">[图片：机器人差点撞上代表队友的纸箱子]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>策略：分区作业</h3>
+                            <p><strong>方案：</strong> 
+                            <br>1. 开局我们负责清理左半场。
+                            <br>2. 30秒后我们去中间。
+                            <br>3. 尽量避开队友的路线。</p>
+                            <p><strong>沟通：</strong> 操作手要大声喊出意图，比如“我去拿红色的！”。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>VEX IQ 是团队项目。学会避让和沟通比自己闷头得分更重要。</p>
+                    <div class="signature">签名：宋书月</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #AED6F1;">🤝</div>
+        <div class="page-num">139</div>
+    </div>
+
+    <!-- ================= 页面 8: 极限速度 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-red"></div>
+        <h1>(八) 训练记录：体能极限</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">9月20日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">全员</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>目标：60秒极限跑分</h3>
+                            <p><strong>挑战：</strong> 连续进行 5 场全速模拟，中间不充电。</p>
+                            <p><strong>现象：</strong> 
+                            <br>第 1 场：生龙活虎，得分 40。
+                            <br>第 3 场：举臂明显变慢。
+                            <br>第 5 场：底盘甚至有点推不动 3 个 Pin。</p>
+                        </div>
+                        <div class="log-img rotate-neg">[图片：机器人无力地推着三个 Pin，看起来很吃力]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>分析：电池电压</h3>
+                            <p>查看 Brain 数据，第 5 场电压降到了 7.2V 以下。一代车的 2倍速底盘非常耗电。</p>
+                            <p><strong>对策：</strong> 比赛时必须每场换电池！</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>管理好电池也是比赛的一部分。我们要准备足够多的满电电池。</p>
+                    <div class="signature">签名：叶恒嘉</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #E6B0AA;">🔋</div>
+        <div class="page-num">140</div>
+    </div>
+
+    <!-- ================= 页面 9: 瓶颈分析 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape"></div>
+        <h1>(九) 训练记录：遭遇瓶颈</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">10月1日 - 10月5日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>学校（国庆假期特训）</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">全员加班</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>目标：突破 50 分</h3>
+                            <p><strong>数据：</strong> 连续跑了 20 场，得分稳定在 35-45 分之间，死活上不去。</p>
+                            <p><strong>原因分析：</strong>
+                            <br>1. <strong>高度不够：</strong> 一代车结构简单，无法将 Stack 放到场地中间最高的 <span class="rule-ref">Standoff Goal</span> 上。这部分丢失了大量的 10分奖励。
+                            <br>2. <strong>Beam 难搞：</strong> 拖 Beam 太费时间，不拖分又低。</p>
+                        </div>
+                        <div class="log-img">[图片：手绘的折线图，分数线在 45 分处变成了一条水平直线]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>结论：硬件限制</h3>
+                            <p>不是我们操作不行，是车子性能到头了。如果不改结构，这就是天花板。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>虽然很难过，但这就是现实。一代车完成了它的使命，让我们熟悉了规则，但它赢不了冠军。</p>
+                    <div class="signature">签名：全员</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #D5DBDB;">📉</div>
+        <div class="page-num">141</div>
+    </div>
+
+    <!-- ================= 页面 10: 总结与展望 ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape tape-blue"></div>
+        <h1>(十) 训练记录：再见，一代车</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 10%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 30%;">10月20日</td>
+                <td style="width: 10%; text-align: center; font-weight: bold;">地点</td>
+                <td>训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参加人员</td>
+                <td colspan="3">全员</td>
+            </tr>
+            <tr>
+                <td class="col-label">内<br>容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>仪式：最后一次跑车</h3>
+                            <p>我们用一代车跑了最后一场，得了 42 分。大家都很认真。</p>
+                            <p><strong>一代车的贡献：</strong>
+                            <br>1. 让我们练出了“人肉闹钟”换手。
+                            <br>2. 验证了 V 形叉和距离传感器的重要性。
+                            <br>3. 让我们明白了“稳定大于速度”。</p>
+                        </div>
+                        <div class="log-img rotate-neg">[图片：一代车放在场地上，四个人围着它比剪刀手的合影]</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>展望：二代车计划</h3>
+                            <p><strong>核心升级：</strong>
+                            <br>1. 引入<strong>气动系统</strong> (Pneumatics)！
+                            <br>2. 设计加长手臂，剑指 Standoff Goal。
+                            <br>3. 重新设计底盘，不再追求极速，改为追求扭矩。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="summary-row">
+                <td class="col-label">总<br>结</td>
+                <td colspan="3" class="col-content">
+                    <p>拆解是为了更好的重逢。二代车，我们来了！</p>
+                    <div class="signature">签名：宋书月、叶恒嘉、叶恒瑞、印涵邸</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker-corner" style="background-color: #FCF3CF;">🚀</div>
+        <div class="page-num">142</div>
+    </div>
+
+</body>
+</html>

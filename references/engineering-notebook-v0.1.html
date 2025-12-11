@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iteration Pioneers - Full Engineering Notebook</title>
+    <!-- Importing handwriting style fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Long+Cang&family=Patrick+Hand&family=Noto+Sans+SC:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --paper-color: #fdfbf7;
+            --line-color: #c2d1e0;
+            --pencil-color: #2b2b2b;
+            --highlight-color: rgba(255, 242, 0, 0.3);
+            --tape-color: rgba(255, 255, 255, 0.6);
+            --sticky-note-yellow: #fff740;
+            --sticky-note-blue: #e3f2fd;
+            --sticky-note-pink: #ffcdd2;
+        }
+
+        body {
+            background-color: #e0e0e0;
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--pencil-color);
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        /* Notebook Page Styling */
+        .notebook-page {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--paper-color);
+            background-image:
+                linear-gradient(var(--line-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
+            background-size: 25px 25px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 60px 50px;
+            position: relative;
+            border-left: 2px solid #dbd5cd;
+            margin-bottom: 40px;
+
+            /* User Requirement: Min Height 1120px for single page feel */
+            min-height: 1120px;
+            height: auto;
+            box-sizing: border-box;
+        }
+
+        /* Spiral Binding Holes */
+        .notebook-page::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            background-image: radial-gradient(circle, #333 30%, transparent 31%);
+            background-size: 10px 40px;
+            background-repeat: repeat-y;
+            background-position: 0 20px;
+            opacity: 0.6;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            color: #d32f2f;
+            break-after: avoid;
+            /* Keep headers with content */
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 4px solid #d32f2f;
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--highlight-color);
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            color: #1565c0;
+            border-bottom: 2px dashed #1565c0;
+            display: inline-block;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin-top: 1.2rem;
+            font-weight: bold;
+            color: #2e7d32;
+            font-family: 'ZCOOL KuaiLe', cursive;
+            break-after: avoid;
+        }
+
+        p,
+        li {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Elements that should NOT break across pages */
+        .taped-image,
+        .sticky-note,
+        .tech-table,
+        .code-block,
+        .member-row {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        /* Taped Image Style */
+        .taped-image {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+            margin: 25px auto;
+            max-width: 95%;
+            position: relative;
+            text-align: center;
+            border: 1px solid #ddd;
+            transform: rotate(0.5deg);
+        }
+
+        .taped-image::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 100px;
+            height: 30px;
+            background-color: var(--tape-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .placeholder-box {
+            width: 100%;
+            height: 200px;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            border: 2px dashed #ccc;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+        }
+
+        .caption {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Sticky Notes */
+        .sticky-note {
+            padding: 20px;
+            width: 90%;
+            margin: 20px auto;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            position: relative;
+            transform: rotate(-1deg);
+        }
+
+        .sticky-note.yellow {
+            background-color: var(--sticky-note-yellow);
+        }
+
+        .sticky-note.blue {
+            background-color: var(--sticky-note-blue);
+            transform: rotate(1deg);
+        }
+
+        .sticky-note.pink {
+            background-color: var(--sticky-note-pink);
+            transform: rotate(0.5deg);
+        }
+
+        /* Tables */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-table th,
+        .tech-table td {
+            border: 1px solid #999;
+            padding: 12px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .tech-table th {
+            background-color: #eee;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-left: 5px solid #61afef;
+        }
+
+        /* MANUAL PAGE BREAK CLASS */
+        @media screen {
+            .manual-page-break {
+                display: none;
+            }
+        }
+
+        /* PRINTING RULES */
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: var(--paper-color) !important;
+                /* Apply notebook texture to entire body */
+                background-image:
+                    linear-gradient(var(--line-color) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--line-color) 1px, transparent 1px) !important;
+                background-size: 25px 25px !important;
+                position: relative;
+            }
+
+            /* Add binding holes to body for print */
+            body::before {
+                content: "";
+                position: fixed;
+                left: 15px;
+                top: 0;
+                bottom: 0;
+                width: 10px;
+                background-image: radial-gradient(circle, #333 30%, transparent 31%);
+                background-size: 10px 40px;
+                background-repeat: repeat-y;
+                background-position: 0 20px;
+                opacity: 0.6;
+                z-index: 9999;
+            }
+
+            .notebook-page {
+                /* Force a new page after every chapter block */
+                break-after: page;
+                page-break-after: always;
+
+                /* Allow breaking INSIDE the notebook page if it is very long */
+                break-inside: auto;
+
+                margin-bottom: 0;
+                box-shadow: none;
+                border: none;
+                min-height: 1120px;
+                width: 100%;
+                
+                /* Remove duplicate background from notebook-page in print */
+                background: transparent !important;
+                background-image: none !important;
+                border-left: none;
+            }
+
+            /* Remove duplicate binding holes from notebook-page in print */
+            .notebook-page::before {
+                display: none;
+            }
+
+            /* This class forces a page break wherever inserted */
+            .manual-page-break {
+                break-before: page;
+                page-break-before: always;
+                display: block;
+                height: 1px;
+                margin-top: 30px;
+            }
+
+            /* Ensure background graphics (lines, sticky note colors) print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 封面 (Cover Page) -->
+    <div class="notebook-page">
+        <div class="text-center pt-20">
+            <div class="taped-image transform rotate-2 max-w-sm mx-auto mb-10">
+                <div class="placeholder-box" style="height: 300px;">
+                    [ 团队全家福或战队 Logo ]
+                    <br>
+
+                </div>
+            </div>
+            <h1>2025-2026 赛季 VEX IQ 竞赛工程笔记</h1>
+            <h2 style="background:none; font-size: 1.8rem; margin-top:0;">Mix & Match</h2>
+
+            <div class="sticky-note blue" style="margin-top: 50px; text-align: left;">
+                <p><strong>竞赛名称:</strong> VEX IQ Robotics Competition (VIQRC)</p>
+                <p><strong>赛季主题:</strong> Mix & Match</p>
+                <p><strong>赛季年份:</strong> 2025 - 2026</p>
+                <p><strong>队伍名称:</strong> Iteration Pioneers (迭代先锋)</p>
+                <p><strong>队伍编号:</strong> 2276A</p>
+                <p><strong>所属学校/组织:</strong> [填写你的学校或机构名称]</p>
+                <p><strong>指导老师:</strong> [填写指导老师姓名]</p>
+                <p><strong>所在城市/国家:</strong> [填写城市], 中国</p>
+                <p><strong>开始日期:</strong> 2025年5月15日</p>
+                <p><strong>结束日期:</strong> 2026年4月</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 团队介绍 (Team Intro) -->
+    <div class="notebook-page">
+        <h2>团队成员介绍 (Team Introductions)</h2>
+        <p>我们是 <strong>"迭代先锋" (Iteration Pioneers)</strong>。虽然我们要去的目的地各不相同,但我们都相信:<strong>没有完美的第一次,只有更好的下一次。</strong>
+        </p>
+
+        <div class="sticky-note yellow">
+            <strong>💡 团队精神:</strong> 我们致力于通过不断的迭代设计来解决问题。
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 mt-6">
+            <!-- Member 1 -->
+            <div class="member-row flex flex-col md:flex-row border-b-2 border-dashed border-gray-300 pb-6">
+                <div class="w-full md:w-1/3 p-2 flex justify-center">
+                    <div class="taped-image" style="margin:0; transform: rotate(-2deg); width: 100%;">
+                        <div class="placeholder-box" style="height: 150px;">[ 队长照片 ]<br></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 p-2">
+                    <h4>🧑‍🔧 队长 & 首席构建手 (Captain & Lead Builder)</h4>
+                    <p><strong>姓名:</strong> [Name] | <strong>年级:</strong> [Grade]</p>
+                    <p><strong>我的背景:</strong> 我从小就喜欢拆解家里的玩具,想看看它们是如何工作的。我是乐高积木的狂热粉丝,对机械传动结构有着天然的好奇心。</p>
+                    <p><strong>为什么喜欢 VEX:</strong> VEX IQ 最吸引我的是它的"限制"。在有限的零件和尺寸规则下,设计出能完成复杂任务的机械结构,就像解开一道复杂的数学题一样让我兴奋。
+                    </p>
+                    <p><strong>赛季目标:</strong> 1. 设计出一个重心稳定、永不卡死的吸取机构。 2. 带领团队学会如何处理分歧。 3. 在 Mix & Match 赛季中通过设计解决"效率"问题。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="member-row flex flex-col md:flex-row border-b-2 border-dashed border-gray-300 pb-6">
+                <div class="w-full md:w-1/3 p-2 flex justify-center">
+                    <div class="taped-image" style="margin:0; transform: rotate(1deg); width: 100%;">
+                        <div class="placeholder-box" style="height: 150px;">[ 程序员照片 ]<br></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 p-2">
+                    <h4>💻 首席程序员 & 操控手 (Lead Coder & Driver)</h4>
+                    <p><strong>姓名:</strong> [Name] | <strong>年级:</strong> [Grade]</p>
+                    <p><strong>我的背景:</strong> 我喜欢逻辑谜题和电子游戏。在加入战队前,我已经自学了一些简单的 Python 和 Scratch 编程。</p>
+                    <p><strong>为什么喜欢 VEX:</strong>
+                        代码是机器人的大脑。我喜欢看着机器人严格按照我编写的逻辑运行的那一刻。特别是通过传感器(如陀螺仪)让机器人在自动赛中实现精准定位,这让我非常有成就感。</p>
+                    <p><strong>赛季目标:</strong> 1. 为 Mix & Match 编写一套包含 PID 算法的自动程序。 2. 在自动技能挑战赛中突破 60 分。 3.
+                        通过编程解决机械结构的误差问题。</p>
+                </div>
+            </div>
+            <div class="manual-page-break"></div>
+            <!-- Member 3 -->
+            <div class="member-row flex flex-col md:flex-row border-b-2 border-dashed border-gray-300 pb-6">
+                <div class="w-full md:w-1/3 p-2 flex justify-center">
+                    <div class="taped-image" style="margin:0; transform: rotate(-1deg); width: 100%;">
+                        <div class="placeholder-box" style="height: 150px;">[ 设计师照片 ]<br></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 p-2">
+                    <h4>📝 首席设计师 & 记录员 (Lead Designer & Notebooker)</h4>
+                    <p><strong>姓名:</strong> [Name] | <strong>年级:</strong> [Grade]</p>
+                    <p><strong>我的背景:</strong> 我喜欢绘画和写作,也喜欢玩《我的世界》(Minecraft) 进行建筑设计。我擅长将大家的想法整理成清晰的图纸。</p>
+                    <p><strong>为什么喜欢 VEX:</strong>
+                        很多人认为机器人只是敲代码和拧螺丝,但我认为记录过程同样重要。工程笔记是我们思考过程的"黑匣子",记录下每一次失败和灵光一闪的瞬间,这才是工程学的真谛。</p>
+                    <p><strong>赛季目标:</strong> 1. 记录一本逻辑严密、图文并茂的工程笔记,冲击"全能奖"或"设计奖"。 2. 熟练使用 SnapCAD 进行 3D 建模。 3.
+                        确保每一次设计迭代都有据可查。</p>
+                </div>
+            </div>
+
+            <!-- Member 4 -->
+            <div class="member-row flex flex-col md:flex-row border-b-2 border-dashed border-gray-300 pb-6">
+                <div class="w-full md:w-1/3 p-2 flex justify-center">
+                    <div class="taped-image" style="margin:0; transform: rotate(2deg); width: 100%;">
+                        <div class="placeholder-box" style="height: 150px;">[ 操控手照片 ]<br></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 p-2">
+                    <h4>🎮 首席操控手 & 机械维护 (Lead Driver & Mechanic)</h4>
+                    <p><strong>姓名:</strong> [Name] | <strong>年级:</strong> [Grade]</p>
+                    <p><strong>我的背景:</strong> 我热爱运动,反应速度很快。我对赛车和竞技类游戏很感兴趣,这锻炼了我的手眼协调能力。</p>
+                    <p><strong>为什么喜欢 VEX:</strong> 赛场上的 60 秒让我热血沸腾。Mix & Match
+                        是一个需要高度策略配合的游戏,不仅仅是开得快,更要和队友配合好。这种在压力下做出瞬间决策的感觉非常棒。</p>
+                    <p><strong>赛季目标:</strong> 1. 通过刻苦训练,将驾驶技能赛的路线失误率降到 0。 2. 成为赛场上最棒的盟友,无论队友强弱,都能配合出最高分。 3.
+                        学会快速排查赛场上的机械故障。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 目录 (Table of Contents) -->
+    <div class="notebook-page">
+        <h2>目录 (Table of Contents)</h2>
+        <ul class="list-none space-y-4 text-lg pl-10 border-l-4 border-red-300 mt-8">
+            <li><strong>一、 团队项目管理与赛季计划</strong></li>
+            <li><strong>二、 竞赛规则解读与分析</strong></li>
+            <li><strong>三、 初始设计概念（头脑风暴及任务分解）</strong></li>
+            <li><strong>四、 方案设计、分析与决策</strong></li>
+            <li><strong>五、 构建与编程（1.0 版本）</strong></li>
+            <li><strong>六、 测试与性能评估</strong></li>
+            <li><strong>七、 设计迭代与优化</strong></li>
+            <li><strong>八、 竞赛准备、策略及赛后反思</strong></li>
+        </ul>
+    </div>
+
+    <!-- 第一章 (Chapter 1) -->
+    <div class="notebook-page">
+        <h2>第一章：团队项目管理与赛季计划 (Team & Project Management)</h2>
+
+        <h3>1.1 团队成员及角色分工 (Team Profile & Roles)</h3>
+        <p>我们的战队名为“迭代先锋”，因为我们相信机器人是通过不断的测试、失败和改进（迭代）而变得完美的。根据竞赛手册规则 &lt;G5&gt;，每位成员只能属于一个战队。以下是我们的核心成员分工：</p>
+
+        <table class="tech-table">
+            <tr>
+                <th>姓名</th>
+                <th>主要角色</th>
+                <th>次要角色</th>
+                <th>职责描述</th>
+            </tr>
+            <tr>
+                <td><strong>队长 (Leader)</strong></td>
+                <td><strong>构建手 (Builder)</strong></td>
+                <td>操控手 (Driver)</td>
+                <td>负责统筹进度，确保构建符合 VEX IQ 零件规则 &lt;R14&gt;，协助驾驶策略制定。</td>
+            </tr>
+            <tr>
+                <td><strong>队员 A</strong></td>
+                <td><strong>程序员 (Coder)</strong></td>
+                <td>操控手 (Driver)</td>
+                <td>负责编写自动程序和手动控制程序，调试传感器，担任首发操控手。</td>
+            </tr>
+            <tr>
+                <td><strong>队员 B</strong></td>
+                <td><strong>设计师 (Designer)</strong></td>
+                <td>记录员 (Notebooker)</td>
+                <td>负责 3D 建模或草图绘制，记录工程笔记，管理设计迭代文档。</td>
+            </tr>
+            <tr>
+                <td><strong>队员 C</strong></td>
+                <td><strong>操控手 (Driver)</strong></td>
+                <td>机械维护</td>
+                <td>负责在比赛中驾驶机器人（Driver 2），并在赛间检查电机和结构稳定性。</td>
+            </tr>
+        </table>
+
+        <div class="sticky-note pink">
+            <strong>注：</strong> 我们所有成员都参与了规则的学习，并且所有工作（设计、搭建、编程）均由学生独立完成，遵循“以学生为中心”的政策。
+        </div>
+
+        <h3>1.2 团队会议纪要：赛季启动会议 (Kick-off Meeting Minutes)</h3>
+        <p><strong>日期:</strong> 2025年5月15日 (手册发布次日)</p>
+        <p><strong>出席人:</strong> 全体队员、指导老师</p>
+        <p><strong>会议目标:</strong> 解读新赛季 "Mix & Match" 规则，确定初步设计约束。</p>
+
+        <h4>会议记录内容：</h4>
+        <ol class="list-decimal pl-6">
+            <li><strong>游戏初探:</strong>
+                <ul class="list-disc pl-6">
+                    <li>我们观看了官方视频并阅读了手册。今年的主题是 <strong>Mix & Match</strong>。</li>
+                    <li>核心任务是收集 <strong>Pins (销钉)</strong> 和 <strong>Beams (梁)</strong>，并将它们堆叠 (Stack) 起来，然后放置在不同的
+                        <strong>Goals (得分区)</strong> 中。
+                    </li>
+                    <li>场地很大 (<strong>6' x 8'</strong>)，而且 Pins 散布在全场，需要机器人具备较强的移动能力。</li>
+                </ul>
+            </li>
+            <div class="manual-page-break"></div>
+            <li><strong>确定设计约束 (Design Constraints):</strong>
+                <ul class="list-disc pl-6">
+                    <li>根据规则 &lt;R5&gt;，机器人开始比赛时的尺寸必须限制在 <strong>11" x 20" x 15"</strong> (279.4mm x 508mm x 381.0mm)
+                        以内。</li>
+                    <li><strong>重要发现:</strong> 规则 &lt;SG3&gt; 允许比赛开始后 <strong>垂直方向无限扩展</strong>，但 &lt;SG2&gt; 规定
+                        <strong>水平方向不能扩展</strong> 超出初始限制。这意味着我们的堆叠机构只能向上生长，不能向外张开。
+                    </li>
+                    <li>电机限制：根据 &lt;R11&gt;，最多只能使用 <strong>6 个智能电机</strong>。我们需要合理分配（例如：4个用于底盘，1个用于收集，1个用于升降）。</li>
+                    <li>气动系统：根据 &lt;R18&gt;，如果使用气动，最多允许 <strong>2个储气罐</strong> 和 <strong>1个气泵</strong>。我们讨论是否在后期引入气动系统。
+                    </li>
+                </ul>
+            </li>
+            <li><strong>后续行动:</strong>
+                <ul class="list-disc pl-6">
+                    <li>全员在一周内详细阅读手册 Section 2 (The Game)。</li>
+                    <li>开始研究底盘结构（H型 vs 差速驱动）。</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>1.3 赛季工作计划 (Season Schedule)</h3>
+        <p>为了确保在赛季末达到最佳状态，我们制定了以下时间表：</p>
+        <table class="tech-table">
+            <tr>
+                <th>阶段</th>
+                <th>时间范围</th>
+                <th>关键里程碑 (Milestones)</th>
+            </tr>
+            <tr>
+                <td><strong>第一阶段：分析与原型</strong></td>
+                <td>2025年5月 - 6月</td>
+                <td>完成规则分析；搭建底盘原型；测试 Pin 获取机制。</td>
+            </tr>
+            <tr>
+                <td><strong>第二阶段：V1.0 构建</strong></td>
+                <td>2025年7月 - 8月</td>
+                <td>完成第一版机器人；编写基础遥控程序；开始练习驾驶。</td>
+            </tr>
+            <tr>
+                <td><strong>第三阶段：测试与迭代</strong></td>
+                <td>2025年9月 - 10月</td>
+                <td>参加早期练习赛；发现 V1.0 的缺陷；设计并构建 V2.0 版本（侧重堆叠效率）。</td>
+            </tr>
+            <tr>
+                <td><strong>第四阶段：技能挑战</strong></td>
+                <td>2025年11月 - 12月</td>
+                <td>优化自动程序 (Autonomous Coding Skills)；挑战技能赛高分。</td>
+            </tr>
+            <tr>
+                <td><strong>第五阶段：冠军赛准备</strong></td>
+                <td>2026年1月 - 3月</td>
+                <td>最终迭代 (V3.0)；进行大量的驾驶训练；完善工程笔记；准备评审面试。</td>
+            </tr>
+            <tr>
+                <td><strong>第六阶段：世锦赛/休整</strong></td>
+                <td>2026年4月</td>
+                <td>参加赛季末锦标赛或进行赛季总结。</td>
+            </tr>
+        </table>
+        <div class="manual-page-break"></div>
+        <h3>1.4 团队管理制度及工程流程 (Team Management & Workflow)</h3>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 工程设计流程图：提问-想象-计划-创造-测试-改进 ]
+                <br>
+                [Image of Engineering Design Process diagram]
+            </div>
+            <div class="caption">我们的工作循环</div>
+        </div>
+        <p>为了保证效率，我们采用 <strong>工程设计流程 (Engineering Design Process)</strong> 来指导我们的工作：</p>
+        <ol class="list-decimal pl-6">
+            <li><strong>提问 (Ask):</strong> 我们的目标是什么？规则限制是什么？（例如：如何一次拿起两个 Pin？）</li>
+            <li><strong>想象 (Imagine):</strong> 头脑风暴，画出草图，不否定任何疯狂的想法。</li>
+            <li><strong>计划 (Plan):</strong> 选出最好的方案，列出需要的零件清单，绘制 CAD 或详细图纸。</li>
+            <li><strong>创造 (Create):</strong> 动手搭建，编写代码。</li>
+            <li><strong>测试 (Test):</strong> 在场地上运行。它能稳定得分吗？它符合 &lt;R1&gt; 到 &lt;R19&gt; 的规则吗？</li>
+            <li><strong>改进 (Improve):</strong> 根据测试结果修改设计，进入下一个循环。</li>
+        </ol>
+
+        <p><strong>决策方式:</strong> 当团队出现分歧时（例如选择轮子类型），我们会列出每种方案的优缺点（加权决策矩阵），并通过数据测试或投票来决定，而不是仅凭直觉。我们承诺遵守 &lt;G1&gt;
+            规则，始终互相尊重。</p>
+    </div>
+
+    <!-- 第二章 (Chapter 2) -->
+    <div class="notebook-page">
+        <h2>第二章：竞赛规则解读与分析 (Game Rule Analysis)</h2>
+
+        <h3>2.1 Mix & Match 比赛概述 (Game Overview)</h3>
+        <p>本赛季的竞赛主题是 <strong>VEX IQ Robotics Competition Mix & Match</strong>。比赛在一个 <strong>$6' \times 8'$</strong>
+            的长方形场地上进行。</p>
+        <ul class="list-disc pl-6">
+            <li><strong>核心目标:</strong> 我们的主要任务是构建由 <strong>销钉 (Pins)</strong> 和 <strong>梁 (Beams)</strong> 组成的
+                <strong>堆叠 (Stacks)</strong>，并将这些堆叠放置在指定的 <strong>得分区 (Goals)</strong> 中。
+            </li>
+            <li><strong>协作精神:</strong> 在“团队协作挑战赛 (Teamwork Challenge)”中，两台机器人组成一个联盟，在 60 秒内通过合作获得尽可能高的总分。</li>
+            <li><strong>关键策略:</strong> 游戏强调“混合与匹配 (Mix & Match)”。这不仅是简单的堆叠，更要求我们关注堆叠中颜色的多样性（Mix）以及堆叠底部颜色与得分区的匹配（Match）。
+            </li>
+        </ul>
+
+        <h3>2.2 场地元素及布局 (Field Elements)</h3>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 场地布局图，标注 Goals, Load Zones, Pin Supports ]
+                <br>
+
+            </div>
+            <div class="caption">红蓝分区和关键得分点</div>
+        </div>
+        <p>我们对场地上的关键元素进行了分类，这决定了我们机器人的交互对象：</p>
+        <ol class="list-decimal pl-6">
+            <li><strong>得分物体 (Scoring Objects):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>Pins (销钉):</strong> 共有 36 个。包括 10 个蓝色、10 个红色和 16 个橙色。它们是基本的堆叠单元。</li>
+                    <li><strong>Beams (梁):</strong> 共有 2 个灰色梁。它们体积较大，连接在堆叠中可以获得高分。</li>
+                </ul>
+            </li>
+            <li><strong>得分区 (Goals):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>Square Goals (方形得分区):</strong> 位于场地角落，分红、蓝两色。每个方形区最多放置 <strong>1</strong> 个堆叠。</li>
+                    <li><strong>Triangle Goals (三角形得分区):</strong> 位于另外两个角落，分红、蓝两色。每个三角形区最多放置 <strong>3</strong> 个堆叠。
+                    </li>
+                    <li><strong>Floor Goal (地面得分区):</strong> 位于场地中心，围绕着支架。最多放置 <strong>4</strong> 个堆叠。</li>
+                    <div class="manual-page-break"></div>
+                    <li><strong>Standoff Goal (支架得分区):</strong> 位于场地正中心的橙色支架。这是得分难度最高但也最具战略价值的区域。</li>
+                </ul>
+            </li>
+            <li><strong>其他重要区域:</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>Load Zones (装载区):</strong> 分红蓝两色，操作手 (Loader) 在此将 Pins 放入场内。</li>
+                    <li><strong>Starting Pin Supports (起始销钉支架):</strong> 场地周边的支架，初始放置着销钉，机器人取下销钉后可获得“清空”分。</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>2.3 得分规则详解 (Scoring Breakdown)</h3>
+        <p>通过分析得分表，我们制定了优先级策略。所有的得分都在比赛结束后计算。</p>
+
+        <h4>A. 基础得分 (Base Points)</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>连接 (Connected):</strong> 只要 Pin 或 Beam 成功连接（且不接触机器人），就能得分。
+                <ul class="list-disc pl-6">
+                    <li>每个连接的 Pin: <strong>1 分</strong>。</li>
+                    <li>每个连接的 Beam: <strong>10 分</strong>。</li>
+                    <li><em>分析: Beam 的分值很高，必须优先考虑获取和连接 Beam。</em></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>B. 奖励得分 (Bonuses) - <em>这是拉开分差的关键</em></h4>
+        <ul class="list-disc pl-6">
+            <li><strong>颜色多样性奖励:</strong>
+                <ul class="list-disc pl-6">
+                    <li>堆叠中包含 <strong>2 种颜色</strong>: 额外 <strong>+5 分</strong>。</li>
+                    <li>堆叠中包含 <strong>3 种颜色</strong>: 额外 <strong>+15 分</strong>。</li>
+                    <li><em>策略: 我们不应只堆单一颜色的 Pin，必须尝试“混搭 (Mix)”三种颜色（如红+蓝+橙）以获得最高的 15 分奖励。</em></li>
+                </ul>
+            </li>
+            <li><strong>匹配得分区奖励 (Matching Goal Bonus):</strong> <strong>+10 分</strong>。
+                <ul class="list-disc pl-6">
+                    <li>条件：堆叠放置在得分区中，且堆叠 <strong>最底部的 Pin 颜色</strong> 与 <strong>得分区颜色</strong> 相同，<strong>或者</strong>
+                        堆叠连接了一个 <strong>Beam</strong>。</li>
+                    <li><em>策略: Beam 是“万能匹配卡”，只要堆叠里有 Beam，放在任何得分区都有 10 分加成！</em></li>
+                </ul>
+            </li>
+            <li><strong>支架得分区奖励 (Standoff Goal Bonus):</strong> <strong>+10 分</strong>。
+                <ul class="list-disc pl-6">
+                    <li>条件：堆叠被放置在场地中心的 Standoff Goal 上。这通常需要机器人具备举升能力。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>C. 其他得分</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>清空起始销钉 (Cleared Starting Pin):</strong> 每个 <strong>2 分</strong>。机器人需要将墙上的 Pin 移走。</li>
+            <li><strong>赛末接触 (End of Match Contact):</strong> 机器人结束时接触 2 个及以上的得分物体，得 <strong>2 分</strong>。</li>
+        </ul>
+        <div class="manual-page-break"></div>
+        <h3>2.4 竞赛模式分析 (Competition Modes)</h3>
+        <p>我们必须针对两种不同的模式优化机器人的代码和操作习惯：</p>
+        <ol class="list-decimal pl-6">
+            <li><strong>团队协作挑战赛 (Teamwork Challenge):</strong>
+                <ul class="list-disc pl-6">
+                    <li>2 台机器人，60 秒。</li>
+                    <li>我们需要根据队友的能力（是否能举升？是否能推？），现场制定策略（例如：我们负责高难度的 Standoff Goal，队友负责地面的 Triangle Goals）。</li>
+                </ul>
+            </li>
+            <li><strong>机器人技能挑战赛 (Robot Skills Challenge):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>单人模式:</strong> 我们的机器人独自在场上完成任务。</li>
+                    <li><strong>场地变化:</strong> 在技能赛中，<strong>蓝色装载区不使用</strong>，所有 Pin 必须从 <strong>红色装载区</strong>
+                        放入。这对我们的自动路线规划有重大影响。</li>
+                    <li><strong>清空场地:</strong> 所有 Pin（红、蓝、橙）如果离开场地，都必须送回红色装载区重置。</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>2.5 关键规则摘录与设计约束 (Key Rules & Design Constraints)</h3>
+        <div class="sticky-note pink">
+            <strong>⚠️ 规则红线 (Violations to Avoid):</strong>
+            为了避免违规导致取消资格 (DQ)，设计时必须严格遵守：
+            <ul class="list-disc pl-6">
+                <li><strong>尺寸限制:</strong> 起始尺寸 11" x 20" x 15"。水平方向<strong>永远</strong>不能扩展 (&lt;SG2&gt;)。垂直方向可以无限扩展
+                    (&lt;SG3&gt;)。</li>
+                <li><strong>装载规则:</strong> 操作手一次只能放一个 Pin，且必须静止释放后机器人才能拿。</li>
+                <li><strong>起始配置:</strong> 机器人必须接触三角形得分区结构开始比赛。预装 1 个 Pin。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 第三章 (Chapter 3) -->
+    <div class="notebook-page">
+        <h2>第三章：初始设计概念（头脑风暴及任务分解） (Initial Design & Brainstorming)</h2>
+
+        <h3>3.1 机器人功能需求定义 (Functional Requirements Definition)</h3>
+        <p>基于第二章的规则分析，我们将 Mix & Match 游戏的任务分解为以下核心功能需求。我们的机器人必须具备以下能力才能在比赛中获胜：</p>
+        <ol class="list-decimal pl-6">
+            <li><strong>底盘驱动 (Drivetrain):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>需求:</strong> 场地尺寸为 $6' \times 8'$，需要快速穿越场地。</li>
+                    <li><strong>约束:</strong> 起始尺寸限制在 $11" \times 20"$，底盘宽度不能过大。</li>
+                    <li><strong>目标:</strong> 灵活转向，推力足够（用于推动 Beams），且在装载区 (Load Zone) 精准停靠。</li>
+                </ul>
+            </li>
+            <li><strong>获取与收集 (Intake & Acquisition):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>对象:</strong> Pins (直径约 3.15" / 80mm) 和 Beams (长约 9.88" / 251mm)。</li>
+                    <li><strong>挑战:</strong> 规则 &lt;SG2&gt; 禁止水平扩展。</li>
+                    <li><strong>关键约束:</strong> 我们的收集机构必须设计在机器人底盘内部，不能像往年那样向外张开“手臂”去扫荡。收集口必须能容纳 80mm 宽的 Pin。</li>
+                </ul>
+            </li>
+            <li><strong>堆叠与存储 (Stacking & Storage):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>需求:</strong> 为了获得“颜色多样性奖励 (+15分)”，我们需要在一个堆叠中混合 3 种颜色的 Pin。</li>
+                    <li><strong>策略:</strong> 机器人最好能一次性携带并处理 2-3 个 Pin，而不是一次只运送一个（效率太低）。我们需要一个“弹夹”或“塔式”结构来暂存 Pin。</li>
+                </ul>
+            </li>
+            <li><strong>举升与放置 (Lift & Placement):</strong>
+                <ul class="list-disc pl-6">
+                    <li><strong>需求:</strong> 需要将堆叠放置在 Standoff Goal (中心支架) 上。</li>
+                    <li><strong>优势:</strong> 规则 &lt;SG3&gt; 允许无限垂直扩展。</li>
+                    <li><strong>目标:</strong> 举升高度至少需要覆盖 Standoff Goal 的高度，并且能平稳释放，防止堆叠倒塌。</li>
+                </ul>
+            </li>
+        </ol>
+        <div class="manual-page-break"></div>
+        <h3>3.2 头脑风暴会议记录 (Brainstorming Session)</h3>
+        <p><strong>日期:</strong> 2025年5月20日 | <strong>参与人员:</strong> 全体队员 | <strong>工具:</strong> 白板、便利贴</p>
+        <p>我们针对“如何收集和堆叠”进行了激烈的讨论，提出了三种主要的概念原型：</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="taped-image">
+                <div class="placeholder-box">
+                    [ 草图 A: 内部爪子 ]
+                    <br>
+
+                </div>
+                <div class="caption"><strong>方案 A: 改良版爪子</strong><br>安装在升降架上的爪子。结构简单，但效率低，一次只能抓一个。</div>
+            </div>
+            <div class="taped-image">
+                <div class="placeholder-box">
+                    [ 草图 B: 被动叉车 ]
+                    <br>
+
+                </div>
+                <div class="caption"><strong>方案 B: 被动叉车</strong><br>像铲车一样插入底部。不需要电机，但很难对齐，无法捡起倒下的 Pin。</div>
+            </div>
+            <div class="taped-image">
+                <div class="placeholder-box">
+                    [ 草图 C: 滚筒吸取塔 ]
+                    <br>
+
+                </div>
+                <div class="caption"><strong>方案 C: 滚筒吸取塔</strong><br>利用摩擦力吸入并自动堆叠。效率极高，但结构复杂，易卡死。</div>
+            </div>
+        </div>
+
+        <h3>3.3 概念方案对比与评估 (Decision Matrix)</h3>
+        <p>为了选择最终方案，我们使用了<strong>加权决策矩阵 (Weighted Decision Matrix)</strong>。我们将“效率”和“规则适应性”作为最重要的标准。</p>
+        <table class="tech-table">
+            <tr>
+                <th>评估标准 (Criteria)</th>
+                <th>权重 (Weight)</th>
+                <th>方案 A (爪子)</th>
+                <th>方案 B (叉车)</th>
+                <th>方案 C (滚筒塔)</th>
+            </tr>
+            <tr>
+                <td>得分效率 (Speed/Capacity)</td>
+                <td>5</td>
+                <td>2 (10分)</td>
+                <td>1 (5分)</td>
+                <td><strong>5 (25分)</strong></td>
+            </tr>
+            <tr>
+                <td>规则适应性 (&lt;SG2&gt; No Expansion)</td>
+                <td>5</td>
+                <td>3 (15分)</td>
+                <td>5 (25分)</td>
+                <td><strong>4 (20分)</strong></td>
+            </tr>
+            <tr>
+                <td>堆叠稳定性 (Stability)</td>
+                <td>4</td>
+                <td>3 (12分)</td>
+                <td>2 (8分)</td>
+                <td><strong>4 (16分)</strong></td>
+            </tr>
+            <tr>
+                <td>构建难度 (Ease of Build)</td>
+                <td>3</td>
+                <td>5 (15分)</td>
+                <td>5 (15分)</td>
+                <td><strong>2 (6分)</strong></td>
+            </tr>
+            <tr>
+                <td>驾驶容错率 (Driver Friendly)</td>
+                <td>3</td>
+                <td>3 (9分)</td>
+                <td>1 (3分)</td>
+                <td><strong>5 (15分)</strong></td>
+            </tr>
+            <tr style="background-color: #e3f2fd; font-weight: bold;">
+                <td>总分 (Total Score)</td>
+                <td>-</td>
+                <td>61</td>
+                <td>56</td>
+                <td>82</td>
+            </tr>
+        </table>
+        <div class="manual-page-break"></div>
+        <h4>结论与决策 (Decision)</h4>
+        <p>经过评估，<strong>方案 C (滚筒吸取塔)</strong> 以 <strong>82分</strong> 胜出。</p>
+        <ul class="list-disc pl-6">
+            <li><strong>决策理由:</strong> 尽管方案 C 构建难度最高，但它最符合 Mix & Match 游戏中“快速收集”和“多色堆叠”的核心需求。为了在 60 秒内获得高分，我们必须具备一次携带多个
+                Pin 的能力。</li>
+            <li><strong>风险管理:</strong>
+                我们意识到滚筒结构可能会导致重心过高，以及可能出现卡料问题。我们将在后续设计中重点关注<strong>重心优化</strong>和<strong>防卡死机制</strong>。</li>
+        </ul>
+    </div>
+
+    <!-- 第四章 (Chapter 4) -->
+    <div class="notebook-page">
+        <h2>第四章：方案设计、分析与决策 (Solution Selection and Engineering Decisions)</h2>
+
+        <h3>4.1 驱动系统（底盘）选择与设计 (Drivetrain Selection)</h3>
+        <p>底盘是机器人的基础。根据规则 &lt;R5&gt;，我们受到严格的 $11" \times 20"$ 起始尺寸限制。为了应对 Mix & Match 场地中频繁的移动和推动重物（Beam 重约
+            170g）的需求，我们对比了以下两种驱动方案：</p>
+        <table class="tech-table">
+            <tr>
+                <th>方案</th>
+                <th>A: 双电机驱动 (2-Motor Drive)</th>
+                <th>B: 四电机四轮驱动 (4-Motor Tank Drive)</th>
+            </tr>
+            <tr>
+                <td><strong>描述</strong></td>
+                <td>左右各 1 个电机，后轮驱动，前轮使用全向轮 (Omni)。</td>
+                <td>左右各 2 个电机，四轮全动力驱动。</td>
+            </tr>
+            <tr>
+                <td><strong>电机消耗</strong></td>
+                <td>2 个 (剩余 4 个给机构)</td>
+                <td>4 个 (剩余 2 个给机构)</td>
+            </tr>
+            <tr>
+                <td><strong>推力/扭矩</strong></td>
+                <td>较弱。推动 Beam 时可能会打滑或过载。</td>
+                <td><strong>强劲</strong>。双倍扭矩，能轻松推动 Beams 和对抗防守。</td>
+            </tr>
+            <tr>
+                <td><strong>速度/加速</strong></td>
+                <td>一般。</td>
+                <td><strong>优秀</strong>。加速更快，减少来回跑动的时间。</td>
+            </tr>
+            <tr>
+                <td><strong>空间占用</strong></td>
+                <td>小，利于安装复杂机构。</td>
+                <td>大，需要在底盘内部合理布线。</td>
+            </tr>
+        </table>
+
+        <p><strong>工程决策 (Engineering Decision):</strong> 我们决定采用 <strong>方案 B (四电机四轮驱动)</strong>。</p>
+        <ul class="list-disc pl-6">
+            <li><strong>理由:</strong> Mix & Match 是一个极其依赖效率的游戏。虽然这占用了 4 个电机，但在测试中我们发现，单个 Beam 的重量 (170g) 加上摩擦力，双电机底盘在推动
+                Beam 进行防守或位移时显得吃力。四电机底盘能让我们在赛场上更具统治力。</li>
+            <li><strong>齿轮比 (Gear Ratio):</strong> 我们初步选择 <strong>1:1</strong> 的直接驱动（使用 200 RPM 绿色电机盒）。这提供了速度与扭矩的最佳平衡。
+            </li>
+            <li><strong>轮子选择:</strong> 使用 <strong>200mm 行走轮 (Travel wheels)</strong> 以获得抓地力，前轮配合 <strong>全向轮 (Omni
+                    wheels)</strong> 以减少转弯摩擦。</li>
+        </ul>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ CAD 截图：4电机底盘设计图 ]
+                <br>
+
+            </div>
+        </div>
+
+        <h3>4.2 Pin/Beam 获取机构详细设计 (Intake Mechanism Design)</h3>
+        <p>在第三章确定了“滚筒吸取塔”概念后，我们需要解决具体的工程难题：如何兼容直径 80mm 的 Pin 和扁平的 Beam？</p>
+        <ul class="list-disc pl-6">
+            <li><strong>滚筒材料:</strong> 我们选择 <strong>软橡胶飞轮 (Flex Wheels)</strong> 和 <strong>橡皮筋襟翼 (Rubber Band
+                    Flaps)</strong> 混合使用。Flex Wheels 提供摩擦力抓住 Pin，Flaps 拍打 Beam 表面将其卷入。</li>
+            <li><strong>浮动设计 (Floating Intake):</strong> 为了适应 Pin 倒下或站立的不同姿态，我们将吸取臂设计为“铰链式浮动”结构。</li>
+            <li><strong>防止卡死:</strong> 我们决定在编程中加入“电流检测”功能——如果电机电流突然升高（卡住了），滚筒会自动反转 0.5 秒吐出物体。</li>
+        </ul>
+
+        <h3>4.3 堆叠与放置机构设计 (Lift & Stacking Design)</h3>
+        <p>我们需要将堆叠好的 Pins 放置到 <strong>Standoff Goal</strong> 上。</p>
+        <ul class="list-disc pl-6">
+            <li><strong>升降结构:</strong> 我们选择了 <strong>4连杆机构 (4-Bar
+                    Linkage)</strong>。相比线性滑轨，4连杆结构更简单，重心更低，且能保证提升过程中末端保持水平。</li>
+            <li><strong>高度计算:</strong> Standoff Goal 的底座高度约为 2.38" (60mm)。我们的 4连杆臂长设计为 10 英寸，足以覆盖所需的举升高度。</li>
+            <li><strong>被动释放 (Passive Release):</strong> 为了节省电机，我们设计了一个被动释放叉。</li>
+        </ul>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 草图：4连杆升降机构 ]
+                <br>
+
+            </div>
+        </div>
+        <div class="manual-page-break"></div>
+        <h3>4.4 初始得分策略及电机分配 (Motor Allocation)</h3>
+        <p>根据规则 &lt;R11&gt;，机器人最多允许使用 6 个智能电机。基于上述设计，我们的电机端口分配如下：</p>
+        <table class="tech-table">
+            <tr>
+                <th>端口 (Port)</th>
+                <th>功能 (Function)</th>
+                <th>备注 (Notes)</th>
+            </tr>
+            <tr>
+                <td><strong>1 & 6</strong></td>
+                <td>左侧驱动 (Left Drive)</td>
+                <td>电机组 (Motor Group)</td>
+            </tr>
+            <tr>
+                <td><strong>7 & 12</strong></td>
+                <td>右侧驱动 (Right Drive)</td>
+                <td>电机组 (Motor Group)</td>
+            </tr>
+            <tr>
+                <td><strong>4</strong></td>
+                <td>收集滚筒 (Intake Roller)</td>
+                <td>负责吸入和吐出</td>
+            </tr>
+            <tr>
+                <td><strong>10</strong></td>
+                <td>4连杆升降 (4-Bar Lift)</td>
+                <td>高扭矩配置 (1:5 减速)</td>
+            </tr>
+        </table>
+
+        <h3>4.5 风险评估与备用方案 (Risk Analysis)</h3>
+        <table class="tech-table">
+            <tr>
+                <th>潜在风险 (Risk)</th>
+                <th>解决方案 (Solution)</th>
+            </tr>
+            <tr>
+                <td><strong>底盘过宽</strong></td>
+                <td>如果 4 电机导致底盘超过 11 英寸宽，我们将改为将电机垂直安装或前后交错安装。</td>
+            </tr>
+            <tr>
+                <td><strong>重心过高</strong></td>
+                <td>4连杆举升时可能翻车。我们将在底盘后部加装防倾倒轮 (Anti-tip wheels)。</td>
+            </tr>
+            <tr>
+                <td><strong>Beam 太重</strong></td>
+                <td>如果吸取机构卷不动 170g 的 Beam，我们将放弃吸取 Beam，改为利用底盘形状去推 Beam。</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 第五章 (Chapter 5) -->
+    <div class="notebook-page">
+        <h2>第五章：构建与编程 (1.0 版本) (Construction and Programming V1.0)</h2>
+
+        <h3>5.1 机械部件清单 (Materials List)</h3>
+        <p>为了构建 V1.0 版本的机器人，我们基于第四章的设计决策，整理了核心部件清单。我们严格遵守 &lt;R14&gt; 规则，仅使用官方 VEX IQ 零件。</p>
+        <table class="tech-table">
+            <tr>
+                <th>类别</th>
+                <th>部件名称</th>
+                <th>数量</th>
+                <th>用途说明</th>
+            </tr>
+            <tr>
+                <td><strong>电子件</strong></td>
+                <td>VEX IQ Robot Brain, Controller, Motors (6), Battery</td>
+                <td>1套</td>
+                <td>核心控制、动力与电源</td>
+            </tr>
+            <tr>
+                <td><strong>结构件</strong></td>
+                <td>2x Beams, Connectors</td>
+                <td>若干</td>
+                <td>构建底盘框架和升降臂</td>
+            </tr>
+            <tr>
+                <td><strong>运动件</strong></td>
+                <td>200mm Travel Wheels, Omni Wheels, Flex Wheels, Gears</td>
+                <td>若干</td>
+                <td>驱动与传动</td>
+            </tr>
+        </table>
+
+        <h3>5.2 底盘搭建记录 (Chassis Build Log)</h3>
+        <p><strong>日期:</strong> 2025年7月10日 | <strong>搭建目标:</strong> 完成四电机全轮驱动底盘。</p>
+        <p><strong>构建过程:</strong></p>
+        <ol class="list-decimal pl-6">
+            <li><strong>框架搭建:</strong> 使用 $2 \times 20$ 的梁作为主梁。将底盘总宽度严格控制在 10.5 英寸，以符合 &lt;R5&gt;。</li>
+            <li><strong>电机安装:</strong> 后侧两个电机直连后轮，前侧两个电机通过 1:1 齿轮传动连接前轮。</li>
+            <li><strong>轮子配置:</strong> 后轮使用橡胶轮 (Traction) 提供动力，前轮使用全向轮 (Omni) 辅助转向。</li>
+            <li><strong>加固:</strong> 添加横梁 (Cross-bracing) 防止变形。</li>
+        </ol>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 照片：V1.0 机器人底盘 ]
+                <br>
+
+            </div>
+            <div class="caption">正在安装密集的齿轮传动系统</div>
+        </div>
+        <div class="manual-page-break"></div>
+        <h3>5.3 各功能机构搭建记录 (Mechanism Build Log)</h3>
+        <ul class="list-disc pl-6">
+            <li><strong>吸取机构 (Intake):</strong> 浮动式滚筒。使用两条链条传动。滚筒上间隔安装 Flex Wheels 和橡皮筋襟翼，以适应不同物体。</li>
+            <li><strong>升降机构 (Lift):</strong> 4连杆。使用 1:5 的扭矩齿轮比 (12T:60T) 来提升约 300g 的负载。举升高度达到 16 英寸。</li>
+        </ul>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 照片：吸取机构原型 ]
+                <br>
+
+            </div>
+        </div>
+
+        <h3>5.4 程序设计 (Programming V1.0)</h3>
+        <p><strong>编程平台:</strong> VEXcode IQ (Blocks) | <strong>模式:</strong> 手动遥控</p>
+
+        <h4>A. 遥控器键位定义</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>左摇杆 (A+D):</strong> 前进/后退 (控制所有 4 个底盘电机)</li>
+            <li><strong>右摇杆 (B+C):</strong> 转向 (差速转向)</li>
+            <li><strong>R1/R2:</strong> 吸取/吐出</li>
+            <li><strong>L1/L2:</strong> 升降臂上升/下降</li>
+        </ul>
+
+        <h4>B. 核心代码逻辑</h4>
+        <p><strong>电机保持 (Motor Hold):</strong> 对于升降电机，我们将停止模式设置为 "Hold"。这非常重要！当 L1/L2 键松开时，电机必须锁住位置，否则吸取仓会滑下来。</p>
+        <div class="code-block">
+            // VEXcode 伪代码示例
+            LeftMotor.spin(FORWARD, Controller.AxisA.position() + Controller.AxisB.position());
+            RightMotor.spin(FORWARD, Controller.AxisA.position() - Controller.AxisB.position());
+            LiftMotor.setStopping(HOLD); // 关键设置
+        </div>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 截图：VEXcode 编程界面 ]
+                <br>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 第六章 (Chapter 6) -->
+    <div class="notebook-page">
+        <h2>第六章：测试与性能评估 (Testing and Performance Evaluation)</h2>
+
+        <h3>6.1 1.0 版本机器人功能总结 (V1.0 Functional Summary)</h3>
+        <p><strong>完成日期:</strong> 2025年7月15日</p>
+        <p>V1.0 机器人具备了基础能力：四轮驱动动力充沛，滚筒能卷入 Pins，4连杆能举升到 Standoff Goal 高度。然而，它的功能还很粗糙，缺乏精度和稳定性。</p>
+
+        <h3>6.2 训练方案及实战测试记录 (Training & Test Logs)</h3>
+
+        <h4>测试 1：基础驾驶与单体得分</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>数据:</strong> 尝试获取 Pin 10次，成功 7次。得分 12分。</li>
+            <li><strong>观察:</strong> 机器人速度很快，但在接近 Goal 时很难刹住车（惯性大）。全向轮虽然转向灵活，但也导致机器人很容易被推歪。</li>
+        </ul>
+
+        <h4>测试 2：堆叠与混合颜色挑战</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>结果:</strong> <strong>失败</strong>。</li>
+            <li><strong>问题描述:</strong> 当第一个 Pin 进入机身储存仓后，第二个 Pin 很难挤进去。两个 Pin 在机身内部经常“打架”，无法形成整齐的嵌套 (Nested) 状态。得分 0分。
+            </li>
+        </ul>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 照片：堆叠失败现场 ]
+                <br>
+
+            </div>
+        </div>
+
+        <h4>测试 3：Beam 获取与放置</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>结果:</strong> <strong>严重卡死 (Major Jam)</strong>。</li>
+            <li><strong>问题描述:</strong> Beam 是扁平的长方体。当滚筒尝试卷入时，Beam 经常横着卡在入口处，导致电机过热保护。</li>
+        </ul>
+        <div class="manual-page-break"></div>
+        <h3>6.3 发现的问题与改进方向总结 (Issues & Improvement Plan)</h3>
+        <div class="sticky-note pink">
+            <strong>🚫 V1.0 致命缺陷 (Fatal Flaws):</strong>
+            <ol class="list-decimal pl-6">
+                <li><strong>吸取卡死:</strong> 固定间隙无法同时兼容 Pin 和 Beam。 -> <strong>计划:</strong> 自适应张紧结构。</li>
+                <li><strong>堆叠不稳定:</strong> 储存仓太宽，Pins 晃动无法对齐。 -> <strong>计划:</strong> 增加漏斗导向槽。</li>
+                <li><strong>重心过高:</strong> 举升时加速会翻车。 -> <strong>计划:</strong> 优化配重，加装防倾倒轮。</li>
+                <li><strong>释放不顺畅:</strong> 被动释放对驾驶要求太高。 -> <strong>计划:</strong> 改为主动释放。</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 第七章 (Chapter 7) -->
+    <div class="notebook-page">
+        <h2>第七章：设计迭代与优化 (Design Iteration and Optimization)</h2>
+
+        <h3>7.1 2.0 版本迭代过程 (Version 2.0 Iteration)</h3>
+        <p><strong>迭代周期:</strong> 2025年8月1日 - 8月20日</p>
+
+        <h4>A. 针对性改进记录 (Targeted Improvements)</h4>
+        <ol class="list-decimal pl-6">
+            <li><strong>解决 #01 吸取卡死 -> 自适应吸取臂 (Adaptive Intake Arm):</strong>
+                我们废弃了固定的滚筒轴。新的滚筒安装在一个可以绕轴旋转的“摆臂”上，并使用橡皮筋向下拉紧。遇到厚物体（Beam）时，摆臂会自动向上旋转腾出空间。</li>
+            <li><strong>解决 #02 堆叠不稳定 -> 漏斗导向系统 (Funnel Guide System):</strong> 在储存仓内部安装了用薄塑料片制作的导向板，形成“漏斗”，强制 Pins
+                滑落到正中心对齐嵌套。</li>
+            <li><strong>解决 #03 重心过高 -> 防倾倒轮 (Anti-Tip Wheels):</strong> 在底盘后方安装小轮子作为“辅助轮”，防止举升时翻车。</li>
+        </ol>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 草图：自适应吸取臂特写 ]
+                <br>
+
+            </div>
+        </div>
+
+        <h4>B. 代码优化 (Code Optimization V2.0)</h4>
+        <p><strong>新增功能：智能防卡死 (Smart Anti-Jam):</strong> 监控吸取电机电流。如果电流超过 2.0 安培，自动反转吐出物体，然后再尝试吸入。</p>
+        <div class="code-block">
+            // 伪代码逻辑
+            If (IntakeMotor.current() > 2.0 Amps) and (IntakeMotor.isSpinning()):
+            IntakeMotor.spin(REVERSE, 0.5 seconds) // 吐出
+            Wait(0.2 seconds)
+            IntakeMotor.spin(FORWARD) // 重新尝试吸入
+        </div>
+        <div class="manual-page-break"></div>
+        <h3>7.2 3.0 版本迭代过程：气动系统的探索 (Version 3.0)</h3>
+        <p><strong>背景:</strong> 我们遇到了电机数量限制，无法再安装一个独立的“推杆”来主动将堆叠推入得分区。</p>
+        <p><strong>规则研究:</strong> 根据规则 &lt;R18&gt;，Mix & Match 允许使用 VEX IQ 气动系统（2 气罐 + 1 气泵）。</p>
+
+        <h4>A. V3.0 预研设计 (Prototype Design)</h4>
+        <ul class="list-disc pl-6">
+            <li><strong>设计:</strong> 利用一个单作用气缸作为主动推杆 (Pusher)。</li>
+            <li><strong>操作逻辑:</strong> 升降臂抬起 -> 驾驶员按下按钮 -> 气缸伸出，将堆叠平稳推离吸取仓，落入 Goal 中。</li>
+        </ul>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 示意图：气动系统连接图 ]
+                <br>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 第八章 (Chapter 8) -->
+    <div class="notebook-page">
+        <h2>第八章：竞赛准备、策略及赛后反思 (Competition Strategy and Reflection)</h2>
+
+        <h3>8.1 Mix & Match 技巧挑战赛 (Skills Challenge) 路线规划</h3>
+
+        <h4>A. 驾驶技能赛 (Driving Skills) - 60秒</h4>
+        <p><strong>目标分数:</strong> 80+ 分。由于技能赛只能使用红色装载区，我们的路线必须围绕红色区域展开。</p>
+        <ol class="list-decimal pl-6">
+            <li><strong>起步:</strong> 红色三角形得分区，预装 1 个红 Pin。</li>
+            <li><strong>0-15秒:</strong> 清理场地左侧起始 Pins，获得清空分。</li>
+            <li><strong>15-45秒 (核心得分期):</strong> 驶向红色装载区。利用 V3.0 气动推杆，连续制作两个“3色堆叠”并放置在 Standoff Goal 上。(每个堆叠 28 分)。</li>
+            <li><strong>45-60秒:</strong> 驾驶到场地中央，推入剩余 Beams 到地面得分区。</li>
+        </ol>
+        <div class="taped-image">
+            <div class="placeholder-box">
+                [ 路线图：驾驶技能赛策略 ]
+                <br>
+
+            </div>
+        </div>
+
+        <h4>B. 自动编程技能赛 (Autonomous Coding Skills)</h4>
+        <p>使用陀螺仪 (Gyro) 精准转向和编码器测距。代码逻辑片段：</p>
+        <div class="code-block">
+            Drivetrain.driveFor(FORWARD, 500, MM)
+            Drivetrain.turnToHeading(90, DEGREES)
+            Intake.spinFor(FORWARD, 2, TURNS) // 吸取
+            Lift.spinToPosition(300, DEGREES) // 抬起
+            Pneumatics.set(TRUE) // 气动推出
+        </div>
+
+        <h3>8.2 团队合作赛 (Teamwork Challenge) 策略制定</h3>
+        <ul class="list-disc pl-6">
+            <li><strong>情景一：强队友 (Strong Partner):</strong> 左右分治 (Split Field)。我们负责场地左侧和 Standoff Goal，队友负责右侧和
+                Beams。互不干扰。</li>
+            <li><strong>情景二：弱队友 (Pushbot Partner):</strong> 我主攻，你辅助。请求队友专注于清空墙上的起始 Pins，并将散落的 Pins 推到场地中心方便我们吸取。</li>
+        </ul>
+        <div class="manual-page-break"></div>
+        <h3>8.3 赛后反思 (Reflection & Analysis)</h3>
+        <p><strong>比赛结果:</strong> 我们在资格赛中获得了 <strong>团队协作赛冠军</strong> 和 <strong>机器人技能赛第二名</strong>。</p>
+        <div class="sticky-note blue">
+            <strong>✅ 成功之处:</strong> V3.0 气动推杆是制胜关键，在决赛中稳定输出了两个 3色堆叠。<br>
+            <strong>⚠️ 教训:</strong> 在一场比赛中忘记跟队友确认结束信号，导致最后时刻相撞扣分。以后必须严格执行沟通流程。<br>
+            <strong>🚀 未来:</strong> 下赛季将尝试设计通用型机械手，并钻研里程计 (Odometry) 算法。
+        </div>
+    </div>
+
+</body>
+
+</html>

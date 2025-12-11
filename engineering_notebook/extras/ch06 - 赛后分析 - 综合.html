@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 赛季综合回顾</title>
+    <style>
+        /* ================= 基础设置 ================= */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: #525659;
+            font-family: "KaiTi", "STKaiti", "Microsoft YaHei", cursive;
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        .sheet {
+            width: 210mm;
+            height: 297mm;
+            padding: 15mm 20mm;
+            background-color: #fff;
+            background-image: 
+                linear-gradient(#e0e0e0 1px, transparent 1px),
+                linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+            background-size: 8mm 8mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 0 auto;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .binder-holes {
+            position: absolute;
+            left: 8mm;
+            top: 0;
+            bottom: 0;
+            width: 10mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .hole {
+            width: 6mm;
+            height: 6mm;
+            background-color: #525659;
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .header-tape {
+            height: 10mm;
+            background-color: #D7BDE2;
+            border: 2px solid #8E44AD;
+            border-radius: 5px;
+            margin-bottom: 8mm;
+            position: relative;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            text-align: center;
+            line-height: 10mm;
+            font-weight: bold;
+            color: #4A235A;
+            letter-spacing: 3px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin: 0 0 15px 0;
+            color: #333;
+            border-bottom: 3px double #555;
+            padding-bottom: 5px;
+        }
+
+        /* 时间轴样式 */
+        .timeline {
+            position: relative;
+            margin-left: 10px;
+            border-left: 3px solid #888;
+            padding-left: 20px;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 18px;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            background: #E74C3C;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #aaa;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .date { font-weight: bold; color: #E74C3C; }
+        .location { font-weight: bold; color: #2980B9; }
+        
+        .content p { margin: 3px 0; font-size: 13px; line-height: 1.4; }
+        .highlight { color: #D35400; font-weight: bold; }
+        .tag { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 12px; color: white; margin-right: 5px; }
+        .tag-train { background: #F39C12; }
+        .tag-comp { background: #2980B9; }
+        .tag-final { background: #8E44AD; }
+
+        .summary-box {
+            border: 2px solid #C0392B;
+            background-color: #FDEDEC;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        
+        .signature { text-align: right; margin-top: 5px; font-family: cursive; font-size: 14px; }
+        .page-num { position: absolute; bottom: 10mm; right: 10mm; color: #999; }
+        
+        .sticker { position: absolute; bottom: 15mm; left: 15mm; font-size: 40px; transform: rotate(-15deg); opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape">SEASON REVIEW 2025-2026</div>
+        <h1>赛季征程综合复盘</h1>
+
+        <div class="timeline">
+            <!-- 交流赛 -->
+            <div class="event">
+                <div class="event-header">
+                    <span class="date">2025.7.16</span>
+                    <span class="tag tag-train">练兵</span>
+                    <span class="location">VEX交流赛 (建外SOHO)</span>
+                </div>
+                <div class="content">
+                    <p><strong>实况：</strong> 模拟积分赛3场。第一场崩飞Pin；第二场撞倒Beam (124分)；决赛场稳定发挥 (242分) 获亚军。</p>
+                    <p><strong>教训：</strong> 笔记不全导致流程不清；看不懂对战表找错人；装填手触碰赛台违规。</p>
+                    <p><strong>改进：</strong> 强化装填配合，不再“抢”队友Pin，学会阅读对战表。</p>
+                </div>
+            </div>
+
+            <!-- 石家庄站 -->
+            <div class="event">
+                <div class="event-header">
+                    <span class="date">2025.10.4-7</span>
+                    <span class="tag tag-comp">大区赛</span>
+                    <span class="location">亚洲公开赛 (石家庄)</span>
+                </div>
+                <div class="content">
+                    <p><strong>心理战：</strong> 第一次全封闭比赛，心里非常慌张。</p>
+                    <p><strong>突发：</strong> 比赛中<span class="highlight">横轴断裂</span>！现场借短轴紧急固定，双手哆嗦着修好继续比赛。心理素质经受了极大考验。</p>
+                </div>
+            </div>
+
+            <!-- 校际联赛 -->
+            <div class="event">
+                <div class="event-header">
+                    <span class="date">2025.10月</span>
+                    <span class="tag tag-comp">突破</span>
+                    <span class="location">首届北京校际联赛</span>
+                </div>
+                <div class="content">
+                    <p><strong>技术升级：</strong> <span class="highlight">二代车</span>登场。优化搭高塔路线，准确度近100%，提速2-3秒。</p>
+                    <p><strong>策略升级：</strong> 建立“联队数据库”，详细记录队友电话、优势、路线及冲突点。</p>
+                    <p><strong>成绩：</strong> 首次参加技能赛，手动打出 91分，发挥出色。</p>
+                </div>
+            </div>
+
+            <!-- 西城区赛 -->
+            <div class="event">
+                <div class="event-header">
+                    <span class="date">2025.1月</span>
+                    <span class="tag tag-comp">考验</span>
+                    <span class="location">西城区中小学生赛</span>
+                </div>
+                <div class="content">
+                    <p><strong>环境：</strong> 信号全封闭，屏蔽队号（盲打）。沟通极不顺畅。</p>
+                    <p><strong>表现：</strong> 凭借<span class="highlight">三代车（气动）</span>的稳定性，全程零故障。虽然过程侥幸，但成功获得市赛资格。</p>
+                </div>
+            </div>
+
+            <!-- 北京市赛 -->
+            <div class="event">
+                <div class="event-header">
+                    <span class="date">2025.2月</span>
+                    <span class="tag tag-final">巅峰与低谷</span>
+                    <span class="location">北京市中小学生赛</span>
+                </div>
+                <div class="content">
+                    <p><strong>积分赛 (Teamwork)：</strong> <span class="highlight">小学组第一名！</span> 配合完美，发挥出色。</p>
+                    <p><strong>技能赛 (Skills)：</strong> <strong>重大失误。</strong> 第一场自动全塌；第二场烧错程序。两场自动均挂零。</p>
+                    <p><strong>结果：</strong> 因自动赛失利，总成绩止步三等奖。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-box">
+            <p><strong>赛季终极总结：</strong></p>
+            <p>这一年我们解决了机械稳定性（一代到三代）、解决了战术配合（联队数据），但最终倒在了<strong>“手动转自动”</strong>的磨合上。</p>
+            <p><span class="highlight">下一步重点：</span> 自动程序的稳定性训练是重中之重！不能让代码成为短板。</p>
+            <div class="signature">记录人：全员复盘</div>
+        </div>
+
+        <div class="sticker">📈</div>
+        <div class="page-num">155</div>
+    </div>
+
+</body>
+</html>

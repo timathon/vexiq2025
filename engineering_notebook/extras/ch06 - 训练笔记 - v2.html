@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 赛季征程 (训练日记)</title>
+    <style>
+        /* ================= 基础设置 ================= */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: #525659;
+            font-family: "KaiTi", "STKaiti", "Microsoft YaHei", cursive; /* 优先使用楷体模仿手写 */
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        /* A4 纸张样式 */
+        .sheet {
+            width: 210mm;
+            height: 297mm;
+            padding: 15mm 20mm; /* 留出打孔位置 */
+            background-color: #fff;
+            /* 模仿方格纸背景 */
+            background-image: 
+                linear-gradient(#e0e0e0 1px, transparent 1px),
+                linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+            background-size: 8mm 8mm; /* 格子大小 */
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 0 auto 20px auto;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        /* 左侧装订孔效果 */
+        .binder-holes {
+            position: absolute;
+            left: 8mm;
+            top: 0;
+            bottom: 0;
+            width: 10mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .hole {
+            width: 6mm;
+            height: 6mm;
+            background-color: #525659;
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* ================= 顶部装饰与标题 ================= */
+        .header-tape {
+            height: 12mm;
+            background-color: #F8C471; /* 默认黄色胶带 */
+            border: 2px solid #D35400;
+            border-radius: 5px;
+            margin-bottom: 8mm;
+            position: relative;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        .header-tape.green { background-color: #A9DFBF; border-color: #27AE60; }
+        .header-tape.blue { background-color: #AED6F1; border-color: #2980B9; }
+        .header-tape.red { background-color: #F5B7B1; border-color: #C0392B; }
+
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+            margin: -5mm 0 10mm 5mm;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        /* ================= 表格样式 (核心) ================= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #333;
+            background-color: rgba(255, 255, 255, 0.95); /* 半透明白底 */
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            vertical-align: middle;
+        }
+
+        /* 表头行高度 */
+        tr.meta-row { height: 10mm; }
+        
+        /* 内容行布局 */
+        .col-label {
+            width: 10%;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: rgba(230, 230, 230, 0.5);
+            writing-mode: vertical-lr; /* 竖排文字 */
+            letter-spacing: 5px;
+        }
+        
+        .col-content {
+            vertical-align: top;
+            padding: 15px;
+        }
+
+        /* 内容内部的小节 */
+        .log-entry {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px dashed #aaa;
+            padding-bottom: 12px;
+        }
+        .log-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .log-text {
+            flex: 1;
+            padding-right: 10px;
+        }
+        
+        .log-text h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #E67E22;
+            font-weight: bold;
+        }
+        .log-text p, .log-text li {
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 3px 0;
+        }
+
+        /* 图片占位符 */
+        .log-img {
+            width: 140px;
+            height: 100px;
+            background-color: #f4f4f4;
+            border: 2px solid #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #777;
+            margin-left: 10px;
+            transform: rotate(2deg);
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            flex-shrink: 0;
+            padding: 5px;
+            text-align: center;
+        }
+        .log-img.tilt-left { transform: rotate(-2deg); }
+
+        /* 总结栏 */
+        .summary-row {
+            height: 35mm;
+        }
+
+        /* ================= 装饰贴纸 ================= */
+        .sticker {
+            position: absolute;
+            bottom: 20mm;
+            left: 25mm;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #FCF3CF;
+            border: 2px dashed #F1C40F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            transform: rotate(-10deg);
+            opacity: 0.9;
+            z-index: 10;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 16px;
+            font-family: cursive;
+            color: #555;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: absolute;
+            bottom: 10mm;
+            right: 10mm;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* 强调文字 */
+        .highlight { color: #C0392B; font-weight: bold; }
+        .rule-ref {
+            background-color: #EBF5FB;
+            color: #2980B9;
+            padding: 0 4px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= 页面 1: VEX交流赛 (初次参赛) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape"></div>
+        <h1>(一) 训练记录：第一次实战练兵</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">2025年7月16日</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>建外SOHO交流赛现场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">参与人员</td>
+                <td colspan="3">全员 (集训后的一场练兵赛)</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">比赛过程</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>赛前：紧张与混乱</h3>
+                            <p>10:00入场，10:30队长开会。这是我们第一次参加模拟真实赛事的训练。</p>
+                            <p><strong>问题：</strong> 选手会议笔记记得不完整，导致我们对流程很迷糊。找联队队友时也找错了人，浪费了宝贵的战术制定时间。</p>
+                        </div>
+                        <div class="log-img">[图片：拥挤的备赛区，大家对着对战表一脸茫然的样子]</div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>赛中：手抖的一代车</h3>
+                            <p><strong>第一场：</strong> 使用一代车。搭塔时机械臂不稳，直接崩飞了一个 Pin，三人极度紧张，手柄仿佛不受控制。 <span class="rule-ref">&lt;SC5&gt;</span></p>
+                            <p><strong>第二场：</strong> 还是太快了，直接撞倒了场上的 Beam。队友也失误了，合计才 124 分。</p>
+                            <p><strong>决赛：</strong> 联队是大哥哥队，我们负责防守和基础分，最终拿了亚军！</p>
+                        </div>
+                        <div class="log-img tilt-left">[图片：赛场上撞倒 Beam 的尴尬瞬间]</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">教训总结</td>
+                <td colspan="3" class="col-content">
+                    <p><strong>暴露的问题：</strong></p>
+                    <ol>
+                        <li>装填手配合不默契，装填时甚至碰到了赛台（违规 <span class="rule-ref">&lt;SG6&gt;</span>）。</li>
+                        <li>比赛时“抢”了队友的 Pin，缺乏沟通。</li>
+                    </ol>
+                    <p><strong>改正：</strong> 必须增加装填配合训练，熟悉赛制！</p>
+                    <div class="signature">记录人：印涵邸</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">😓</div>
+        <div class="page-num">145</div>
+    </div>
+
+    <!-- ================= 页面 2: 暑期特训 (针对性改进) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape green"></div>
+        <h1>(二) 训练记录：针对性特训</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">8月1日 - 8月5日</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>学校训练场</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">内容</td>
+                <td colspan="3">装填配合 & 规则学习</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">训练内容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>重点突破：装填 (Loading)</h3>
+                            <p>针对交流赛“手忙脚乱”的问题，我们专门练了 100 次装填。</p>
+                            <p><strong>口令化：</strong> 操作手喊“要红的！”，装填手复述“红的到位！”，然后操作手再取。</p>
+                            <p><strong>规则复习：</strong> <span class="rule-ref">&lt;SG6&gt;</span> 规定人手离开后车才能碰 Pin。我们互相监督，谁碰赛台谁做俯卧撑。</p>
+                        </div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>一代车的极限</h3>
+                            <p>训练中发现，一代车虽然加了防滑垫，但因为底盘太快（2倍速），在长距离冲刺后很难精准停在 Load Zone 前面，经常需要调整好几次位置，浪费了大量时间。</p>
+                        </div>
+                        <div class="log-img">[图片：操作手在 Load Zone 前反复微调车身位置]</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">总结</td>
+                <td colspan="3" class="col-content">
+                    <p>配合默契度提升了，不再出现“互相等待”的尴尬场面。但是一代车的操控性问题越来越明显，大家开始讨论是否需要降速或改结构。</p>
+                    <div class="signature">签名：宋书月</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">📢</div>
+        <div class="page-num">146</div>
+    </div>
+
+    <!-- ================= 页面 3: 石家庄公开赛 (意外与成长) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape red"></div>
+        <h1>(三) 比赛记录：石家庄站的考验</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">10月4日 - 10月7日</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>VEX亚洲公开赛华北大区</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">状态</td>
+                <td colspan="3">全封闭式比赛，心理极度慌张</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">突发状况</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>全封闭环境的压力</h3>
+                            <p>这是我们第一次感受全封闭比赛。没有教练在身边，只有我们三个人。周围都是其他队伍的高手，心里非常慌。</p>
+                        </div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>事故：横轴断裂！</h3>
+                            <p>在一场资格赛中，一代车的主传动<strong>横轴突然断了</strong>！车子趴窝了。</p>
+                            <p><strong>紧急维修：</strong> 现场没有备件，我们只能硬着头皮找旁边的队伍借了一个短轴。</p>
+                            <p><strong>心理描写：</strong> 在固定那个短轴时，我的双手都是哆嗦的，生怕修不好就被淘汰了。好在最后勉强固定好，坚持完了比赛。</p>
+                        </div>
+                        <div class="log-img tilt-left">[图片：一只手拿着断掉的塑料轴，背景是混乱的维修台]</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">赛后感悟</td>
+                <td colspan="3" class="col-content">
+                    <p>虽然成绩一般，但这次经历让我们心脏变强了。我们也意识到，一代车的结构强度已经无法适应高强度的激烈对抗，<strong>必须升级二代车</strong>。</p>
+                    <div class="signature">签名：叶恒嘉</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">💔</div>
+        <div class="page-num">147</div>
+    </div>
+
+    <!-- ================= 页面 4: 二代车研发 (备战校际赛) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape blue"></div>
+        <h1>(四) 训练记录：二代车登场</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">10月中旬</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>备战室</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">目标</td>
+                <td colspan="3">备战首届北京校际联赛</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">升级内容</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>从一代到二代</h3>
+                            <p>痛定思痛，我们拆掉了一代车。二代车的核心改进：</p>
+                            <ul style="list-style-type: square;">
+                                <li><strong>长臂猿：</strong> 加长了机械臂，目标直指场地中间的 <span class="rule-ref">Standoff Goal</span>（高塔）。</li>
+                                <li><strong>大爪子：</strong> 既然对不准，就做个大一点的爪子，容错率更高。</li>
+                                <li><strong>软件限速：</strong> 把底盘速度限制在 75%，牺牲一点极限速度换取稳定性。</li>
+                            </ul>
+                        </div>
+                        <div class="log-img">[图片：二代车雏形，有着明显加长的手臂]</div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>测试结果</h3>
+                            <p>在搭高塔环节，准确度近乎 <strong>100%</strong>！</p>
+                            <p>不用像以前那样反复瞄准，只要大概位置对，就能挂上去。这一个环节就提升了 <strong>2-3秒</strong> 的速度。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">总结</td>
+                <td colspan="3" class="col-content">
+                    <p>工欲善其事，必先利其器。二代车的稳定性让我们对即将到来的校际联赛充满了信心。</p>
+                    <div class="signature">签名：叶恒瑞</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">🛠️</div>
+        <div class="page-num">148</div>
+    </div>
+
+    <!-- ================= 页面 5: 北京校际联赛 (数据化) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape"></div>
+        <h1>(五) 比赛记录：学会做数据</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">10月底</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>首届北京校际联赛</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">策略</td>
+                <td colspan="3">系统化记录联队数据</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">策略升级</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>不再盲目找队友</h3>
+                            <p>以前我们只看赛事表找人。从这场比赛开始，我们建立了一个<strong>“联队数据库”</strong>。</p>
+                            <p><strong>记录内容：</strong></p>
+                            <ul>
+                                <li>队友电话（防失联）</li>
+                                <li>车辆优势（跑得快？还是能挂高塔？）</li>
+                                <li>惯用路线（走左路还是右路？）</li>
+                                <li>容易冲突的位置（提前规避撞车）</li>
+                            </ul>
+                        </div>
+                        <div class="log-img">[图片：手写的笔记本，密密麻麻记录着各队号的特点]</div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>比赛表现</h3>
+                            <p>因为有了详细的记录，我们在制定战术时非常有底气。二代车在手动赛中打出了 <strong>91分</strong> 的好成绩！这比我们在交流赛时的分数翻了一倍还多。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">总结</td>
+                <td colspan="3" class="col-content">
+                    <p>这次比赛我们向前踏了一大步。不仅是分数的提升，更是比赛思维的成熟。知己知彼，百战不殆。</p>
+                    <div class="signature">签名：印涵邸</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">📊</div>
+        <div class="page-num">149</div>
+    </div>
+
+    <!-- ================= 页面 6: 校际联赛 (技能赛突破) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape green"></div>
+        <h1>(六) 比赛记录：技能赛初体验</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">10月底</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">赛事</td>
+                <td>首届北京校际联赛 - 技能赛</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">成绩</td>
+                <td colspan="3">手动技能赛高分</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">技能挑战</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>首次参加技能赛</h3>
+                            <p>以前我们只关注联队赛。这次我们尝试了 Robot Skills（单车作战）。</p>
+                            <p><strong>规则不同：</strong> <span class="rule-ref">&lt;RSC3&gt;</span> 红色 Load Zone，没有队友，全靠自己。</p>
+                        </div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>手动赛发挥出色</h3>
+                            <p>宋书月和叶恒瑞配合默契，二代车的稳定性立了大功。我们手动部分打出了 <strong>184分</strong>（注：此处可能包含自动分或为多次叠加，原文如此，暂且记录为惊人的高分表现）。</p>
+                            <p><strong>关键点：</strong> 全程没有掉一个 Pin，所有高塔都挂满了。二代车的“长臂”优势完全发挥出来了。</p>
+                        </div>
+                        <div class="log-img tilt-left">[图片：记分牌上显示着令人骄傲的分数]</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">总结</td>
+                <td colspan="3" class="col-content">
+                    <p>技能赛证明了我们的车本身具备很强的得分能力。但是自动赛部分我们还没准备好，这是下一步的短板。</p>
+                    <div class="signature">签名：宋书月</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">🏆</div>
+        <div class="page-num">150</div>
+    </div>
+
+    <!-- ================= 页面 7: 备战西城 (气动升级) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape blue"></div>
+        <h1>(七) 训练记录：三代车与气动</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">12月 - 1月</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>实验室</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">目标</td>
+                <td colspan="3">备战西城区赛与市赛</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">技术革新</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>引入气动系统 (Pneumatics)</h3>
+                            <p>为了追求更快的速度，我们决定升级到三代车。</p>
+                            <ul style="list-style-type: circle;">
+                                <li><strong>气动爪：</strong> 以前电机抓取要 0.5秒，现在气缸“呲”一下只要 0.1秒。</li>
+                                <li><strong>气动翅膀：</strong> 增加了一对侧翼，专门用来卡住 Triangle Goal 的位置，实现自动对准。</li>
+                            </ul>
+                        </div>
+                        <div class="log-img">[图片：三代车特写，蓝色的气罐非常显眼]</div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>底盘防卡优化</h3>
+                            <p>针对之前底盘容易卡在 Beam 上的问题，叶恒嘉设计了新的齿轮传动结构（惰轮），让底盘通过性更好。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">总结</td>
+                <td colspan="3" class="col-content">
+                    <p>三代车是目前最完美的版本。速度快、抓取稳、不卡梁。我们准备好迎接大考了。</p>
+                    <div class="signature">签名：叶恒瑞</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">💨</div>
+        <div class="page-num">151</div>
+    </div>
+
+    <!-- ================= 页面 8: 西城区赛 (封闭挑战) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape red"></div>
+        <h1>(八) 比赛记录：西城区赛的“盲打”</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">2025年 (年初)</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>西城区中小学生机器人大赛</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">环境</td>
+                <td colspan="3">全封闭 + 信号屏蔽</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">艰难过程</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>信息孤岛</h3>
+                            <p>这次比赛非常特殊：<strong>全封闭，信号全封闭</strong>。</p>
+                            <p>更难的是，第一次遇到<strong>屏蔽队号</strong>，所有队伍使用赛事分配的临时代号。我们之前的“联队数据库”完全失效了！根本不知道队友是谁，水平如何。</p>
+                        </div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>侥幸与实力</h3>
+                            <p><strong>沟通困难：</strong> 现场参赛队伍很多，水平参差不齐，沟通极不顺畅。</p>
+                            <p><strong>实况：</strong> 有几场打得非常侥幸，队友几乎没得分，全靠我们三代车单刷。</p>
+                            <p><strong>亮点：</strong> 因为赛前做了充分准备（检查气密性、加固螺丝），车子全程<strong>没有出任何状况</strong>。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">结果</td>
+                <td colspan="3" class="col-content">
+                    <p>虽然过程惊险，但凭借稳定的赛车和零故障率，我们最终获得了<strong>市赛资格</strong>！</p>
+                    <div class="signature">签名：叶恒嘉</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">🎫</div>
+        <div class="page-num">152</div>
+    </div>
+
+    <!-- ================= 页面 9: 北京市赛 (积分赛高光) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape"></div>
+        <h1>(九) 比赛记录：市赛的巅峰时刻</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">2025年 (市赛)</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">地点</td>
+                <td>北京市中小学生机器人智能大赛</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">项目</td>
+                <td colspan="3">Teamwork Challenge (积分赛)</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">夺冠时刻</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>积分赛：小学组第一名！</h3>
+                            <p>这是我们整个赛季的高光时刻。</p>
+                            <p>三代车在赛场上快如闪电。气动爪每一次抓取都干脆利落，没有一次失误。队友配合也很给力，我们把之前的“联队记录”经验用在了现场快速沟通上。</p>
+                        </div>
+                        <div class="log-img">[图片：积分排名榜，我们的队伍赫然排在榜首位置]</div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>经验总结</h3>
+                            <p>长时间的针对性训练（装填、换手、路线规划）终于有了回报。我们在场上完全不慌，甚至还能提醒队友注意时间。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">心情</td>
+                <td colspan="3" class="col-content">
+                    <p>那一刻我们以为自己无敌了。殊不知，真正的危机在后面的技能赛等着我们。</p>
+                    <div class="signature">签名：全员</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">🥇</div>
+        <div class="page-num">153</div>
+    </div>
+
+    <!-- ================= 页面 10: 北京市赛 (自动赛滑铁卢) ================= -->
+    <div class="sheet">
+        <div class="binder-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+        <div class="header-tape red"></div>
+        <h1>(十) 比赛记录：自动赛的眼泪</h1>
+
+        <table>
+            <tr class="meta-row">
+                <td style="width: 15%; text-align: center; font-weight: bold;">时间</td>
+                <td style="width: 35%;">2025年 (市赛)</td>
+                <td style="width: 15%; text-align: center; font-weight: bold;">项目</td>
+                <td>Robot Skills (技能赛)</td>
+            </tr>
+            <tr class="meta-row">
+                <td style="text-align: center; font-weight: bold;">结果</td>
+                <td colspan="3">重大失误 -> 三等奖</td>
+            </tr>
+            
+            <tr>
+                <td class="col-label">惨痛经历</td>
+                <td colspan="3" class="col-content">
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>第一场：全塌</h3>
+                            <p>自动程序启动后，机器人路线偏了一点点，结果撞到了堆好的 Stack。<strong>哗啦——</strong> 全塌了。心态瞬间崩了。</p>
+                        </div>
+                        <div class="log-img tilt-left">[图片：散落一地的 Pin，机器人孤零零地停在角落]</div>
+                    </div>
+
+                    <div class="log-entry">
+                        <div class="log-text">
+                            <h3>第二场：烧错程序</h3>
+                            <p>因为第一场失误，大家急着改代码。结果慌乱中<strong>烧录了错误的程序版本</strong>！</p>
+                            <p>比赛开始，机器人一动不动，或者乱跑。2场自动赛全部失败。</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="summary-row">
+                <td class="col-label">深刻反思</td>
+                <td colspan="3" class="col-content">
+                    <p><strong>教训：</strong> 手动转自动的环节磨合严重不足，自动赛训练强度不够。</p>
+                    <p><strong>决定：</strong> 今后训练的重中之重，必须是<strong>自动程序</strong>的稳定性！不能再让这种低级错误毁了整个赛季的努力。</p>
+                    <div class="signature">签名：叶恒瑞 (程序)</div>
+                </td>
+            </tr>
+        </table>
+        <div class="sticker">😭</div>
+        <div class="page-num">154</div>
+    </div>
+
+</body>
+</html>
