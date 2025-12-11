@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 第一章：我们的故事 (2276A)</title>
+    <style>
+        /* 页面基础设置 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: #525659;
+            font-family: "KaiTi", "Microsoft YaHei", cursive; /* 楷体/手写风格 */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.8;
+        }
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 0 auto 20px auto;
+            position: relative;
+            box-sizing: border-box;
+            border-left: 15px solid #FFD700; /* 充满活力的黄色侧边 */
+            overflow: hidden;
+            page-break-after: always;
+        }
+        
+        /* 标题体系 */
+        h1 { color: #E67E22; font-size: 32px; border-bottom: 4px dashed #F39C12; padding-bottom: 10px; margin-bottom: 20px; font-family: "Microsoft YaHei", sans-serif; text-align: center; }
+        h2 { color: #2980B9; font-size: 24px; background-color: #EBF5FB; padding: 8px 15px; border-radius: 15px; margin-top: 30px; display: inline-block; }
+        
+        /* 正文样式 - 仿手写 */
+        p, li { font-size: 18px; text-align: justify; margin-bottom: 12px; }
+        
+        /* 日记卡片样式 - 取代枯燥的会议表格 */
+        .diary-card {
+            background-color: #FEF9E7; /* 淡黄色纸张感 */
+            border: 2px solid #F1C40F;
+            border-radius: 10px; /* 圆角 */
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1); /* 增加一点立体感 */
+            position: relative;
+        }
+        
+        .diary-date {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background-color: #E74C3C;
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 16px;
+            transform: rotate(-2deg);
+        }
+
+        /* 强调文字 */
+        .highlight {
+            color: #D35400;
+            font-weight: bold;
+            background: linear-gradient(to bottom, transparent 60%, #FFE082 40%);
+        }
+
+        /* 对话气泡风格 */
+        .dialogue {
+            font-style: italic;
+            color: #555;
+            margin-left: 20px;
+            border-left: 3px solid #BDC3C7;
+            padding-left: 10px;
+        }
+
+        /* 表格样式 */
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 15px 0; border: 2px solid #aaa; border-radius: 10px; overflow: hidden; }
+        th, td { border-bottom: 1px solid #aaa; padding: 10px; text-align: left; font-size: 16px; }
+        th { background-color: #eee; font-weight: bold; }
+        
+        /* 图片占位符 */
+        .img-placeholder {
+            width: 100%;
+            background-color: #f0f0f0;
+            border: 3px dashed #bbb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            margin: 15px 0;
+            position: relative;
+        }
+        .img-caption { text-align: center; font-size: 14px; color: #666; margin-top: -5px; margin-bottom: 20px; font-style: italic; }
+
+        /* 签名栏 */
+        .footer {
+            margin-top: 40px;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-family: "SimHei";
+        }
+        .page-number {
+            position: absolute;
+            bottom: 10mm;
+            right: 10mm;
+            font-weight: bold;
+            color: #E67E22;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1: 封面 ================= -->
+    <div class="sheet">
+        <div style="text-align: center; margin-top: 120px;">
+            <h1 style="font-size: 56px; border: none; color: #e67e22;">我的工程笔记</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第一章：梦开始的地方</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 1: Introduction & Team Story</h3>
+            
+            <div style="width: 80%; height: 8px; background: #f39c12; margin: 40px auto; border-radius: 5px;"></div>
+            
+            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+                <p><strong>战队编号：</strong> 2276A</p>
+                <p><strong>战队名称：</strong> 机甲梦想家 (Mech Dreamers)</p>
+                <p><strong>所属机构：</strong> 北京西城区青少年科技活动馆</p>
+                <p><strong>指导老师：</strong> 王昕 老师</p>
+                <p><strong>记录员：</strong> 印涵邸</p>
+            </div>
+            
+            <div style="background-color: #FFF9C4; padding: 15px; transform: rotate(-2deg); border: 1px solid #F1C40F; margin-top: 50px;">
+                <strong>我们的口号：</strong><br>
+                梦想启动，智造未来！(Ignite Dreams!)
+            </div>
+        </div>
+        <div class="page-number">1</div>
+    </div>
+
+    <!-- ================= PAGE 2: 团队介绍 ================= -->
+    <div class="sheet">
+        <h1>1.1 我们的大家庭</h1>
+        
+        <div class="img-placeholder" style="height: 350px;">
+            [图片：全队成员身着队服的合影，背景为学校机器人实验室。大家笑得很开心，手里拿着VEX零件]
+        </div>
+        <p class="img-caption">2025年夏天，我们在实验室的“全家福”</p>
+
+        <h2>基本信息卡</h2>
+        <table>
+            <tr>
+                <td style="width: 30%;"><strong>战队编号</strong></td>
+                <td>2276A</td>
+            </tr>
+            <tr>
+                <td><strong>战队名称</strong></td>
+                <td>机甲梦想家 (Mech Dreamers)</td>
+            </tr>
+            <tr>
+                <td><strong>成立时间</strong></td>
+                <td>2025年7月1日</td>
+            </tr>
+        </table>
+
+        <h2>我们的愿景</h2>
+        <div class="diary-card" style="margin-top: 20px;">
+            <p>
+                在这个 Mix & Match 赛季，我们的目标可不仅仅是赢比赛拿奖杯哦！我们更想成为一名真正的“小小工程师”。
+            </p>
+            <p>
+                我们要把<strong>工程设计</strong>、<strong>写代码</strong>和<strong>天马行空的想象力</strong>全部结合起来。
+            </p>
+            <p>
+                我们拉钩承诺：一定会认真写笔记，不管是成功了还是失败了，都要诚实地记下来。我们希望造出一台超级酷的机器人，带着它去世锦赛！
+            </p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+            <span>见证人：王昕老师</span>
+        </div>
+        <div class="page-number">2</div>
+    </div>
+
+    <!-- ================= PAGE 3-6: 队员介绍 (合并展示，节省篇幅) ================= -->
+    <!-- 为了结构完整，依然保留队员介绍，但略微简化布局 -->
+    <div class="sheet">
+        <h1>1.1 认识一下我们</h1>
+
+        <div style="display: flex; margin-bottom: 20px;">
+            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：叶恒瑞]</div>
+            <div>
+                <h2>叶恒瑞 (队长 & 程序员)</h2>
+                <p><strong>特长：</strong> C++ 编程、搞定传感器</p>
+                <p>他是我们的“超级大脑”，最喜欢对着电脑敲代码。虽然有时候代码报错会让他抓狂，但他总能冷静下来解决问题。</p>
+            </div>
+        </div>
+
+        <div style="display: flex; margin-bottom: 20px;">
+            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：叶恒嘉]</div>
+            <div>
+                <h2>叶恒嘉 (搭建大师)</h2>
+                <p><strong>特长：</strong> 机械结构、修理坏零件</p>
+                <p>如果你找不到零件，问他准没错！他对机械结构特别痴迷，看到齿轮转动就两眼放光。</p>
+            </div>
+        </div>
+
+        <div style="display: flex; margin-bottom: 20px;">
+            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：宋书月]</div>
+            <div>
+                <h2>宋书月 (神级车手)</h2>
+                <p><strong>特长：</strong> 反应快、心理素质好</p>
+                <p>她的反应速度超级快！今年的比赛需要换手操作，她说：“没问题，包在我身上！”</p>
+            </div>
+        </div>
+        
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">3</div>
+    </div>
+    
+    <div class="sheet">
+        <h1>1.1 认识一下我们 (续)</h1>
+         <div style="display: flex; margin-bottom: 20px;">
+            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：印涵邸]</div>
+            <div>
+                <h2>印涵邸 (设计师 & 记录员)</h2>
+                <p><strong>特长：</strong> 画画、写日记</p>
+                <p>这就是我啦！我觉得工程笔记就是机器人的“日记本”。我喜欢把大家的奇思妙想都画下来，哪怕是失败的尝试，也很有趣！</p>
+            </div>
+        </div>
+
+        <h2>1.2 我们的队规</h2>
+        <div class="diary-card">
+             <p><strong>1. 一队一机 (&lt;R1&gt;)：</strong> 绝对不带两台机器人去比赛！我们要做诚实的孩子。</p>
+             <p><strong>2. 安全第一 (&lt;S1&gt;)：</strong> 王老师说了无数遍：手不要伸进齿轮里！会被咬到的！</p>
+             <p><strong>3. 吵架了怎么办？</strong></p>
+             <p class="dialogue">“用数据说话！”</p>
+             <p>如果意见不统一，我们就分头搭样机，谁的跑得好听谁的。</p>
+        </div>
+
+        <div class="footer"><span>见证人：全员</span></div>
+        <div class="page-number">4</div>
+    </div>
+
+    <!-- ================= PAGE 5-13 省略中间常规计划部分，直接进入改写后的会议记录 ================= -->
+    <!-- ... (此处省略常规计划表页 P5-P13) ... -->
+    <!-- 为了响应您的要求，下面直接展示改写后的 P14-P21 部分 -->
+    
+    <div class="sheet">
+        <div style="text-align: center; margin-top: 100px;">
+            <h1 style="font-size: 40px; color: #333;">我们的会议故事</h1>
+            <p style="font-size: 20px; color: #666;">这里记录了我们从迷茫到坚定的每一步</p>
+            <div style="width: 100px; height: 100px; border-radius: 50%; background: #FFD700; margin: 30px auto; line-height: 100px; font-size: 30px; color: white; font-weight: bold;">LOG</div>
+        </div>
+        <div class="page-number">13</div>
+    </div>
+
+    <!-- ================= P14: 规则研读 (改写) ================= -->
+    <div class="sheet">
+        <h1>📅 7月12日：发现大秘密！</h1>
+        
+        <div class="diary-card">
+            <div class="diary-date">会议日记</div>
+            <p>今天王老师让我们把规则书读透。那本书好厚啊，看得我头都晕了！不过，我们像寻宝一样，发现了几个<strong>超级重要的秘密</strong>：</p>
+            
+            <p><strong>1. Beam (梁) 是个宝！</strong></p>
+            <p class="dialogue">叶恒瑞突然大叫一声：“你们快看！一个 Beam 居然有 10 分！”</p>
+            <p>大家都围了过去。天哪，一个普通的 Pin 才 1 分，这个长条条居然值 10 分？大家一致认为：<strong>必须设计一个能抓 Beam 的爪子，不然就亏大了！</strong></p>
+            
+            <p><strong>2. 机器人要会“缩骨功”</strong></p>
+            <p>叶恒嘉拿着尺子量了半天底盘，愁眉苦脸地说：“其实尺寸限制好严啊，开始的时候必须缩在 11x20x15 英寸的格子里。”</p>
+            <p>宋书月却发现了新大陆：“但是规则 &lt;SG3&gt; 说比赛开始后可以<strong>无限长高</strong>！哇，这不就是让我们造个梯子吗？”</p>
+            
+            <div class="img-placeholder" style="height: 250px;">
+                [图片：印涵邸的笔记手稿，上面用红笔画了一个大大的 Beam，旁边写着“10分！！必拿！！”]
+            </div>
+            
+            <p><strong>今天的决定：</strong> 不管多难，一定要搞定那个长长的 Beam！</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">14</div>
+    </div>
+
+    <!-- ================= P15: 头脑风暴 (改写) ================= -->
+    <div class="sheet">
+        <h1>📅 7月13日：脑洞大开的一天</h1>
+        
+        <div class="diary-card">
+            <div class="diary-date">头脑风暴</div>
+            <p>今天是我们最吵的一天（嘿嘿）。我们在讨论到底用什么样的爪子。大家在白板上画了好多奇怪的草图。</p>
+            
+            <p><strong>方案 A（宋书月提的）：</strong> 像螃蟹一样的夹子。简单直接，但是叶恒嘉担心：“那个 Beam 那么滑，会不会夹不住掉下来？”</p>
+            
+            <p><strong>方案 B（叶恒瑞提的）：</strong> 像吸尘器一样的滚轮。他说：“嗖的一下就吸进去了，多快！” 但是我们比划了一下，那个结构太大了，底盘都放不下了。</p>
+            
+            <p><strong>方案 C（我提的）：</strong> 像叉车一样的铲子。结果被大家集体否决了，因为根本举不高，只能在地上推。</p>
+            
+            <div class="img-placeholder" style="height: 250px;">
+                [图片：白板上画满了乱七八糟的线条和草图，大家正指着方案A激烈讨论]
+            </div>
+            
+            <p><strong>最后决定：</strong> 我们投票决定先做<strong>方案 A（螃蟹夹）</strong>试试看。毕竟我们是一代车，先求稳，做出来再说！</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">15</div>
+    </div>
+
+    <!-- ================= P16: 一代车测试 (改写) ================= -->
+    <div class="sheet">
+        <h1>📅 7月26日：翻车现场...</h1>
+        
+        <div class="diary-card">
+            <div class="diary-date">测试日记</div>
+            <p>今天是个悲伤的日子。我们的一代车终于造好了，但是...</p>
+            
+            <p><strong>它跑得太快了！</strong></p>
+            <p>叶恒嘉为了追求速度，用了 2:1 的加速齿轮。结果宋书月一推遥控器，机器人就“嗖”地一下飞出去了，根本停不下来！就像脱缰的野马，把场上的 Pin 撞得东倒西歪。</p>
+            <p class="dialogue">宋书月绝望地喊：“我控制不住它啊！”</p>
+            
+            <p>而且，那个螃蟹爪子也抓不住 Pin，总是滑掉。最惨的是，我们的手臂太短了，根本够不到中间那个最高的塔 (Standoff Goal)。</p>
+            
+            <div class="img-placeholder" style="height: 250px;">
+                [图片：一代车停在场地中间，前面倒了一片 Pin，队员们双手抱头，表情很无奈]
+            </div>
+            
+            <p>王老师安慰我们说：“没关系，发现问题就是进步。”好吧，我们要开始做二代车了！这次一定要慢一点，稳一点。</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-num">16</div>
+    </div>
+
+    <!-- ================= P17: 二代车汇报 (改写) ================= -->
+    <div class="sheet">
+        <h1>📅 8月16日：二代车好多了！</h1>
+        
+        <div class="diary-card">
+            <div class="diary-date">进度汇报</div>
+            <p>经过半个月的努力，二代车终于有点样子了！大家松了一口气。</p>
+            
+            <p><strong>机械方面：</strong> 叶恒嘉把齿轮改回了 1:1，虽然慢了点，但是宋书月试驾后说：“终于能控制住它了，指哪打哪，太舒服了！”</p>
+            
+            <p><strong>程序方面：</strong> 叶恒瑞写好了基础的遥控程序，按键很顺手。但是自动程序还在调试，机器人经常跑着跑着就歪了。</p>
+            
+            <p>不过我们发现了一个<strong>新问题</strong>：</p>
+            <p class="dialogue">“我们要把手臂举很高去挂塔，结果机器人重心变高了，急转弯的时候感觉要翻车！”</p>
+            <p>叶恒嘉想了个办法，他要在底盘下面加点铁块配重。希望能管用！</p>
+            
+            <div class="img-placeholder" style="height: 200px;">
+                [图片：二代车正在场地上平稳地行驶，旁边放着准备加装的配重铁块]
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">17</div>
+    </div>
+
+    <!-- ================= P18: 中期检查 (改写) ================= -->
+    <div class="sheet">
+        <h1>📅 11月8日：我们要用黑科技！(1/2)</h1>
+        
+        <div class="diary-card">
+            <div class="diary-date">重要会议</div>
+            <p>今天开了个很重要的会。我们在校际练习赛里只拿了 <strong>50 分</strong>。虽然不算差，但距离那些拿 80 分的强队还有很大差距。</p>
+            
+            <p class="dialogue">
+                印涵邸：“我看别的队动作好快，我们就慢吞吞的。”<br>
+                大家听了都有点沉默，确实感觉到了压力。我们的爪子一次只能抓一个，效率太低了。
+            </p>
+
+            <div class="img-placeholder" style="height: 200px;">
+                [图片：练习赛的得分表，上面的分数被红笔圈了出来，旁边写着“加油！”]
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">18</div>
+    </div>
+
+    <!-- ================= P19: 中期检查续 (改写) ================= -->
+    <div class="sheet">
+        <h1>📅 11月8日：我们要用黑科技！(2/2)</h1>
+        
+        <div class="diary-card">
+            <div class="diary-date">重大决定</div>
+            <p>突然，叶恒瑞很激动地站起来说：</p>
+            <p class="dialogue">“我们用<strong>气动装置 (Pneumatics)</strong> 吧！我看过视频，气动爪子‘咔’一下就能抓住，特别快，而且不用担心电机过热。”</p>
+            
+            <p>叶恒嘉有点担心：“可是我们以前从来没用过气动啊，那么多管子，很难接的。万一漏气了怎么办？”</p>
+            
+            <p>王老师鼓励我们：“如果不挑战新技术，就很难突破瓶颈哦。”</p>
+            
+            <p>最后大家一咬牙：<strong>拼了！</strong> 我们要造三代车，上气动！虽然要把现在的车拆了重做很心疼，但为了世锦赛，值了！</p>
+            
+            <div class="img-placeholder" style="height: 200px;">
+                [图片：叶恒瑞拿着气缸给大家演示，大家的眼神里充满了好奇和期待]
+            </div>
+            
+            <p><strong>行动：</strong> 王老师负责买气动套件，叶恒瑞负责研究怎么编程。冲鸭！</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">19</div>
+    </div>
+
+    <!-- ================= P20: 章末总结 ================= -->
+    <div class="sheet">
+        <h1>第一章小结：准备起飞</h1>
+        
+        <p class="highlight">写完这 20 页的日记，我感觉我们战队真的长大了！</p>
+        
+        <p>从一开始连名字都想不出来，到现在敢挑战复杂的气动系统。虽然中间一代车失败了，二代车也不完美，但我们大家都没有放弃。</p>
+        <p>大家在一起吵吵闹闹，一起吃零食，一起修机器人，真的很快乐。</p>
+        
+        <p>接下来的三代车一定会是最棒的！机甲梦想家，目标世锦赛！</p>
+        
+        <div class="img-placeholder" style="height: 350px;">
+            [图片：全体队员把手叠在一起加油的照片，特写，光线温暖，背景是我们的二代车]
+        </div>
+
+        <div class="footer">
+            <span>队长签字：叶恒瑞</span>
+            <span>2025年12月6日</span>
+        </div>
+        <div class="page-number">20</div>
+    </div>
+
+</body>
+</html>

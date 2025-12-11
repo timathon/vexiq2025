@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 第二章：规则大揭秘 (2276A)</title>
+    <style>
+        /* 页面基础设置 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: #525659;
+            font-family: "KaiTi", "Microsoft YaHei", cursive; /* 楷体/手写风格 */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 0 auto 20px auto;
+            position: relative;
+            box-sizing: border-box;
+            border-left: 15px solid #FF9F43; /* 第二章主题色：活力的橙色 */
+            overflow: hidden;
+            page-break-after: always;
+        }
+        
+        /* 标题体系 */
+        h1 { color: #D35400; font-size: 32px; border-bottom: 4px dashed #E67E22; padding-bottom: 10px; margin-bottom: 20px; font-family: "Microsoft YaHei", sans-serif; text-align: center; }
+        h2 { color: #2E86C1; font-size: 24px; background-color: #D6EAF8; padding: 8px 15px; border-radius: 15px; margin-top: 30px; display: inline-block; }
+        h3 { color: #E67E22; font-size: 20px; font-weight: bold; margin-top: 20px; border-left: 5px solid #E67E22; padding-left: 10px; }
+
+        /* 正文样式 */
+        p, li { font-size: 16px; text-align: justify; margin-bottom: 10px; }
+        
+        /* 战术板/计算纸样式 */
+        .math-paper {
+            background-image: linear-gradient(#cfcfcf 1px, transparent 1px), linear-gradient(90deg, #cfcfcf 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-color: #fff;
+            border: 2px solid #aaa;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+            font-family: "Consolas", "Courier New", monospace;
+        }
+
+        /* 重点便利贴 */
+        .sticky-note {
+            background-color: #FFF9C4;
+            border: 1px solid #F1C40F;
+            padding: 15px;
+            transform: rotate(-1deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            font-family: "KaiTi";
+            font-size: 16px;
+        }
+
+        /* 对话框 */
+        .dialogue {
+            border-left: 4px solid #FF9F43;
+            padding-left: 10px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+            background-color: #FFF3E0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* 表格样式 */
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; border: 2px solid #333; }
+        th, td { border: 1px solid #333; padding: 10px; text-align: center; font-size: 14px; }
+        th { background-color: #FFCC80; font-weight: bold; }
+        
+        /* 图片占位符 */
+        .img-placeholder {
+            width: 100%;
+            background-color: #f0f0f0;
+            border: 3px dashed #bbb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            margin: 15px 0;
+            position: relative;
+            font-style: italic;
+        }
+        .img-caption { text-align: center; font-size: 14px; color: #666; margin-top: -5px; margin-bottom: 20px; font-style: italic; }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 40px;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 10mm;
+            right: 10mm;
+            font-weight: bold;
+            color: #D35400;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 21: 章节封面 ================= -->
+    <div class="sheet">
+        <div style="text-align: center; margin-top: 100px;">
+            <h1 style="font-size: 56px; border: none; color: #E67E22;">规则大揭秘</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第二章：2025-2026 规则分析</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 2: Rules & Strategy Math</h3>
+            
+            <div style="width: 80%; height: 8px; background: #FF9F43; margin: 40px auto; border-radius: 5px;"></div>
+            
+            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+                <p><strong>研究对象：</strong> Mix & Match 游戏手册 (v2.2)</p>
+                <p><strong>研究员：</strong> 机甲梦想家全体成员</p>
+                <p><strong>最重大的发现：</strong> Beam (梁) 竟然是分数倍增器！</p>
+                <p><strong>记录人：</strong> 印涵邸</p>
+            </div>
+            
+            <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(2deg);">
+                <strong>我们的策略宣言：</strong><br>
+                数学不会骗人！算出最高分，才能拿冠军！<br>
+                —— 叶恒瑞 (队长)
+            </div>
+        </div>
+        <div class="page-number">21</div>
+    </div>
+
+    <!-- ================= PAGE 22: 2.1 游戏概览 ================= -->
+    <div class="sheet">
+        <h1>2.1 这是一个什么游戏？</h1>
+        
+        <p>王昕老师给我们发了厚厚一本《游戏手册》。一开始看全是字，头都晕了。但是当我们结合视频看的时候，发现这个游戏超有意思！</p>
+
+        <div class="img-placeholder" style="height: 300px;">
+            
+        </div>
+        <p class="img-caption">印涵邸画的场地“寻宝图”</p>
+
+        <h2>简单来说：</h2>
+        <p>这个游戏叫 <strong>Mix & Match</strong>（混合与匹配）。我们要操作机器人把场地上各种颜色的 <strong>Pin (销钉)</strong> 和长长的 <strong>Beam (梁)</strong> 捡起来，堆成高高的塔，然后放到特定的 <strong>Goal (得分区)</strong> 里。</p>
+        
+        <p><strong>比赛时间：</strong> 只有 60 秒！感觉时间好紧啊！</p>
+        <p><strong>比赛模式：</strong> 
+            <br>1. <strong>团队赛：</strong> 和另一个队伍合作，两台机器人一起拿分。
+            <br>2. <strong>技能赛：</strong> 自己一个人表演，看谁最厉害。
+        </p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">22</div>
+    </div>
+
+    <!-- ================= PAGE 23: 2.2 场地元素研究 (Pin) ================= -->
+    <div class="sheet">
+        <h1>2.2 场地上的宝贝们：Pin</h1>
+
+        <div class="sticky-note">
+            我们把场地上的东西都拿来摸了一遍，发现了不少秘密！
+        </div>
+            
+        <p><strong>1. Pin (销钉)</strong></p>
+        <p>这是最基本的东西，像个小蘑菇。有红、蓝、橙三种颜色。</p>
+        
+        <p class="dialogue"><strong>叶恒嘉的发现：</strong> “你们看！它们上面有凹槽，下面有凸起，可以一个接一个叠起来（Stack）！但是表面好滑啊，我觉得我们的机械爪子上得加点皮筋，不然肯定抓不住。”</p>
+        
+        <div class="img-placeholder" style="height: 200px;">
+            
+        </div>
+        
+        <p><strong>数量：</strong> 场地上大部分都是橙色的（我们之前一直以为是绿色，原来今年改了！），还有红的和蓝的。我们要像收集宝石一样把它们收集起来。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">23</div>
+    </div>
+
+    <!-- ================= PAGE 24: 2.2 场地元素研究 (Beam) ================= -->
+    <div class="sheet">
+        <h1>2.2 场地上的宝贝们：Beam</h1>
+
+        <p><strong>2. Beam (梁)</strong></p>
+        <p>一个长长的灰色的条，上面有很多孔。</p>
+        
+        <p class="dialogue"><strong>宋书月的感受：</strong> “天哪，它好重！而且好长！我试了一下，如果机器人没抓好重心，肯定会被它带着翻跟头，操控起来肯定很难。我们得小心点。”</p>
+        
+        <div class="img-placeholder" style="height: 250px;">
+            
+        </div>
+        
+        <p>虽然它很难抓，但是听说分数很高？我们得好好研究一下规则书，看看它到底值多少分。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">24</div>
+    </div>
+
+    <!-- ================= PAGE 25: 2.2 场地元素研究 (Goals) ================= -->
+    <div class="sheet">
+        <h1>2.2 场地上的宝贝们：Goals</h1>
+
+        <p><strong>3. Goals (得分区)</strong></p>
+        <p>地上一共有 5 个 Goal，中间还有一个高高的塔叫 <strong>Standoff Goal</strong>。</p>
+        
+        <div class="math-paper">
+            <strong>颜色很重要！我们做了笔记：</strong><br>
+            - <strong>Triangle Goals (三角区)：</strong> 有红的，有蓝的。在角落里。<br>
+            - <strong>Square Goals (正方区)：</strong> 也有红的，有蓝的。<br>
+            - <strong>Floor Goal (地面区)：</strong> 中间那个白线圈起来的，是<strong>橙色</strong>的！<br>
+            - <strong>Standoff Goal (高塔)：</strong> 中间那个柱子，也是<strong>橙色</strong>的！
+        </div>
+
+        <p><strong>叶恒瑞提醒大家：</strong> “注意颜色！把红 Pin 放到红 Goal 里才有加分。而且 Floor Goal 和 Standoff Goal 都是橙色的，所以放橙色 Pin 到底部会有匹配分哦！”</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">25</div>
+    </div>
+
+    <!-- ================= PAGE 26: 2.3 机器人尺寸 ================= -->
+    <div class="sheet">
+        <h1>2.3 机器人能长多大？</h1>
+
+        <p>我们拿着尺子仔细量了那个起始框，生怕超了一点点，不然连比赛都参加不了。</p>
+
+        <h2>尺寸限制 &lt;R5&gt;</h2>
+        <p>在比赛开始前，我们的机器人必须缩在一个很小的空间里：</p>
+        <div class="math-paper" style="text-align: center; font-size: 24px; color: #D35400;">
+            11英寸 x 20英寸 x 15英寸
+        </div>
+        <p class="dialogue"><strong>叶恒嘉：</strong> “这也太小了吧！15英寸的高度，根本够不到中间那个高塔啊！高塔的杆子都快有12英寸高了，加上Pin的高度，肯定不够。我要怎么把升降机塞进去？”</p>
+
+        <h2>变形魔法 &lt;SG3&gt;</h2>
+        <p><strong>宋书月</strong>指着规则书兴奋地说：“快看这条！比赛开始后，垂直方向<strong>无限扩展</strong>！”</p>
+        <p><strong>全员欢呼：</strong> 耶！这意味着我们可以做一个能伸长的“长颈鹿”！只要比赛一开始，我们就让它变高！</p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">26</div>
+    </div>
+
+    <!-- ================= PAGE 26.5: Scoring Examples (新增) ================= -->
+    <div class="sheet">
+        <h1>2.4 算分大挑战 (Scoring Examples)</h1>
+        
+        <p>为了不被裁判“坑”，我们找了 10 个例子来练习算分。这些例子都在官方手册上能找到哦！</p>
+
+        <table style="font-size: 13px;">
+            <tr>
+                <th style="width: 10%;">例子</th>
+                <th style="width: 30%;">图示 (预留位置)</th>
+                <th>得分详解 (中文翻译)</th>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE1&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE1]</div></td>
+                <td>所有物体都连在一起。6个Pin + 1个Beam + 3个3色Stack奖励 + 3个匹配奖励。<br><strong>总分：91分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE2&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE2]</div></td>
+                <td>同上。所有物体都连在一起。<br><strong>总分：91分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE3&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE3]</div></td>
+                <td>最上面的Stack歪了，没连上。只算下面的部分。<br>4个Pin + 1个Beam + 2个3色Stack + 2个匹配。<br><strong>总分：64分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE4&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE4]</div></td>
+                <td>Beam没连上！只有Pin连在一起。没有匹配分。<br>4个Pin + 0个Beam + 2个2色Stack。<br><strong>总分：14分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE5&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE5]</div></td>
+                <td>全倒了，都不垂直。啥也不是。<br><strong>总分：0分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE6&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE6]</div></td>
+                <td>Pin连在一起，放在匹配颜色的Goal里，还在高塔上。<br>3个Pin + 3色Stack + 匹配奖励 + 高塔奖励。<br><strong>总分：38分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE7&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE7]</div></td>
+                <td><strong>完美！</strong> Beam挂在高塔上，Pin插在Beam上。<br>Beam分裂成3个独立Stack，奖励全都有！<br><strong>总分：121分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE8&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE8]</div></td>
+                <td>机器人碰到了Stack！所有连接分作废。<br>只有接触分。<br><strong>总分：2分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE9&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE9]</div></td>
+                <td>机器人碰到了最下面的Stack。那个不算，但上面的还算。<br><strong>总分：66分</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE10&gt;</strong></td>
+                <td><div class="img-placeholder" style="height: 60px;">[Image SE10]</div></td>
+                <td>机器人碰到了Beam。完蛋，全都不算连接了。<br>只有接触分。<br><strong>总分：2分</strong></td>
+            </tr>
+        </table>
+        
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">26.5</div>
+    </div>
+
+    <!-- ================= PAGE 27: 2.3 扩展规则 (原) ================= -->
+    <!-- ... (内容保持不变，只是页码顺延) ... -->
+    
+    <!-- ================= PAGE 28: 2.3 进球规则 <SG6> ================= -->
+    <div class="sheet">
+        <h1>2.3 怎么喂给机器人吃？</h1>
+
+        <p>这次比赛我们还可以当 Loader（装填手），给机器人喂 Pin。</p>
+        
+        <div class="sticky-note">
+            <strong>&lt;SG6&gt; 重点：</strong>
+            1. 必须一个一个放，不能一把抓。<br>
+            2. 必须轻轻放下，让它停稳了机器人才能拿。<br>
+            3. 只能放在那个红的或者蓝的条条（Load Zone）上。
+        </div>
+
+        <p>如果我们放得太快，或者机器人抢跑了，都会被裁判警告的。我们得好好练习配合！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">28</div>
+    </div>
+
+    <!-- ================= PAGE 29: 2.4 基础得分 ================= -->
+    <div class="sheet">
+        <h1>2.4 怎么才能得高分？</h1>
+
+        <p><strong>叶恒瑞</strong>是我们的“数学家”，他带着我们把得分规则算了一遍。</p>
+
+        <table style="font-size: 14px;">
+            <tr>
+                <th>动作</th>
+                <th>分数</th>
+                <th>我们的评价</th>
+            </tr>
+            <tr>
+                <td>连在一起的 Pin</td>
+                <td>1 分</td>
+                <td>太少了，也就是个辛苦钱。</td>
+            </tr>
+            <tr>
+                <td>连在一起的 Beam</td>
+                <td>10 分</td>
+                <td><strong>巨款！</strong> 必须拿！</td>
+            </tr>
+            <tr>
+                <td>2种颜色混搭</td>
+                <td>+5 分</td>
+                <td>还行，不拿白不拿。</td>
+            </tr>
+            <tr>
+                <td>3种颜色混搭</td>
+                <td>+15 分</td>
+                <td><strong>超级加倍！</strong> 一定要凑齐3色！</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">29</div>
+    </div>
+
+    <!-- ================= PAGE 30: 2.4 奖励分 ================= -->
+    <div class="sheet">
+        <h1>2.4 奖励分才是关键！</h1>
+
+        <p>除了基础分，还有好多 Bonus（奖励分）！</p>
+
+        <ul>
+            <li><strong>颜色匹配 (Matching)：</strong> +10 分。把红的放红区，蓝的放蓝区。</li>
+            <li><strong>高塔奖励 (Standoff)：</strong> +10 分。只要挂在中间那个塔上就有。</li>
+            <li><strong>清空起始桩 (Cleared)：</strong> +2 分。每个桩拿走就给分。</li>
+        </ul>
+
+        <div class="sticky-note">
+            <strong>叶恒瑞的发现：</strong><br>
+            如果我们只是乱推，推10个 Pin 才 10 分。<br>
+            但是如果我们做一个“完美 Stack”（3色混搭 + 颜色匹配），光这一个 Stack 就能拿 1+3+15+10 = 29 分！<br>
+            <strong>结论：质量比数量重要！</strong>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">30</div>
+    </div>
+
+    <!-- ================= PAGE 31: 2.4 容易忽略的规则 ================= -->
+    <div class="sheet">
+        <h1>2.4 别被扣分了！</h1>
+
+        <p>我们还发现了一些容易犯错的地方：</p>
+
+        <h3>1. 什么是 "Connected" (连接)？</h3>
+        <p>规则说必须是“大致垂直”的。如果一堆 Pin 倒在地上，哪怕它们挨在一起，也不算 Stack，没有分数！所以我们的机器人一定要稳，不能把塔推倒了。</p>
+        
+        <h3>2. 接触分 &lt;SC8&gt;</h3>
+        <p>比赛结束的时候，机器人摸着几个 Pin 也能得 2 分。但是千万别为了这 2 分去碰已经搭好的塔，万一碰倒了就亏大了！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">31</div>
+    </div>
+
+    <!-- ================= PAGE 32: 2.4 匹配规则 ================= -->
+    <div class="sheet">
+        <h1>2.4 颜色匹配的秘密</h1>
+
+        <p>我们仔细研究了 Matching Goal Bonus。</p>
+        
+        <p>规则说，只要 Stack 最底部的 Pin 颜色和 Goal 的颜色一样，就加 10 分。</p>
+        <ul>
+            <li>红 Goal -> 放红底 Stack</li>
+            <li>蓝 Goal -> 放蓝底 Stack</li>
+            <li>橙色高塔 -> 放橙底 Stack</li>
+            <li>橙色地面区 -> 放橙底 Stack</li>
+        </ul>
+        
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">32</div>
+    </div>
+
+    <!-- ================= PAGE 33: 策略模拟封面 ================= -->
+    <div class="sheet">
+        <div style="text-align: center; margin-top: 100px;">
+            <h1 style="font-size: 48px; color: #2E86C1;">我们的战术推演</h1>
+            <p style="font-size: 20px; color: #666;">这部分可是我们的大脑风暴核心！我们算了四种不同的打法。</p>
+            <div style="width: 120px; height: 120px; border: 3px solid #2E86C1; border-radius: 10px; margin: 30px auto; display: flex; align-items: center; justify-content: center; font-size: 60px;">🧠</div>
+            <p><strong>注意：后面有重大反转哦！</strong></p>
+        </div>
+        <div class="page-number">33</div>
+    </div>
+
+    <!-- ================= PAGE 34: 策略 A - 低空快跑 ================= -->
+    <div class="sheet">
+        <h1>策略 A：低空快跑流 (Low & Fast)</h1>
+
+        <p><strong>想法：</strong> 宋书月建议我们做一个跑得飞快的车，专攻地面的得分区。不去管那个难搞的高塔。</p>
+        
+        <p><strong>目标：</strong> 填满地面上的 2 个三角形区 (红/蓝) 和 1 个正方形区 (红/蓝)，以及 Floor Goal (橙色！)。</p>
+
+        <div class="math-paper">
+            <h3>🧮 算分草稿</h3>
+            <p>假设我们做了 7 个完美的 3色 Stack：</p>
+            <p>
+                <strong>单个 Stack 得分：</strong><br>
+                3个 Pin (3分) + 3色奖励 (15分) + 颜色匹配 (10分) = <strong>28分</strong>
+            </p>
+            <p>
+                <strong>总分计算：</strong><br>
+                Stack 得分：7 个 x 28 分 = 196 分<br>
+                清空起始桩：4 个 x 2 分 = 8 分<br>
+                最后接触分：2 分
+            </p>
+            <p style="border-top: 2px dashed #888; margin-top: 10px; padding-top: 10px;">
+                <strong>预计总分：206 分</strong> (假设完美发挥)
+            </p>
+        </div>
+
+        <p class="dialogue"><strong>大家讨论：</strong> “这听起来不错！200分很高了。但是要来回跑好多趟，时间够不够啊？”</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">34</div>
+    </div>
+
+    <!-- ================= PAGE 35: 策略 A 评价 ================= -->
+    <div class="sheet">
+        <h1>策略 A 评价</h1>
+
+        <p class="dialogue"><strong>大家讨论：</strong> “这听起来不错！200分很高了。但是要来回跑好多趟，时间够不够啊？而且只要有一个 Pin 放错了颜色，就没有 10 分的奖励了。”</p>
+
+        <p><strong>优点：</strong> 机器人结构简单，重心低，跑得快，不容易翻车。</p>
+        <p><strong>缺点：</strong> 对操作要求太高了，不能有一点失误。而且完全放弃了 Beam 的 10 分，感觉有点可惜。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">35</div>
+    </div>
+
+    <!-- ================= PAGE 36: 策略 B - 高塔建筑师 ================= -->
+    <div class="sheet">
+        <h1>策略 B：高塔建筑师 (Tower Builder)</h1>
+
+        <p><strong>想法：</strong> 叶恒嘉想挑战那个中间的橙色高塔 (Standoff Goal)。因为规则说放在高塔上每个 Stack 额外加 10 分！</p>
+        
+        <p><strong>关键点：</strong> 高塔是橙色的。所以最下面的 Pin 必须是橙色才能拿匹配分。而且我们一定要用 Beam！</p>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">36</div>
+    </div>
+
+    <!-- ================= PAGE 37: 策略 B - Beam 组合体算分 ================= -->
+    <div class="sheet">
+        <h1>策略 B：Beam 组合体算分</h1>
+
+        <div class="math-paper">
+            <h3>🧮 Beam 组合体算分 (在高塔上)</h3>
+            <p>假设我们在 Standoff 上放 1 个 Beam，然后上面插 3 个 Pin。</p>
+            <p><strong>叶恒瑞的修正：</strong> 等等，手册上说，Beam 上的每根 Pin 都是一个<strong>独立的 Stack</strong>！</p>
+            
+            <p><strong>Beam 本体：</strong> 10 分</p>
+            <p><strong>3 个小 Stack (每个由 Beam + 1 Pin 组成)：</strong><br>
+               Pin分：1分 x 3 = 3分<br>
+               2色奖励 (灰Beam+彩Pin)：5分 x 3 = 15分<br>
+               匹配奖励 (连着Beam自动获得)：10分 x 3 = 30分<br>
+               高塔奖励 (Standoff Bonus)：10分 x 3 = 30分
+            </p>
+            <p style="background-color: #ffe0b2; padding: 5px;"><strong>高塔部分小计：88 分！</strong> (哇！)</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">37</div>
+    </div>
+
+    <!-- ================= PAGE 38: 策略 B 总分 ================= -->
+    <div class="sheet">
+        <h1>策略 B 总分预测</h1>
+
+        <p>我们把高塔的分数加上地面的分数。</p>
+
+        <div class="math-paper">
+            <p><strong>高塔得分：</strong> 88 分</p>
+            <p><strong>加上地面得分：</strong> 假设地面还能做 4 个完美的 3色 Stack (112分)。</p>
+            <p style="border-top: 2px dashed #888; margin-top: 10px;">
+                <strong>预计总分：200 分</strong>
+            </p>
+        </div>
+
+        <p><strong>发现：</strong> 这个分数和策略 A 差不多，但是操作次数少了很多！只要把高塔那一下做好，分数就有了。效率高多了！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">38</div>
+    </div>
+
+    <!-- ================= PAGE 39: 策略 C - Beam 专家 ================= -->
+    <div class="sheet">
+        <h1>策略 C：Beam 专家 (重大发现！)</h1>
+
+        <div class="sticky-note" style="border-color: #E74C3C; background-color: #FDEDEC;">
+            <div style="background-color: #E74C3C; color: white; display: inline-block; padding: 2px 10px; transform: rotate(-2deg);">纠错本</div>
+            <p>我们之前以为 Beam 只是一个 10 分的木头。<strong>我们大错特错了！</strong></p>
+            <p>叶恒瑞指着规则 <strong>&lt;SC3c-iii&gt;</strong> 尖叫道：“你们看！规则说，连接在 Beam 上的每一根 Pin，都被视为一个<strong>独立的 Stack</strong>！”</p>
+            <p>这意味着什么？意味着 Beam 是一个<strong>“分数倍增器”</strong>！</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：一个 Beam 挂在高塔上的草图，上面插了 3 个 Pin，每个 Pin 旁边都画了 $$$ 的符号]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">39</div>
+    </div>
+
+    <!-- ================= PAGE 40: 策略 C 详细计算 ================= -->
+    <div class="sheet">
+        <h1>策略 C：详细计算</h1>
+
+        <div class="math-paper">
+            <h3>🧮 详细算一下 1个 Beam + 3个 Pin 的威力</h3>
+            <p>场景：1个 Beam，上面插了 3 个 Pin，放在 Standoff Goal 上。</p>
+            <ul>
+                <li>Beam 本体：<strong>10分</strong></li>
+                <li>Stack 数量：<strong>3个</strong> (因为有3根 Pin)</li>
+                <li>每个 Stack 的得分：
+                    <ul>
+                        <li>Pin：1分</li>
+                        <li>2色奖励 (Beam灰+Pin彩)：5分</li>
+                        <li>Matching Goal Bonus (关键！)：10分 (规则 &lt;SC6b&gt; 说连着 Beam 就有！)</li>
+                        <li>Standoff Goal Bonus (关键！)：10分</li>
+                        <li>单 Stack 小计：26分</li>
+                    </ul>
+                </li>
+            </ul>
+            <p style="font-size: 24px; color: #D35400; font-weight: bold;">
+                总分 = 10 + (26 x 3) = 88 分！！
+            </p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">40</div>
+    </div>
+
+    <!-- ================= PAGE 41: 策略 C 结论 ================= -->
+    <div class="sheet">
+        <h1>策略 C 结论</h1>
+
+        <p>我们重新算了一遍，确定没有算错！</p>
+        <p>之前我们以为这只有 33 分（1个Stack），实际上它是 <strong>88 分</strong>！</p>
+        
+        <p class="dialogue"><strong>结论：</strong> 拿下 Beam 并不是为了好玩，它是赢比赛的关键！如果能在 Beam 上再把 Stack 叠高点（比如 Beam+Pin+Pin），分数简直不敢想！<strong>Beam 才是真正的神器！</strong></p>
+
+        <p>所以，我们的机器人一定要能抓 Beam！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">41</div>
+    </div>
+
+    <!-- ================= PAGE 42: 策略 D - 极限满分梦 ================= -->
+    <div class="sheet">
+        <h1>策略 D：极限满分梦 (The Dream)</h1>
+
+        <p>既然发现了 Beam 的秘密，我们就可以算一算理论最高分是多少了。虽然很难做到，但梦想还是要有的嘛！</p>
+
+        <p>假设我们是超人，操作零失误，那能拿多少分？</p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">42</div>
+    </div>
+
+    <!-- ================= PAGE 43: 策略 D 计算 (高塔部分) ================= -->
+    <div class="sheet">
+        <h1>策略 D：高塔部分计算</h1>
+
+        <div class="math-paper">
+            <p><strong>1. 高塔无敌结构 (Standoff Goal)</strong></p>
+            <p>参考规则书里的 SE7 图，用 Beam 挂满 6 个 Pin (做成 3 个 3色 Stack)：</p>
+            
+            <h3>得分计算（为什么是 121 分？）</h3>
+            <p>这个惊人的分数源于 Beam 将结构分成了 3 个独立的 Stack，使得奖励翻了三倍！</p>
+
+            <table style="width: 100%; margin: 10px 0; font-size: 14px;">
+                <thead>
+                    <tr>
+                        <th style="background-color: #E67E22; color: white;">得分项</th>
+                        <th style="background-color: #E67E22; color: white;">数量</th>
+                        <th style="background-color: #E67E22; color: white;">单项分值</th>
+                        <th style="background-color: #E67E22; color: white;">小计</th>
+                        <th style="background-color: #E67E22; color: white;">规则/备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>连接的 Pin</td>
+                        <td>6 个</td>
+                        <td>1 分</td>
+                        <td><strong>6</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>连接的 Beam</td>
+                        <td>1 个</td>
+                        <td>10 分</td>
+                        <td><strong>10</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3色 Stack 奖励</td>
+                        <td>3 个 Stack</td>
+                        <td>15 分</td>
+                        <td><strong>45</strong></td>
+                        <td>灰 Beam + 蓝 Pin + 红 Pin = 3 种颜色</td>
+                    </tr>
+                    <tr>
+                        <td>颜色匹配奖励 (Matching Goal)</td>
+                        <td>3 个 Stack</td>
+                        <td>10 分</td>
+                        <td><strong>30</strong></td>
+                        <td>任何连接到 Beam 的 Stack 自动获得此奖励 &lt;SC6b&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>高塔奖励 (Standoff Bonus)</td>
+                        <td>3 个 Stack</td>
+                        <td>10 分</td>
+                        <td><strong>30</strong></td>
+                        <td>通过 Beam 放置在高塔上的 Stack</td>
+                    </tr>
+                    <tr style="background-color: #FFD700; font-weight: bold;">
+                        <td colspan="3" style="text-align: right;">总分 (TOTAL)</td>
+                        <td style="font-size: 20px; color: #D35400;">121</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">43</div>
+    </div>
+
+    <!-- ================= PAGE 44: 策略 D 计算 (地面部分) ================= -->
+    <div class="sheet">
+        <h1>策略 D：地面部分计算 (重写)</h1>
+
+        <div class="math-paper">
+            <p><strong>地面得分：</strong> 假设我们用了 6 个 Pin 在塔上，还剩下 30 个 Pin。</p>
+            <p>因为红色、蓝色Pin分别还剩7个，这 30 个 Pin 可以做成 7 个完美的 3色 Stack，剩下的橙色Pin还能与Beam组成双色Stack：</p>
+            <ul>
+                <li><strong>7个 Matching Stacks (地面 Goal):</strong> 7 * (3+15+10) = <strong>176 分</strong></li>
+                <li><strong>3个 橙色Pin与1个Beam:</strong> 3 * (1+5+10) + 10 = <strong>58 分</strong></li>
+            </ul>
+            <p style="border-top: 2px dashed #888;">
+                <strong>地面小计：234 分</strong>
+            </p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">44</div>
+    </div>
+
+    <!-- ================= PAGE 45: 策略 D 总分与反思 ================= -->
+    <div class="sheet">
+        <h1>策略 D：终极得分！</h1>
+
+        <div class="math-paper">
+            <p><strong>总分大汇总：</strong></p>
+            <ul>
+                <li>塔上结构：121 分</li>
+                <li>地面得分：234 分</li>
+                <li>清空起始桩：8 分</li>
+                <li>接触分：2 分</li>
+            </ul>
+            
+            <p style="border: 3px solid #E74C3C; padding: 10px; text-align: center; font-size: 28px; font-weight: bold; color: #E74C3C; margin-top: 20px;">
+                理论极限 >= 365 分！
+            </p>
+        </div>
+
+        <p>算出这个数字的时候，我们全都惊呆了！</p>
+        <p class="dialogue"><strong>叶恒嘉泼了一盆冷水：</strong> “这要在 60 秒内做完？平均 5 秒做一个 3色 Stack？机器人得飞起来才行吧！”</p>
+        <p>虽然很难，但这让我们看到了天花板在哪里。我们要朝着这个方向努力！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">45</div>
+    </div>
+
+    <!-- ================= PAGE 46: 技能赛规则 ================= -->
+    <div class="sheet">
+        <h1>2.5 技能赛特别规则</h1>
+
+        <p>除了团队赛，我们还要打技能赛。技能赛的场地有点不一样。</p>
+
+        <ul>
+            <li><strong>红区专属：</strong> 机器人必须从红色的三角区出发。</li>
+            <li><strong>装填限制：</strong> 只能用红色的 Load Zone。蓝色的那个不能用！</li>
+        </ul>
+
+        <div class="sticky-note">
+            这意味着我们的自动程序必须能自己跑回来，或者我们要设计一个能装很多 Pin 的大肚子，减少回来的次数。
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">46</div>
+    </div>
+
+    <!-- ================= PAGE 47: 自动赛无接触 ================= -->
+    <div class="sheet">
+        <h1>2.5 自动赛：不许动！</h1>
+
+        <p><strong>规则 &lt;RSC7&gt;</strong> 说，自动赛的时候，我们绝对不能碰遥控器。我们要像雕塑一样站着。</p>
+
+        <p>但是如果机器人卡住了怎么办？我们可以申请重置 <strong>&lt;RSC5&gt;</strong>。</p>
+        <p><strong>注意：</strong> 重置的时候，机器人手里拿的分数都要拿走，不计分。所以重置是很亏的，我们要保证代码稳定！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">47</div>
+    </div>
+
+    <!-- ================= PAGE 48: 换手规则 &lt;GG11&gt; ================= -->
+    <div class="sheet">
+        <h1>2.6 团队赛：换手惊魂</h1>
+        <p>宋书月最关心这个规则，因为她是操控手。规则说必须在 35秒 到 25秒 之间换人。</p>
+        
+        <p class="dialogue">“如果超时了会怎么样？”</p>
+        <p>王老师说：“会被取消资格！那场比赛就 0 分了！”</p>
+
+        <p><strong>我们的计划：</strong></p>
+        <ul>
+            <li>设置闹钟，35秒一到就大喊“换手！”</li>
+            <li>不管机器人在干嘛，哪怕差一点就得分了，也必须停下来。</li>
+        </ul>
+        
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">48</div>
+    </div>
+    
+    <!-- ================= PAGE 49: 设计约束总结 ================= -->
+    <div class="sheet">
+        <h1>2.7 设计约束总结</h1>
+
+        <p>综合上面的所有规则，我们给设计组提了几点“死命令”：</p>
+
+        <ol>
+            <li><strong>必须能抓 Beam：</strong> 不然只能拿低分。</li>
+            <li><strong>必须能举高：</strong> 要超过 12 英寸才能挂高塔。</li>
+            <li><strong>必须能折叠：</strong> 出发时要缩在 15 英寸高的小盒子里。</li>
+            <li><strong>必须分色：</strong> 要能识别颜色，不然做不出完美 Stack。</li>
+        </ol>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">49</div>
+    </div>
+
+    <!-- ================= PAGE 50: 章节总结 ================= -->
+    <div class="sheet">
+        <h1>第二章总结：方向对了！</h1>
+
+        <div class="sticky-note">
+            <p>
+                这几天的规则研究真是太值了！
+            </p>
+            <p>
+                如果我们没有仔细算分，可能就去做了一个只会推推推的傻瓜机器人。现在我们知道了：
+            </p>
+            <ul>
+                <li><strong>Beam 是必争之地：</strong> 它是分数的倍增器，我们必须设计一个能稳稳抓住 Beam 的结构。</li>
+                <li><strong>高塔是胜负手：</strong> 只要拿下高塔，分数直接起飞。</li>
+            </ul>
+        </div>
+
+        <div class="img-placeholder" style="height: 300px;">
+            
+            [图片：印涵邸画的一张“藏宝图”，终点画着我们的机器人举着 Beam 站在高塔上，旁边写着“通往冠军之路”]
+        </div>
+
+        <div class="footer">
+            <span>2025年7月14日</span>
+            <span>全员签字：叶恒瑞、叶恒嘉、宋书月、印涵邸</span>
+        </div>
+        <div class="page-number">50</div>
+    </div>
+    
+    <!-- ================= PAGE 51: 附录：规则笔记 (1) ================= -->
+    <div class="sheet">
+        <h1>附录：我的规则小抄</h1>
+        <div class="math-paper">
+            <p><strong>SC3:</strong> Connected = 垂直 + 不碰机器人</p>
+            <p><strong>SC6:</strong> Matching Goal = 颜色对颜色 (Floor Goal 没有！)</p>
+            <p><strong>RSC3:</strong> Skills = 红色出发 + 红色装填</p>
+        </div>
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">51</div>
+    </div>
+
+    <!-- ================= PAGE 52: 附录：规则笔记 (2) ================= -->
+    <div class="sheet">
+        <h1>附录：我的规则小抄 (续)</h1>
+        <div class="math-paper">
+            <p><strong>GG11:</strong> 换手时间 = 35s - 25s</p>
+            <p><strong>SG3:</strong> 垂直扩展 = 无限！</p>
+        </div>
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">52</div>
+    </div>
+
+    <!-- ================= PAGE 53: 附录：规则笔记 (3) ================= -->
+    <div class="sheet">
+        <h1>附录：我的规则小抄 (续)</h1>
+        <div class="math-paper">
+            <p><strong>Beam:</strong> 10分 + 自动 Matching + 分数倍增！</p>
+            <p><strong>R5:</strong> 尺寸 = 11 x 20 x 15 inch</p>
+        </div>
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">53</div>
+    </div>
+
+</body>
+</html>

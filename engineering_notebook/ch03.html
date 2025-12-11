@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 第三章：我们的小小科学家之路 (2276A)</title>
+    <style>
+        /* 页面基础设置 */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            background-color: #525659;
+            font-family: "KaiTi", "Microsoft YaHei", cursive; /* 楷体/手写风格 */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.8;
+        }
+        .sheet {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin: 0 auto 20px auto;
+            position: relative;
+            box-sizing: border-box;
+            border-left: 15px solid #27AE60; /* 第三章主题色：生机勃勃的绿色 */
+            overflow: hidden;
+            page-break-after: always;
+        }
+        
+        /* 标题体系 */
+        h1 { color: #27AE60; font-size: 32px; border-bottom: 4px dashed #2ECC71; padding-bottom: 10px; margin-bottom: 20px; font-family: "Microsoft YaHei", sans-serif; text-align: center; }
+        h2 { color: #D35400; font-size: 24px; background-color: #FEF9E7; padding: 8px 15px; border-radius: 15px; margin-top: 30px; display: inline-block; }
+        
+        /* 正文样式 */
+        p, li { font-size: 18px; text-align: justify; margin-bottom: 12px; }
+        
+        /* 知识卡片样式 */
+        .knowledge-card {
+            background-color: #E8F8F5; /* 淡绿色背景 */
+            border: 2px solid #1ABC9C;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        }
+
+        /* 重点便利贴 */
+        .sticky-note {
+            background-color: #FFF9C4;
+            border: 1px solid #F1C40F;
+            padding: 15px;
+            transform: rotate(-1deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            font-family: "KaiTi";
+            font-size: 18px;
+        }
+
+        /* 对话框 */
+        .dialogue {
+            border-left: 4px solid #27AE60;
+            padding-left: 10px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+            background-color: #EAFAF1;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        /* 图片占位符 */
+        .img-placeholder {
+            width: 100%;
+            background-color: #f0f0f0;
+            border: 3px dashed #bbb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            margin: 15px 0;
+            position: relative;
+            font-style: italic;
+        }
+        .img-caption { text-align: center; font-size: 14px; color: #666; margin-top: -5px; margin-bottom: 20px; font-style: italic; }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 40px;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 10mm;
+            right: 10mm;
+            font-weight: bold;
+            color: #27AE60;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 54: 章节封面 ================= -->
+    <div class="sheet">
+        <div style="text-align: center; margin-top: 120px;">
+            <h1 style="font-size: 56px; border: none; color: #27AE60;">我是小小科学家</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第三章：STEM 理念与设计概论</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 3: STEM Concepts & Design Theory</h3>
+            
+            <div style="width: 80%; height: 8px; background: #2ECC71; margin: 20px auto; border-radius: 5px;"></div>
+            
+            <div style="text-align: left; margin: 40px 80px; font-size: 20px; line-height: 2;">
+                <p><strong>学习内容：</strong> 物理、数学、工程、编程</p>
+                <p><strong>学习目的：</strong> 造出更聪明的机器人！</p>
+                <p><strong>记录人：</strong> 印涵邸</p>
+            </div>
+            
+            <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(2deg);">
+                <strong>我们的口号：</strong><br>
+                不仅要动手，还要动脑！<br>
+                理论是实践的好朋友！
+            </div>
+        </div>
+        <div class="page-number">54</div>
+    </div>
+
+    <!-- ================= PAGE 55: STEM 是什么？ ================= -->
+    <div class="sheet">
+        <h1>3.1 STEM 是什么？</h1>
+        
+        <p>STEM 就是 <strong>Science（科学）、Technology（技术）、Engineering（工程）、Mathematics（数学）</strong> 的合体！</p>
+
+        <div class="knowledge-card">
+            <h3>S - Science (科学)</h3>
+            <p><strong>定义：</strong> 就像物理课上学的摩擦力、重心、杠杆原理。</p>
+            <p><strong>我们的应用：</strong>
+            <br>比如，叶恒嘉在设计爪子的时候，为了抓住滑溜溜的 Pin，他想到了<strong>摩擦力</strong>。他在爪子上缠了橡皮筋，Pin 就不会掉下来了！</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 200px;">
+            [Image of Friction Concept]
+            [图片：印涵邸画的手绘图，画了一个爪子抓着 Pin，旁边画了几个向上的箭头表示摩擦力]
+        </div>
+
+        <p class="dialogue"><strong>叶恒嘉：</strong> “原来橡皮筋这么厉害，这就是科学的力量啊！”</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">55</div>
+    </div>
+
+    <!-- ================= PAGE 56: 技术与工程 ================= -->
+    <div class="sheet">
+        <h1>3.1 STEM 是什么？(续)</h1>
+
+        <div class="knowledge-card">
+            <h3>T - Technology (技术)</h3>
+            <p><strong>定义：</strong> 就是那些高科技的玩意儿，比如传感器、编程软件。</p>
+            <p><strong>我们的应用：</strong>
+            <br>叶恒瑞最擅长这个！他用 <strong>陀螺仪 (Gyro)</strong> 告诉机器人怎么走直线，用 <strong>距离传感器</strong> 告诉机器人前面有墙壁。</p>
+        </div>
+
+        <div class="knowledge-card">
+            <h3>E - Engineering (工程)</h3>
+            <p><strong>定义：</strong> 就是把想法变成现实的过程。</p>
+            <p><strong>我们的应用：</strong>
+            <br>从画草图，到搭积木，再到测试、修改，这就是在做工程！我们学会了一个词叫<strong>“迭代 (Iteration)”</strong>，就是一遍遍地改，变得更好。</p>
+        </div>
+        
+        <div class="img-placeholder" style="height: 180px;">
+            [Image of Engineering Design Process]
+            [图片：我们画的工程设计循环图：想 -> 做 -> 试 -> 改 -> 再想]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">56</div>
+    </div>
+
+    <!-- ================= PAGE 57: 数学 ================= -->
+    <div class="sheet">
+        <h1>3.1 STEM 是什么？(续)</h1>
+
+        <div class="knowledge-card">
+            <h3>M - Mathematics (数学)</h3>
+            <p><strong>定义：</strong> 算数！加减乘除！</p>
+            <p><strong>我们的应用：</strong>
+            <br>数学无处不在！
+            <br>1. 算分：我们要计算哪种策略得分最高（第二章算过了）。
+            <br>2. 算齿轮比：我们要计算用大齿轮带小齿轮会跑多快。
+            <br>3. 算角度：自动程序里，我们要算机器人转多少度才能对准 Goal。</p>
+        </div>
+
+        <div class="sticky-note">
+            <strong>感悟：</strong> 以前觉得数学课很枯燥，现在发现数学太有用了！算错了数，机器人就会撞墙！
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">57</div>
+    </div>
+
+    <!-- ================= PAGE 58: 规则即约束 (Part 1) ================= -->
+    <div class="sheet">
+        <h1>3.2 戴着镣铐跳舞 (Constraints)</h1>
+
+        <p>王老师说，真正的工程师都是在<strong>约束 (Constraints)</strong> 下工作的。规则就是我们的约束。</p>
+
+        <h3>1. 那个小小的盒子 &lt;R5&gt;</h3>
+        <p><strong>约束：</strong> 机器人出发时必须能塞进 11" x 20" x 15" 的框里。</p>
+        <p><strong>我们的挑战：</strong> 高塔有 12 英寸高，加上 Pin 肯定超高了。如果做个固定的长脖子，肯定塞不进去。</p>
+        <p><strong>叶恒嘉的解决方案：</strong> 折叠！我们要做一个像折叠伞一样的升降机，或者像手臂一样的四连杆，出发时缩起来，比赛开始了再伸长！</p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：画了一个小盒子，里面塞着我们的机器人，旁边画了一个箭头，机器人伸展开变得很高大]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">58</div>
+    </div>
+
+    <!-- ================= PAGE 59: 规则即约束 (Part 2) ================= -->
+    <div class="sheet">
+        <h1>3.2 戴着镣铐跳舞 (续)</h1>
+
+        <h3>2. 只有 6 个电机 &lt;R11&gt;</h3>
+        <p><strong>约束：</strong> 只能用 6 个智能电机。</p>
+        <p><strong>我们的算计：</strong>
+        <br>- <strong>底盘：</strong> 至少要 2 个（左边一个，右边一个），不然走不动。
+        <br>- <strong>抬升：</strong> Beam 很重，可能要 1 个甚至 2 个电机才举得动。
+        <br>- <strong>抓取：</strong> 爪子开合要 1 个。
+        <br>- <strong>翻转：</strong> 如果还要翻转手腕，又要 1 个。</p>
+        
+        <p class="dialogue"><strong>宋书月：</strong> “哎呀，电机不够用了！我想做个四轮独立驱动的豪车，看来没戏了。”</p>
+        <p><strong>决定：</strong> 我们只能省着用，底盘就用 2 个电机。</p>
+
+        <h3>3. 只能向上长 &lt;SG2&gt;</h3>
+        <p><strong>约束：</strong> 只能变高，不能变宽。</p>
+        <p><strong>影响：</strong> 我们不能做那种横着张开的大翅膀去一次抓一排 Pin，只能老老实实做一个一个抓的爪子。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">59</div>
+    </div>
+
+    <!-- ================= PAGE 60: 机械原理 - 齿轮 ================= -->
+    <div class="sheet">
+        <h1>3.3 机械魔法：齿轮传动</h1>
+
+        <p>叶恒嘉教了我们齿轮的秘密。原来大齿轮和小齿轮搭配，效果完全不一样！</p>
+
+        <div class="knowledge-card">
+            <h3>加速 (Speed) - 跑得快！</h3>
+            <p><strong>方法：</strong> 用大齿轮带着小齿轮转。</p>
+            <p><strong>比喻：</strong> 就像骑自行车下坡，脚蹬一圈，轮子转好几圈！</p>
+            <p><strong>计划：</strong> 我们想在一代车底盘上试试 2:1 的加速，让它跑得飞快！</p>
+        </div>
+
+        <div class="knowledge-card">
+            <h3>有力气 (Torque) - 举得动！</h3>
+            <p><strong>方法：</strong> 用小齿轮带着大齿轮转。</p>
+            <p><strong>比喻：</strong> 就像骑自行车上坡，脚蹬好多圈，轮子才转一圈，虽然慢，但是有力气！</p>
+            <p><strong>计划：</strong> 抬升手臂要举 Beam，很重，所以要用减速齿轮，不然电机举不起来。</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 200px;">
+            [Image of Gear Ratio diagram]
+            [图片：画了两组齿轮，一组是大带小（画着闪电表示快），一组是小带大（画着大力士表示有力）]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">60</div>
+    </div>
+
+    <!-- ================= PAGE 61: 机械原理 - 力矩 ================= -->
+    <div class="sheet">
+        <h1>3.3 机械魔法：力矩与杠杆</h1>
+
+        <p>我们要做一个长长的手臂去挂高塔，但是手臂越长，电机越费力。</p>
+
+        <h3>杠杆原理</h3>
+        <p><strong>印涵邸的发现：</strong> 我试着用手拿一根长棍子，如果在棍子另一头挂个重物，我手腕都要断了！这就是<strong>力矩</strong>！</p>
+        <p>$$ 力矩 = 力 \times 距离 $$</p>
+
+        <h3>怎么帮电机省力？</h3>
+        <p>叶恒嘉想到了一个绝招：<strong>橡皮筋！</strong></p>
+        <p>我们在手臂的后面挂上橡皮筋，帮电机一起拉。这就叫<strong>“重力补偿”</strong>。就像跷跷板一样，另一头有人压着，这头就容易翘起来了。</p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：画了一个跷跷板，一头是重重的 Beam，另一头是橡皮筋在帮忙拉，电机在中间笑得很开心]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">61</div>
+    </div>
+
+    <!-- ================= PAGE 62: 编程概念 ================= -->
+    <div class="sheet">
+        <h1>3.4 让机器人变聪明</h1>
+
+        <p>叶恒瑞给我们上了一堂编程课。他说机器人其实很笨，必须告诉它每一步怎么做。</p>
+
+        <h3>1. 闭环控制 (Closed Loop)</h3>
+        <p><strong>傻瓜做法：</strong> “往前走 2 秒”。万一电池没电了，或者轮子打滑了，它就走不到地方了。</p>
+        <p><strong>聪明做法：</strong> “往前走，一直走到眼睛（传感器）看到墙壁只有 10 厘米的时候停下来”。这就是闭环控制！</p>
+
+        <h3>2. PID 算法</h3>
+        <p>这个听起来好高级！叶恒瑞说，这就好比我们走路走歪了，会自动修整回来。PID 就是让机器人走直线的法宝。</p>
+        <div class="sticky-note">
+            虽然 PID 很难，但为了自动赛的高分，叶恒瑞说他会努力学会的！加油！
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">62</div>
+    </div>
+
+    <!-- ================= PAGE 63: 章末总结 ================= -->
+    <div class="sheet">
+        <h1>第三章总结：准备动手啦！</h1>
+
+        <div class="knowledge-card">
+            <p>
+                这一章我们学了好多理论知识。虽然还没开始搭积木，但我们觉得自己已经像半个工程师了！
+            </p>
+            <ul>
+                <li><strong>知道了约束：</strong> 不会盲目设计超大的机器人了。</li>
+                <li><strong>懂得了原理：</strong> 知道了哪里该快（底盘），哪里该有力（手臂）。</li>
+                <li><strong>明白了智能：</strong> 决定要多用传感器，不能只靠蒙。</li>
+            </ul>
+        </div>
+
+        <p><strong>下一步计划：</strong> 拿笔和纸，开始画设计图！我们要把头脑里的想法画出来，然后选一个最棒的方案开始搭建一代车！</p>
+        
+        <div class="img-placeholder" style="height: 250px;">
+            [Image of Team brainstorming]
+            [图片：大家围坐在一起，中间放着一堆 VEX 零件和纸笔，蓄势待发的样子]
+        </div>
+
+        <div class="footer">
+            <span>2025年7月17日</span>
+            <span>全员签字：叶恒瑞、叶恒嘉、宋书月、印涵邸</span>
+        </div>
+        <div class="page-number">63</div>
+    </div>
+
+</body>
+</html>
