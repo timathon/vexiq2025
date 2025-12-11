@@ -105,8 +105,7 @@
             transform: rotate(-1deg);
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
-            font-family: "KaiTi";
-            font-size: 20px;
+            font-size: 24px;
         }
 
         /* 对话框 */
@@ -151,6 +150,11 @@
             margin-top: -5px;
             margin-bottom: 20px;
             font-style: italic;
+        }
+
+        /* Chinese text with Noto Sans SC font */
+        .chinese-label {
+            font-family: 'Noto Sans SC', sans-serif;
         }
 
         /* 页脚 */
@@ -211,15 +215,15 @@
             <div style="width: 80%; height: 8px; background: #FF9F43; margin: 40px auto; border-radius: 5px;"></div>
 
             <div style="text-align: left; margin: 30px 80px; font-size: 20px; line-height: 2;">
-                <p><strong>研究对象：</strong> Mix & Match 游戏手册 (v2.2)</p>
-                <p><strong>研究员：</strong> 机甲梦想家全体成员</p>
-                <p><strong>最重大的发现：</strong> Beam (梁) 竟然是分数倍增器！</p>
-                <p><strong>记录人：</strong> 印涵邸</p>
+                <p><span class="chinese-label">研究对象：</span> Mix & Match 游戏手册 (v2.2)</p>
+                <p><span class="chinese-label">研究员：</span> 机甲梦想家全体成员</p>
+                <p><span class="chinese-label">最重大的发现：</span> Beam (梁) 竟然是分数倍增器！</p>
+                <p><span class="chinese-label">记录人：</span> 印涵邸</p>
             </div>
 
             <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(2deg);">
-                <strong>我们的策略宣言：</strong><br>
-                数学不会骗人！算出最高分，才能拿冠军！<br>
+                <span class="chinese-label">我们的策略宣言：</span><br>
+                知己知彼，百战不殆！<br>巧用Beam，争取胜利！<br>
                 —— 叶恒瑞 (队长)
             </div>
         </div>
@@ -239,10 +243,10 @@
         <p>这个游戏叫 <strong>Mix & Match</strong>（混合与匹配）。我们要操作机器人把场地上各种颜色的 <strong>Pin (销钉)</strong> 和长长的 <strong>Beam
                 (梁)</strong> 捡起来，堆成高高的塔，然后放到特定的 <strong>Goal (得分区)</strong> 里。</p>
 
-        <p><strong>比赛时间：</strong> 只有 60 秒！感觉时间好紧啊！</p>
-        <p><strong>比赛模式：</strong>
-            <br>1. <strong>团队赛：</strong> 和另一个队伍合作，两台机器人一起拿分。
-            <br>2. <strong>技能赛：</strong> 自己一个人表演，看谁最厉害。
+
+        <p><span class="chinese-label">比赛模式：</span>
+            <br>1. <span class="chinese-label">团队挑战赛：</span> 两个机器人组队，在60秒内一起努力得分，争取拿到最高分！
+            <br>2. <span class="chinese-label">机器人技能赛：</span> 一个机器人自己上场，努力得分！这里面有两种比赛：一种是驾驶技能赛（遥控器控制），另一种是编程技能赛（机器人自己动，我们不能碰）。
         </p>
 
         <div class="footer">
@@ -263,14 +267,14 @@
         <p><strong>1. Pin (销钉)</strong></p>
         <p>这是最基本的东西，像个小蘑菇。有红、蓝、橙三种颜色。</p>
 
-        <p class="dialogue"><strong>叶恒嘉的发现：</strong>
+        <p class="dialogue"><span class="chinese-label">叶恒嘉的发现：</span>
             “你们看！它们上面有凹槽，下面有凸起，可以一个接一个叠起来（Stack）！但是表面好滑啊，我觉得我们的机械爪子上得加点皮筋，不然肯定抓不住。”</p>
 
         <div class="img-placeholder" style="height: 200px;">
 
         </div>
 
-        <p><strong>数量：</strong> 场地上大部分都是橙色的（我们之前一直以为是绿色，原来今年改了！），还有红的和蓝的。我们要像收集宝石一样把它们收集起来。</p>
+        <p><span class="chinese-label">数量：</span> 场地上大部分都是橙色的（我们之前一直以为是绿色，原来今年改了！），还有红的和蓝的。我们要像收集宝石一样把它们收集起来。</p>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -286,7 +290,7 @@
         <p><strong>2. Beam (梁)</strong></p>
         <p>一个长长的灰色的条，上面有很多孔。</p>
 
-        <p class="dialogue"><strong>宋书月的感受：</strong> “天哪，它好重！而且好长！我试了一下，如果机器人没抓好重心，肯定会被它带着翻跟头，操控起来肯定很难。我们得小心点。”</p>
+        <p class="dialogue"><span class="chinese-label">宋书月的感受：</span> “天哪，它好重！而且好长！我试了一下，如果机器人没抓好重心，肯定会被它带着翻跟头，操控起来肯定很难。我们得小心点。”</p>
 
         <div class="img-placeholder" style="height: 250px;">
 
@@ -309,14 +313,14 @@
         <p>地上一共有 5 个 Goal，中间还有一个高高的塔叫 <strong>Standoff Goal</strong>。</p>
 
         <div class="math-paper">
-            <strong>颜色很重要！我们做了笔记：</strong><br>
-            - <strong>Triangle Goals (三角区)：</strong> 有红的，有蓝的。在角落里。<br>
-            - <strong>Square Goals (正方区)：</strong> 也有红的，有蓝的。<br>
-            - <strong>Floor Goal (地面区)：</strong> 中间那个白线圈起来的，是<strong>橙色</strong>的！<br>
-            - <strong>Standoff Goal (高塔)：</strong> 中间那个柱子，也是<strong>橙色</strong>的！
+            <span class="chinese-label">颜色很重要！我们做了笔记：</span><br>
+            - <span class="chinese-label">Triangle Goals (三角区)：</span> 有红的，有蓝的。在角落里。<br>
+            - <span class="chinese-label">Square Goals (正方区)：</span> 也有红的，有蓝的。<br>
+            - <span class="chinese-label">Floor Goal (地面区)：</span> 中间那个白线圈起来的，是<strong>橙色</strong>的！<br>
+            - <span class="chinese-label">Standoff Goal (高塔)：</span> 中间那个柱子，也是<strong>橙色</strong>的！
         </div>
 
-        <p><strong>叶恒瑞提醒大家：</strong> “注意颜色！把红 Pin 放到红 Goal 里才有加分。而且 Floor Goal 和 Standoff Goal 都是橙色的，所以放橙色 Pin
+        <p><span class="chinese-label">叶恒瑞提醒大家：</span> “注意颜色！把红 Pin 放到红 Goal 里才有加分。而且 Floor Goal 和 Standoff Goal 都是橙色的，所以放橙色 Pin
             到底部会有匹配分哦！”</p>
 
         <div class="footer">
@@ -337,12 +341,12 @@
         <div class="math-paper" style="text-align: center; font-size: 24px; color: #D35400;">
             11英寸 x 20英寸 x 15英寸
         </div>
-        <p class="dialogue"><strong>叶恒嘉：</strong>
+        <p class="dialogue"><span class="chinese-label">叶恒嘉：</span>
             “这也太小了吧！15英寸的高度，根本够不到中间那个高塔啊！高塔的杆子都快有12英寸高了，加上Pin的高度，肯定不够。我要怎么把升降机塞进去？”</p>
 
         <h2>变形魔法 &lt;SG3&gt;</h2>
         <p><strong>宋书月</strong>指着规则书兴奋地说：“快看这条！比赛开始后，垂直方向<strong>无限扩展</strong>！”</p>
-        <p><strong>全员欢呼：</strong> 耶！这意味着我们可以做一个能伸长的“长颈鹿”！只要比赛一开始，我们就让它变高！</p>
+        <p><span class="chinese-label">全员欢呼：</span> 耶！这意味着我们可以做一个能伸长的“长颈鹿”！只要比赛一开始，我们就让它变高！</p>
 
         <div class="img-placeholder" style="height: 250px;">
 
@@ -478,7 +482,7 @@
         <p>这次比赛我们还可以当 Loader（装填手），给机器人喂 Pin。</p>
 
         <div class="sticky-note">
-            <strong>&lt;SG6&gt; 重点：</strong>
+            <span class="chinese-label">&lt;SG6&gt; 重点：</span>
             1. 必须一个一个放，不能一把抓。<br>
             2. 必须轻轻放下，让它停稳了机器人才能拿。<br>
             3. 只能放在那个红的或者蓝的条条（Load Zone）上。
@@ -541,13 +545,13 @@
         <p>除了基础分，还有好多 Bonus（奖励分）！</p>
 
         <ul>
-            <li><strong>颜色匹配 (Matching)：</strong> +10 分。把红的放红区，蓝的放蓝区。</li>
-            <li><strong>高塔奖励 (Standoff)：</strong> +10 分。只要挂在中间那个塔上就有。</li>
-            <li><strong>清空起始桩 (Cleared)：</strong> +2 分。每个桩拿走就给分。</li>
+            <li><span class="chinese-label">颜色匹配 (Matching)：</span> +10 分。把红的放红区，蓝的放蓝区。</li>
+            <li><span class="chinese-label">高塔奖励 (Standoff)：</span> +10 分。只要挂在中间那个塔上就有。</li>
+            <li><span class="chinese-label">清空起始桩 (Cleared)：</span> +2 分。每个桩拿走就给分。</li>
         </ul>
 
         <div class="sticky-note">
-            <strong>叶恒瑞的发现：</strong><br>
+            <span class="chinese-label">叶恒瑞的发现：</span><br>
             如果我们只是乱推，推10个 Pin 才 10 分。<br>
             但是如果我们做一个“完美 Stack”（3色混搭 + 颜色匹配），光这一个 Stack 就能拿 1+3+15+10 = 29 分！<br>
             <strong>结论：质量比数量重要！</strong>
@@ -618,19 +622,19 @@
         <div class="chapter-2-marker"></div>
         <h1>策略 A：低空快跑流 (Low & Fast)</h1>
 
-        <p><strong>想法：</strong> 宋书月建议我们做一个跑得飞快的车，专攻地面的得分区。不去管那个难搞的高塔。</p>
+        <p><span class="chinese-label">想法：</span> 宋书月建议我们做一个跑得飞快的车，专攻地面的得分区。不去管那个难搞的高塔。</p>
 
-        <p><strong>目标：</strong> 填满地面上的 2 个三角形区 (红/蓝) 和 1 个正方形区 (红/蓝)，以及 Floor Goal (橙色！)。</p>
+        <p><span class="chinese-label">目标：</span> 填满地面上的 2 个三角形区 (红/蓝) 和 1 个正方形区 (红/蓝)，以及 Floor Goal (橙色！)。</p>
 
         <div class="math-paper">
             <h3>🧮 算分草稿</h3>
             <p>假设我们做了 7 个完美的 3色 Stack：</p>
             <p>
-                <strong>单个 Stack 得分：</strong><br>
+                <span class="chinese-label">单个 Stack 得分：</span><br>
                 3个 Pin (3分) + 3色奖励 (15分) + 颜色匹配 (10分) = <strong>28分</strong>
             </p>
             <p>
-                <strong>总分计算：</strong><br>
+                <span class="chinese-label">总分计算：</span><br>
                 Stack 得分：7 个 x 28 分 = 196 分<br>
                 清空起始桩：4 个 x 2 分 = 8 分<br>
                 最后接触分：2 分
@@ -640,7 +644,7 @@
             </p>
         </div>
 
-        <p class="dialogue"><strong>大家讨论：</strong> “这听起来不错！200分很高了。但是要来回跑好多趟，时间够不够啊？”</p>
+        <p class="dialogue"><span class="chinese-label">大家讨论：</span> “这听起来不错！200分很高了。但是要来回跑好多趟，时间够不够啊？”</p>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -653,10 +657,10 @@
         <div class="chapter-2-marker"></div>
         <h1>策略 A 评价</h1>
 
-        <p class="dialogue"><strong>大家讨论：</strong> “这听起来不错！200分很高了。但是要来回跑好多趟，时间够不够啊？而且只要有一个 Pin 放错了颜色，就没有 10 分的奖励了。”</p>
+        <p class="dialogue"><span class="chinese-label">大家讨论：</span> “这听起来不错！200分很高了。但是要来回跑好多趟，时间够不够啊？而且只要有一个 Pin 放错了颜色，就没有 10 分的奖励了。”</p>
 
-        <p><strong>优点：</strong> 机器人结构简单，重心低，跑得快，不容易翻车。</p>
-        <p><strong>缺点：</strong> 对操作要求太高了，不能有一点失误。而且完全放弃了 Beam 的 10 分，感觉有点可惜。</p>
+        <p><span class="chinese-label">优点：</span> 机器人结构简单，重心低，跑得快，不容易翻车。</p>
+        <p><span class="chinese-label">缺点：</span> 对操作要求太高了，不能有一点失误。而且完全放弃了 Beam 的 10 分，感觉有点可惜。</p>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -669,9 +673,9 @@
         <div class="chapter-2-marker"></div>
         <h1>策略 B：高塔建筑师 (Tower Builder)</h1>
 
-        <p><strong>想法：</strong> 叶恒嘉想挑战那个中间的橙色高塔 (Standoff Goal)。因为规则说放在高塔上每个 Stack 额外加 10 分！</p>
+        <p><span class="chinese-label">想法：</span> 叶恒嘉想挑战那个中间的橙色高塔 (Standoff Goal)。因为规则说放在高塔上每个 Stack 额外加 10 分！</p>
 
-        <p><strong>关键点：</strong> 高塔是橙色的。所以最下面的 Pin 必须是橙色才能拿匹配分。而且我们一定要用 Beam！</p>
+        <p><span class="chinese-label">关键点：</span> 高塔是橙色的。所以最下面的 Pin 必须是橙色才能拿匹配分。而且我们一定要用 Beam！</p>
 
         <div class="img-placeholder" style="height: 200px;">
 
@@ -691,10 +695,10 @@
         <div class="math-paper">
             <h3>🧮 Beam 组合体算分 (在高塔上)</h3>
             <p>假设我们在 Standoff 上放 1 个 Beam，然后上面插 3 个 Pin。</p>
-            <p><strong>叶恒瑞的修正：</strong> 等等，手册上说，Beam 上的每根 Pin 都是一个<strong>独立的 Stack</strong>！</p>
+            <p><span class="chinese-label">叶恒瑞的修正：</span> 等等，手册上说，Beam 上的每根 Pin 都是一个<strong>独立的 Stack</strong>！</p>
 
-            <p><strong>Beam 本体：</strong> 10 分</p>
-            <p><strong>3 个小 Stack (每个由 Beam + 1 Pin 组成)：</strong><br>
+            <p><span class="chinese-label">Beam 本体：</span> 10 分</p>
+            <p><span class="chinese-label">3 个小 Stack (每个由 Beam + 1 Pin 组成)：</span><br>
                 Pin分：1分 x 3 = 3分<br>
                 2色奖励 (灰Beam+彩Pin)：5分 x 3 = 15分<br>
                 匹配奖励 (连着Beam自动获得)：10分 x 3 = 30分<br>
@@ -717,14 +721,14 @@
         <p>我们把高塔的分数加上地面的分数。</p>
 
         <div class="math-paper">
-            <p><strong>高塔得分：</strong> 88 分</p>
-            <p><strong>加上地面得分：</strong> 假设地面还能做 4 个完美的 3色 Stack (112分)。</p>
+            <p><span class="chinese-label">高塔得分：</span> 88 分</p>
+            <p><span class="chinese-label">加上地面得分：</span> 假设地面还能做 4 个完美的 3色 Stack (112分)。</p>
             <p style="border-top: 2px dashed #888; margin-top: 10px;">
                 <strong>预计总分：200 分</strong>
             </p>
         </div>
 
-        <p><strong>发现：</strong> 这个分数和策略 A 差不多，但是操作次数少了很多！只要把高塔那一下做好，分数就有了。效率高多了！</p>
+        <p><span class="chinese-label">发现：</span> 这个分数和策略 A 差不多，但是操作次数少了很多！只要把高塔那一下做好，分数就有了。效率高多了！</p>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -798,7 +802,7 @@
         <p>我们重新算了一遍，确定没有算错！</p>
         <p>之前我们以为这只有 33 分（1个Stack），实际上它是 <strong>88 分</strong>！</p>
 
-        <p class="dialogue"><strong>结论：</strong> 拿下 Beam 并不是为了好玩，它是赢比赛的关键！如果能在 Beam 上再把 Stack 叠高点（比如
+        <p class="dialogue"><span class="chinese-label">结论：</span> 拿下 Beam 并不是为了好玩，它是赢比赛的关键！如果能在 Beam 上再把 Stack 叠高点（比如
             Beam+Pin+Pin），分数简直不敢想！<strong>Beam 才是真正的神器！</strong></p>
 
         <p>所以，我们的机器人一定要能抓 Beam！</p>
@@ -907,7 +911,7 @@
         <h1>策略 D：地面部分计算 (重写)</h1>
 
         <div class="math-paper">
-            <p><strong>地面得分：</strong> 假设我们用了 6 个 Pin 在塔上，还剩下 30 个 Pin。</p>
+            <p><span class="chinese-label">地面得分：</span> 假设我们用了 6 个 Pin 在塔上，还剩下 30 个 Pin。</p>
             <p>因为红色、蓝色Pin分别还剩7个，这 30 个 Pin 可以做成 7 个完美的 3色 Stack，剩下的橙色Pin还能与Beam组成双色Stack：</p>
             <ul>
                 <li><strong>7个 Matching Stacks (地面 Goal):</strong> 7 * (3+15+10) = <strong>176 分</strong></li>
@@ -930,7 +934,7 @@
         <h1>策略 D：终极得分！</h1>
 
         <div class="math-paper">
-            <p><strong>总分大汇总：</strong></p>
+            <p><span class="chinese-label">总分大汇总：</span></p>
             <ul>
                 <li>塔上结构：121 分</li>
                 <li>地面得分：234 分</li>
@@ -945,7 +949,7 @@
         </div>
 
         <p>算出这个数字的时候，我们全都惊呆了！</p>
-        <p class="dialogue"><strong>叶恒嘉泼了一盆冷水：</strong> “这要在 60 秒内做完？平均 5 秒做一个 3色 Stack？机器人得飞起来才行吧！”</p>
+        <p class="dialogue"><span class="chinese-label">叶恒嘉泼了一盆冷水：</span> “这要在 60 秒内做完？平均 5 秒做一个 3色 Stack？机器人得飞起来才行吧！”</p>
         <p>虽然很难，但这让我们看到了天花板在哪里。我们要朝着这个方向努力！</p>
 
         <div class="footer">
@@ -962,8 +966,8 @@
         <p>除了团队赛，我们还要打技能赛。技能赛的场地有点不一样。</p>
 
         <ul>
-            <li><strong>红区专属：</strong> 机器人必须从红色的三角区出发。</li>
-            <li><strong>装填限制：</strong> 只能用红色的 Load Zone。蓝色的那个不能用！</li>
+            <li><span class="chinese-label">红区专属：</span> 机器人必须从红色的三角区出发。</li>
+            <li><span class="chinese-label">装填限制：</span> 只能用红色的 Load Zone。蓝色的那个不能用！</li>
         </ul>
 
         <div class="sticky-note">
@@ -984,7 +988,7 @@
         <p><strong>规则 &lt;RSC7&gt;</strong> 说，自动赛的时候，我们绝对不能碰遥控器。我们要像雕塑一样站着。</p>
 
         <p>但是如果机器人卡住了怎么办？我们可以申请重置 <strong>&lt;RSC5&gt;</strong>。</p>
-        <p><strong>注意：</strong> 重置的时候，机器人手里拿的分数都要拿走，不计分。所以重置是很亏的，我们要保证代码稳定！</p>
+        <p><span class="chinese-label">注意：</span> 重置的时候，机器人手里拿的分数都要拿走，不计分。所以重置是很亏的，我们要保证代码稳定！</p>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -1001,7 +1005,7 @@
         <p class="dialogue">“如果超时了会怎么样？”</p>
         <p>王老师说：“会被取消资格！那场比赛就 0 分了！”</p>
 
-        <p><strong>我们的计划：</strong></p>
+        <p><span class="chinese-label">我们的计划：</span></p>
         <ul>
             <li>设置闹钟，35秒一到就大喊“换手！”</li>
             <li>不管机器人在干嘛，哪怕差一点就得分了，也必须停下来。</li>
@@ -1021,10 +1025,10 @@
         <p>综合上面的所有规则，我们给设计组提了几点“死命令”：</p>
 
         <ol>
-            <li><strong>必须能抓 Beam：</strong> 不然只能拿低分。</li>
-            <li><strong>必须能举高：</strong> 要超过 12 英寸才能挂高塔。</li>
-            <li><strong>必须能折叠：</strong> 出发时要缩在 15 英寸高的小盒子里。</li>
-            <li><strong>必须分色：</strong> 要能识别颜色，不然做不出完美 Stack。</li>
+            <li><span class="chinese-label">必须能抓 Beam：</span> 不然只能拿低分。</li>
+            <li><span class="chinese-label">必须能举高：</span> 要超过 12 英寸才能挂高塔。</li>
+            <li><span class="chinese-label">必须能折叠：</span> 出发时要缩在 15 英寸高的小盒子里。</li>
+            <li><span class="chinese-label">必须分色：</span> 要能识别颜色，不然做不出完美 Stack。</li>
         </ol>
 
         <div class="footer">
@@ -1046,8 +1050,8 @@
                 如果我们没有仔细算分，可能就去做了一个只会推推推的傻瓜机器人。现在我们知道了：
             </p>
             <ul>
-                <li><strong>Beam 是必争之地：</strong> 它是分数的倍增器，我们必须设计一个能稳稳抓住 Beam 的结构。</li>
-                <li><strong>高塔是胜负手：</strong> 只要拿下高塔，分数直接起飞。</li>
+                <li><span class="chinese-label">Beam 是必争之地：</span> 它是分数的倍增器，我们必须设计一个能稳稳抓住 Beam 的结构。</li>
+                <li><span class="chinese-label">高塔是胜负手：</span> 只要拿下高塔，分数直接起飞。</li>
             </ul>
         </div>
 
