@@ -6,6 +6,7 @@
     --background-color-light: #FFF3E0;
     --sheet-border-color: transparent;
     --chapter-marker-color: #FF9F43;
+    --chapter-marker-top: 56mm; /* Default for ch2 */
 }
 
 .theme-orange {
@@ -16,6 +17,7 @@
     --background-color-light: #FFF3E0;
     --sheet-border-color: transparent;
     --chapter-marker-color: #FF9F43;
+    --chapter-marker-top: 56mm;
 }
 
 .theme-green {
@@ -26,6 +28,7 @@
     --background-color-light: #E8F8F5;
     --sheet-border-color: #27AE60;
     --chapter-marker-color: #27AE60;
+    --chapter-marker-top: 85mm; /* 56mm + 29mm */
 }
 
 
@@ -220,7 +223,7 @@ th {
 
 .chapter-marker {
     position: absolute;
-    top: 56mm;
+    top: var(--chapter-marker-top);
     right: 0;
     width: 10mm;
     height: 29mm;
