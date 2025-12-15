@@ -311,7 +311,8 @@
         }
 
         /* 4. Ensure Page Numbers disappear if considered decoration */
-        body.hide-other-elements .page-number {
+        body.hide-other-elements .page-number,
+        body.hide-other-elements .footer {
             display: none !important;
         }
 
@@ -780,10 +781,10 @@
             <li>不管机器人在干嘛，哪怕差一点就得分了，也必须停下来。</li>
             <li>把机器人举起来，让它不能再动了。</li>
 
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
+            <div class="footer">
+                <span class="handwriting-box">日期：</span>
+                <span class="handwriting-box">记录人：</span>
+            </div>
             <div class="page-number">33</div>
     </div>
 
