@@ -365,3 +365,7 @@ body.hide-other-elements .footer {
     margin: 20px 0;
     box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
 }
+
+.knowledge-card h3 {
+    margin: 15px 0;
+}
