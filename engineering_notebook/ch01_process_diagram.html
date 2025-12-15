@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛季开发流程图</title>
+    <style>
+        :root {
+            --primary-color: #2563eb; /* Blue */
+            --accent-color: #f59e0b;  /* Orange for iteration */
+            --bg-color: #f8fafc;
+            --box-bg: #ffffff;
+            --text-color: #1e293b;
+            --node-width: 200px; /* Fixed width for better alignment calculation */
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* Container: Centers everything vertically */
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        /* Standard Node Style */
+        .node {
+            background-color: var(--box-bg);
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+            padding: 15px 30px; /* Total width will be 200 + 60 + 4 = 264px */
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            width: var(--node-width);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Arrow Style */
+        .arrow {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin: 5px 0;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* --- Loop Section Styling --- */
+        
+        .loop-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; 
+            width: 100%;
+        }
+
+        /* The Feedback Line (The loop arrow) */
+        .feedback-line {
+            position: absolute;
+            left: 50%; 
+            /* Push it to the right: 165px from center axis */
+            margin-left: 165px; 
+            
+            top: 30px; /* Center of "Build Car" node */
+            bottom: 30px; /* Center of "Improve Car" node */
+            
+            width: 40px;
+            border-right: 3px dashed var(--accent-color);
+            border-top: 3px dashed var(--accent-color);
+            border-bottom: 3px dashed var(--accent-color);
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Label on the feedback line - UPDATED */
+        .feedback-label {
+            position: absolute;
+            right: 0; /* Align right edge to the border line */
+            top: 50%;
+            /* Move it 50% right to center it on the line, 50% up to center vertically */
+            transform: translate(50%, -50%);
+            
+            background-color: white; /* Changed to white */
+            color: var(--accent-color);
+            
+            /* Vertical text styling */
+            writing-mode: vertical-lr; /* Vertical layout */
+            text-orientation: upright; /* Characters stand upright */
+            letter-spacing: 10px;       /* Increased spacing */
+
+            /* Frame styling */
+            border: 2px solid var(--accent-color);
+            padding: 25px 12px;         /* Increased Padding for bigger frame */
+            border-radius: 8px;        /* Slightly larger radius */
+            
+            /* Font settings */
+            font-size: 18px;           /* Slightly larger font */
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Arrow head pointing back to the start of the loop */
+        .feedback-line::after {
+            content: '◄'; 
+            position: absolute;
+            top: -11px;
+            left: -12px;
+            color: var(--accent-color);
+            font-size: 14px;
+        }
+
+        /* Highlight specific nodes involved in the loop */
+        .node.highlight {
+            border-color: var(--accent-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="flowchart-container">
+        <!-- Preparation Phase -->
+        <div class="node">学习消化规则</div>
+        <div class="arrow">↓</div>
+        
+        <div class="node">头脑风暴</div>
+        <div class="arrow">↓</div>
+        
+        <div class="node">定策略选方案</div>
+        <div class="arrow">↓</div>
+
+        <!-- Loop Phase -->
+        <div class="loop-section">
+            <!-- The Feedback Line -->
+            <div class="feedback-line">
+                <div class="feedback-label">迭代优化</div>
+            </div>
+
+            <!-- Start of Loop Target -->
+            <div class="node highlight">搭建调试赛车</div>
+            <div class="arrow">↓</div>
+
+            <div class="node">编写调试程序</div>
+            <div class="arrow">↓</div>
+
+            <div class="node">训练磨合</div>
+            <div class="arrow">↓</div>
+
+            <div class="node">参加比赛</div>
+            <div class="arrow">↓</div>
+            
+            <div class="node">发现问题</div>
+            <div class="arrow">↓</div>
+
+            <!-- End of Loop Trigger -->
+            <div class="node highlight">改进赛车</div>
+        </div>
+    </div>
+
+</body>
+</html>
