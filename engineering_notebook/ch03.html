@@ -147,13 +147,13 @@
         <h3>1. 那个小小的盒子 &lt;R5&gt;</h3>
         <p><strong>约束：</strong> 机器人出发时必须能塞进 11" x 20" x 15" 的框里。</p>
         <p><strong>我们的挑战：</strong> 根据游戏手册附录 A (Appendix A)，高塔有 9.5 英寸高，加上 Pin 肯定超高了。如果做个固定的长脖子，肯定塞不进去。</p>
-        <p><strong>叶恒嘉的解决方案：</strong> 我们需要模仿叉车的运作方式，制作一个多级升降机。这样既保证了机器人能顺利“塞”进起始框，又能在比赛开始后灵活“长高”。</p>
+        <p><strong>叶恒嘉的解决方案：</strong> 根据规则 &lt;SG3&gt;，机器人可以在垂直方向上无限扩展。我们需要模仿叉车的运作方式，制作一个多级升降机。这样既保证了机器人能顺利“塞”进起始框，又能在比赛开始后灵活“长高”。</p>
         <br>
         <!-- <div class="img-placeholder" style="height: 250px;">
 
             [图片：画了一个小盒子，里面塞着我们的机器人，旁边画了一个箭头，机器人伸展开变得很高大]
         </div> -->
-        <img src="../assets/ch03/3_2.webp" alt="无限垂直扩展" style="height:320px; display: block; margin: 0 auto;">
+        <img src="../assets/ch03/3_2_vertical.webp" alt="无限垂直扩展" style="height:320px; display: block; margin: 0 auto;">
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -179,10 +179,11 @@
 
         <p class="dialogue"><strong>宋书月：</strong> “哎呀，电机不够用了！我想做个四轮独立驱动的豪车，看来没戏了。”</p>
         <p><strong>决定：</strong> 我们只能省着用，底盘就用 2 个电机。</p>
+        <img src="../assets/ch03/3_2_motors.webp" alt="无限垂直扩展" style="height:260px; display: block; margin: 0 auto;">
 
-        <h3>3. 只能向上长 &lt;SG2&gt;</h3>
+        <!-- <h3>3. 只能向上长 &lt;SG2&gt;</h3>
         <p><strong>约束：</strong> 只能变高，不能变宽。</p>
-        <p><strong>影响：</strong> 我们不能做那种横着张开的大翅膀去一次抓一排 Pin，只能老老实实做一个一个抓的爪子。</p>
+        <p><strong>影响：</strong> 我们不能做那种横着张开的大翅膀去一次抓一排 Pin，只能老老实实做一个一个抓的爪子。</p> -->
 
         <p class="dialogue">这些“边界”虽然限制了我们，但也激发了我们的创造力！为了在这些约束下做到最好，我们就得请出我们的“秘密武器”——机械原理！让我们看看，小小的齿轮和杠杆，能爆发出多大的能量！</p>
 
@@ -199,26 +200,27 @@
         <div class="chapter-marker"></div>
         <h1>3.3 机械魔法：齿轮传动</h1>
 
-        <p>叶恒嘉教了我们齿轮的秘密。原来大齿轮和小齿轮搭配，效果完全不一样！</p>
+        <p>齿轮是机器人动力传输的核心。它们能神奇地调节动力，让你决定机器人是做‘短跑运动员’还是‘大力士’。</p>
 
         <div class="knowledge-card">
-            <h3>加速 (Speed) - 跑得快！</h3>
-            <p><strong>方法：</strong> 用大齿轮带着小齿轮转。</p>
+            <h3>用大齿轮带动小齿轮</h3>
+            <p><strong>效果：</strong> 加速 (Speed) - 跑得快！</p>
             <p><strong>比喻：</strong> 就像骑自行车下坡，脚蹬一圈，轮子转好几圈！</p>
             <p><strong>计划：</strong> 在一代车底盘上试试 2:1 的加速，让它跑得飞快！</p>
         </div>
 
         <div class="knowledge-card">
-            <h3>有力气 (Torque) - 举得动！</h3>
-            <p><strong>方法：</strong> 用小齿轮带着大齿轮转。</p>
+            <h3>用小齿轮带动大齿轮</h3>
+            <p><strong>效果：</strong> 有力气 (Torque) - 举得动！</p>
             <p><strong>比喻：</strong> 就像骑自行车上坡，脚蹬好多圈，轮子才转一圈，虽然慢，但是有力气！</p>
-            <p><strong>计划：</strong> 抬升手臂要举 Beam，很重，所以要用减速齿轮，不然电机举不起来。</p>
+            <p><strong>计划：</strong> 抬升手臂要举 Beam，用减速齿轮才能举起来。</p>
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
+        <!-- <div class="img-placeholder" style="height: 200px;">
             [Image of Gear Ratio diagram]
             [图片：画了两组齿轮，一组是大带小（画着闪电表示快），一组是小带大（画着大力士表示有力）]
-        </div>
+        </div> -->
+        <img src="../assets/ch03/3_3_gears.webp" alt="齿轮传动" style="height:260px; display: block; margin: 0 auto;">
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -233,22 +235,23 @@
         <div class="chapter-marker"></div>
         <h1>3.3 机械魔法：力矩与杠杆</h1>
 
-        <p>我们要做一个长长的手臂去挂高塔，但是手臂越长，电机越费力。</p>
+        <p>我们要做长长的手臂去挂高塔，但是手臂越长，电机越费力。</p>
 
         <h3>杠杆原理</h3>
-        <p><strong>印涵邸的发现：</strong> 我试着用手拿一根长棍子，如果在棍子另一头挂个重物，我手腕都要断了！这就是<strong>力矩</strong>！</p>
-        <p>$$ 力矩 = 力 \times 距离 $$</p>
+        <p><span>印涵邸的发现：</span> 我试着用手拿一根长棍子，如果在棍子另一头挂个重物，我手腕都要断了！这就是<strong>力矩</strong>！（<b>力矩</b> = 力 &times; 距离）</p>
+        <p>而当我把棍子支在离重物很近的支点上，我能轻易的撑起重物。</p>
 
         <h3>怎么帮电机省力？</h3>
-        <p>叶恒嘉想到了一个绝招：<strong>橡皮筋！</strong></p>
-        <p>我们在手臂的后面挂上橡皮筋，帮电机一起拉。这就叫<strong>“重力补偿”</strong>。就像跷跷板一样，另一头有人压着，这头就容易翘起来了。</p>
+        <p>叶恒嘉想到了一个妙招：<strong>橡皮筋！</strong></p>
+        <p>我们在机器人手臂的后面挂上橡皮筋，帮电机一起拉。这就叫<strong>“重力补偿”</strong>。就像跷跷板一样，两个人一起压一头，另一头就容易翘起来了。</p>
 
-        <div class="img-placeholder" style="height: 250px;">
+        <!-- <div class="img-placeholder" style="height: 250px;">
 
             [图片：画了一个跷跷板，一头是重重的 Beam，另一头是橡皮筋在帮忙拉，电机在中间笑得很开心]
-        </div>
+        </div> -->
+        <img src="../assets/ch03/3_3_seesaw.webp" alt="杠杆原理" style="height:250px; display: block; margin: 0 auto;">
 
-        <p class="dialogue">有了这些机械魔法，我们的机器人就像有了强壮的“身体”。但光有身体还不够，还得有个聪明的“大脑”来指挥它！接下来，就让我们进入编程的世界，看看怎么让机器人“活”起来！</p>
+        <p class="dialogue">有了机械魔法，我们的机器人就像有了强壮的“身体”。但光有身体还不够，还得有个聪明的“大脑”来指挥它！接下来，就让我们进入编程的世界，看看怎么让机器人“活”起来！</p>
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -269,7 +272,7 @@
         <p><strong>傻瓜做法：</strong> “往前走 2 秒”。万一电池没电了，或者轮子打滑了，它就走不到地方了。</p>
         <p><strong>聪明做法：</strong> “往前走，一直走到眼睛（传感器）看到墙壁只有 10 厘米的时候停下来”。这就是闭环控制！</p>
 
-        <h3>2. PID 算法</h3>
+        <h3>2. PID （比例-积分-微分）算法</h3>
         <p>这个听起来好高级！叶恒瑞说，这就好比我们走路走歪了，会自动修整回来。PID 就是让机器人走直线的法宝。</p>
         <div class="sticky-note">
             虽然 PID 很难，但为了自动赛的高分，叶恒瑞说他会努力学会的！加油！
@@ -294,17 +297,18 @@
             </p>
             <ul>
                 <li><strong>知道了约束：</strong> 不会盲目设计超大的机器人了。</li>
-                <li><strong>懂得了原理：</strong> 知道了哪里该快（底盘），哪里该有力（手臂）。</li>
+                <li><strong>懂得了原理：</strong> 知道了如何让底盘跑得快，如何让手臂力气更大。</li>
                 <li><strong>明白了智能：</strong> 决定要多用传感器，不能只靠蒙。</li>
             </ul>
         </div>
 
-        <p><strong>下一步计划：</strong> 拿笔和纸，开始画设计图！我们要把头脑里的想法画出来，然后选一个最棒的方案开始搭建一代车！</p>
+        <p><strong>下一步计划：</strong> 拿出笔和纸，开始画设计图！我们要把头脑里的想法画出来，然后选一个最棒的方案开始搭建一代车！</p>
 
-        <div class="img-placeholder" style="height: 250px;">
+        <!-- <div class="img-placeholder" style="height: 250px;">
             [Image of Team brainstorming]
             [图片：大家围坐在一起，中间放着一堆 VEX 零件和纸笔，蓄势待发的样子]
-        </div>
+        </div> -->
+        <img src="../assets/ch03/3_z_ready_to_go.webp" alt="Ready to Go" style="height:300px; display: block; margin: 50px auto;">
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
