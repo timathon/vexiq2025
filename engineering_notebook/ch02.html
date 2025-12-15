@@ -13,14 +13,6 @@
 
 
 <body class="theme-orange">
-    <!-- Toggle Buttons -->
-    <button id="toggle-dark-text-btn" onclick="toggleDarkText()">
-        📝 深色文字：显示
-    </button>
-
-    <button id="toggle-other-elements-btn" onclick="toggleOtherElements()">
-        🎨 装饰元素：显示
-    </button>
     <!-- ================= PAGE 21: 章节封面 ================= -->
     <div class="sheet">
         <div class="a4-height-indicator"></div>
@@ -833,41 +825,7 @@
         <div class="page-number">45</div>
     </div>
 
-    <script>
-        let darkTextVisible = true;
-        let otherElementsVisible = true;
-
-        function toggleDarkText() {
-            darkTextVisible = !darkTextVisible;
-            const btn = document.getElementById('toggle-dark-text-btn');
-
-            if (darkTextVisible) {
-                document.body.classList.remove('hide-dark-text');
-                btn.textContent = '📝 深色文字：显示';
-                btn.style.backgroundColor = 'var(--secondary-color)';
-            } else {
-                document.body.classList.add('hide-dark-text');
-                btn.textContent = '📝 深色文字：隐藏';
-                btn.style.backgroundColor = '#95A5A6';
-            }
-        }
-
-        function toggleOtherElements() {
-            otherElementsVisible = !otherElementsVisible;
-            const btn = document.getElementById('toggle-other-elements-btn');
-
-            if (otherElementsVisible) {
-                document.body.classList.remove('hide-other-elements');
-                btn.textContent = '🎨 装饰元素：显示';
-                btn.style.backgroundColor = '#2E86C1';
-            } else {
-                document.body.classList.add('hide-other-elements');
-                btn.textContent = '🎨 装饰元素：隐藏';
-                btn.style.backgroundColor = '#95A5A6';
-            }
-        }
-    </script>
-
+    <script src="../assets/scripts/toggle-buttons.js"></script>
 </body>
 
 </html>

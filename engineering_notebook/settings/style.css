@@ -31,6 +31,17 @@
     --chapter-marker-top: 85mm; /* 56mm + 29mm */
 }
 
+.theme-purple {
+    --primary-color: #8E44AD;
+    --secondary-color: #9B59B6;
+    --tertiary-color: #9B59B6;
+    --quaternary-color: #D2B4DE;
+    --background-color-light: #F5EEF8;
+    --sheet-border-color: #9B59B6;
+    --chapter-marker-color: #9B59B6;
+    --chapter-marker-top: 114mm; /* 85mm + 29mm */
+}
+
 
 /* 页面基础设置 */
 @page {
