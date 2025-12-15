@@ -42,6 +42,28 @@
     --chapter-marker-top: 114mm; /* 85mm + 29mm */
 }
 
+.theme-reddish-brown {
+/* The anchor color provided */
+    --primary-color: #E74C3C; 
+    
+    /* Lighter, softer red (Standard Flat UI "Soft Red") */
+    --secondary-color: #EC7063;
+    
+    /* Matches secondary, per purple theme logic */
+    --tertiary-color: #EC7063;
+    
+    /* A pastel red/salmon for sub-highlights */
+    --quaternary-color: #F5B7B1;
+    
+    /* A very faint reddish-white for the background */
+    --background-color-light: #FDEDEC;
+    
+    /* Matches secondary, per purple theme logic */
+    --sheet-border-color: #EC7063;
+    --chapter-marker-color: #EC7063;
+    --chapter-marker-top: 143mm; /* 114mm + 29mm */
+}
+
 
 /* 页面基础设置 */
 @page {

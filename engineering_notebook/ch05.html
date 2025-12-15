@@ -3,133 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第五章：动手造车啦 (2276A)</title>
-    <style>
-        /* 页面基础设置 */
-        @page {
-            size: A4;
-            margin: 0;
-        }
-        body {
-            background-color: #525659;
-            font-family: "KaiTi", "Microsoft YaHei", cursive; /* 楷体/手写风格 */
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            line-height: 1.6;
-        }
-        .sheet {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 25mm;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            margin: 0 auto 20px auto;
-            position: relative;
-            box-sizing: border-box;
-            border-left: 15px solid #E74C3C; /* 第五章主题色：热血的红色 */
-            overflow: hidden;
-            page-break-after: always;
-        }
-        
-        /* 标题体系 */
-        h1 { color: #C0392B; font-size: 32px; border-bottom: 4px dashed #E74C3C; padding-bottom: 10px; margin-bottom: 20px; font-family: "Microsoft YaHei", sans-serif; text-align: center; }
-        h2 { color: #D35400; font-size: 24px; background-color: #F9EBEA; padding: 8px 15px; border-radius: 15px; margin-top: 30px; display: inline-block; }
-        
-        /* 正文样式 */
-        p, li { font-size: 16px; text-align: justify; margin-bottom: 10px; }
-        
-        /* 搭建日记卡片 */
-        .build-log {
-            background-color: #FDEDEC;
-            border: 2px solid #E74C3C;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .log-date {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background-color: #C0392B;
-            color: white;
-            padding: 5px 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            transform: rotate(-2deg);
-        }
-
-        /* 代码块样式 */
-        .code-snippet {
-            font-family: "Consolas", monospace;
-            background-color: #2C3E50;
-            color: #ECF0F1;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            font-size: 14px;
-            border-left: 5px solid #F1C40F;
-        }
-
-        /* 对话框 */
-        .dialogue {
-            border-left: 4px solid #E74C3C;
-            padding-left: 10px;
-            margin: 10px 0;
-            font-style: italic;
-            color: #555;
-            background-color: #FFF5F5;
-            border-radius: 0 10px 10px 0;
-        }
-
-        /* 表格样式 */
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; border: 2px solid #999; }
-        th, td { border: 1px solid #999; padding: 10px; text-align: center; font-size: 14px; }
-        th { background-color: #F5B7B1; font-weight: bold; }
-        
-        /* 图片占位符 */
-        .img-placeholder {
-            width: 100%;
-            background-color: #f0f0f0;
-            border: 3px dashed #bbb;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            margin: 15px 0;
-            position: relative;
-            font-style: italic;
-        }
-        .img-caption { text-align: center; font-size: 14px; color: #666; margin-top: -5px; margin-bottom: 20px; font-style: italic; }
-
-        /* 页脚 */
-        .footer {
-            margin-top: 40px;
-            border-top: 2px solid #333;
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-        .page-number {
-            position: absolute;
-            bottom: 10mm;
-            right: 10mm;
-            font-weight: bold;
-            color: #C0392B;
-            font-size: 18px;
-        }
-    </style>
+    <title>工程笔记 - 第五章：搭建与调试 (2276A)</title>
+    <link rel="stylesheet" href="settings/style.css">
 </head>
-<body>
+<body class="theme-reddish-brown">
 
     <!-- ================= PAGE 91: 章节封面 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #C0392B;">动手造车啦！</h1>
+            <h1 style="font-size: 56px; border: none; color: #E74C3C;">动手造车啦！</h1>
             <h2 style="font-size: 36px; background: none; color: #555;">第五章：方案搭建与编程实现</h2>
             <h3 style="font-size: 24px; color: #888; border: none;">Chapter 5: Build & Code Implementation (Gen 1)</h3>
             
@@ -139,20 +23,25 @@
                 <p><strong>任务：</strong> 把图纸变成真的机器人！</p>
                 <p><strong>主搭建手：</strong> 叶恒嘉</p>
                 <p><strong>主程序员：</strong> 叶恒瑞</p>
-                <p><strong>捣乱（帮忙）的：</strong> 宋书月、印涵邸</p>
+                <!-- <p><strong>捣乱（帮忙）的：</strong> 宋书月、印涵邸</p> -->
             </div>
             
-            <div style="background-color: #F9EBEA; padding: 15px; transform: rotate(-2deg); border: 1px solid #E74C3C; margin-top: 50px; text-align: center;">
+            <div class="sticky-note" style="width: 70%; margin: 50px auto;">
                 <strong>我们的口号：</strong><br>
                 不仅要长得帅，还得跑得快！<br>
                 代码写得好，比赛没烦恼！
             </div>
+
+            <!-- <div style="background-color: #F9EBEA; padding: 15px; transform: rotate(-2deg); border: 1px solid #E74C3C; margin-top: 50px; text-align: center;">
+            </div> -->
         </div>
         <div class="page-number">91</div>
     </div>
 
     <!-- ================= PAGE 92: 5.1 启动会 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.1 搭建启动会</h1>
         
         <p>设计图终于定下来了，我们要开始动真格的了！大家把所有的零件箱都搬了出来，铺了一地。</p>
@@ -181,6 +70,8 @@
 
     <!-- ================= PAGE 93: 零件清单 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>购物清单 (Parts List)</h1>
 
         <p>我们把需要的最重要的东西列了出来：</p>
@@ -233,6 +124,8 @@
 
     <!-- ================= PAGE 94: 尺寸验证 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>一定要塞进去！(Size Check)</h1>
 
         <p>规则 &lt;R5&gt; 说，出发的时候必须小于 11" x 20" x 15"。我们找来了几根长梁，在桌子上摆了一个框。</p>
@@ -254,6 +147,8 @@
 
     <!-- ================= PAGE 95: 电机地图 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>电机地图 (Port Map)</h1>
         
         <p>叶恒瑞说：“你们搭车的时候，电机线千万别乱插！我要规定好端口，不然我的程序会乱套。”</p>
@@ -281,6 +176,8 @@
 
     <!-- ================= PAGE 96: 5.2 底盘搭建 (1) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 底盘：速度与激情的开始</h1>
 
         <div class="build-log">
@@ -306,6 +203,8 @@
 
     <!-- ================= PAGE 97: 5.2 底盘搭建 (2) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 底盘：一定要结实</h1>
 
         <div class="build-log">
@@ -329,6 +228,8 @@
 
     <!-- ================= PAGE 98: 5.2 底盘测试 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 第一次试跑：太快了！</h1>
 
         <div class="build-log">
@@ -351,6 +252,8 @@
 
     <!-- ================= PAGE 99: 5.2 抬升搭建 (1) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 抬升：四连杆的秘密</h1>
 
         <div class="build-log">
@@ -374,6 +277,8 @@
 
     <!-- ================= PAGE 100: 5.2 抬升搭建 (2) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 抬升：橡皮筋来帮忙</h1>
 
         <div class="build-log">
@@ -398,6 +303,8 @@
 
     <!-- ================= PAGE 101: 5.2 抬升测试 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 抬升：够高吗？</h1>
 
         <div class="build-log">
@@ -416,6 +323,8 @@
 
     <!-- ================= PAGE 102: 5.2 抓手搭建 (1) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 抓手：螃蟹钳子</h1>
 
         <div class="build-log">
@@ -437,6 +346,8 @@
 
     <!-- ================= PAGE 103: 5.2 抓手搭建 (2) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 抓手：防滑大改造</h1>
 
         <div class="build-log">
@@ -458,6 +369,8 @@
 
     <!-- ================= PAGE 104: 翻转手腕 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 翻转手腕 (Flip)</h1>
 
         <div class="build-log">
@@ -479,6 +392,8 @@
 
     <!-- ================= PAGE 105: 后置拖钩 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 秘密武器：拖钩</h1>
 
         <div class="build-log">
@@ -501,6 +416,8 @@
 
     <!-- ================= PAGE 106: 理线 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.2 乱糟糟的线</h1>
 
         <div class="build-log">
@@ -522,6 +439,8 @@
 
     <!-- ================= PAGE 107: 5.3 编程开始 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 给机器人注入灵魂</h1>
 
         <div class="build-log">
@@ -544,6 +463,8 @@
 
     <!-- ================= PAGE 108: 配置设置 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 第一步：告诉它它是谁</h1>
 
         <div class="build-log">
@@ -567,6 +488,8 @@
 
     <!-- ================= PAGE 109: 遥控程序 (1) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 遥控：像开坦克一样</h1>
 
         <div class="build-log">
@@ -589,6 +512,8 @@
 
     <!-- ================= PAGE 110: 遥控程序 (2) ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 遥控：按键分配</h1>
 
         <p>我们把所有功能都映射到了遥控器上：</p>
@@ -611,6 +536,8 @@
 
     <!-- ================= PAGE 111: 速度控制 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 驯服野马</h1>
 
         <div class="build-log">
@@ -629,6 +556,8 @@
 
     <!-- ================= PAGE 112: 自动化尝试 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 偷懒的艺术：宏命令</h1>
 
         <div class="build-log">
@@ -646,6 +575,8 @@
 
     <!-- ================= PAGE 113: 陀螺仪 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 走直线神器：陀螺仪</h1>
 
         <div class="build-log">
@@ -667,6 +598,8 @@
 
     <!-- ================= PAGE 114: 距离传感器 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 别撞墙！</h1>
 
         <p>我们在车头装了一个<strong>距离传感器</strong>。</p>
@@ -681,6 +614,8 @@
 
     <!-- ================= PAGE 115: 自动赛路线 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 自动赛：第一条路线</h1>
 
         <div class="build-log">
@@ -707,6 +642,8 @@
 
     <!-- ================= PAGE 116: 自动赛测试 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 自动赛：失败现场</h1>
 
         <div class="build-log">
@@ -724,6 +661,8 @@
 
     <!-- ================= PAGE 117: 自动赛测试 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 自动赛：成功了！</h1>
 
         <div class="build-log">
@@ -744,6 +683,8 @@
 
     <!-- ================= PAGE 118: 固件更新 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.3 别忘了升级！</h1>
 
         <p>王老师提醒我们，比赛前一定要把 Brain 和电机都升级到最新版本。</p>
@@ -757,6 +698,8 @@
 
     <!-- ================= PAGE 119: 系统联调 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>5.4 第一次全车试跑</h1>
 
         <div class="build-log">
@@ -778,6 +721,8 @@
 
     <!-- ================= PAGE 120: 章节总结 ================= -->
     <div class="sheet">
+        <div class="a4-height-indicator"></div>
+        <div class="chapter-marker"></div>
         <h1>第五章总结：一代车，出击！</h1>
 
         <div class="build-log">
@@ -801,5 +746,6 @@
         <div class="page-number">120</div>
     </div>
 
+    <script src="../assets/scripts/toggle-buttons.js"></script>
 </body>
 </html>
