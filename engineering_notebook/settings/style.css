@@ -350,6 +350,7 @@ body.hide-other-elements .footer {
     .sheet {
         margin: 0;
         box-shadow: none;
+        background-image: none !important;
     }
 
     .page-number,
