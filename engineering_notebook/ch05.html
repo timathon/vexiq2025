@@ -3,750 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第五章：搭建与调试 (2276A)</title>
+    <title>工程笔记 - 第八章：最强大脑的战术 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
-<body class="theme-reddish-brown">
+<body class="theme-teal">
 
-    <!-- ================= PAGE 91: 章节封面 ================= -->
+    <!-- ================= PAGE 191: 章节封面 ================= -->
     <div class="sheet">
-
-        <div class="chapter-marker"></div>
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #E74C3C;">动手造车啦！</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第五章：方案搭建与编程实现</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 5: Build & Code Implementation (Gen 1)</h3>
+            <h1 style="font-size: 56px; border: none; color: var(--primary-color);">最强大脑的战术</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第八章：比赛策略与赛后分析</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 8: Strategy & Analysis</h3>
             
-            <div style="width: 80%; height: 8px; background: #E74C3C; margin: 40px auto; border-radius: 5px;"></div>
+            <div style="width: 80%; height: 8px; background: var(--secondary-color); margin: 40px auto; border-radius: 5px;"></div>
             
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
-                <p><strong>任务：</strong> 把图纸变成真的机器人！</p>
-                <p><strong>主搭建手：</strong> 叶恒嘉</p>
-                <p><strong>主程序员：</strong> 叶恒瑞</p>
-                <!-- <p><strong>捣乱（帮忙）的：</strong> 宋书玥、印涵邸</p> -->
+                <p><strong>战场：</strong> 团队赛 & 技能赛</p>
+                <p><strong>指挥官：</strong> 宋书玥 & 叶恒瑞</p>
+                <p><strong>记录人：</strong> 印涵邸</p>
             </div>
             
-            <div class="sticky-note" style="width: 70%; margin: 50px auto;">
-                <strong>我们的口号：</strong><br>
-                不仅要长得帅，还得跑得快！<br>
-                代码写得好，比赛没烦恼！
+            <div style="background-color: var(--background-color-light); padding: 15px; transform: rotate(-2deg); border: 1px solid var(--primary-color); margin-top: 50px; text-align: center;">
+                <strong>我们的格言：</strong><br>
+                不仅要车快，<br>
+                还要脑子快！
             </div>
-
-            <!-- <div style="background-color: #F9EBEA; padding: 15px; transform: rotate(-2deg); border: 1px solid #E74C3C; margin-top: 50px; text-align: center;">
-            </div> -->
         </div>
-        <div class="page-number">91</div>
+        <div class="page-number">191</div>
     </div>
 
-    <!-- ================= PAGE 92: 5.1 启动会 ================= -->
+    <!-- ================= PAGE 192: 8.1 技能赛策略 ================= -->
     <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.1 搭建启动会</h1>
+        <h1>8.1 技能赛：红色的秘密</h1>
         
-        <p>设计图终于定下来了，我们要开始动真格的了！大家把所有的零件箱都搬了出来，铺了一地。</p>
+        <p>技能赛和团队赛不一样！叶恒瑞把规则书翻到了 <strong>&lt;RSC3&gt;</strong> 那一页。</p>
 
-        <p class="dialogue"><strong>叶恒嘉：</strong> “兄弟们，我们要造一辆全场最快的车！”</p>
-        <p class="dialogue"><strong>叶恒瑞：</strong> “别急，先别乱动。我们要先把零件找齐，不然搭一半找不到零件就尴尬了。”</p>
-        <p class="dialogue"><strong>宋书玥：</strong> “我已经迫不及待要开它了！”</p>
+        <div class="tactics-board">
+            <div class="board-title">技能赛特别规则</div>
+            <ul>
+                <li><strong>出发点：</strong> 必须从 <span style="color:red; font-weight:bold;">红色</span> 的三角区出发！</li>
+                <li><strong>装填区：</strong> 只能用 <span style="color:red; font-weight:bold;">红色</span> 的 Load Zone！蓝色的那个是摆设！</li>
+            </ul>
+        </div>
 
-        <h3>今日任务：</h3>
-        <ol>
-            <li>清点关键零件（电机、主控、电池）。</li>
-            <li>画好电机地图（Port Map），这样叶恒瑞就可以先写代码框架，不用等车搭好。</li>
-            <li>验证尺寸框，别搭太大了。</li>
-        </ol>
+        <p class="dialogue"><strong>宋书玥：</strong> “那我们得重新规划路线了！我们的自动程序不能跑到蓝色那边去，不然回不来了！”</p>
 
-        <div class="img-placeholder" style="height: 200px;">
+        <h3>我们的“红色风暴”路线图：</h3>
+        <p>1. <strong>0-15秒：</strong> 冲出去，把右边的起始 Pin 都清空，推到红色的三角 Goal 里。
+        <br>2. <strong>15-45秒：</strong> 回到红色装填区，我是 Loader，我会疯狂地喂 Pin，宋书玥接住就往最近的 Floor Goal 里放。
+        <br>3. <strong>45-60秒：</strong> 如果还有时间，就去挂高塔！</p>
+
+        <div class="img-placeholder" style="height: 250px;">
             
-            [图片：大家坐在地上，周围全是各种颜色的零件盒，正在认真地数电机]
+            [图片：印涵邸手绘的技能赛路线图，用红笔画出了密密麻麻的箭头，全都集中在红色半场]
         </div>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
         </div>
-        <div class="page-number">92</div>
+        <div class="page-number">192</div>
     </div>
 
-    <!-- ================= PAGE 93: 零件清单 ================= -->
+    <!-- ================= PAGE 193: 8.1 团队赛策略 ================= -->
     <div class="sheet">
+        <h1>8.1 团队赛：如果不说话就输了</h1>
 
-        <div class="chapter-marker"></div>
-        <h1>购物清单 (Parts List)</h1>
+        <p>团队赛是和陌生人组队。宋书玥说：“最怕的就是撞车！”</p>
 
-        <p>我们把需要的最重要的东西列了出来：</p>
+        <h3>赛前灵魂三问（见到队友必须问）：</h3>
+        <ul>
+            <li>1. 你们的自动程序走哪边？（千万别撞在一起）</li>
+            <li>2. 你们能挂高塔吗？（如果不能，高塔放着让我们来！）</li>
+            <li>3. 你们擅长推 Beam 吗？</li>
+        </ul>
 
-        <table style="font-size: 16px;">
+        <h3>换手惊魂 &lt;GG11&gt;</h3>
+        <p>这是最容易犯规的地方！必须在 <strong>35秒 到 25秒</strong> 之间换人。</p>
+        
+        <p class="dialogue"><strong>叶恒嘉：</strong> “我们定个死规矩：不管你在干嘛，哪怕 Pin 都要进洞了，只要我喊‘换手’，必须马上停下！”</p>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+            [图片：宋书玥和叶恒瑞正在练习交接遥控器，旁边放着一个计时器]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">193</div>
+    </div>
+
+    <!-- ================= PAGE 194: 8.2 赛前准备 ================= -->
+    <div class="sheet">
+        <h1>8.2 赛前检查单 (PIT Check)</h1>
+
+        <p>王老师说：“比赛不是上场才开始的，是在候场区就开始了。”
+        <br>每次上场前，叶恒嘉都要像检查战斗机一样检查我们的三代车。</p>
+
+        <div class="tactics-board">
+            <div class="board-title">不起眼的救命清单</div>
+            <div style="column-count: 2;">
+                <div class="checklist-item"><div class="checklist-box"></div> 轴有没有松？</div>
+                <div class="checklist-item"><div class="checklist-box"></div> 皮筋有没有断？</div>
+                <div class="checklist-item"><div class="checklist-box"></div> <strong>气罐充满了没？(>90 PSI)</strong></div>
+                <div class="checklist-item"><div class="checklist-box"></div> 气管漏气吗？(听声音)</div>
+                <div class="checklist-item"><div class="checklist-box"></div> 电池是满的吗？</div>
+                <div class="checklist-item"><div class="checklist-box"></div> 遥控器连上了吗？</div>
+            </div>
+        </div>
+
+        <h3>尺寸检查 &lt;R5&gt;</h3>
+        <p>我们用纸板做了一个 11" x 20" x 15" 的框子。上场前必须把机器人塞进去试一下，特别是那个气动翅膀，一定要收好！</p>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+            [图片：三代车缩在纸板框里，刚刚好]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">194</div>
+    </div>
+
+    <!-- ================= PAGE 195: 8.2 临场策略 ================= -->
+    <div class="sheet">
+        <h1>8.2 赛场上的突发状况</h1>
+
+        <p>比赛的时候什么都可能发生。我们预想了一些倒霉的情况：</p>
+
+        <h3>1. 气没气了怎么办？</h3>
+        <p><strong>现象：</strong> 爪子没力气了，抓不住 Pin。
+        <br><strong>对策：</strong> 别抓高塔了！立马切换成“推土机模式”，用底盘推地上的 Pin 进 Goal。能拿一分是一分！</p>
+
+        <h3>2. 翻车了怎么办？&lt;GG10&gt;</h3>
+        <p><strong>对策：</strong> 马上举手找裁判！
+        <br>但是要注意：手里抓着的 Pin 必须拿走，不能得分了。心疼也没用，赶快重置去拿下一个！</p>
+
+        <h3>3. 队友不动了怎么办？</h3>
+        <p><strong>对策：</strong> 别去撞他！绕开他！一个人打两个人的活，优先抢占好拿分的地方。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">195</div>
+    </div>
+
+    <!-- ================= PAGE 196: 8.3 资格赛回顾 ================= -->
+    <div class="sheet">
+        <h1>8.3 资格赛日记</h1>
+
+        <p>今天是区域选拔赛，我们一共打了 8 场。</p>
+
+        <table>
             <tr>
-                <th>东西</th>
-                <th>数量</th>
-                <th>用途</th>
+                <th>场次</th>
+                <th>得分</th>
+                <th>发生了什么？</th>
             </tr>
             <tr>
-                <td><strong>VEX IQ 主控 (Brain)</strong></td>
-                <td>1 个</td>
-                <td>机器人的大脑</td>
+                <td>Q-03</td>
+                <td>85</td>
+                <td><strong>开门红！</strong> 队友很给力，我们挂了两个高塔！</td>
             </tr>
             <tr>
-                <td><strong>智能电机 (Motor)</strong></td>
-                <td>6 个</td>
-                <td>底盘x2, 抬升x1, 抓取x1, 翻转x1, 备用x1</td>
+                <td>Q-15</td>
+                <td>42</td>
+                <td><strong>倒霉！</strong> 队友一开场就失控撞到了我们，把我们的气管撞掉了！爪子废了，只能推土。</td>
             </tr>
             <tr>
-                <td><strong>电池</strong></td>
-                <td>1 个</td>
-                <td>能量源泉！</td>
+                <td>Q-28</td>
+                <td>110</td>
+                <td><strong>全场最高！</strong> 队友负责清扫地面，我们负责高塔，配合得天衣无缝。</td>
             </tr>
             <tr>
-                <td><strong>全向轮 (Omni Wheel)</strong></td>
-                <td>4 个</td>
-                <td>丝滑过弯</td>
-            </tr>
-            <tr>
-                <td><strong>大齿轮 (48齿)</strong></td>
-                <td>2 个</td>
-                <td>底盘加速用</td>
-            </tr>
-            <tr>
-                <td><strong>小齿轮 (24齿)</strong></td>
-                <td>2 个</td>
-                <td>底盘加速用</td>
+                <td>Q-45</td>
+                <td>68</td>
+                <td><strong>吓死我了！</strong> 换手的时候晚了 1 秒（36秒才换），裁判给了个警告（Minor Violation）。幸好没取消资格！下次一定要看表！</td>
             </tr>
         </table>
 
-        <p><strong>注意：</strong> 只有 6 个电机，每一个都很宝贵，不能浪费！</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">93</div>
-    </div>
-
-    <!-- ================= PAGE 94: 尺寸验证 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>一定要塞进去！(Size Check)</h1>
-
-        <p>规则 &lt;R5&gt; 说，出发的时候必须小于 11" x 20" x 15"。我们找来了几根长梁，在桌子上摆了一个框。</p>
-
-        <p class="dialogue"><strong>叶恒嘉：</strong> “底盘不能太宽，我要控制在 10.5 英寸以内，留点余量。”</p>
-        <p class="dialogue"><strong>宋书玥：</strong> “高度呢？那个四连杆抬起来肯定超高。”</p>
-        <p class="dialogue"><strong>叶恒嘉：</strong> “放心，我会把它折叠起来，像折叠椅一样，出发的时候是趴着的。”</p>
-
-        <div class="img-placeholder" style="height: 250px;">
-            
-            [图片：用梁围成的一个矩形框，叶恒嘉正在拿着底盘框架往里比划]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">94</div>
-    </div>
-
-    <!-- ================= PAGE 95: 电机地图 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>电机地图 (Port Map)</h1>
-        
-        <p>叶恒瑞说：“你们搭车的时候，电机线千万别乱插！我要规定好端口，不然我的程序会乱套。”</p>
-        <p>我们把这张图贴在了实验室的墙上：</p>
-
-        <div class="build-log">
-            <strong>Port 1:</strong> 左边轮子 (Left Drive)<br>
-            <strong>Port 6:</strong> 右边轮子 (Right Drive)<br>
-            <strong>Port 4:</strong> 抬升手臂 (Lift)<br>
-            <strong>Port 10:</strong> 抓手 (Claw)<br>
-            <strong>Port 11:</strong> 手腕翻转 (Wrist)<br>
-            <strong>Port 2:</strong> 陀螺仪 (Gyro) - 装在底盘正中间
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            [Image of Robot Wiring Diagram]
-            [图片：手绘的机器人俯视图，用不同颜色的线标出了电机线连到主控的位置]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">95</div>
-    </div>
-
-    <!-- ================= PAGE 96: 5.2 底盘搭建 (1) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 底盘：速度与激情的开始</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月1日</span>
-            <p>今天叶恒嘉开始搭底盘了。这是最重要的一步！</p>
-            <p><strong>目标：</strong> 做一个 2倍速 的底盘。</p>
-            <p><strong>做法：</strong> 电机连着 48齿 的大齿轮，轮子连着 24齿 的小齿轮。
-            <br>大齿轮转 1 圈，小齿轮转 2 圈 -> 速度 x 2！</p>
-        </div>
-
-        <p class="dialogue"><strong>宋书玥：</strong> “哇，这车肯定跑得飞快！我已经迫不及待了！”</p>
-        
         <div class="img-placeholder" style="height: 200px;">
             
-            [图片：底盘侧面特写，展示了大齿轮带动小齿轮的结构]
+            [图片：Q-28 结束后，满满当当的场地，记分牌上亮着 110 分]
         </div>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
         </div>
-        <div class="page-number">96</div>
+        <div class="page-number">196</div>
     </div>
 
-    <!-- ================= PAGE 97: 5.2 底盘搭建 (2) ================= -->
+    <!-- ================= PAGE 197: 8.3 技能赛回顾 ================= -->
     <div class="sheet">
+        <h1>8.3 技能赛：挑战自我</h1>
 
-        <div class="chapter-marker"></div>
-        <h1>5.2 底盘：一定要结实</h1>
+        <h3>手动技能赛 (Driver Skills)</h3>
+        <p>第一次：82 分。最后停泊没停好。
+        <br>第二次：<strong>95 分！</strong> 宋书玥放弃了远处的一个 Beam，专心把近处的弄好，最后完美停泊。</p>
 
-        <div class="build-log">
-            <span class="log-date">8月2日</span>
-            <p>底盘搭好了，但是发现有点晃。</p>
-            <p><strong>叶恒嘉：</strong> “不行，这跑快了会散架的。”</p>
-            <p>于是他加了几根横梁，把左右两边死死地锁在一起，做成了一个“H”形状。现在它结实得像块砖头！</p>
-            <p>我们还装上了 4 个全向轮。叶恒嘉推了一下，车子“嗖”地一下滑出去了好远。</p>
-        </div>
+        <h3>自动技能赛 (Auto Skills)</h3>
+        <p>第一次：20 分。惨不忍睹！陀螺仪漂移，出门就撞墙。
+        <br><strong>紧急调试：</strong> 叶恒瑞发现是场地的防滑垫不平。他在代码里加了一段“起步校准”。</p>
+        <p>第二次：<strong>65 分！</strong> 完美运行！所有动作都做出来了！</p>
 
-        <div class="img-placeholder" style="height: 200px;">
-            
-            [图片：底盘骨架图，展示了中间的加固横梁]
+        <div class="tactics-board" style="text-align: center;">
+            <div class="board-title">总成绩单</div>
+            <h2>Driver (95) + Auto (65) = <span style="color:red; font-size:40px;">160 分</span></h2>
+            <p>这个分数在排行榜上名列前茅！我们要去世锦赛啦！</p>
         </div>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
         </div>
-        <div class="page-number">97</div>
+        <div class="page-number">197</div>
     </div>
 
-    <!-- ================= PAGE 98: 5.2 底盘测试 ================= -->
+    <!-- ================= PAGE 198: 8.3 赛后深度复盘 ================= -->
     <div class="sheet">
+        <h1>8.3 比赛教会了我们什么？</h1>
 
-        <div class="chapter-marker"></div>
-        <h1>5.2 第一次试跑：太快了！</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月3日</span>
-            <p>我们把电池装上，宋书玥拿起了遥控器。</p>
-            <p>“3，2，1，走！”</p>
-            <p>机器人像离弦的箭一样冲了出去！然后……砰！撞到了墙上。</p>
-        </div>
-
-        <p class="dialogue"><strong>宋书玥（吓了一跳）：</strong> “天哪！这也太快了吧！我轻轻一推摇杆它就飞出去了，根本停不下来！”</p>
-        <p class="dialogue"><strong>叶恒瑞：</strong> “这是因为惯性太大了。看来 2 倍速虽然爽，但是很难控制啊。”</p>
-        
-        <p>我们决定先这样，让宋书玥多练练手感。如果实在不行，就在程序里把速度降一点。</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">98</div>
-    </div>
-
-    <!-- ================= PAGE 99: 5.2 抬升搭建 (1) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 抬升：四连杆的秘密</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月4日</span>
-            <p>今天要搭手臂了。我们要让手臂举起来的时候，爪子一直保持平的，不然 Pin 就会掉下来。</p>
-            <p>叶恒嘉用了<strong>四连杆结构 (4-Bar Linkage)</strong>。就是两根平行的梁，一起动。</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-            [图片：四连杆的侧面图，标注了平行关系]
-        </div>
-
-        <p>可是，当我们把手臂装上去，发现电机根本举不起来！太重了！</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">99</div>
-    </div>
-
-    <!-- ================= PAGE 100: 5.2 抬升搭建 (2) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 抬升：橡皮筋来帮忙</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月5日</span>
-            <p>为了帮电机省力，我们在手臂后面挂了好几根橡皮筋。</p>
-            <p><strong>神奇的事情发生了：</strong>
-            <br>现在的橡皮筋拉着手臂往上走，抵消了手臂的重量。电机只需要轻轻一推，手臂就上去了！哪怕不通电，手臂也能悬在半空中。</p>
-        </div>
-
-        <p class="dialogue"><strong>印涵邸：</strong> “这就叫重力补偿！物理知识真有用！”</p>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-            [图片：特写，展示了橡皮筋挂在手臂根部的三角形挂点上]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">100</div>
-    </div>
-
-    <!-- ================= PAGE 101: 5.2 抬升测试 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 抬升：够高吗？</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月6日</span>
-            <p>我们拿尺子量了一下最高点。</p>
-            <p><strong>结果：</strong> 11 英寸。</p>
-            <p><strong>叶恒嘉：</strong> “哎，离高塔的 12 英寸还差一点点。看来一代车是挂不了高塔了。”</p>
-            <p><strong>大家决定：</strong> 没关系，一代车先用来练地面堆叠。二代车我们再想办法把手臂做长一点。</p>
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">101</div>
-    </div>
-
-    <!-- ================= PAGE 102: 5.2 抓手搭建 (1) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 抓手：螃蟹钳子</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月7日</span>
-            <p>我们用两个 L 形的梁做了一个夹爪。电机转动，齿轮带动两个爪子合拢。</p>
-            <p>试了一下，抓是能抓，但是 Pin 表面太滑了，稍微一晃就掉。</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-            [图片：最初版的爪子，光秃秃的塑料梁，夹着一个 Pin]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">102</div>
-    </div>
-
-    <!-- ================= PAGE 103: 5.2 抓手搭建 (2) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 抓手：防滑大改造</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月8日</span>
-            <p>我们在爪子内侧缠上了<strong>防滑皮筋</strong>，还在中间加了一个小小的 V 形片，用来自动对准 Pin。</p>
-            <p><strong>测试：</strong> 宋书玥开着车猛地一转弯，Pin 依然牢牢地在爪子里！成功！</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-            [图片：改进后的爪子，缠满了橙色的皮筋，看起来很厚实]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">103</div>
-    </div>
-
-    <!-- ================= PAGE 104: 翻转手腕 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 翻转手腕 (Flip)</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月9日</span>
-            <p>为了能拿颜色匹配分，我们要在爪子后面加个手腕，让它能翻跟头。</p>
-            <p>叶恒嘉用了一个电机直连。但是线很容易绕在一起。</p>
-            <p><strong>解决办法：</strong> 我们把线绕成螺旋形，就像电话线一样，这样转 180 度也不会扯断了。</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">104</div>
-    </div>
-
-    <!-- ================= PAGE 105: 后置拖钩 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 秘密武器：拖钩</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月10日</span>
-            <p>Beam 怎么拿？我们在车屁股后面装了一个简单的 V 形钩子。</p>
-            <p><strong>玩法：</strong> 倒车 -> 钩住 Beam -> 拖走！</p>
-            <p>虽然不能举起来，但是能拖到得分区就能拿 10 分！这个设计最简单，但是最实用。</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-            [图片：车尾特写，一个简单的钩子钩住了一个 Beam]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">105</div>
-    </div>
-
-    <!-- ================= PAGE 106: 理线 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.2 乱糟糟的线</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月11日</span>
-            <p>车搭好了，但是电线乱得像鸟窝一样！叶恒瑞说这样不行，万一比赛的时候线被齿轮卷进去就完蛋了。</p>
-            <p>我们用了好多<strong>扎带</strong>和<strong>线夹</strong>，把线沿着梁固定好。现在看起来清爽多了，像个专业的作品！</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            [Image of Cable Management]
-            [图片：对比图，左边是乱糟糟的线，右边是理好的线]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">106</div>
-    </div>
-
-    <!-- ================= PAGE 107: 5.3 编程开始 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 给机器人注入灵魂</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月12日</span>
-            <p>硬件搭好了，轮到叶恒瑞大显身手了。他打开电脑，那是我们看不懂的 C++ 代码。</p>
-            <p><strong>叶恒瑞的小课堂：</strong></p>
-            <p>“机器人其实很笨，我们要告诉它每一个电机转多快，转多久。我们用的是 VEXcode IQ 软件。”</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            [Image of Coding screen]
-            [图片：电脑屏幕特写，显示着密密麻麻的代码]
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">107</div>
-    </div>
-
-    <!-- ================= PAGE 108: 配置设置 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 第一步：告诉它它是谁</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月12日</span>
-            <p>在写代码之前，要在软件里配置电机。</p>
-            <p>我们按照之前的“电机地图”，在软件里一个个设置好：
-            <br>Port 1 是左轮（反转），Port 6 是右轮（正转）。
-            <br>如果不设置反转，机器人就会原地打转转！</p>
-        </div>
-
-        <div class="code-snippet">
-            motor LeftDrive = motor(PORT1, ratio18_1, true);<br>
-            motor RightDrive = motor(PORT6, ratio18_1, false);
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">108</div>
-    </div>
-
-    <!-- ================= PAGE 109: 遥控程序 (1) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 遥控：像开坦克一样</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月13日</span>
-            <p>宋书玥习惯用<strong>双摇杆模式 (Tank Drive)</strong>。</p>
-            <p>左手推左摇杆 -> 左轮转<br>右手推右摇杆 -> 右轮转</p>
-            <p>叶恒瑞写了几行代码，实现了这个功能。宋书玥试了一下，说：“反应很灵敏，就是有点太灵敏了！”</p>
-        </div>
-
-        <div class="code-snippet">
-            LeftDrive.spin(forward, Controller.AxisA.value(), percent);<br>
-            RightDrive.spin(forward, Controller.AxisD.value(), percent);
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">109</div>
-    </div>
-
-    <!-- ================= PAGE 110: 遥控程序 (2) ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 遥控：按键分配</h1>
-
-        <p>我们把所有功能都映射到了遥控器上：</p>
+        <h3>做得好的：</h3>
         <ul>
-            <li><strong>L1/L2:</strong> 手臂上下</li>
-            <li><strong>R1/R2:</strong> 爪子开合</li>
-            <li><strong>F上/F下:</strong> 手腕翻转</li>
+            <li><strong>气动爪子太稳了！</strong> 整场比赛没有掉过一次 Pin。面状辅助定位（第七章做的改进）立大功了。</li>
+            <li><strong>底盘不卡了！</strong> 抬高了齿轮后，我们想去哪就去哪，Beam 再也不是拦路虎了。</li>
         </ul>
 
-        <div class="img-placeholder" style="height: 250px;">
-            
-            [图片：遥控器照片，在按键旁边标注了功能贴纸]
-        </div>
+        <h3>还要改进的：</h3>
+        <ul>
+            <li><strong>电线太脆弱：</strong> Q-15 那场被撞掉气管真是太可惜了。叶恒嘉说回去要给气管加个保护罩。</li>
+            <li><strong>自动程序要更聪明：</strong> 不能只靠算时间，要多用传感器。叶恒瑞说要研究“自适应算法”。</li>
+        </ul>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
         </div>
-        <div class="page-number">110</div>
+        <div class="page-number">198</div>
     </div>
 
-    <!-- ================= PAGE 111: 速度控制 ================= -->
+    <!-- ================= PAGE 199: 8.4 设计理念总结 ================= -->
     <div class="sheet">
+        <h1>8.4 我们的进化论</h1>
 
-        <div class="chapter-marker"></div>
-        <h1>5.3 驯服野马</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月14日</span>
-            <p>因为底盘太快，宋书玥总是撞车。叶恒瑞想了个办法：<strong>降速按钮</strong>。</p>
-            <p>当按住一个键的时候，速度变成原来的 50%。这样在对准 Goal 的时候就可以慢动作操作了。</p>
-        </div>
-
-        <p class="dialogue"><strong>宋书玥：</strong> “太棒了！现在我可以微操了！”</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">111</div>
-    </div>
-
-    <!-- ================= PAGE 112: 自动化尝试 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 偷懒的艺术：宏命令</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月15日</span>
-            <p>“堆叠太麻烦了！”宋书玥抱怨道，“要先举起来，再翻转，再对准，再放下，好几步呢。”</p>
-            <p>叶恒瑞说：“交给我！”他写了一个<strong>宏 (Macro)</strong>。</p>
-            <p>只要按一下按钮，机器人就会自动完成“举起+翻转”的动作。这就叫自动化！</p>
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">112</div>
-    </div>
-
-    <!-- ================= PAGE 113: 陀螺仪 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 走直线神器：陀螺仪</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月16日</span>
-            <p>自动赛的时候，机器人经常走歪。我们启用了<strong>陀螺仪 (Gyro)</strong>。</p>
-            <p>它能感觉到机器人歪了多少度，然后自动让一边的轮子转快点，把车身修正回来。</p>
-            <p>代码好难写啊，叶恒瑞调了一下午 PID 参数，终于让机器人能走出一条笔直的直线了！</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">113</div>
-    </div>
-
-    <!-- ================= PAGE 114: 距离传感器 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 别撞墙！</h1>
-
-        <p>我们在车头装了一个<strong>距离传感器</strong>。</p>
-        <p><strong>功能：</strong> 当看到前面有 Pin 或者 Goal 的时候，自动减速或者停下来。</p>
-        <p>这样我们写自动程序的时候，就不用算时间算得那么死，让机器人自己“看”着走。</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">114</div>
-    </div>
-
-    <!-- ================= PAGE 115: 自动赛路线 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 自动赛：第一条路线</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月17日</span>
-            <p>我们规划了一条最简单的路线：</p>
-            <ol>
-                <li>直走，推倒起始桩上的 Pin。</li>
-                <li>把 Pin 推到前面的 Goal 里。</li>
-                <li>后退，转身。</li>
-            </ol>
-            <p>虽然只能得几分，但是这是我们的第一步！</p>
-        </div>
+        <p>看着我们的三代车，再看看最开始的一代车，简直不敢相信这是我们做的。</p>
 
         <div class="img-placeholder" style="height: 250px;">
             
-            [图片：场地平面图，画了一条简单的直线和转弯箭头]
+            [图片：一代车和三代车的合影。一代车简陋、全是线；三代车威武、背着气罐、整洁漂亮]
         </div>
+
+        <h3>三次进化：</h3>
+        <ol>
+            <li><strong>从“快”到“稳”：</strong> 一代车盲目追求快，结果控制不住。现在我们懂了，稳就是快！</li>
+            <li><strong>从“繁”到“简”：</strong> 二代车为了抓紧，搞了很复杂的结构。三代车用了气动，一个气缸就解决了所有问题。这就是科技的力量！</li>
+            <li><strong>软硬结合：</strong> 以前机械归机械，程序归程序。现在我们知道，好的机器人是机械和程序配合出来的。</li>
+        </ol>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
         </div>
-        <div class="page-number">115</div>
+        <div class="page-number">199</div>
     </div>
 
-    <!-- ================= PAGE 116: 自动赛测试 ================= -->
+    <!-- ================= PAGE 200: 8.4 复刻指南 ================= -->
     <div class="sheet">
+        <h1>8.4 给未来的信 (复刻指南)</h1>
 
-        <div class="chapter-marker"></div>
-        <h1>5.3 自动赛：失败现场</h1>
+        <p>如果有学弟学妹想做一台跟我们一样的冠军车，这里有秘籍哦！</p>
 
-        <div class="build-log">
-            <span class="log-date">8月18日</span>
-            <p>测试开始了！机器人出发……然后它撞墙了。</p>
-            <p><strong>原因：</strong> 轮子打滑了，陀螺仪还没反应过来。</p>
-            <p><strong>改进：</strong> 叶恒瑞把起步速度调慢了，还在代码里加了“防打滑”的逻辑。</p>
+        <h3>1. 核心零件清单 (BOM)</h3>
+        <ul>
+            <li>VEX IQ 主控 x 1</li>
+            <li>智能电机 x 6</li>
+            <li><strong>气动套件</strong> (气罐x2, 气泵x1,气缸x2) —— 这是灵魂！</li>
+            <li>全向轮 x 4</li>
+            <li>距离传感器 x 1, 颜色传感器 x 1</li>
+        </ul>
+
+        <h3>2. 核心代码片段</h3>
+        <div class="code-snippet">
+            // 这是我们的 PID 参数，调了好久呢！<br>
+            float kp = 0.5;<br>
+            float ki = 0.01;<br>
+            float kd = 0.1;
+        </div>
+
+        <h3>3. 忠告 (Tips)</h3>
+        <ul>
+            <li>底盘齿轮一定要加垫片，不然摩擦力太大了。</li>
+            <li>气管要留长一点，不然手臂举高的时候会扯断。</li>
+            <li><strong>最重要的一点：</strong> 永远不要放弃！</li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <h2 style="color: var(--primary-color);">2276A 机甲梦想家<br>永不止步！</h2>
         </div>
 
         <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">116</div>
-    </div>
-
-    <!-- ================= PAGE 117: 自动赛测试 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 自动赛：成功了！</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月18日晚</span>
-            <p>第二次测试。机器人稳稳地走直线，把 Pin 推进了 Goal，然后潇洒地后退！</p>
-            <p><strong>全员鼓掌！</strong> 虽然分不高，但这是全自动的哦！</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 250px;">
-            
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">117</div>
-    </div>
-
-    <!-- ================= PAGE 118: 固件更新 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.3 别忘了升级！</h1>
-
-        <p>王老师提醒我们，比赛前一定要把 Brain 和电机都升级到最新版本。</p>
-        <p>叶恒瑞连上电脑，用 VEXcode 检查了一下，果然有更新。虽然过程很枯燥（要等进度条），但是为了不可以在比赛时死机，这是必须的！</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">118</div>
-    </div>
-
-    <!-- ================= PAGE 119: 系统联调 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>5.4 第一次全车试跑</h1>
-
-        <div class="build-log">
-            <span class="log-date">8月19日</span>
-            <p>今天是激动人心的一天！机械和程序终于合体了！</p>
-            <p>宋书玥拿着遥控器，在场地上跑了整整 60 秒。</p>
-            <p><strong>表现：</strong>
-            <br>- 跑得很快！
-            <br>- 抓 Pin 抓得挺稳。
-            <br>- 也能拖动 Beam。
-            <br>- 堆叠有点费劲，需要对得很准。</p>
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">119</div>
-    </div>
-
-    <!-- ================= PAGE 120: 章节总结 ================= -->
-    <div class="sheet">
-
-        <div class="chapter-marker"></div>
-        <h1>第五章总结：一代车，出击！</h1>
-
-        <div class="build-log">
-            <p>
-                经过20天的努力，我们的第一台机器人 <strong>Gen 1</strong> 终于诞生了！
-            </p>
-            <p>它有优点：速度快，结构简单。</p>
-            <p>它也有缺点：有点难控制，举得不够高。</p>
-            <p>但是，它是我们亲手造出来的，我们为它感到骄傲！接下来的第六章，我们将带它去经受残酷的测试训练！</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 300px;">
-            
-            [图片：一代车的高清定妆照，背景整洁，旁边放着我们的队牌]
-        </div>
-
-        <div class="footer">
-            <span>2025年8月19日</span>
+            <span>2026年4月1日</span>
             <span>全员签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
         </div>
-        <div class="page-number">120</div>
+        <div class="page-number">200</div>
     </div>
-
-    <script src="../assets/scripts/toggle-buttons.js"></script>
-    <script src="assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
 </body>
 </html>

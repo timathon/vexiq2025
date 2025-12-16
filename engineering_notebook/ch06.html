@@ -4,137 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第六章：真理是试出来的 (2276A)</title>
-    <style>
-        /* 页面基础设置 */
-        @page {
-            size: A4;
-            margin: 0;
-        }
-        body {
-            background-color: #525659;
-            font-family: "KaiTi", "Microsoft YaHei", cursive; /* 楷体/手写风格 */
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            line-height: 1.6;
-        }
-        .sheet {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 25mm;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            margin: 0 auto 20px auto;
-            position: relative;
-            box-sizing: border-box;
-            border-left: 15px solid #2980B9; /* 第六章主题色：冷静思考的蓝色 */
-            overflow: hidden;
-            page-break-after: always;
-        }
-        
-        /* 标题体系 */
-        h1 { color: #2E86C1; font-size: 32px; border-bottom: 4px dashed #3498DB; padding-bottom: 10px; margin-bottom: 20px; font-family: "Microsoft YaHei", sans-serif; text-align: center; }
-        h2 { color: #D35400; font-size: 24px; background-color: #EBF5FB; padding: 8px 15px; border-radius: 15px; margin-top: 30px; display: inline-block; }
-        
-        /* 正文样式 */
-        p, li { font-size: 16px; text-align: justify; margin-bottom: 10px; }
-        
-        /* 测试日记卡片 */
-        .test-log {
-            background-color: #EAF2F8;
-            border: 2px solid #2980B9;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .log-date {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background-color: #3498DB;
-            color: white;
-            padding: 5px 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            transform: rotate(-2deg);
-        }
-
-        /* 标签 */
-        .tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 5px;
-            color: white;
-            font-size: 12px;
-            margin-right: 5px;
-        }
-        .tag-fail { background-color: #E74C3C; }
-        .tag-pass { background-color: #27AE60; }
-        .tag-warn { background-color: #F39C12; }
-
-        /* 对话框 */
-        .dialogue {
-            border-left: 4px solid #2980B9;
-            padding-left: 10px;
-            margin: 10px 0;
-            font-style: italic;
-            color: #555;
-            background-color: #F4F6F7;
-            border-radius: 0 10px 10px 0;
-        }
-
-        /* 表格样式 */
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; border: 2px solid #999; }
-        th, td { border: 1px solid #999; padding: 10px; text-align: center; font-size: 14px; }
-        th { background-color: #D6EAF8; font-weight: bold; }
-        
-        /* 图片占位符 */
-        .img-placeholder {
-            width: 100%;
-            background-color: #f0f0f0;
-            border: 3px dashed #bbb;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            margin: 15px 0;
-            position: relative;
-            font-style: italic;
-        }
-        .img-caption { text-align: center; font-size: 14px; color: #666; margin-top: -5px; margin-bottom: 20px; font-style: italic; }
-
-        /* 页脚 */
-        .footer {
-            margin-top: 40px;
-            border-top: 2px solid #333;
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-        .page-number {
-            position: absolute;
-            bottom: 10mm;
-            right: 10mm;
-            font-weight: bold;
-            color: #2980B9;
-            font-size: 18px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
-<body>
+<body class="theme-cyan">
 
     <!-- ================= PAGE 121: 章节封面 ================= -->
     <div class="sheet">
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #2E86C1;">实战是检验真理的唯一标准</h1>
+            <h1 style="font-size: 56px; border: none; color: #00BCD4;">实战是检验真理的唯一标准</h1>
             <h2 style="font-size: 36px; background: none; color: #555;">第六章：方案测试与训练记录</h2>
             <h3 style="font-size: 24px; color: #888; border: none;">Chapter 6: Testing & Training Logs</h3>
             
-            <div style="width: 80%; height: 8px; background: #3498DB; margin: 40px auto; border-radius: 5px;"></div>
+            <div style="width: 80%; height: 8px; background: #00ACC1; margin: 40px auto; border-radius: 5px;"></div>
             
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
                 <p><strong>测试对象：</strong> 一代车 (Gen 1)</p>
@@ -708,6 +589,6 @@
         <div class="footer"><span>记录人：印涵邸</span></div>
         <div class="page-number">151</div>
     </div>
-
+    <script src="../assets/scripts/common-elements.js"></script>
 </body>
 </html>
