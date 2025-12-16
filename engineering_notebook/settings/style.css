@@ -6,7 +6,8 @@
     --background-color-light: #FFF3E0;
     --sheet-border-color: transparent;
     --chapter-marker-color: #FF9F43;
-    --chapter-marker-top: 56mm; /* Default for ch2 */
+    --chapter-marker-top: 56mm;
+    /* Default for ch2 */
 }
 
 .theme-orange {
@@ -28,7 +29,8 @@
     --background-color-light: #E8F8F5;
     --sheet-border-color: #27AE60;
     --chapter-marker-color: #27AE60;
-    --chapter-marker-top: 85mm; /* 56mm + 29mm */
+    --chapter-marker-top: 85mm;
+    /* 56mm + 29mm */
 }
 
 .theme-purple {
@@ -39,29 +41,31 @@
     --background-color-light: #F5EEF8;
     --sheet-border-color: #9B59B6;
     --chapter-marker-color: #9B59B6;
-    --chapter-marker-top: 114mm; /* 85mm + 29mm */
+    --chapter-marker-top: 114mm;
+    /* 85mm + 29mm */
 }
 
 .theme-reddish-brown {
-/* The anchor color provided */
-    --primary-color: #E74C3C; 
-    
+    /* The anchor color provided */
+    --primary-color: #E74C3C;
+
     /* Lighter, softer red (Standard Flat UI "Soft Red") */
     --secondary-color: #EC7063;
-    
+
     /* Matches secondary, per purple theme logic */
     --tertiary-color: #EC7063;
-    
+
     /* A pastel red/salmon for sub-highlights */
     --quaternary-color: #F5B7B1;
-    
+
     /* A very faint reddish-white for the background */
     --background-color-light: #FDEDEC;
-    
+
     /* Matches secondary, per purple theme logic */
     --sheet-border-color: #EC7063;
     --chapter-marker-color: #EC7063;
-    --chapter-marker-top: 143mm; /* 114mm + 29mm */
+    --chapter-marker-top: 143mm;
+    /* 114mm + 29mm */
 }
 
 
@@ -329,7 +333,8 @@ body.hide-dark-text .sticky-note,
 body.hide-dark-text .img-caption,
 body.hide-dark-text th,
 body.hide-dark-text td,
-body.hide-dark-text .chinese-label {
+body.hide-dark-text .chinese-label,
+body.hide-dark-text .math-paper {
     color: transparent !important;
 }
 
@@ -400,9 +405,14 @@ body.hide-other-elements .footer {
     border-radius: 10px;
     padding: 0 20px;
     margin: 20px 0;
-    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
 .knowledge-card h3 {
     margin: 15px 0;
+}
+
+.blackboard {
+    /* font-family: 'Noto Sans SC', sans-serif; */
+    font-size: 22px;
 }

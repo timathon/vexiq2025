@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第四章：脑洞大开 (2276A)</title>
     <link rel="stylesheet" href="settings/style.css">
 </head>
+
 <body class="theme-purple">
 
     <!-- ================= PAGE 61: 章节封面 ================= -->
@@ -16,16 +18,18 @@
             <h1 style="font-size: 56px; border: none; color: var(--primary-color);">脑洞大开时刻</h1>
             <h2 style="font-size: 36px; background: none; color: #555;">第四章：概念设计与方案研讨</h2>
             <h3 style="font-size: 24px; color: #888; border: none;">Chapter 4: Concept Design & Strategy</h3>
-            
-            <div style="width: 80%; height: 8px; background: var(--secondary-color); margin: 40px auto; border-radius: 5px;"></div>
-            
+
+            <div
+                style="width: 80%; height: 8px; background: var(--secondary-color); margin: 40px auto; border-radius: 5px;">
+            </div>
+
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
                 <p><strong>任务：</strong> 画出一代车 (Gen 1) 的样子！</p>
                 <p><strong>参与人：</strong> 全体队员</p>
-                <p><strong>状态：</strong> 吵得不可开交（但在讨论正事！）</p>
+                <!-- <p><strong>状态：</strong> 吵得不可开交（但在讨论正事！）</p> -->
                 <!-- <p><strong>记录人：</strong> 印涵邸</p> -->
             </div>
-            
+
             <!-- <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(2deg);"> -->
             <div class="sticky-note" style="width: 70%; margin: 50px auto;">
                 <strong>我们的目标：</strong><br>
@@ -41,20 +45,20 @@
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
         <h1>4.1 机器人要干什么活？</h1>
-        
+
         <p>根据之前的规则分析，我们把机器人的工作列了个清单。这就像是给机器人找工作的“招聘启事”。</p>
 
         <div class="blackboard">
             <strong>招聘：全能机器人</strong><br>
-            <br>
             <strong>岗位职责：</strong><br>
             1. 跑腿：在场地上跑得快，还得停得稳。<br>
             2. 搬运工：能抓起圆圆的 Pin，也能拖动重重的 Beam。<br>
             3. 建筑师：能把 Pin 一个个叠起来（Stack）。<br>
             4. 杂技演员：能把倒着的 Pin 翻过来（Flip）。
         </div>
-
-        <p class="dialogue"><strong>叶恒嘉：</strong> “这活儿也太多了吧！而且还要缩在那么小的盒子里出发，太难了！”</p>
+        <img src="../assets/ch04/4_1_omnipotent.webp" alt="全能机器人"
+            style="height:320px; display: block; margin: 30px auto; border-radius: 20px;">
+        <p class="dialogue"><strong>叶恒嘉：</strong> “这活儿也太多了吧！而且还要缩在那么小的尺寸里出发（&lt;R5&gt;），太难了！”</p>
         <p class="dialogue"><strong>叶恒瑞：</strong> “别急，我们把这些任务拆开，一个一个想办法。”</p>
 
         <div class="footer">
@@ -75,16 +79,27 @@
 
         <div class="math-paper">
             <strong>我们的算计：</strong><br>
-            底盘（左右轮子）： -2 个<br>
-            抬升手臂（举重）： -1 个（起码吧？）<br>
-            抓手（开合）： -1 个<br>
-            翻转手腕： -1 个<br>
-            <strong>剩余：</strong> 1 个
+<div style="display: grid; grid-template-columns: max-content 1fr; gap: 5px 15px; margin-top: 10px;">
+    <span>底盘（左右轮子）：</span>
+    <span>-2 个</span>
+    
+    <span>抬升手臂（举重）：</span>
+    <span>-1 个（起码吧？）</span>
+    
+    <span>抓手（开合）：</span>
+    <span>-1 个</span>
+    
+    <span>翻转手腕：</span>
+    <span>-1 个</span>
+
+    <strong>剩余：</strong>
+    <strong>&nbsp;1 个</strong>
+  </div>
         </div>
 
-        <p><strong>宋书月：</strong> “我还想给底盘装 4 个电机呢，那样推力大，不怕撞。”</p>
-        <p><strong>印涵邸：</strong> “不行不行，那就没电机做手臂了！我们是去得分的，不是去撞碰碰车的。”</p>
-        
+        <p><strong>宋书月：</strong>“我还想给底盘装 4 个电机呢，那样推力大，速度快。”</p>
+        <p><strong>印涵邸：</strong>“不行不行，那就没电机做手臂了！我们是去得分的，不是去开赛车的。”</p>
+
         <p><strong>最终决定：</strong> 省着点花！底盘只用 2 个电机。把剩下的资源留给那些复杂的动作。</p>
 
         <div class="footer">
@@ -99,16 +114,16 @@
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
         <h1>4.2 到底用什么底盘？(1)</h1>
-        
+
         <p>虽然决定了用 2 个电机做底盘，但是用什么轮子呢？大家吵了起来。</p>
 
         <h3>方案 A：标准四轮 (叶恒嘉推荐)</h3>
         <p><strong>样子：</strong> 就像普通的小汽车，前面两个轮子，后面两个轮子。</p>
         <p><strong>叶恒嘉说：</strong> “这个最简单，也最结实。我搭建起来只要 10 分钟！”</p>
         <p><strong>缺点：</strong> 转弯的时候摩擦力大，可能会卡顿。</p>
-        
+
         <div class="img-placeholder" style="height: 200px;">
-            
+
             [图片：草图，画了一个简单的四轮小车，标注着“结实”、“简单”]
         </div>
 
@@ -129,9 +144,9 @@
         <p><strong>样子：</strong> 像个“H”字母，中间横着加一个轮子。</p>
         <p><strong>宋书月说：</strong> “这样我可以横着走（平移）！对准 Goal 的时候特别方便，不用扭来扭去。”</p>
         <p><strong>叶恒瑞反驳：</strong> “但是那样就要多用 1 个电机！我们没有多余的电机了呀。”</p>
-        
+
         <div class="img-placeholder" style="height: 200px;">
-            
+
             [图片：草图，中间画了一个横向的轮子，旁边打了个问号写着“电机够吗？”]
         </div>
 
@@ -153,9 +168,9 @@
         <h3>方案 C：全向轮底盘 (最终选择)</h3>
         <p><strong>样子：</strong> 用特殊的 Omni 轮（全向轮）。</p>
         <p><strong>印涵邸提议：</strong> “如果我们在四个角都用全向轮，虽然不能横着走，但是转弯会特别顺滑，像抹了油一样！”</p>
-        
+
         <div class="img-placeholder" style="height: 200px;">
-            
+
             [图片：草图，特写了Omni轮子上面的小滚珠，写着“丝滑”]
         </div>
 
@@ -262,7 +277,7 @@
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
         <h1>4.2 怎么抓那个滑溜溜的Pin？(1)</h1>
-        
+
         <p>Pin 是圆柱形的，表面很滑，这是最头疼的问题。</p>
 
         <h3>方案 A：铲子 (Fork)</h3>
@@ -271,7 +286,7 @@
         <p><strong>大家评价：</strong> 太简陋了，Pass！</p>
 
         <div class="img-placeholder" style="height: 150px;">
-            
+
         </div>
 
         <div class="footer">
@@ -293,7 +308,7 @@
         <p><strong>叶恒嘉的担忧：</strong> “但是这个结构好大啊！而且吸进来之后怎么叠在一起呢？Pin 在肚子里乱滚，怎么对准？”</p>
 
         <div class="img-placeholder" style="height: 150px;">
-            
+
             [图片：草图，画了一个复杂的滚筒结构，旁边打了个大大的问号“怎么堆叠？”]
         </div>
 
@@ -314,13 +329,14 @@
 
         <h3>方案 C：主动夹爪 (Claw) - 最终选择</h3>
         <p><strong>原理：</strong> 像螃蟹钳子一样，或者像人的两根手指，把 Pin 夹住。</p>
-        <p><strong>优点：</strong> 
-        <br>1. 抓得紧。
-        <br>2. 可以保持 Pin 是直立的，方便堆叠。
-        <br>3. 可以在爪子上装旋转轴，实现翻转。</p>
+        <p><strong>优点：</strong>
+            <br>1. 抓得紧。
+            <br>2. 可以保持 Pin 是直立的，方便堆叠。
+            <br>3. 可以在爪子上装旋转轴，实现翻转。
+        </p>
 
         <div class="img-placeholder" style="height: 200px;">
-            
+
             [图片：草图，画了一个两指夹爪夹住 Pin 的样子，标注了“稳”]
         </div>
 
@@ -390,11 +406,11 @@
         <h1>小秘密：橡皮筋大法</h1>
 
         <p>虽然决定做夹爪，但我们试了一下，塑料爪子抓塑料 Pin，还是太滑了！稍微一抖就掉了。</p>
-        
+
         <p class="dialogue"><strong>叶恒嘉：</strong> “我有办法！给爪子穿上‘鞋子’！”</p>
-        
+
         <p>他找来了 VEX 的橡胶皮筋，缠在爪子的内侧。哇！效果立竿见影！</p>
-        
+
         <div class="blackboard">
             <strong>实验记录：</strong><br>
             没皮筋：抓 10 次，掉 6 次。<br>
@@ -402,7 +418,7 @@
         </div>
 
         <div class="img-placeholder" style="height: 200px;">
-            
+
             [图片：特写，画出了爪子上缠绕的橙色橡皮筋，旁边写着“摩擦力 Up!”]
         </div>
 
@@ -418,17 +434,18 @@
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
         <h1>4.2 怎么举高高？(1)</h1>
-        
+
         <p>我们要把 Pin 举起来，挂到高塔上，或者叠在别的 Pin 上面。</p>
 
         <h3>方案 A：四连杆 (4-Bar Linkage)</h3>
         <p><strong>原理：</strong> 用四根梁组成一个平行四边形。</p>
-        <p><strong>优点：</strong> 
-        <br>1. 举起来的过程中，爪子始终保持水平，不会把 Pin 倒出来。
-        <br>2. 结构简单，这也是 VEX 这里的经典结构。</p>
-        
+        <p><strong>优点：</strong>
+            <br>1. 举起来的过程中，爪子始终保持水平，不会把 Pin 倒出来。
+            <br>2. 结构简单，这也是 VEX 这里的经典结构。
+        </p>
+
         <div class="img-placeholder" style="height: 150px;">
-            
+
         </div>
 
         <div class="footer">
@@ -448,9 +465,9 @@
         <p><strong>原理：</strong> 两个四连杆叠罗汉！</p>
         <p><strong>优点：</strong> 能举得超级高！而且是直上直下的。</p>
         <p><strong>缺点：</strong> 太重了！太复杂了！我们怕做出来车头太重，一刹车就翻跟头。</p>
-        
+
         <div class="img-placeholder" style="height: 150px;">
-            
+
             [图片：草图，画了一个很高的剪叉结构，旁边标注“太重了”]
         </div>
 
@@ -472,13 +489,14 @@
         <h1>4.2 怎么举高高？(3)</h1>
 
         <p><strong>最终选择：</strong> 还是用最经典的<strong>四连杆 (4-Bar)</strong> 吧！</p>
-        
-        <p class="dialogue"><strong>叶恒瑞：</strong> “我们算了一下高度，普通的四连杆大概能举到 11 英寸左右。虽然离高塔的 12 英寸还差一点点，但是作为一代车，我们可以先练习地面堆叠。”</p>
-        
+
+        <p class="dialogue"><strong>叶恒瑞：</strong> “我们算了一下高度，普通的四连杆大概能举到 11 英寸左右。虽然离高塔的 12 英寸还差一点点，但是作为一代车，我们可以先练习地面堆叠。”
+        </p>
+
         <p>大家同意了。先求稳，二代车再想办法加高。</p>
 
         <div class="img-placeholder" style="height: 250px;">
-            
+
             [图片：一代车侧面草图，画出了四连杆举起的样子]
         </div>
 
@@ -557,9 +575,9 @@
         </div>
 
         <p>可是VEX IQ电机只有大约 0.4 牛·米的力量。<strong>完蛋了，举不动！</strong></p>
-        <p><strong>解决方案：</strong> 
-        1. <strong>减速齿轮：</strong> 用 12齿 带动 60齿，力气变大 5 倍！<br>
-        2. <strong>橡皮筋：</strong> 在手臂后面挂橡皮筋帮忙拉。</p>
+        <p><strong>解决方案：</strong>
+            1. <strong>减速齿轮：</strong> 用 12齿 带动 60齿，力气变大 5 倍！<br>
+            2. <strong>橡皮筋：</strong> 在手臂后面挂橡皮筋帮忙拉。</p>
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -578,7 +596,7 @@
         <p><strong>效果：</strong> 就算不通电，手臂也能自己悬在半空中，不下坠。这就叫“重力补偿”。电机只需要用一点点力气就能指挥手臂上下动了。</p>
 
         <div class="img-placeholder" style="height: 250px;">
-            
+
             [图片：特写草图，画出了橡皮筋挂在四连杆根部的三角形挂点上]
         </div>
 
@@ -594,7 +612,7 @@
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
         <h1>4.2 最难的挑战：Beam</h1>
-        
+
         <p>Beam 那么长，那么重，如果用前面的爪子抓，车头会很重，容易翻车。而且爪子很难对准 Beam 的重心。</p>
 
         <h3>方案 A：后置拖钩 (Passive Hook)</h3>
@@ -603,7 +621,7 @@
         <p><strong>缺点：</strong> 只能在地上拖，没法举起来。</p>
 
         <div class="img-placeholder" style="height: 150px;">
-            
+
         </div>
 
         <div class="footer">
@@ -645,7 +663,7 @@
         <p>2. <strong>形状：</strong> 要做成“V”形，这样 Beam 会自动滑到钩子中间，不会在半路上掉下来。</p>
 
         <div class="img-placeholder" style="height: 250px;">
-            
+
             [图片：草图，画了一个V形的钩子，标注了离地高度]
         </div>
 
@@ -664,14 +682,15 @@
 
         <p>为了拿颜色匹配分，我们需要把 Pin 翻过来。比如红 Pin 倒了，我们得把它正过来才能插进红 Goal。</p>
         <p>所以，我们在爪子后面加了一个电机，让爪子可以旋转 180 度。</p>
-        
+
         <p><strong>功能：</strong>
-        <br>1. 抓取时：爪子朝下。
-        <br>2. 翻转时：爪子朝上。
-        <br>3. 释放时：爪子朝前。</p>
+            <br>1. 抓取时：爪子朝下。
+            <br>2. 翻转时：爪子朝上。
+            <br>3. 释放时：爪子朝前。
+        </p>
 
         <div class="img-placeholder" style="height: 200px;">
-            
+
         </div>
 
         <div class="footer">
@@ -699,7 +718,7 @@
         </div>
 
         <div class="img-placeholder" style="height: 250px;">
-            
+
             [图片：一张完整的机器人草图，标注了各个部件的名称，大家在旁边画了笑脸]
         </div>
 
@@ -770,14 +789,14 @@
         <h1>怎么开车？(Controls)</h1>
 
         <p>宋书月设计了最顺手的按键方案：</p>
-        
+
         <p><strong>左摇杆 + 右摇杆：</strong> 像开坦克一样，左手推左轮，右手推右轮。这样转弯最灵活！</p>
         <p><strong>L键 (L1/L2)：</strong> 控制手臂上下。左手食指控制，很方便。</p>
         <p><strong>R键 (R1/R2)：</strong> 控制爪子开合。右手食指控制。</p>
         <p><strong>F键：</strong> 控制手腕翻转。</p>
 
         <div class="img-placeholder" style="height: 200px;">
-            
+
         </div>
 
         <div class="footer">
@@ -794,7 +813,7 @@
         <h1>购物清单 (Parts List)</h1>
 
         <p>我们要去零件库找这些东西：</p>
-        
+
         <ul>
             <li><input type="checkbox"> 4个全向轮 (Omni Wheel)</li>
             <li><input type="checkbox"> 2个大齿轮 (48齿) + 2个小齿轮 (24齿) -> 做底盘加速</li>
@@ -838,15 +857,18 @@
         <h1>要是坏了怎么办？(Risk)</h1>
 
         <p>我们想了一些可能会发生的倒霉事：</p>
-        
+
         <p><strong>1. 车太快了控制不住：</strong>
-        <br>对策：叶恒瑞说可以在程序里把速度调慢一点。</p>
-        
+            <br>对策：叶恒瑞说可以在程序里把速度调慢一点。
+        </p>
+
         <p><strong>2. 举太高翻车：</strong>
-        <br>对策：在车屁股后面加个“防倾覆轮”（像个小尾巴），顶在地上就不会翻了。</p>
-        
+            <br>对策：在车屁股后面加个“防倾覆轮”（像个小尾巴），顶在地上就不会翻了。
+        </p>
+
         <p><strong>3. Pin 抓不住：</strong>
-        <br>对策：多缠几圈皮筋！</p>
+            <br>对策：多缠几圈皮筋！
+        </p>
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -862,7 +884,7 @@
         <h1>为什么不用别的方案？</h1>
 
         <p>为了证明我们不是瞎选的，我们要记录下被淘汰的方案。</p>
-        
+
         <p><strong>再见，滚筒吸入：</strong> 虽然你很快，但是你太大了，而且没法精准堆叠。</p>
         <p><strong>再见，H型底盘：</strong> 虽然你能横着走，但是你太费电机了。</p>
         <p><strong>再见，双反四连杆：</strong> 虽然你能举很高，但是你太重了，我们的小车扛不住。</p>
@@ -891,7 +913,7 @@
         </p>
 
         <div class="img-placeholder" style="height: 300px;">
-            
+
             [图片：大家的手叠在一起，背景是堆满零件的桌子]
         </div>
 
@@ -904,4 +926,5 @@
 
     <script src="../assets/scripts/toggle-buttons.js"></script>
 </body>
+
 </html>
