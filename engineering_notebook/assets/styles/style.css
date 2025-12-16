@@ -10,6 +10,17 @@
     /* Default for ch2 */
 }
 
+.theme-ch01 {
+    --primary-color: #005f9e;
+    --secondary-color: #007acb;
+    --tertiary-color: #3399ff;
+    --quaternary-color: #cceeff;
+    --background-color-light: #e6f2ff;
+    --sheet-border-color: #007acb;
+    --chapter-marker-color: #005f9e;
+    --chapter-marker-top: 56mm;
+}
+
 .theme-orange {
     --primary-color: #D35400;
     --secondary-color: #E67E22;
@@ -88,7 +99,7 @@ body {
     width: 210mm;
     min-height: 297mm;
     padding: 18mm 20mm 20mm 25mm;
-    background-image: url('../assets/general/background.webp');
+    background-image: url('../general/background.webp');
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: left center;
