@@ -435,6 +435,11 @@ body.hide-other-elements .footer {
     display: none !important;
 }
 
+.cover-page .chapter-marker,
+.cover-page .a4-height-indicator {
+    display: none;
+}
+
 @media print {
     body {
         background-color: #fff;
