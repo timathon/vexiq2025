@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     linksContainer.classList.add('navigation-links');
     menu.appendChild(linksContainer);
 
+    // Add link for ch00
+    const ch00Link = document.createElement('a');
+    ch00Link.href = 'ch00.html';
+    ch00Link.textContent = 'Introduction';
+    linksContainer.appendChild(ch00Link);
+
     for (let i = 1; i <= 8; i++) {
         const link = document.createElement('a');
         const chapter = 'ch' + ('0' + i).slice(-2);
