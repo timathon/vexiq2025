@@ -44,17 +44,17 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.1 机器人要干什么活？</h1>
+        <h1>4.1 机器人任务清单</h1>
 
         <p>根据之前的规则分析，我们把机器人的工作列了个清单。这就像是给机器人找工作的“招聘启事”。</p>
 
         <div class="blackboard">
             <strong>招聘：全能机器人</strong><br>
             <strong>岗位职责：</strong><br>
-            1. 跑腿：在场地上跑得快，还得停得稳。<br>
-            2. 搬运工：能抓起圆圆的 Pin，也能拖动重重的 Beam。<br>
-            3. 建筑师：能把 Pin 一个个叠起来（Stack）。<br>
-            4. 杂技演员：能把倒着的 Pin 翻过来（Flip）。
+            1. 跑腿（移动）：在场地上跑得快，还得停得稳。<br>
+            2. 搬运工（抓取）：能抓起圆圆的 Pin，也能拖动重重的 Beam。<br>
+            3. 建筑师（抬升）：能把 Pin 一个个叠起来（Stack）。<br>
+            4. 杂技演员（翻转）：能把倒着的 Pin 翻过来（Flip）。
         </div>
         <img src="../assets/ch04/4_1_omnipotent.webp" alt="全能机器人"
             style="height:320px; display: block; margin: 30px auto; border-radius: 20px;">
@@ -68,33 +68,36 @@
         <div class="page-number">62</div>
     </div>
 
-    <!-- ================= PAGE 63: 4.1 电机不够用 ================= -->
+    <!-- ================= PAGE 63: 4.2 电机的分配 ================= -->
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.1 数学题：6 减几等于几？</h1>
+        <h1>4.2 电机的分配</h1>
 
         <p>我们遇到了第一个大难题：<strong>电机不够用！</strong></p>
         <p>规则 &lt;R11&gt; 说最多只能用 6 个智能电机。</p>
 
         <div class="math-paper">
-            <strong>我们的算计：</strong><br>
-<div style="display: grid; grid-template-columns: max-content 1fr; gap: 5px 15px; margin-top: 10px;">
-    <span>底盘（左右轮子）：</span>
-    <span>-2 个</span>
-    
-    <span>抬升手臂（举重）：</span>
-    <span>-1 个（起码吧？）</span>
-    
-    <span>抓手（开合）：</span>
-    <span>-1 个</span>
-    
-    <span>翻转手腕：</span>
-    <span>-1 个</span>
+            <strong>分配电机：</strong><br>
+            <div style="display: grid; grid-template-columns: max-content 1fr; gap: 5px 15px; margin-top: 10px;">
+                <span>底盘（左右轮子）：</span>
+                <span>2 个</span>
 
-    <strong>剩余：</strong>
-    <strong>&nbsp;1 个</strong>
-  </div>
+                <span>抬升手臂（举重）：</span>
+                <span>1 个</span>
+
+                <span>抓手（开合）：</span>
+                <span>1 个</span>
+
+                <span>翻转抓手：</span>
+                <span>1 个</span>
+
+                <span>备用：</span>
+                <span>1 个</span>
+                <div style="grid-column: 1 / -1; border-bottom: 1px solid #aaa; margin: 5px 0;"></div>
+                <strong>合计：</strong>
+                <strong>6 个</strong>
+            </div>
         </div>
 
         <p><strong>宋书月：</strong>“我还想给底盘装 4 个电机呢，那样推力大，速度快。”</p>
@@ -109,23 +112,40 @@
         <div class="page-number">63</div>
     </div>
 
-    <!-- ================= PAGE 64: 4.2 头脑风暴 - 底盘 ================= -->
+    <!-- ================= PAGE 64: 4.3 头脑风暴 - 底盘 ================= -->
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 到底用什么底盘？(1)</h1>
+        <h1>4.3 底盘设计 - 轮子</h1>
 
-        <p>虽然决定了用 2 个电机做底盘，但是用什么轮子呢？大家吵了起来。</p>
+        <p>虽然决定了用 2 个电机做底盘，但是用什么轮子呢？</p>
 
-        <h3>方案 A：标准四轮 (叶恒嘉推荐)</h3>
-        <p><strong>样子：</strong> 就像普通的小汽车，前面两个轮子，后面两个轮子。</p>
-        <p><strong>叶恒嘉说：</strong> “这个最简单，也最结实。我搭建起来只要 10 分钟！”</p>
+        <h3>方案 A：普通四轮</h3>
+        <p><strong>样子：</strong> 使用普通轮子，前面两个，后面两个。</p>
+        <p><strong>优点：</strong> 结构简单，足够结实！</p>
         <p><strong>缺点：</strong> 转弯的时候摩擦力大，可能会卡顿。</p>
 
-        <div class="img-placeholder" style="height: 200px;">
+        <!-- <img src="../assets/ch04/4_1_2_4-wheel-chassis.webp" alt="简单4轮底盘"
+            style="height:320px; display: block; margin: 30px auto; border-radius: 20px;"> -->
+
+        <h3>方案 B：全向轮底盘 (最终选择)</h3>
+        <p><strong>样子：</strong> 用特殊的 Omni 轮（全向轮）。</p>
+        <p><strong>优点：</strong> 转弯顺滑！</p>
+
+        <!-- <div class="img-placeholder" style="height: 200px;">
+
+            [图片：草图，特写了Omni轮子上面的小滚珠，写着“丝滑”]
+        </div> -->
+        <img src="../assets/ch04/4_3_omni-wheel-chassis.webp" alt="全向轮底盘"
+            style="height:320px; display: block; margin: 30px auto; border-radius: 20px;">
+
+
+        <p>大家觉得方案B不错！既省电机，又灵活。</p>
+
+        <!-- <div class="img-placeholder" style="height: 200px;">
 
             [图片：草图，画了一个简单的四轮小车，标注着“结实”、“简单”]
-        </div>
+        </div> -->
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -134,118 +154,12 @@
         <div class="page-number">64</div>
     </div>
 
-    <!-- ================= PAGE 65: 4.2 头脑风暴 - 底盘 ================= -->
-    <div class="sheet">
-        <div class="a4-height-indicator"></div>
-        <div class="chapter-marker"></div>
-        <h1>4.2 到底用什么底盘？(2)</h1>
-
-        <h3>方案 B：H型全向底盘 (宋书月推荐)</h3>
-        <p><strong>样子：</strong> 像个“H”字母，中间横着加一个轮子。</p>
-        <p><strong>宋书月说：</strong> “这样我可以横着走（平移）！对准 Goal 的时候特别方便，不用扭来扭去。”</p>
-        <p><strong>叶恒瑞反驳：</strong> “但是那样就要多用 1 个电机！我们没有多余的电机了呀。”</p>
-
-        <div class="img-placeholder" style="height: 200px;">
-
-            [图片：草图，中间画了一个横向的轮子，旁边打了个问号写着“电机够吗？”]
-        </div>
-
-        <p>哎，虽然横着走很酷，但是为了省电机，我们只能忍痛割爱了。</p>
-
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
-        <div class="page-number">65</div>
-    </div>
-
-    <!-- ================= PAGE 66: 4.2 头脑风暴 - 底盘 ================= -->
-    <div class="sheet">
-        <div class="a4-height-indicator"></div>
-        <div class="chapter-marker"></div>
-        <h1>4.2 到底用什么底盘？(3)</h1>
-
-        <h3>方案 C：全向轮底盘 (最终选择)</h3>
-        <p><strong>样子：</strong> 用特殊的 Omni 轮（全向轮）。</p>
-        <p><strong>印涵邸提议：</strong> “如果我们在四个角都用全向轮，虽然不能横着走，但是转弯会特别顺滑，像抹了油一样！”</p>
-
-        <div class="img-placeholder" style="height: 200px;">
-
-            [图片：草图，特写了Omni轮子上面的小滚珠，写着“丝滑”]
-        </div>
-
-        <p>大家觉得这个主意不错！既省电机，又灵活。</p>
-
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
-        <div class="page-number">66</div>
-    </div>
-
-    <!-- ================= PAGE 67: 底盘决策矩阵 ================= -->
-    <div class="sheet">
-        <div class="a4-height-indicator"></div>
-        <div class="chapter-marker"></div>
-        <h1>底盘大PK (决策矩阵)</h1>
-
-        <p>为了公平起见，我们学着大人的样子，搞了个“打分表”。5分最高，1分最低。</p>
-
-        <table>
-            <tr>
-                <th>比什么？</th>
-                <th>标准四轮</th>
-                <th>H型底盘</th>
-                <th>全向轮底盘</th>
-            </tr>
-            <tr>
-                <td>省电机吗？</td>
-                <td class="winner">5 (省)</td>
-                <td>1 (费)</td>
-                <td class="winner">5 (省)</td>
-            </tr>
-            <tr>
-                <td>好搭建吗？</td>
-                <td class="winner">5</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>转弯灵活吗？</td>
-                <td>3</td>
-                <td>5</td>
-                <td class="winner">5</td>
-            </tr>
-            <tr>
-                <td>通过Beam吗？</td>
-                <td>4</td>
-                <td>2 (容易卡)</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td><strong>总分</strong></td>
-                <td>17</td>
-                <td>11</td>
-                <td class="winner"><strong>18 (赢了!)</strong></td>
-            </tr>
-        </table>
-
-        <div class="sticky-note">
-            <strong>决定：</strong> 我们就用 <strong>2电机 + 全向轮</strong> 的方案！
-        </div>
-
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
-        <div class="page-number">67</div>
-    </div>
 
     <!-- ================= PAGE 68: 速度计算 ================= -->
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>算一算：我们要跑多快？</h1>
+        <h1>4.4 底盘设计 - 齿轮比</h1>
 
         <p><strong>宋书月：</strong> “我要跑得比风还快！这样才能抢在对手前面把 Pin 都捡走。”</p>
         <p><strong>叶恒嘉：</strong> “那我们用大齿轮带小齿轮，做个加速装置吧！”</p>
@@ -258,10 +172,13 @@
             这意味着电机转 1 圈，轮子能转 2 圈！速度翻倍！
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
+        <!-- <div class="img-placeholder" style="height: 200px;">
             [Image of Gear Ratio diagram]
             [图片：画了一个大齿轮咬合一个小齿轮，旁边画了风的线条表示速度很快]
-        </div>
+        </div> -->
+        <img src="../assets/ch04/4_4_gears.webp" alt="加速齿轮"
+            style="height:320px; display: block; margin: 30px auto; border-radius: 20px;">
+
 
         <p>虽然叶恒瑞担心太快了会控制不住，但大家都想试一试“极速飞车”的感觉。就这么定了！</p>
 
@@ -272,22 +189,25 @@
         <div class="page-number">68</div>
     </div>
 
-    <!-- ================= PAGE 69: 4.2 头脑风暴 - 抓手 ================= -->
+    <!-- ================= PAGE 69: 4.5 头脑风暴 - 抓手 ================= -->
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 怎么抓那个滑溜溜的Pin？(1)</h1>
+        <h1>4.5 Pin的抓取设计(1)</h1>
 
         <p>Pin 是圆柱形的，表面很滑，这是最头疼的问题。</p>
 
         <h3>方案 A：铲子 (Fork)</h3>
         <p><strong>原理：</strong> 像叉车一样，直接插到 Pin 底部的缝隙里。</p>
-        <p><strong>缺点：</strong> 只能铲起来，但是如果不小心一晃，Pin 就会掉下来。而且没法把 Pin 翻转过来。</p>
+        <p><strong>缺点：</strong> 铲起来不容易；铲起来之后，如果不小心一晃，Pin 就会掉下来；而且没法把 Pin 翻转过来。</p>
         <p><strong>大家评价：</strong> 太简陋了，Pass！</p>
 
-        <div class="img-placeholder" style="height: 150px;">
+        <!-- <div class="img-placeholder" style="height: 150px;">
 
-        </div>
+        </div> -->
+        <img src="../assets/ch04/4_5_1_forklift.webp" alt="铲车"
+            style="height:320px; display: block; margin: 50px auto; border-radius: 20px;">
+
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -296,38 +216,14 @@
         <div class="page-number">69</div>
     </div>
 
-    <!-- ================= PAGE 70: 4.2 头脑风暴 - 抓手 ================= -->
+
+    <!-- ================= PAGE 71: 4.5 头脑风暴 - 抓手 ================= -->
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 怎么抓那个滑溜溜的Pin？(2)</h1>
+        <h1>4.5 Pin的抓取设计(2)</h1>
 
-        <h3>方案 B：滚筒吸入 (Roller)</h3>
-        <p><strong>原理：</strong> 上下两个滚轮转动，像吃面条一样把 Pin 吸进去。</p>
-        <p><strong>叶恒瑞说：</strong> “这个效率最高！我看网上的大神都用这个。”</p>
-        <p><strong>叶恒嘉的担忧：</strong> “但是这个结构好大啊！而且吸进来之后怎么叠在一起呢？Pin 在肚子里乱滚，怎么对准？”</p>
-
-        <div class="img-placeholder" style="height: 150px;">
-
-            [图片：草图，画了一个复杂的滚筒结构，旁边打了个大大的问号“怎么堆叠？”]
-        </div>
-
-        <p>我们讨论了半天，觉得这就是“看着美好，做起来难”。对于一代车来说太复杂了。</p>
-
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
-        <div class="page-number">70</div>
-    </div>
-
-    <!-- ================= PAGE 71: 4.2 头脑风暴 - 抓手 ================= -->
-    <div class="sheet">
-        <div class="a4-height-indicator"></div>
-        <div class="chapter-marker"></div>
-        <h1>4.2 怎么抓那个滑溜溜的Pin？(3)</h1>
-
-        <h3>方案 C：主动夹爪 (Claw) - 最终选择</h3>
+        <h3>方案 B：主动夹爪 (Claw) - 最终选择</h3>
         <p><strong>原理：</strong> 像螃蟹钳子一样，或者像人的两根手指，把 Pin 夹住。</p>
         <p><strong>优点：</strong>
             <br>1. 抓得紧。
@@ -335,10 +231,12 @@
             <br>3. 可以在爪子上装旋转轴，实现翻转。
         </p>
 
-        <div class="img-placeholder" style="height: 200px;">
+        <!-- <div class="img-placeholder" style="height: 200px;">
 
             [图片：草图，画了一个两指夹爪夹住 Pin 的样子，标注了“稳”]
-        </div>
+        </div> -->
+        <img src="../assets/ch04/4_5_2_claw.webp" alt="铲车"
+            style="height:320px; display: block; margin: 50px auto; border-radius: 20px;">
 
         <p>虽然一次只能抓一个，比较慢，但是我们要的是<strong>准确度</strong>！只有抓稳了才能堆高高。</p>
 
@@ -353,7 +251,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>抓手大PK</h1>
+        <h1>4.5 Pin的抓取设计(3)</h1>
+
+        <h3>抓手大PK</h3>
 
         <table>
             <tr>
@@ -403,7 +303,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>小秘密：橡皮筋大法</h1>
+        <h1>4.5 Pin的抓取设计(4)</h1>
+
+        <h3>小秘密：橡皮筋大法</h3>
 
         <p>虽然决定做夹爪，但我们试了一下，塑料爪子抓塑料 Pin，还是太滑了！稍微一抖就掉了。</p>
 
@@ -433,7 +335,7 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 怎么举高高？(1)</h1>
+        <h1>4.6 抬升设计(1)</h1>
 
         <p>我们要把 Pin 举起来，挂到高塔上，或者叠在别的 Pin 上面。</p>
 
@@ -459,7 +361,7 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 怎么举高高？(2)</h1>
+        <h1>4.6 抬升设计(2)</h1>
 
         <h3>方案 B：双反四连杆 (DR4B)</h3>
         <p><strong>原理：</strong> 两个四连杆叠罗汉！</p>
@@ -486,7 +388,7 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 怎么举高高？(3)</h1>
+        <h1>4.6 抬升设计(3)</h1>
 
         <p><strong>最终选择：</strong> 还是用最经典的<strong>四连杆 (4-Bar)</strong> 吧！</p>
 
@@ -511,7 +413,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>抬升大PK</h1>
+        <h1>4.6 抬升设计(4)</h1>
+
+        <h3>抬升大PK</h3>
 
         <table>
             <tr>
@@ -563,7 +467,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>力气够不够？</h1>
+        <h1>4.6 抬升设计(5)</h1>
+
+        <h3>力气够不够？</h3>
 
         <p>Beam 很重（170克），再加上爪子，我们担心一个电机举不起来。</p>
 
@@ -590,7 +496,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>神器的橡皮筋</h1>
+        <h1>4.6 抬升设计(6)</h1>
+
+        <h3>神奇的橡皮筋</h3>
 
         <p>我们在手臂根部挂了几根橡皮筋。这真是太神奇了！</p>
         <p><strong>效果：</strong> 就算不通电，手臂也能自己悬在半空中，不下坠。这就叫“重力补偿”。电机只需要用一点点力气就能指挥手臂上下动了。</p>
@@ -611,7 +519,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 最难的挑战：Beam</h1>
+        <h1>4.7 Beam的抓取设计(1)</h1>
+
+        <!-- <h1>4.2 最难的挑战：Beam</h1> -->
 
         <p>Beam 那么长，那么重，如果用前面的爪子抓，车头会很重，容易翻车。而且爪子很难对准 Beam 的重心。</p>
 
@@ -635,7 +545,7 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.2 最难的挑战：Beam</h1>
+        <h1>4.7 Beam的抓取设计(2)</h1>
 
         <h3>方案 B：主动翻转爪</h3>
         <p><strong>想法：</strong> 让前面的爪子能翻转到底下，把 Beam 铲起来。</p>
@@ -656,7 +566,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>简单的拖钩</h1>
+        <h1>4.7 Beam的抓取设计(3)</h1>
+
+        <h3>简单的拖钩</h3>
 
         <p>虽然简单，但也要设计好。</p>
         <p>1. <strong>高度：</strong> 钩子不能太低，不然会蹭到地上的减速带。也不能太高，不然钩不住 Beam。</p>
@@ -678,7 +590,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>会翻转的手腕 (Wrist)</h1>
+        <h1>4.8 翻转与放置</h1>
+
+        <h3>会翻转的手腕 (Wrist)</h3>
 
         <p>为了拿颜色匹配分，我们需要把 Pin 翻过来。比如红 Pin 倒了，我们得把它正过来才能插进红 Goal。</p>
         <p>所以，我们在爪子后面加了一个电机，让爪子可以旋转 180 度。</p>
@@ -704,9 +618,10 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>4.3 一代车诞生啦！(Gen 1 Concept)</h1>
+        <h1>4.9 方案整合(1)</h1>
+        <h3>4.9 一代车诞生啦！(Gen 1 Concept)</h3>
 
-        <p>经过好几天的吵架和画图，我们终于把所有想法拼在了一起！</p>
+        <p>经过好几天的讨论和画图，我们终于把所有想法拼在了一起！</p>
 
         <div class="blackboard">
             <strong>机甲梦想家 1.0 配置单：</strong><br>
@@ -714,7 +629,7 @@
             <strong>底盘：</strong> 2电机 + 全向轮 + 2倍速 (飞一般的速度)<br>
             <strong>手臂：</strong> 四连杆 + 橡皮筋补偿 (稳稳的幸福)<br>
             <strong>爪子：</strong> 两指夹爪 + 翻转手腕 (灵活的小手)<br>
-            <strong>绝招：</strong> 屁股后面的 Beam 拖钩
+            <strong>绝招：</strong> 身后的 Beam 拖钩
         </div>
 
         <div class="img-placeholder" style="height: 250px;">
@@ -733,7 +648,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>电机地图 (Port Map)</h1>
+        <h1>4.9 方案整合(2)</h1>
+
+        <h3>电机地图 (Port Map)</h3>
 
         <p>叶恒瑞说，为了方便写程序，我们要先把电机插在哪里规定好。</p>
 
@@ -786,7 +703,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>怎么开车？(Controls)</h1>
+        <h1>4.9 方案整合(3)</h1>
+
+        <h3>怎么开车？(Controls)</h3>
 
         <p>宋书月设计了最顺手的按键方案：</p>
 
@@ -810,7 +729,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>购物清单 (Parts List)</h1>
+        <h1>4.9 方案整合(4)</h1>
+
+        <h3>购物清单 (Parts List)</h3>
 
         <p>我们要去零件库找这些东西：</p>
 
@@ -833,7 +754,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>搭建时间表</h1>
+        <h1>4.9 方案整合(5)</h1>
+
+        <h3>搭建时间表</h3>
 
         <p><strong>第一周：</strong> 叶恒嘉负责搭底盘。一定要结实，不能跑着跑着散架了。</p>
         <p><strong>第二周：</strong> 搭手臂和爪子。要不断调试橡皮筋的数量，直到它能悬停。</p>
@@ -854,7 +777,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>要是坏了怎么办？(Risk)</h1>
+        <h1>4.9 方案整合(6)</h1>
+
+        <h3>要是坏了怎么办？(Risk)</h3>
 
         <p>我们想了一些可能会发生的倒霉事：</p>
 
@@ -881,7 +806,9 @@
     <div class="sheet">
         <div class="a4-height-indicator"></div>
         <div class="chapter-marker"></div>
-        <h1>为什么不用别的方案？</h1>
+        <h1>4.9 方案整合(7)</h1>
+
+        <h3>为什么不用别的方案？</h3>
 
         <p>为了证明我们不是瞎选的，我们要记录下被淘汰的方案。</p>
 
