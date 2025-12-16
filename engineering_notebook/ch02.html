@@ -190,7 +190,7 @@
     <!-- ================= PAGE 27: 2.3 进球规则 <SG6> ================= -->
     <div class="sheet">
         
-        <h1>2.3 怎么投喂机器人？</h1>
+        <h1>2.4 怎么投喂机器人？</h1>
 
         <p>这次比赛我们还可以当 Loader（装填手），给机器人喂 Pin。</p>
         <br><img src="assets/ch02/load_zone.webp" alt="Load Zone"
@@ -215,7 +215,7 @@
     <!-- ================= PAGE 28: 2.4 基础得分 ================= -->
     <div class="sheet">
         
-        <h1>2.4 怎么才能得高分？</h1>
+        <h1>2.5 怎么才能得高分？</h1>
 
         <p><strong>叶恒瑞</strong>是我们的“数学家”，他带着我们把得分规则算了一遍。</p>
         <ul>
@@ -249,7 +249,7 @@
     <!-- ================= PAGE 29: 2.4 匹配规则 ================= -->
     <div class="sheet">
         
-        <h1>2.4 颜色匹配的秘密 &lt;SC6&gt;</h1>
+        <h1>2.5.1 颜色匹配的秘密</h1>
 
         <p>我们仔细研究了 Matching Goal Bonus &lt;SC6&gt;。规则说，Stack 只要符合下面其中一个条件，就能得到匹配分（加10分！）哦：</p>
         <ol>
@@ -274,7 +274,7 @@
     <!-- ================= PAGE 30: 2.4 容易忽略的规则 ================= -->
     <div class="sheet">
         
-        <h1>2.4 别被扣分了！</h1>
+        <h1>2.5.2 别被扣分了！</h1>
 
         <!-- <p>我们还发现了一些容易犯错的地方：</p> -->
 
@@ -307,7 +307,7 @@
 
     <div class="sheet">
         
-        <h1>2.4 算分大挑战 (Scoring Examples)</h1>
+        <h1>2.5.3 算分大挑战 (Scoring Examples)</h1>
 
         <p>为了熟悉计分规则，我们找了 10 个例子来练习算分。这些例子都在官方手册上能找到哦！</p>
         <table>
@@ -362,7 +362,7 @@
     <!-- ================= PAGE 32: Scoring Examples (续) ================= -->
     <div class="sheet">
         
-        <h1>2.4 算分大挑战 (Scoring Examples) 续</h1>
+        <h1>2.5.3 算分大挑战 (Scoring Examples) 续</h1>
 
 
         <table>
@@ -421,7 +421,7 @@
     <!-- ================= PAGE 33: 换手规则 &lt;GG11&gt; ================= -->
     <div class="sheet">
         
-        <h1>2.5 团队赛：换手惊魂</h1>
+        <h1>2.6 团队赛：换手惊魂</h1>
         <p>宋书玥最关心这个规则，因为她是操控手。规则说必须在 35秒 到 25秒 之间换人。</p>
 
         <p class="dialogue">“如果超时了会怎么样？”</p>
@@ -444,7 +444,7 @@
     <!-- ================= PAGE 34: 技能赛规则 ================= -->
     <div class="sheet">
         
-        <h1>2.6 技能赛特别规则</h1>
+        <h1>2.7 技能赛特别规则</h1>
 
         <p>除了团队赛，我们还要打技能赛。技能赛的场地有点不一样。</p>
         <ul>
@@ -459,7 +459,16 @@
 
         <p>但是如果机器人卡住了怎么办？我们可以申请重置 <strong>&lt;RSC5&gt;</strong>。</p>
         <p><span class="chinese-label">注意：</span> 重置的时候，机器人手里拿的分数都要拿走，不计分。所以重置是很亏的，我们要保证代码稳定！</p>
+        <h1>2.8 设计约束总结</h1>
 
+        <p>综合上面的所有规则，我们给设计组提了几点“死命令”：</p>
+
+        <ol>
+            <li><span class="chinese-label">必须能折叠：</span> 出发时要缩在 15 英寸高的小盒子里。</li>
+            <li><span class="chinese-label">必须能抓 Beam：</span> 配合 Beam，轻松拿到匹配分。</li>
+            <li><span class="chinese-label">必须能举高：</span> 挂上高塔，在添高塔奖励。</li>
+            <!-- <li><span class="chinese-label">必须分色：</span> 要能识别颜色，不然做不出完美 Stack。</li> -->
+        </ol>
         <div class="footer">
             <span class="handwriting-box">日期：</span>
             <span class="handwriting-box">记录人：</span>
@@ -469,17 +478,16 @@
 
 
     <!-- ================= PAGE 35: 设计约束总结 ================= -->
-    <div class="sheet">
+    <!-- <div class="sheet">
         
-        <h1>2.7 设计约束总结</h1>
+        <h1>2.8 设计约束总结</h1>
 
         <p>综合上面的所有规则，我们给设计组提了几点“死命令”：</p>
 
         <ol>
-            <li><span class="chinese-label">必须能抓 Beam：</span> 不然只能拿低分。</li>
-            <li><span class="chinese-label">必须能举高：</span> 要超过 12 英寸才能挂高塔。</li>
             <li><span class="chinese-label">必须能折叠：</span> 出发时要缩在 15 英寸高的小盒子里。</li>
-            <li><span class="chinese-label">必须分色：</span> 要能识别颜色，不然做不出完美 Stack。</li>
+            <li><span class="chinese-label">必须能抓 Beam：</span> 配合 Beam，轻松拿到匹配分。</li>
+            <li><span class="chinese-label">必须能举高：</span> 挂上高塔，在添高塔奖励。</li>
         </ol>
 
         <div class="footer">
@@ -487,14 +495,14 @@
             <span class="handwriting-box">记录人：</span>
         </div>
         <div class="page-number">35</div>
-    </div>
+    </div> -->
 
 
     <!-- ================= PAGE 36: 策略模拟封面 ================= -->
     <div class="sheet">
         
         <div style="text-align: center; margin-top: 100px;">
-            <h1 style="font-size: 48px; color: #2E86C1;">2.8 我们的战术推演</h1>
+            <h1 style="font-size: 48px; color: #2E86C1;">2.9 我们的战术推演</h1>
 
             <!-- <div
                 style="width: 120px; height: 120px; border: 3px solid #2E86C1; border-radius: 10px; margin: 30px auto; display: flex; align-items: center; justify-content: center; font-size: 60px;">
