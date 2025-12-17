@@ -192,6 +192,12 @@ h3 {
     font-family: "Microsoft YaHei", sans-serif;
 }
 
+h4 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
 /* 正文样式 */
 p,
 li {
@@ -429,6 +435,7 @@ body.hide-other-elements * {
 body.hide-other-elements h1,
 body.hide-other-elements h2,
 body.hide-other-elements h3,
+body.hide-other-elements h4,
 body.hide-other-elements img,
 body.hide-other-elements .chapter-marker,
 body.hide-other-elements .a4-height-indicator {
@@ -509,11 +516,12 @@ body.hide-other-elements .footer {
 .navigation-links {
     display: none;
     position: absolute;
-    top: 50px; /* Position below the button */
+    top: 50px;
+    /* Position below the button */
     left: 0;
     background-color: #f9f9f9;
     width: max-content;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
 }
@@ -532,4 +540,39 @@ body.hide-other-elements .footer {
 
 .navigation-menu:hover .navigation-links {
     display: block;
+}
+
+/* Highlight box styles */
+.highlight-box {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.highlight-box.type-default {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.highlight-box.type-purple {
+    background-color: #F4ECF7;
+    border: 1px solid #8E44AD;
+}
+
+.highlight-box.type-left-border {
+    border-left: 5px solid var(--primary-color);
+    padding-left: 20px;
+}
+
+.highlight-box.type-teal {
+    border-left: 5px solid #008080;
+    padding-left: 15px;
+}
+
+.highlight-box.type-cyan {
+    border-left: 5px solid #00BCD4;
+    padding-left: 20px;
+}
+
+.highlight-box.margin-large {
+    margin-top: 40px;
 }

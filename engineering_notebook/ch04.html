@@ -35,10 +35,6 @@
             </div>
         </div>
 
-        <div class="footer">
-            <span class="handwriting-box">日期：2025/06/15</span>
-            <span class="handwriting-box">记录人：2276A 全体</span>
-        </div>
     </div>
 
     <!-- ================= PAGE 62: 需求分析 ================= -->
@@ -46,25 +42,22 @@
         <h1>4.1 竞赛规则分析与功能定义</h1>
 
         <h3>任务拆解</h3>
-        <p>通过研读《Game Manual》及官方演示视频，团队对比赛得分机制进行了详细分析。为了最大化得分效率，我们总结出机器人必须具备以下<strong>6项核心功能</strong>：</p>
+        <p>通过仔细研读《Game Manual》及反复观看官方演示视频，团队对比赛得分机制进行了详细分析。为了最大化得分效率，我们总结出机器人必须具备以下<strong>6项核心功能</strong>：</p>
 
-        <div class="highlight-box" style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 20px;">
-            <ol style="line-height: 2;">
-                <li><strong>快速移动 (Mobility)：</strong> 具备在场地内灵活穿梭的能力，能够快速到达得分区域。</li>
-                <li><strong>销钉抓取 (Pin Acquisition)：</strong> 能够准确、稳固地抓取形状不规则的销钉，防止在移动中滑落。</li>
-                <li><strong>销钉堆叠 (Pin Stacking)：</strong> 具备垂直抬升机构，能够完成销钉的多层堆叠以获取高分。</li>
-                <li><strong>万能梁勾取 (Beam Manipulation)：</strong> 能够准确勾住场地上的万能梁并进行拖拽移动。</li>
-                <li><strong>正向堆叠 (Standard Stacking)：</strong> 能够配合抬升机构，将万能梁与销钉进行组合得分。</li>
-                <li><strong>反向堆叠 (Reverse Stacking)：</strong> 抓取机构需具备水平翻转功能，以完成规则要求的反向堆叠任务。</li>
+        <div class="highlight-box type-default">
+            <ol style="line-height: 1.5;">
+                <li><strong>快速移动：</strong> 能在场地内灵活穿梭，快速到达得分区域。</li>
+                <li><strong>销钉 Pin 抓取：</strong> 能准确、稳固地抓取销钉，防止在移动中滑落。</li>
+                <li><strong>销钉堆叠 Stacking：</strong> 具备垂直抬升机构，能完成销钉的多层堆叠以获取高分。</li>
+                <li><strong>万能梁 Beam 勾取：</strong> 能准确勾住场地上的万能梁并进行拖拽移动。</li>
+                <li><strong>正向堆叠：</strong> 能配合抬升机构，将万能梁与销钉进行组合得分。</li>
+                <li><strong>反向堆叠：</strong> 抓取机构需具备水平翻转功能，以完成反向堆叠任务。</li>
             </ol>
         </div>
 
-        <p style="margin-top: 20px;"><strong>设计约束：</strong> 所有功能必须在限制尺寸（11"x20"x15"）内实现，且需受限于 VEX IQ 主控的端口数量（12个）及气动元件的使用限制。</p>
+        <p style="margin-top: 20px;"><strong>设计约束：</strong> 所有功能必须在限制尺寸（11"x20"x15"）内实现，且需受限于 VEX IQ
+            主控的端口数量（12个）及气动元件的使用限制。</p>
 
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
     </div>
 
     <!-- ================= PAGE 63: 模块化架构 ================= -->
@@ -78,40 +71,52 @@
             <div class="column">
                 <ul class="notebook-list">
                     <li>
-                        <strong>1. 底盘系统 (Chassis Subsystem)</strong>
+                        <strong>1. 底盘系统 (Chassis)</strong>
                         <br>功能：负责机器人的全场定位与移动。
                         <br>要求：结构稳固，具备一定的推力和速度。
                     </li>
                     <li>
-                        <strong>2. 抓取系统 (Intake Subsystem)</strong>
+                        <strong>2. 抓取系统 (Intake)</strong>
                         <br>功能：负责销钉的获取与保持。
                         <br>要求：抓取力大，兼容性强。
                     </li>
                     <li>
-                        <strong>3. 拖拽系统 (Hook Subsystem)</strong>
+                        <strong>3. 拖拽系统 (Hook)</strong>
                         <br>功能：负责万能梁的移动。
                         <br>要求：布局在车尾，不干涉主抓取动作。
                     </li>
                     <li>
-                        <strong>4. 举升与翻转系统 (Lift & Flip Subsystem)</strong>
+                        <strong>4. 举升与翻转系统 (Lift & Flip)</strong>
                         <br>功能：实现垂直高度变化与末端执行器的姿态调整。
                         <br>要求：动作精准，具备 180 度翻转能力。
                     </li>
                 </ul>
             </div>
-            <div class="column">
+            <!-- <div class="column">
                 <div class="photo-placeholder" style="height: 300px; border: 1px solid #aaa; display: flex; align-items: center; justify-content: center;">
                     
                     <br>(底盘/手臂/气动系统布局示意)
                 </div>
-            </div>
+            </div> -->
         </div>
+    </div>
+    <div class="sheet">
+
+        <h1>4.2 系统架构与模块划分（续）</h1>
+        <h3>模块化设计思路（续）</h3>
+        <img src="assets/ch04/4_n_2.webp" alt="系统布局示意" style="height:400px; display: block; margin: 10px auto;">
+
+        <!-- <div class="photo-placeholder"
+            style="height: 300px; border: 1px solid #aaa; display: flex; align-items: center; justify-content: center;">
+
+            <br>(底盘/手臂/气动系统布局示意)
+        </div> -->
 
         <h3>资源分配计划</h3>
         <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
             <tr style="background: #eee;">
-                <th style="border: 1px solid #999; padding: 5px;">子系统</th>
-                <th style="border: 1px solid #999; padding: 5px;">动力源规划</th>
+                <th style="border: 1px solid #999; padding: 5px; width: 15%;">子系统</th>
+                <th style="border: 1px solid #999; padding: 5px; width: 35%;">动力源规划</th>
                 <th style="border: 1px solid #999; padding: 5px;">设计考量</th>
             </tr>
             <tr>
@@ -136,10 +141,6 @@
             </tr>
         </table>
 
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
     </div>
 
     <!-- ================= PAGE 64: 方案筛选 ================= -->
@@ -151,7 +152,7 @@
         <div style="margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
             <h4>方案 A：滚筒吸入式 (Roller Intake) - <span style="color: red;">淘汰</span></h4>
             <p><strong>描述：</strong> 利用高速旋转的柔性滚筒将销钉“卷”入舱内。</p>
-            <p><strong>淘汰理由：</strong> 
+            <p><strong>淘汰理由：</strong>
                 1. 销钉形状不规则，滚筒难以控制其最终姿态，不利于后续的精准堆叠。
                 2. 机构体积庞大，难以在有限空间内集成翻转机构。
             </p>
@@ -160,7 +161,7 @@
         <div style="margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
             <h4>方案 B：H型全向底盘 (H-Drive) - <span style="color: red;">淘汰</span></h4>
             <p><strong>描述：</strong> 在传统四轮底盘基础上增加横向从动轮，实现全向移动。</p>
-            <p><strong>淘汰理由：</strong> 
+            <p><strong>淘汰理由：</strong>
                 1. 至少需要 3-5 个电机，超出电机预算。
                 2. 横向轮在 VEX IQ 场地垫上的抓地力不足，且容易造成推力损失。
             </p>
@@ -169,59 +170,56 @@
         <div style="margin-top: 20px;">
             <h4>方案 C：双反四连杆 (DR4B) - <span style="color: red;">淘汰</span></h4>
             <p><strong>描述：</strong> 高行程的剪叉式或多连杆升降结构。</p>
-            <p><strong>淘汰理由：</strong> 
+            <p><strong>淘汰理由：</strong>
                 1. 自重过大，导致机器人重心过高，移动时极易发生倾倒。
                 2. 一代车的设计原则是“稳定优先”，DR4B 结构复杂度过高。
             </p>
         </div>
 
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
     </div>
 
     <!-- ================= PAGE 65: 最终定稿 ================= -->
     <div class="sheet">
-        <h1>4.4 一代车设计定稿 (Final Design)</h1>
+        <h1>4.4 一代车设计定稿</h1>
 
         <h3>技术路线确认</h3>
         <p>经过多轮研讨与权衡，我们确立了一代车的最终设计方案。该方案旨在保证基本得分功能的前提下，追求结构的简单性与可靠性。</p>
 
-        <div class="two-column-layout">
-            <div class="column">
-                <h4>1. 底盘系统：六轮差速驱动 (Tank Drive)</h4>
-                <p>采用经典的左右双电机驱动模式。配置 2 倍速齿轮组（48:24），以平衡移动速度与推力。该结构机械故障率低，控制逻辑简单。</p>
+        <h4>1. 底盘系统：四轮差速驱动</h4>
+        <p>采用经典的左右双电机驱动模式，搭载 4 个全向轮（Omni Wheels）以减少转向摩擦阻力。配置 2
+            倍速齿轮组（48:24），在保证推力的前提下提升移动速度。</p>
+        <h4>2. 抓取系统：气动钳形爪 (Pneumatic Claw)</h4>
+        <p>利用气动系统的瞬时响应特性，设计 L 型开合爪。气缸伸出时闭合抓取，缩回时张开释放。此方案有效减少了电机占用，且抓取力度恒定。</p>
+        <h4>3. 抬升系统：单电机连杆</h4>
+        <p>采用单边驱动的四连杆结构，配合橡皮筋进行重力补偿。该结构足以满足两层销钉堆叠的高度需求。</p>
 
-                <h4>2. 抓取系统：气动钳形爪 (Pneumatic Claw)</h4>
-                <p>利用气动系统的瞬时响应特性，设计 L 型开合爪。气缸伸出时闭合抓取，缩回时张开释放。此方案有效减少了电机占用，且抓取力度恒定。</p>
-            </div>
-            <div class="column">
-                <h4>3. 抬升系统：单电机连杆</h4>
-                <p>采用单边驱动的四连杆结构，配合橡皮筋进行重力补偿。该结构足以满足两层销钉堆叠的高度需求。</p>
+        <h4>4. 翻转系统：末端旋转手腕</h4>
+        <p>在机械臂末端集成翻转电机，实现抓手 0-180 度的姿态切换，满足反向堆叠的要求。</p>
 
-                <h4>4. 翻转系统：末端旋转手腕</h4>
-                <p>在机械臂末端集成翻转电机，实现抓手 0-180 度的姿态切换，满足反向堆叠的规则要求。</p>
-            </div>
-        </div>
 
-        <div style="margin: 30px auto; width: 90%; border: 1px solid #ccc; padding: 10px; text-align: center; background-color: #fff;">
+
+    </div>
+
+    <div class="sheet">
+        <h1>4.4 一代车设计定稿（续）</h1>
+        <h3>一代车概念设计草图</h3>
+        <img src="assets/ch04/4_n_4.webp" alt="一代车概念草图"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 15px;">
+
+        <!-- <div
+            style="margin: 30px auto; width: 90%; border: 1px solid #ccc; padding: 10px; text-align: center; background-color: #fff;">
             <h3 style="margin: 0; font-size: 18px; color: #333;">一代车概念设计草图</h3>
             <div class="photo-placeholder" style="height: 250px; margin-top: 10px;">
-                
+
                 <br>(包含底盘、气路布局及机械臂结构的详细草图)
             </div>
-        </div>
-
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
+        </div> -->
     </div>
+
 
     <!-- ================= PAGE 66: 策略规划 ================= -->
     <div class="sheet">
-        <h1>4.5 预设比赛策略 (Initial Strategy)</h1>
+        <h1>4.5 预设比赛策略</h1>
 
         <p>在硬件设计定稿的同时，我们也对机器人的实战策略进行了初步规划，这将指导后续的搭建与编程工作。</p>
 
@@ -241,17 +239,15 @@
             </li>
         </ol>
 
-        <div class="highlight-box" style="margin-top: 40px; border-left: 5px solid var(--primary-color); padding-left: 20px;">
+        <div>
             <h3>下一阶段工作计划 (Next Steps)</h3>
-            <p><strong>Phase 1:</strong> 物料准备，特别是气动元件的气密性检查。</p>
-            <p><strong>Phase 2:</strong> 依据定稿图纸进行底盘与机械臂的实体搭建。</p>
-            <p><strong>Phase 3:</strong> 编写基础控制程序，验证气动系统与电机的协同工作。</p>
+            <ol>
+                <li><strong>物料准备</strong>，特别是气动元件的气密性检查。</li>
+                <li><strong>搭建实体</strong>，依据定稿图纸进行底盘与机械臂的搭建。</li>
+                <li><strong>编写程序</strong>，实现基础控制，保证气动系统与电机协同工作。</li>
+            </ol>
         </div>
 
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
     </div>
 
     <!-- ================= PAGE 67: 章节总结 ================= -->
@@ -270,11 +266,10 @@
         <p>
             下一阶段，我们将进入实质性的制造与调试环节，验证这一设计理念在物理世界中的表现。
         </p>
+        <img src="assets/ch04/4_n_z.webp" alt="准备搭建"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 15px;">
 
-        <div class="footer">
-            <span class="handwriting-box">日期：</span>
-            <span class="handwriting-box">记录人：</span>
-        </div>
+
     </div>
     <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
