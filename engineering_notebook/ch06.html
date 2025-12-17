@@ -163,56 +163,39 @@
                     <span class="text-success">结构微调</span> - 调整了气缸的闭合限位，确保夹持力直接作用于销钉重心。
                 </li>
             </ul>
+            <img src="assets/ch06/6_1_1.webp" alt="增加了橡胶皮筋的机械爪"
+                style="height:260px; display: block; margin: 20px auto; border-radius: 10px;">
         </div>
 
-        <img src="assets/ch06/6_1_1.webp" alt="一代车完整形态"
-            style="height:260px; display: block; margin: 20px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE 111: 训练日志-结构优化 ================= -->
     <div class="sheet">
         <h1>6.2 功能测试：堆叠与挂钩的改进</h1>
 
-        <div class="highlight-box type-default">
+        <p>在针对“二层堆叠”与“万能梁拖拽”的专项练习中，我们解决了钩爪滑脱与重心失稳的问题，使操作手能流畅完成复杂动作，准确性显著提高。</p>
+
+        <div class="highlight-box type-cyan">
             <p class="meeting-id"><strong>测试日期：</strong> 2025年7月6日 | <strong>地点：</strong> 建外SOHO</p>
-            <p><strong>测试项目：</strong> 操作手练习二层堆叠 & 万能梁拖拽</p>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 30%;">故障现象</th>
-                        <th>工程解决方案</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <strong>万能梁脱钩</strong><br>
-                            在拖拽万能梁移动时，钩爪容易滑脱。
-                        </td>
-                        <td>
-                            <strong>优化钩爪弧度：</strong><br>
-                            重新弯折了聚碳酸酯钩爪的末端角度，使其能更深地卡入万能梁结构，确保抓取点对准中心。
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <strong>动作不协调</strong><br>
-                            “拖拽+翻转”同时进行时，车身重心失稳。
-                        </td>
-                        <td>
-                            <strong>动力空间重配：</strong><br>
-                            对底盘、抓取、钩取和翻转机构的安装空间进行了重新布局，优化了重心分布。
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <ul class="log-list">
+                <li>
+                    <span class="text-error">问题 A：万能梁 Beam 脱钩</span><br>
+                    <strong>现象：</strong> 在拖拽万能梁移动时，钩爪易滑脱，导致抓取失败。<br>
+                    <strong>改进：</strong> <span class="text-success">优化钩爪弧度</span> -
+                    重新弯折了钩爪的末端角度，使其能更深地卡入万能梁结构，确保抓取点对准中心。
+                </li>
 
-            <p><strong>验证结果：</strong> 改进后，操作手可以流畅完成“中心区堆叠二层”动作，准确性显著提高。</p>
-        </div>
+                <li>
+                    <span class="text-error">问题 B：动作不协调</span><br>
+                    <strong>现象：</strong> “拖拽+翻转”同时进行时，车身重心失稳，影响行进路线。<br>
+                    <strong>改进：</strong> <span class="text-success">动力空间重配</span> -
+                    对底盘、抓取、钩取和翻转机构的安装空间进行了重新布局，优化了整车的重心分布。
+                </li>
+            </ul>
+            <img src="assets/ch06/6_2_1.webp" alt="钩爪"
+                style="height:260px; display: block; margin: 20px auto; border-radius: 10px;">
 
-        <div class="img-placeholder" style="height: 200px;">
-            [图片：钩爪改进前后的对比图]
         </div>
     </div>
 
@@ -220,7 +203,7 @@
     <div class="sheet">
         <h1>6.3 系统集成：半自动化逻辑导入</h1>
 
-        <p>为减轻操作手在紧张赛程中的认知负荷，我们依据7月6日的测试反馈，引入了传感器辅助。</p>
+        <p>为减轻操作手在紧张赛程中的操控负担，我们依据7月6日的测试反馈，引入了传感器辅助。</p>
 
         <div class="highlight-box type-cyan">
             <p><strong>软件迭代：自动化抓取 (Auto-Grab)</strong></p>
@@ -231,10 +214,6 @@
                 <li><strong>收益：</strong> 将“肉眼判断+手指按键”的开环操作，升级为“传感器触发”的闭环操作，抓取反应速度提升约 0.5秒/次。</li>
             </ul>
         </div>
-
-        <div class="img-placeholder" style="height: 250px;">
-            [图片：距离传感器安装位置及代码逻辑截图]
-        </div>
     </div>
 
     <!-- ================= PAGE 113: 模拟实战 ================= -->
@@ -244,7 +223,7 @@
         <div class="knowledge-card">
             <h3>模拟实战信息</h3>
             <p><strong>时间：</strong> 2025年7月16日</p>
-            <p><strong>内容：</strong> 全流程模拟实战（Simulated Match）</p>
+            <p><strong>内容：</strong> 全流程模拟实战</p>
             <p><strong>目的：</strong> 暴露非机械层面的配合问题</p>
         </div>
 
@@ -263,16 +242,73 @@
                 <h3 class="text-success">整改措施 (Actions)</h3>
                 <ul class="notebook-list">
                     <li><strong>强化描述训练：</strong> 要求队员不仅要会跑图，还要能清晰口述“远端”和“近端”的路线逻辑。</li>
-                    <li><strong>标准化站位：</strong> 明确了主副操作手的站位区域，预先协调好换手角度。</li>
+                    <li><strong>标准化站位：</strong> 明确了主副操作手的站位区域和换手角度。</li>
                     <li><strong>赛前集训：</strong> 加大训练强度，重点练习“卡点换手”和“赛前策略沟通”。</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- ================= PAGE 114: 参赛概况与策略 ================= -->
+    <!-- ================= PAGE 114: 新增训练日志 ================= -->
     <div class="sheet">
-        <h1>6.5 实战记录：胜炫北京城市赛</h1>
+        <h1>6.5 专项集训：备战石家庄</h1>
+
+        <p>为备战即将在石家庄举行的赛事，我们开展了高强度的针对性集训，重点突破高分动作的准确率。</p>
+
+        <div class="highlight-box type-cyan">
+            <p class="meeting-id"><strong>测试日期：</strong> 2025年8月12日 | <strong>地点：</strong> 建外SOHO</p>
+            <p><strong>训练内容：</strong> 赛前集训备战石家庄</p>
+
+            <div style="bborder-radius: 8px; margin-bottom: 20px;">
+                <p class="text-highlight">核心训练目标</p>
+
+                <ol style="margin-top: 5px;">
+                    <li>加大训练强度，争取打满分。</li>
+                    <li>反复练习中心岛送 Pin 角度。</li>
+                    <li>练习高塔准确度，控制好送爪时间。</li>
+                    <li>练习三角区送 Pin 角度。</li>
+                    <li>先手（Driver 1）及时给后手（Driver 2）报秒。</li>
+                    <li>高频训练“91分低塔”的准确率。</li>
+                </ol>
+            </div>
+
+            <p class="text-highlight">复盘总结</p>
+            <ul class="log-list">
+                <li>
+                    <span class="text-error">问题 1：翻转拖拉</span><br>
+                    <strong>现象：</strong> 总是到了装填区才开始进行翻转动作，浪费了行进间的时间。<br>
+                    <strong>解决方法：</strong> <span class="text-success">时间监控</span> - 监控完成三角区的时间及完成翻转的时间，强制要求在移动过程中预备翻转。
+                </li>
+
+                <li>
+                    <span class="text-error">问题 2：中心岛送 Pin 不到位</span><br>
+                    <strong>现象：</strong> 经常需要重新调整位置才能送入。<br>
+                    <strong>解决方法：</strong> <span class="text-success">参考线辅助</span> - 送 Pin 时严格以赛台线路为视觉基准，提前调整好移动路线。
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>6.5 专项集训：备战石家庄（续）</h1>
+        <p class="text-highlight">复盘总结（续）</p>
+        <ul class="log-list">
+            <li>
+                <span class="text-error">问题 3：搭高塔 Beam 歪倒</span><br>
+                <strong>现象：</strong> 尝试高塔堆叠时，Beam 经常因释放时机不当而倒塌。<br>
+                <strong>解决方法：</strong> <span class="text-success">微操训练</span> - 反复练习控制好送爪时间（Timing），寻找最佳释放点。
+            </li>
+
+            <li>
+                <span class="text-error">问题 4：三角区送 Pin 困难</span><br>
+                <strong>现象：</strong> 不是把 Pin 碰倒，就是送入非常费劲。<br>
+                <strong>解决方法：</strong> <span class="text-success">数据微调</span> - 练习调整送 Pin 角度，并修改程序中的高度数据，适当抬高手臂。
+            </li>
+        </ul>
+    </div>
+    <!-- ================= PAGE 115: 参赛概况与策略 ================= -->
+    <div class="sheet">
+        <h1>6.6 实战记录：胜炫北京城市赛</h1>
 
         <div class="highlight-box type-default">
             <p><strong>赛事名称：</strong> 2025 胜炫北京城市赛 (Beijing Urban Competition)</p>
@@ -286,9 +322,9 @@
         <table class="strategy-table">
             <thead>
                 <tr>
-                    <th>策略代号</th>
+                    <th width="25%">策略代号</th>
                     <th>核心动作</th>
-                    <th>理论得分 (Gen 1)</th>
+                    <th width="15%">理论得分 (Gen 1)</th>
                 </tr>
             </thead>
             <tbody>
@@ -319,15 +355,13 @@
                 </tr>
             </tbody>
         </table>
-
-        <p style="font-size: 14px; color: #666; margin-top: 5px;">*注：理论得分基于理想状态下的路线规划，实战中依据队友配合情况会有波动。</p>
     </div>
 
-    <!-- ================= PAGE 115: 比赛结果与复盘 ================= -->
+    <!-- ================= PAGE 116: 比赛结果与复盘 ================= -->
     <div class="sheet">
-        <h1>6.6 赛后评估与成绩公示</h1>
+        <h1>6.7 赛后评估与成绩公示</h1>
 
-        <p>尽管一代车存在底盘速度慢、垂直行程有限等先天劣势，但得益于赛前对“钩爪”和“摩擦力”的针对性优化，机器在实战中表现出了极高的稳定性。</p>
+        <p>尽管一代车存在底盘速度慢、垂直行程有限等先天劣势，但得益于赛前对“钩爪”和“摩擦力”的针对性优化，机器在实战中表现出了较高的稳定性。</p>
 
         <h3>关键场次表现</h3>
         <ul>
@@ -338,7 +372,7 @@
 
     </div>
     <div class="sheet">
-        <h1>6.6 赛后评估与成绩公示（续）</h1>
+        <h1>6.7 赛后评估与成绩公示（续）</h1>
         <h3>最终成绩 (Final Results)</h3>
         <table class="result-table">
             <thead>
@@ -373,7 +407,7 @@
 
 
     </div>
-    <!-- ================= PAGE 116: 总结与迭代计划 ================= -->
+    <!-- ================= PAGE 117: 总结与迭代计划 ================= -->
     <div class="sheet">
         <h1>第六章总结：设计验证与迭代计划</h1>
 
@@ -384,14 +418,14 @@
         <h3>二代车 (Gen 2) 研发规划</h3>
         <p>基于《8月12日赛后总结》及实战数据，工程团队已明确下一阶段的迭代方向：</p>
 
-        <div class="highlight-box type-cyan">
-            <ol style="line-height: 1.8;">
-                <li><strong>底盘提速：</strong> 当前移动速度严重影响得分，需调整底盘齿轮结构，在保证不漂移的前提下提升速度。</li>
-                <li><strong>高塔优化：</strong> 针对高塔Beam歪倒问题，计划加长机械臂力臂，并优化送爪时间的控制逻辑。</li>
-                <li><strong>三角区突破：</strong> 一代车完全放弃了三角区得分（Strategy: "无"），二代车必须增加专门的三角区定位机构。</li>
-                <li><strong>配合协同：</strong> 解决操作手与装填手配合不好的问题（爪子方向与装Pin方向需匹配）。</li>
-            </ol>
-        </div>
+        <ol style="line-height: 1.8;">
+            <li><strong>底盘提速：</strong> 当前移动速度严重影响得分，需调整底盘齿轮结构，在保证不漂移的前提下提升速度。</li>
+            <li><strong>高塔优化：</strong> 针对高塔Beam歪倒问题，计划加长机械臂力臂，并优化送爪时间的控制逻辑。</li>
+            <li><strong>三角区突破：</strong> 一代车完全放弃了三角区得分（Strategy: "无"），二代车必须增加专门的三角区定位机构。</li>
+            <li><strong>配合协同：</strong> 解决操作手与装填手配合不好的问题（爪子方向与装Pin方向需匹配）。</li>
+        </ol>
+        <!-- <div class="highlight-box type-cyan">
+        </div> -->
 
         <p style="margin-top: 40px;">
             <strong>决策：</strong> 正式退役一代车，立即启动二代车的设计与制造工作。
