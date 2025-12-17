@@ -1,31 +1,168 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第八章：比赛策略与赛后分析 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        /* --- Cover Page Styling --- */
+        .cover-section {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .cover-section h1 {
+            font-size: 56px;
+            border: none;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cover-section h2 {
+            font-size: 36px;
+            background: none;
+            color: #555;
+            padding: 0;
+            margin: 5px 0;
+            border: none;
+        }
+
+        .cover-section h3 {
+            font-size: 24px;
+            color: #888;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .cover-divider {
+            width: 80%;
+            height: 8px;
+            background-color: var(--secondary-color);
+            margin: 40px auto;
+            border-radius: 5px;
+        }
+
+        .cover-intro {
+            margin: 60px 80px;
+            font-size: 20px;
+            line-height: 2;
+            text-align: left;
+            color: #444;
+        }
+
+        /* --- Content Components --- */
+        .strategy-card {
+            background-color: #E0F2F1;
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .checklist-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checklist-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Match Record Table */
+        .match-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+        }
+
+        .match-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .match-table td.desc {
+            text-align: left;
+        }
+
+        /* Analysis Sections */
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .text-teal {
+            color: var(--primary-color);
+        }
+
+        .text-red {
+            color: #c0392b;
+        }
+
+        .text-green {
+            color: #27ae60;
+        }
+
+        .highlight-box.type-teal {
+            border-left: 5px solid #008080;
+            padding-left: 15px;
+            background-color: #f0fdfc;
+        }
+    </style>
 </head>
+
 <body class="theme-teal">
 
     <!-- ================= PAGE 126: 章节封面 ================= -->
     <div class="sheet">
-        <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #008080;">策略与复盘</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第八章：战术规划与北京校际联赛分析</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 8: Strategy Planning & Match Analysis</h3>
-            
-            <div style="width: 80%; height: 8px; background: #20B2AA; margin: 40px auto; border-radius: 5px;"></div>
-            
-            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+        <div class="cover-section">
+            <h1 style="font-size: 56px;">策略与复盘</h1>
+            <h2>第八章：战术规划与北京校际联赛分析</h2>
+            <h3>Chapter 8: Strategy Planning & Match Analysis</h3>
+
+            <div class="cover-divider"></div>
+
+            <!-- <div class="cover-intro">
                 <p><strong>赛事背景：</strong> 2025-2026赛季VEX机器人北京首届校际联赛</p>
                 <p><strong>参赛机型：</strong> 二代车 (Gen 2)</p>
                 <p><strong>核心任务：</strong> 验证改进后的机械结构在实战策略中的有效性，并收集数据进行下一轮优化。</p>
-            </div>
-            
-            <div class="sticky-note" style="width: 60%; margin: 50px auto; background-color: #E0F2F1; border: 1px solid #008080;">
+            </div> -->
+
+            <table style="width: 80%;margin: 0 auto;border-collapse: collapse;border: none;">
+
+                <tbody>
+                    <tr>
+                        <td width="25%" style="border: none;"><strong>赛事背景：</strong></td>
+                        <td style="border: none;">2025-2026赛季<br>VEX机器人北京首届校际联赛</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><strong>参赛机型：</strong></td>
+                        <td style="border: none;">二代车 (Gen 2)</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><strong>核心任务：</strong></td>
+                        <td style="border: none;">验证改进后的机械结构在实战策略中的有效性，并收集数据进行下一轮优化。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sticky-note">
                 <strong>本章摘要：</strong><br>
-                本章记录了二代车在北京校际联赛中的战术部署与实际表现。<br>
+                本章记录二代车在北京校际联赛中的战术部署与表现。<br>
                 数据表明，二代车的得分效率显著提升，但在复杂场景下的适应性仍需优化。
             </div>
         </div>
@@ -34,61 +171,78 @@
     <!-- ================= PAGE 127: 战术规划 ================= -->
     <div class="sheet">
         <h1>8.1 战术规划：基于二代车特性的策略</h1>
-        
-        <p>鉴于二代车在底盘通过性和堆叠稳定性上的显著改进，我们对比赛策略进行了针对性调整，以最大化新机型的优势。</p>
 
-        <h3>1. 团队赛策略 (Teamwork Strategy)</h3>
+        <p>鉴于二代车在底盘通过性和三角区定位上的改进，我们依据《路线策略对比图》制定了针对“校际联赛”的高分策略。</p>
+
+            <h3 class="text-teal" style="margin-top: 0;">策略目标 (Target Score)</h3>
+            <table style="width: 100%; text-align: center; margin-top: 10px;">
+                <tr style="font-weight: bold; background: rgba(255,255,255,0.5);">
+                    <td>策略类型</td>
+                    <td>核心配置</td>
+                    <td>目标分数</td>
+                </tr>
+                <tr>
+                    <td>91分策略 (Low Tower)</td>
+                    <td>2个双色三角区 + 2个双色中心区</td>
+                    <td class="text-teal" style="font-size: 20px; font-weight: bold;">166</td>
+                </tr>
+                <tr>
+                    <td>110分策略 (High Tower)</td>
+                    <td>2个双色三角区 + 2个双色中心区 + 110高塔</td>
+                    <td class="text-teal" style="font-size: 20px; font-weight: bold;">178</td>
+                </tr>
+                <tr>
+                    <td>技能赛 (Skills)</td>
+                    <td>110高塔 + 3色中心区 + 1个3色得分区</td>
+                    <td class="text-teal" style="font-size: 20px; font-weight: bold;">184</td>
+                </tr>
+            </table>
+
+        <h3>核心战术执行点</h3>
         <div class="two-column-layout">
             <div class="column">
-                <h4>装填区快速通行策略</h4>
-                <p><strong>依据：</strong> 底盘齿轮上移后，二代车消除了过梁卡顿风险。</p>
-                <p><strong>战术：</strong> 机器人将承担“全场游走”角色，能够频繁穿越场地中央的装填梁，快速往返于左右两个装填区（Loading Zone）与得分区之间，不再局限于半场防守。</p>
+                <h4>1. 三角区突破</h4>
+                <p><strong>依据：</strong> 二代车新增的“半收起”定位角。</p>
+                <p><strong>战术：</strong> 利用直角定位结构，快速填满两个三角区（Triangle Goal），这是相比一代车得分暴涨 60+ 分的关键。</p>
             </div>
             <div class="column">
-                <h4>三角区定位战术</h4>
-                <p><strong>依据：</strong> “半收起”式定位角设计。</p>
-                <p><strong>战术：</strong> 在处理三角区（Triangle Goal）得分任务时，操作手利用定位角的快速展开特性，直接撞击角区边缘进行物理对准，减少微调时间，确保存放效率。</p>
+                <h4>2. 高塔稳定性</h4>
+                <p><strong>依据：</strong> 机械臂力臂加长。</p>
+                <p><strong>战术：</strong> 在110分策略中，重点保证高塔Beam的送入稳定性。</p>
             </div>
         </div>
-
-        <h3>2. 技能赛策略 (Skills Strategy)</h3>
-        <p>利用“面状辅助堆叠”的高稳定性，我们在技能赛中规划了高风险高回报的路线：</p>
-        <ul>
-            <li><strong>优先任务：</strong> 优先完成场地上所有 Floor Goal 的双层堆叠。</li>
-            <li><strong>进阶任务：</strong> 在剩余时间利用加长的机械臂尝试 12 英寸高塔得分。</li>
-        </ul>
-
     </div>
 
     <!-- ================= PAGE 128: 赛前准备 ================= -->
     <div class="sheet">
-        <h1>8.2 赛前准备与检查 (Pre-Match)</h1>
+        <h1>8.2 赛前集训与检查 (Pre-Match)</h1>
 
-        <p>为确保二代车在首场实战中发挥稳定，我们制定了严格的赛前检查清单（Checklist）。</p>
+        <p>赛前一周（10月18-19日），我们在叶恒瑞家中进行了高强度的针对性集训，重点解决了《训练记录》中暴露出的隐患。</p>
 
-        <div class="tactics-board">
-            <div class="board-title">二代车赛前检查表</div>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #aaa;"><input type="checkbox" checked> <strong>底盘结构：</strong> 检查齿轮组与轮轴是否紧固，确认齿轮上移后的离地间隙无异物阻挡。</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #aaa;"><input type="checkbox" checked> <strong>定位机构：</strong> 测试“半收起”气动杆的展开与收回动作是否顺畅，气路无漏气。</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #aaa;"><input type="checkbox" checked> <strong>堆叠辅助：</strong> 确认面状导向板无形变，与标准销钉的贴合度良好。</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #aaa;"><input type="checkbox" checked> <strong>传感器：</strong> 校准抓手前端距离传感器阈值（50mm），确保自动闭合逻辑触发准确。</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #aaa;"><input type="checkbox" checked> <strong>尺寸合规：</strong> 放入 11"x20"x15" 测量框，确保机械臂与定位角在初始状态下不超规。</td>
-                </tr>
-            </table>
+        <div class="highlight-box type-default">
+            <h3>赛前突击集训记录 (Oct 18-19)</h3>
+            <ul class="notebook-list">
+                <li>
+                    <strong>问题 A：翻转动作略慢</strong><br>
+                    <span class="text-gray">影响：</span> 技能赛时间不够。<br>
+                    <strong>对策：</strong> 调整了电机参数，提升翻转速度。
+                </li>
+                <li>
+                    <strong>问题 B：高塔送Pin不到位</strong><br>
+                    <span class="text-gray">影响：</span> 110分策略成功率低。<br>
+                    <strong>对策：</strong> 物理加长了机械臂力臂，并抬升了整体高度，确保能覆盖高塔接驳点。
+                </li>
+                <li>
+                    <strong>问题 C：边框扣Pin力度过大</strong><br>
+                    <span class="text-gray">影响：</span> 上层Pin过于摇晃，容易掉落。<br>
+                    <strong>对策：</strong> 训练操作手使用“点动”操作，减少回弹，实现轻柔扣Pin。
+                </li>
+            </ul>
         </div>
 
-        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
-                    </div>
+        <div class="img-placeholder" style="height: 200px;">
+            [图片：赛前检查清单与机器调试照片]
+        </div>
 
     </div>
 
@@ -96,7 +250,8 @@
     <div class="sheet">
         <h1>8.3 比赛记录：北京校际联赛</h1>
 
-        <div class="info-box" style="background: #f4f4f4; padding: 15px; border-left: 5px solid #008080; margin-bottom: 20px;">
+        <div class="info-box"
+            style="background: #f4f4f4; padding: 15px; border-left: 5px solid #008080; margin-bottom: 20px;">
             <p><strong>时间：</strong> 2025年10月26日</p>
             <p><strong>地点：</strong> 北京</p>
             <p><strong>阶段：</strong> 资格赛 (Qualification Matches)</p>
@@ -104,43 +259,47 @@
 
         <p>这是二代车的首次实战检验。以下是 RobotEvents 记录的关键场次数据：</p>
 
-        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <tr style="background: #008080; color: white;">
-                <th style="padding: 8px;">场次 (Match)</th>
-                <th style="padding: 8px;">队友 (Partner)</th>
-                <th style="padding: 8px;">得分 (Score)</th>
-                <th style="padding: 8px;">赛况简述</th>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border: 1px solid #ccc;">Q10</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">71548B</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">177</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">底盘通过性良好，与队友配合默契。</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border: 1px solid #ccc;">Q26</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">6145A</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">158</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">三角区操作出现失误，掉落一个销钉。</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border: 1px solid #ccc;">Q40</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">27093K</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">139</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">常规发挥，堆叠稳定性经受住考验。</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border: 1px solid #ccc;">Q66</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">81020C</td>
-                <td style="padding: 8px; border: 1px solid #ccc;"><strong>278</strong></td>
-                <td style="padding: 8px; border: 1px solid #ccc;"><strong>全场高光！</strong> 二代车的高速移动与队友的强力得分能力完美互补，创下当日最高分。</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border: 1px solid #ccc;">Q90</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">71548A</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">23</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">严重意外。队友机器故障，我方在尝试单人挽救时因急停导致销钉滑落。</td>
-            </tr>
+        <table class="match-table">
+            <thead>
+                <tr>
+                    <th width="8%">场次</th>
+                    <th width="13%">队友</th>
+                    <th width="8%">得分</th>
+                    <th>赛况简述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Q10</td>
+                    <td>71548B</td>
+                    <td>177</td>
+                    <td class="desc">底盘通过性良好，三角区得分任务完成，首战告捷。</td>
+                </tr>
+                <tr>
+                    <td>Q26</td>
+                    <td>6145A</td>
+                    <td>158</td>
+                    <td class="desc">三角区操作出现失误，掉落一个销钉，影响了最终分数。</td>
+                </tr>
+                <tr>
+                    <td>Q40</td>
+                    <td>27093K</td>
+                    <td>139</td>
+                    <td class="desc">常规发挥，但在快速移动中底盘仍有轻微漂移迹象。</td>
+                </tr>
+                <tr>
+                    <td>Q66</td>
+                    <td>81020C</td>
+                    <td><strong>278</strong></td>
+                    <td class="desc"><strong>全场高光！</strong> 二代车的高速移动与队友的强力得分能力完美互补，创下当日最高分。</td>
+                </tr>
+                <tr>
+                    <td>Q90</td>
+                    <td>71548A</td>
+                    <td>23</td>
+                    <td class="desc">严重意外。队友机器故障，我方在尝试单人挽救时因急停导致销钉滑落。</td>
+                </tr>
+            </tbody>
         </table>
 
     </div>
@@ -149,22 +308,29 @@
     <div class="sheet">
         <h1>8.4 赛后技术复盘 (Post-Match Analysis)</h1>
 
-        <h3>表现优异点 (The Good)</h3>
-        <ul>
-            <li><strong>通过性验证成功：</strong> 全天比赛中，二代车在穿越装填梁时未发生一次卡顿。底盘齿轮上移方案被证明是完全正确的。</li>
-            <li><strong>堆叠效率提升：</strong> 得益于“面状辅助”结构，第二层堆叠的成功率较一代车提升了约 40%，且操作手在盲视野下的信心明显增强。</li>
-            <li><strong>爆发力展现：</strong> 在 Q66 场次中拿下的 278 分，证明了二代车具备冲击高分的潜力。</li>
-        </ul>
+        <p>赛后（11月8日-9日），全队进行了详细的总结会议，结合《训练记录》中的反馈，我们发现了几个关键的技术瓶颈。</p>
 
-        <h3>暴露的问题 (The Bad)</h3>
-        <ul>
-            <li><strong>三角区夹具隐患：</strong> 在《参赛总结》中我们记录到：“在进入三角区时，夹子容易出现掉落情况”。
-                <br><em>分析：</em> 这是一个严重的结构缺陷。虽然定位角能快速对准，但在狭窄空间内转向时，夹具对销钉的侧向保持力不足。</li>
-            <li><strong>临场适应性：</strong> 在 Q90 场次中，面对队友掉线的突发状况，操作手切换“单人策略”不够果断，导致节奏崩盘。</li>
-        </ul>
+        <div class="two-column-layout">
+            <div class="column">
+                <h3 class="text-green">表现优异点 (The Good)</h3>
+                <ul class="notebook-list">
+                    <li><strong>策略达标：</strong> Q10 和 Q66 的高分证明了“178分”策略模型在实战中是完全可行的，三角区得分显著提升了总分上限。</li>
+                    <li><strong>通过性：</strong> 底盘齿轮上移后，全天未发生过梁卡顿。</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3 class="text-red">暴露的问题 (The Bad)</h3>
+                <ul class="notebook-list">
+                    <li><strong>时间损耗：</strong> 记录显示“送入三角区时间角度调整耽误时间”。原有路径非最优，导致最后几秒操作匆忙。</li>
+                    <li><strong>高速漂移：</strong> 在 Q40 和 Q90 中，告诉移动时仍有漂移现象，影响了精准定位。</li>
+                    <li><strong>扣Pin震荡：</strong> 尽管赛前进行了训练，但在紧张比赛中，自动扣Pin力度依然难以把控，导致上层Pin摇晃。</li>
+                </ul>
+            </div>
+        </div>
 
-        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
-                    </div>
+        <div class="img-placeholder" style="height: 200px;">
+            [图片：赛后复盘会议，队员正在分析比赛录像]
+        </div>
 
     </div>
 
@@ -173,21 +339,25 @@
         <h1>8.5 总结与未来计划</h1>
 
         <p>
-            北京校际联赛的成绩（排名 14）虽然未达夺冠预期，但二代车展现出的工程进步是令人振奋的。
-        </p>
-
-        <h3>二代车工程总结</h3>
-        <p>
-            二代车成功解决了“能不能动”和“能不能叠”的基础问题，但在“极端情况下的可靠性”上仍有欠缺。它是一台优秀的过渡机型，为我们积累了宝贵的实战数据。
+            北京校际联赛的成绩（排名 14）虽然未达夺冠预期，但二代车展现出的工程进步是令人振奋的。针对暴露出的问题，我们制定了备战“北京市教委赛”的改进计划。
         </p>
 
         <h3>后续改进方向 (Future Plan)</h3>
         <div class="highlight-box type-teal">
-            <p>针对本次比赛暴露出的<strong>三角区掉件</strong>问题，我们计划在下一阶段进行以下优化：</p>
-            <ol>
-                <li><strong>夹具重构：</strong> 在夹具上增加限位结构或摩擦增强设计，确保在剧烈转向时销钉不脱落。</li>
-                <li><strong>程序优化：</strong> 调整自动化动作的逻辑顺序，使操作衔接更加流畅。</li>
-                <li><strong>战术演练：</strong> 增加针对“队友掉线”等极端情况的模拟训练，提升操作手的临场应变能力。</li>
+            <p><strong>基于 11月8-9日 总结的行动清单：</strong></p>
+            <ol class="notebook-list">
+                <li>
+                    <strong>路径优化 (Path Planning)：</strong>
+                    针对三角区进入慢的问题，计划采用<strong>“贴边直线送入”</strong>策略。即两点直线距离最短，车子前端准确贴边，快速送Pin，减少微调时间。
+                </li>
+                <li>
+                    <strong>底盘参数微调 (PID Tuning)：</strong>
+                    针对漂移问题，将重新调整电机的速度与刹车参数，牺牲极少量的极速换取更强的抓地力。
+                </li>
+                <li>
+                    <strong>扣Pin柔性化：</strong>
+                    尝试在程序中减小自动扣Pin的瞬时功率，或者在机械结构上增加缓冲，解决“震荡掉件”问题。
+                </li>
             </ol>
         </div>
 
@@ -197,8 +367,9 @@
         </p>
 
     </div>
-
+    <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
 </body>
+
 </html>
