@@ -47,11 +47,32 @@
         <div class="highlight-box type-default">
             <ol style="line-height: 1.5;">
                 <li><strong>快速移动：</strong> 能在场地内灵活穿梭，快速到达得分区域。</li>
+                <img src="assets/ch04/4_n_1_1.webp" alt="系统布局示意"
+                    style="height:200px; display: block; margin: 10px auto;">
+
                 <li><strong>销钉 Pin 抓取：</strong> 能准确、稳固地抓取销钉，防止在移动中滑落。</li>
+                <img src="assets/ch04/4_n_1_2.webp" alt="系统布局示意"
+                    style="height:150px; display: block; margin: 10px auto;">
                 <li><strong>销钉堆叠 Stacking：</strong> 具备垂直抬升机构，能完成销钉的多层堆叠以获取高分。</li>
+            </ol>
+        </div>
+
+
+    </div>
+
+    <div class="sheet">
+        <h1>4.1 竞赛规则分析与功能定义（续）</h1>
+
+        <h3>任务拆解（续）</h3>
+
+        <div class="highlight-box type-default">
+            <ol start="4" style="line-height: 1.5;">
                 <li><strong>万能梁 Beam 勾取：</strong> 能准确勾住场地上的万能梁并进行拖拽移动。</li>
+                <img src="assets/ch04/4_n_1_3.webp" alt="系统布局示意"
+                    style="height:200px; display: block; margin: 10px auto;border-radius: 10px;">
+
                 <li><strong>正向堆叠：</strong> 能配合抬升机构，将万能梁与销钉进行组合得分。</li>
-                <li><strong>反向堆叠：</strong> 抓取机构需具备水平翻转功能，以完成反向堆叠任务。</li>
+                <li><strong>反向堆叠：</strong> 销钉抓取机构需具备水平翻转功能，以完成反向堆叠至万能梁的任务。</li>
             </ol>
         </div>
 
@@ -142,52 +163,6 @@
         </table>
 
     </div>
-    <!-- <div class="sheet">
-
-        <h1>4.2 系统架构与模块划分（续）</h1>
-        <h3>电控端口规划</h3>
-        <p>为了规范布线并指导后续编程工作，我们制定了标准的端口分配表。这种标准化的定义有助于硬件组与程序组之间的协作。</p>
-
-        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; text-align: center;">
-            <tr style="background: #eee; font-weight: bold;">
-                <td style="border: 1px solid #999; padding: 8px;">端口 (Port)</td>
-                <td style="border: 1px solid #999; padding: 8px;">设备 (Device)</td>
-                <td style="border: 1px solid #999; padding: 8px;">功能描述 (Function)</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #999; padding: 6px;">1</td>
-                <td style="border: 1px solid #999; padding: 6px;">左底盘电机 (Left Drive)</td>
-                <td style="border: 1px solid #999; padding: 6px;">负责左侧驱动</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #999; padding: 6px;">6</td>
-                <td style="border: 1px solid #999; padding: 6px;">右底盘电机 (Right Drive)</td>
-                <td style="border: 1px solid #999; padding: 6px;">负责右侧驱动</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #999; padding: 6px;">4</td>
-                <td style="border: 1px solid #999; padding: 6px;">抬升电机 (Lift Motor)</td>
-                <td style="border: 1px solid #999; padding: 6px;">驱动四连杆升降</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #999; padding: 6px;">10</td>
-                <td style="border: 1px solid #999; padding: 6px;">翻转电机 (Flip Motor)</td>
-                <td style="border: 1px solid #999; padding: 6px;">驱动手腕旋转 180°</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #999; padding: 6px;">11</td>
-                <td style="border: 1px solid #999; padding: 6px;">气动电磁阀 (Solenoid)</td>
-                <td style="border: 1px solid #999; padding: 6px;">控制气爪开合</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #999; padding: 6px;">2</td>
-                <td style="border: 1px solid #999; padding: 6px;">陀螺仪 (Gyro)</td>
-                <td style="border: 1px solid #999; padding: 6px;">辅助自动阶段转向</td>
-            </tr>
-        </table>
-
-
-    </div> -->
     <!-- ================= PAGE 64: 方案筛选 ================= -->
     <div class="sheet">
         <h1>4.3 备选方案评估与淘汰</h1>

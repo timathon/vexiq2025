@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ch00Link.textContent = 'Introduction';
     linksContainer.appendChild(ch00Link);
 
-                    const chapterPageCounts = {
+                                const chapterPageCounts = {
         "ch01": 26,
         "ch02": 25,
         "ch03": 10,
