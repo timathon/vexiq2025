@@ -20,11 +20,23 @@ document.addEventListener('DOMContentLoaded', function() {
     ch00Link.textContent = 'Introduction';
     linksContainer.appendChild(ch00Link);
 
+    const chapterPageCounts = {
+        "ch01": 13,
+        "ch02": 25,
+        "ch03": 10,
+        "ch04": 7,
+        "ch05": 9,
+        "ch06": 8,
+        "ch07": 9,
+        "ch08": 6
+    };
+
     for (let i = 1; i <= 8; i++) {
         const link = document.createElement('a');
         const chapter = 'ch' + ('0' + i).slice(-2);
         link.href = chapter + '.html';
-        link.textContent = 'Chapter ' + i;
+        // Example: Display chapter and its page count. Modify as needed.
+        link.textContent = 'Chapter ' + i + ' (' + chapterPageCounts[chapter] + ' pages)';
         linksContainer.appendChild(link);
     }
 

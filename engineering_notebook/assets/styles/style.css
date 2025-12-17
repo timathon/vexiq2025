@@ -506,7 +506,7 @@ body.hide-other-elements .footer {
     top: 50px; /* Position below the button */
     left: 0;
     background-color: #f9f9f9;
-    min-width: 160px;
+    width: max-content;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 5px;
@@ -517,6 +517,7 @@ body.hide-other-elements .footer {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    white-space: nowrap;
 }
 
 .navigation-links a:hover {
