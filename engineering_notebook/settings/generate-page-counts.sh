@@ -9,22 +9,21 @@ NAV_SCRIPT="assets/scripts/navigation-button.js"
 
 # Generate the new chapterPageCounts object content
 JSON_CONTENT="    const chapterPageCounts = {\n"
-CHAPTER_FILES=$(find . -maxdepth 1 -name 'ch[0-9][0-9].html' | sort)
-NUM_CHAPTERS=$(echo "$CHAPTER_FILES" | wc -l)
-CURRENT_CHAPTER=0
 
-for FILE in $CHAPTER_FILES; do
-    CURRENT_CHAPTER=$((CURRENT_CHAPTER + 1))
+FILES=("index.html" "glossary.html" $(find . -maxdepth 1 -name 'ch[0-9][0-9].html' | sort))
+
+for i in "${!FILES[@]}"; do
+    FILE="${FILES[$i]}"
     CHAPTER_ID=$(basename "$FILE" .html)
-    COUNT=$(grep -o 'class="[^"]*sheet' "$FILE" | wc -l)
-    
+    COUNT=$(grep -o 'class="sheet"' "$FILE" | wc -l)
     JSON_CONTENT+="        \"$CHAPTER_ID\": $COUNT"
-    if [ "$CURRENT_CHAPTER" -lt "$NUM_CHAPTERS" ]; then
+    if [ "$i" -lt "$((${#FILES[@]} - 1))" ]; then
         JSON_CONTENT+=',\n'
     else
         JSON_CONTENT+="\n"
     fi
 done
+
 JSON_CONTENT+="    };"
 
 # Use perl to replace the block in the JS file.

@@ -14,13 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     linksContainer.classList.add('navigation-links');
     menu.appendChild(linksContainer);
 
-    // Add link for ch00
-    const ch00Link = document.createElement('a');
-    ch00Link.href = 'index.html';
-    ch00Link.textContent = 'Introduction';
-    linksContainer.appendChild(ch00Link);
-
-                                        const chapterPageCounts = {
+            const chapterPageCounts = {
+        "index": 4,
+        "glossary": 0,
         "ch01": 26,
         "ch02": 25,
         "ch03": 10,
@@ -31,14 +27,47 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch08": 6
     };
 
+    const chapterColors = {
+        "index": "#005f9e",
+        "ch01": "#005f9e",
+        "ch02": "#D35400",
+        "ch03": "#27AE60",
+        "ch04": "#8E44AD",
+        "ch05": "#E74C3C",
+        "ch06": "#00ACC1",
+        "ch07": "#8E44AD",
+        "ch08": "#008080",
+        "glossary": "#5D6D7E" // A neutral color for glossary
+    };
+
+    // Add link for Introduction
+    const introLink = document.createElement('a');
+    introLink.href = 'index.html';
+    introLink.textContent = 'Introduction (' + chapterPageCounts['index'] + ' pages)';
+    introLink.style.backgroundColor = chapterColors['index'];
+    introLink.style.color = 'white';
+    linksContainer.appendChild(introLink);
+
+
     for (let i = 1; i <= 8; i++) {
         const link = document.createElement('a');
         const chapter = 'ch' + ('0' + i).slice(-2);
         link.href = chapter + '.html';
         // Example: Display chapter and its page count. Modify as needed.
         link.textContent = 'Chapter ' + i + ' (' + chapterPageCounts[chapter] + ' pages)';
+        link.style.backgroundColor = chapterColors[chapter];
+        link.style.color = 'white';
         linksContainer.appendChild(link);
     }
+
+    // Add link for Glossary
+    const glossaryLink = document.createElement('a');
+    glossaryLink.href = 'glossary.html';
+    glossaryLink.textContent = 'Glossary (' + chapterPageCounts['glossary'] + ' pages)';
+    glossaryLink.style.backgroundColor = chapterColors['glossary'];
+    glossaryLink.style.color = 'white';
+    linksContainer.appendChild(glossaryLink);
+
 
     document.body.appendChild(menu);
 
@@ -50,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentChapterMatch) {
         const chapterNumber = parseInt(currentChapterMatch[1], 10);
         let startPage = 1;
+        
+        // Add pages from index.html
+        startPage += chapterPageCounts['index'] || 0;
 
         for (let i = 1; i < chapterNumber; i++) {
             const chapterKey = 'ch' + ('0' + i).slice(-2);
