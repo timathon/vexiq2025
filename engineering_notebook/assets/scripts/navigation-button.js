@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add link for ch00
     const ch00Link = document.createElement('a');
-    ch00Link.href = 'ch00.html';
+    ch00Link.href = 'index.html';
     ch00Link.textContent = 'Introduction';
     linksContainer.appendChild(ch00Link);
 
