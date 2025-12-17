@@ -100,7 +100,7 @@
 
         .analysis-title {
             font-weight: bold;
-            font-size: 18px;
+            font-size: 22px;
             margin-bottom: 10px;
             display: block;
         }
@@ -413,90 +413,110 @@
 
         <div class="info-box"
             style="background: #f4f4f4; padding: 15px; border-left: 5px solid #008080; margin-bottom: 20px;">
-            <p><strong>时间：</strong> 2025年10月26日</p>
-            <p><strong>地点：</strong> 北京</p>
-            <p><strong>阶段：</strong> 资格赛 (Qualification Matches)</p>
+            <p><strong>赛事名称：</strong> VEX2025-2026赛季首届北京校际联赛</p>
+            <p><strong>时间：</strong> 2025年10月25日 - 10月26日</p>
+            <p><strong>地点：</strong> 北京科技大学（沙河校区）</p>
+            <p><strong>性质：</strong> 2026年上海交大国赛资格选拔</p>
         </div>
 
-        <p>这是二代车的首次实战检验。以下是 RobotEvents 记录的关键场次数据：</p>
-
-        <table class="match-table">
-            <thead>
-                <tr>
-                    <th width="8%">场次</th>
-                    <th width="13%">队友</th>
-                    <th width="8%">得分</th>
-                    <th>赛况简述</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Q10</td>
-                    <td>71548B</td>
-                    <td>177</td>
-                    <td class="desc">底盘通过性良好，三角区得分任务完成，首战告捷。</td>
-                </tr>
-                <tr>
-                    <td>Q26</td>
-                    <td>6145A</td>
-                    <td>158</td>
-                    <td class="desc">三角区操作出现失误，掉落一个销钉，影响了最终分数。</td>
-                </tr>
-                <tr>
-                    <td>Q40</td>
-                    <td>27093K</td>
-                    <td>139</td>
-                    <td class="desc">常规发挥，但在快速移动中底盘仍有轻微漂移迹象。</td>
-                </tr>
-                <tr>
-                    <td>Q66</td>
-                    <td>81020C</td>
-                    <td><strong>278</strong></td>
-                    <td class="desc"><strong>全场高光！</strong> 二代车的高速移动与队友的强力得分能力完美互补，创下当日最高分。</td>
-                </tr>
-                <tr>
-                    <td>Q90</td>
-                    <td>71548A</td>
-                    <td>23</td>
-                    <td class="desc">严重意外。队友机器故障，我方在尝试单人挽救时因急停导致销钉滑落。</td>
-                </tr>
-            </tbody>
+        <h3 class="text-teal">一、 比赛日程 (Schedule)</h3>
+        <table class="checklist-table" style="font-size: 14px; margin-bottom: 20px;">
+            <tr style="background-color: #f9f9f9;">
+                <td width="20%"><strong>10.25 (Day 1)</strong></td>
+                <td>
+                    13:00 - 14:30 注册报到、机器人检录<br>
+                    15:00 - 17:30 选手会议、<strong>技能赛 (Skills Matches)</strong>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>10.26 (Day 2)</strong></td>
+                <td>
+                    08:00 - 08:30 入场准备<br>
+                    08:30 - 12:30 资格赛 (Qualifications)<br>
+                    13:30 - 15:00 决赛 (Finals)<br>
+                    15:00 - 16:30 闭幕颁奖
+                </td>
+            </tr>
         </table>
 
-    </div>
-
-    <!-- ================= PAGE 130: 赛后分析 ================= -->
-    <div class="sheet">
-        <h1>8.5 北京校际联赛（2）赛后复盘</h1>
-        <!-- <h2>赛后技术复盘</h2> -->
-        <p>赛后（11月8日-9日），全队进行了详细的总结会议，结合《训练记录》中的反馈，我们发现了几个关键的技术瓶颈。</p>
-
+        <h3 class="text-teal">二、 整体表现与成绩</h3>
         <div class="two-column-layout">
             <div class="column">
-                <h3 class="text-green">表现优异点 (The Good)</h3>
                 <ul class="notebook-list">
-                    <li><strong>策略达标：</strong> Q10 和 Q66 的高分证明了“178分”策略模型在实战中是完全可行的，三角区得分显著提升了总分上限。</li>
-                    <li><strong>通过性：</strong> 底盘齿轮上移后，全天未发生过梁卡顿。</li>
+                    <li><strong>手动技能：</strong> 砍下 <strong>184分</strong>，发挥出色。</li>
+                    <li><strong>自动技能：</strong> 取得 <strong>91分</strong>，相比此前有巨大进步。</li>
+                    <li><strong>最终排名：</strong>
+                        <br><span class="text-red" style="font-weight:bold;">🏆 技能赛亚军</span>
+                        <br><span class="text-teal" style="font-weight:bold;">🥉 资格赛季军</span>
+                    </li>
                 </ul>
             </div>
-            <div class="column">
-                <h3 class="text-red">暴露的问题 (The Bad)</h3>
-                <ul class="notebook-list">
-                    <li><strong>时间损耗：</strong> 记录显示“送入三角区时间角度调整耽误时间”。原有路径非最优，导致最后几秒操作匆忙。</li>
-                    <li><strong>高速漂移：</strong> 在 Q40 和 Q90 中，告诉移动时仍有漂移现象，影响了精准定位。</li>
-                    <li><strong>扣Pin震荡：</strong> 尽管赛前进行了训练，但在紧张比赛中，自动扣Pin力度依然难以把控，导致上层Pin摇晃。</li>
-                </ul>
-            </div>
+            <!-- <div class="column">
+                <div class="highlight-box type-default" style="background-color: #fff8e1; border-left-color: #f39c12;">
+                    <strong>⚠️ 关键失误警示：</strong><br>
+                    第二次自动赛时发生严重人为事故。赛前重新烧录程序时<strong>“烧反了”</strong>，导致夹子与钩Beam的动作完全颠倒，痛失更高分机会。
+                </div>
+            </div> -->
         </div>
-        <img src="assets/ch08/8_5_1.webp" alt="北京市教委机器人大赛参赛照片"
-            style="display: block;height:280px; margin: 10px auto; border-radius: 10px;">
-
-        <!-- <div class="img-placeholder" style="height: 200px;">
-            [图片：赛后复盘会议，队员正在分析比赛录像]
-        </div> -->
 
     </div>
 
+    <div class="sheet">
+        <h1>8.5 北京校际联赛（2）赛后复盘</h1>
+
+        <p>本次比赛不仅获得了国赛入场券，更验证了我们在赛前进行的“三代车”升级方向的正确性，同时也暴露了严重的流程管理问题。</p>
+
+        <h3 class="text-teal">复盘总结 (Post-Match Analysis)</h3>
+
+        <div class="analysis-section">
+            <span class="analysis-title text-green">1. 技术升级验证：三代车 (Gen 3) 初现锋芒</span>
+            <p>赛前我们紧急将车子升级为<strong>三代车配置</strong>，并优化了全新路线。</p>
+            <ul class="notebook-list">
+                <li><strong>高塔优化：</strong> 在搭高塔及得分环节进行了针对性改动，准确度提升至近乎 <strong>100%</strong>。</li>
+                <li><strong>效率提升：</strong> 机械结构的优化使得整体运行速度提升了 <strong>2-3秒</strong>，为复杂操作留出了更多冗余时间。</li>
+            </ul>
+        </div>
+        <img src="assets/ch08/8_5_1.webp" alt="北京市教委机器人大赛参赛照片"
+            style="display: block;height:300px; margin: 10px auto; border-radius: 10px;">
+
+
+    </div>
+    <div class="sheet">
+        <h1>8.5 北京校际联赛（3）赛后复盘（续）</h1>
+        <div class="analysis-section">
+            <span class="analysis-title text-teal">2. 外联策略进化：数据化管理</span>
+            <p>吸取了过往经验，本次比赛启用了全新的<strong>《联队记录表》</strong>，极大提高了外联效率。</p>
+            <table class="checklist-table" style="font-size: 13px;">
+                <tr>
+                    <td style="background:#e0f2f1; width: 30%;"><strong>记录维度</strong></td>
+                    <td style="background:#e0f2f1;"><strong>作用</strong></td>
+                </tr>
+                <tr>
+                    <td>队友电机/底盘数据</td>
+                    <td>评估队友推力与速度，决定攻防分配。</td>
+                </tr>
+                <tr>
+                    <td>优势路线与冲突点</td>
+                    <td>赛前预判路径重叠，避免赛场“撞车”。</td>
+                </tr>
+                <tr>
+                    <td>历史得分记录</td>
+                    <td>基于数据选择决赛最佳搭档。</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title text-red">3. 惨痛教训：流程与心态</span>
+            <div class="highlight-box type-default" style="background-color: #fff5f5; border-left-color: #c0392b;">
+                <p><strong>事故：程序反向烧录</strong></p>
+                <p><strong>原因：</strong> 过于自信。在修改程序后，认为逻辑简单，<strong>没有进行哪怕一次实车测试（Test Run）</strong>就直接上场。</p>
+                <p><strong>后果：</strong> 赛场上夹子与钩子的动作全部反向执行，不仅该场次自动分归零，更对操作手心态造成巨大打击。</p>
+                <p><strong>整改：</strong> 确立铁律——<strong>“任何代码改动，必须实车测试通过后方可封存。”</strong></p>
+            </div>
+        </div>
+
+    </div>
     <!-- ================= PAGE 131: 总结与展望 ================= -->
     <div class="sheet">
         <h1>8.6 总结与未来计划</h1>
