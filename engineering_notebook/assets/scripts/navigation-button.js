@@ -41,4 +41,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.body.appendChild(menu);
+
+    // Dynamically generate page numbers
+    const path = window.location.pathname;
+    const currentPage = path.split("/").pop();
+    const currentChapterMatch = currentPage.match(/ch(\d+)\.html/);
+
+    if (currentChapterMatch) {
+        const chapterNumber = parseInt(currentChapterMatch[1], 10);
+        let startPage = 1;
+
+        for (let i = 1; i < chapterNumber; i++) {
+            const chapterKey = 'ch' + ('0' + i).slice(-2);
+            startPage += chapterPageCounts[chapterKey] || 0;
+        }
+
+        const sheets = document.querySelectorAll('.sheet');
+        sheets.forEach((sheet, index) => {
+            const pageNumberDiv = document.createElement('div');
+            pageNumberDiv.classList.add('page-number');
+            pageNumberDiv.textContent = startPage + index;
+            sheet.appendChild(pageNumberDiv);
+        });
+    }
 });
