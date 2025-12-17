@@ -1,299 +1,303 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>竞赛训练思维导图</title>
-    <!-- 引入 ECharts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <!-- 引入 Tailwind CSS 用于界面布局 -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Microsoft YaHei', sans-serif;
-            background-color: #f8fafc;
-        }
-        #chart-container {
-            width: 100%;
-            height: calc(100vh - 60px); /* 减去头部高度 */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>竞赛训练思维导图</title>
+  <!-- 引入 ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <!-- 引入 Tailwind CSS 用于界面布局 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Microsoft YaHei', sans-serif;
+      background-color: #f8fafc;
+    }
+
+    #chart-container {
+      width: 100%;
+      height: calc(100vh - 60px);
+      /* 减去头部高度 */
+    }
+  </style>
 </head>
+
 <body class="flex flex-col h-screen">
 
-    <!-- 头部工具栏 -->
-    <div class="bg-white shadow-sm p-4 flex justify-between items-center z-10 relative">
-        <div>
-            <h1 class="text-xl font-bold text-slate-800">竞赛训练体系思维导图</h1>
-            <p class="text-xs text-slate-500">点击节点可折叠/展开 | 滚轮缩放 | 拖拽平移</p>
-        </div>
-        <div class="space-x-2">
-            <button onclick="expandAll()" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm transition">展开所有</button>
-            <button onclick="collapseAll()" class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm transition">折叠所有</button>
-        </div>
+  <!-- 头部工具栏 -->
+  <div class="bg-white shadow-sm p-4 flex justify-between items-center z-10 relative">
+    <div>
+      <h1 class="text-xl font-bold text-slate-800">竞赛训练体系思维导图</h1>
+      <p class="text-xs text-slate-500">点击节点可折叠/展开 | 滚轮缩放 | 拖拽平移</p>
     </div>
+    <div class="space-x-2">
+      <button onclick="expandAll()"
+        class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm transition">展开所有</button>
+      <button onclick="collapseAll()"
+        class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm transition">折叠所有</button>
+    </div>
+  </div>
 
-    <!-- 图表容器 -->
-    <div id="chart-container"></div>
+  <!-- 图表容器 -->
+  <div id="chart-container"></div>
 
-    <script>
-        var dom = document.getElementById('chart-container');
-        var myChart = echarts.init(dom, null, {
-            renderer: 'canvas',
-            useDirtyRect: false
-        });
+  <script>
+    var dom = document.getElementById('chart-container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
 
-        // 定义数据结构
-        const data = {
-            name: "竞赛核心体系",
-            children: [
-                {
-                    name: "学习目标",
-                    itemStyle: { color: '#3b82f6' }, // Blue
-                    children: [
-                        {
-                            name: "提高能力",
-                            children: [
-                                { name: "设计能力" },
-                                { name: "搭建能力" },
-                                { name: "程序编写" },
-                                { name: "团队协作" },
-                                { name: "解决问题" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    name: "学习规则",
-                    itemStyle: { color: '#10b981' }, // Emerald
-                    children: [
-                        { name: "赛事说明" },
-                        {
-                            name: "赛局要素",
-                            children: [
-                                { 
-                                    name: "车子 (Robot)",
-                                    children: [
-                                        { name: "Pin (销)" },
-                                        { name: "Beam (梁)" }
-                                    ]
-                                },
-                                { name: "赛台" },
-                                { name: "得分规则" },
-                                { name: "违规判定" },
-                                { name: "操作手职责" },
-                                { name: "队号牌" },
-                                { name: "特定赛制" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    name: "运用规则 & 训练",
-                    itemStyle: { color: '#f59e0b' }, // Amber
-                    children: [
-                        {
-                            name: "工程循环",
-                            children: [
-                                { name: "搭建" },
-                                { name: "测试" },
-                                { name: "解决问题" },
-                                { name: "升级迭代" }
-                            ]
-                        },
-                        {
-                            name: "执行流程",
-                            children: [
-                                { name: "制定策略" },
-                                { name: "日常训练" },
-                                { name: "发现问题" },
-                                { name: "解决问题" }
-                            ]
-                        },
-                        {
-                            name: "专项练习",
-                            children: [
-                                {
-                                    name: "高目标/高难度",
-                                    children: [
-                                        { 
-                                            name: "远端/近端",
-                                            children: [
-                                                { name: "中心区" },
-                                                { name: "三角区" },
-                                                { name: "边桩" }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    name: "低目标/基础",
-                                    children: [
-                                        { 
-                                            name: "远端/近端",
-                                            children: [
-                                                { name: "中心区" },
-                                                { name: "三角区" },
-                                                { name: "边桩" }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            name: "闭环优化",
-                            children: [
-                                { name: "训练中发现问题" },
-                                { name: "解决问题" },
-                                { name: "优化策略" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    name: "实战比赛",
-                    itemStyle: { color: '#ef4444' }, // Red
-                    children: [
-                        {
-                            name: "赛前准备",
-                            children: [
-                                { name: "联队队友沟通" },
-                                { name: "了解己方优势" },
-                                { name: "确定策略" },
-                                { name: "临场应变准备" }
-                            ]
-                        },
-                        {
-                            name: "赛后总结",
-                            children: [
-                                { name: "复盘分析" },
-                                { name: "总结经验" },
-                                { name: "解决遗留问题" }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        };
-
-        // 递归处理数据，根据层级调整字体大小
-        function processLevelStyles(node, level) {
-            let fontSize = 14; // 默认/底层字体大小
-            let symbolSize = 10; // 默认节点大小
-
-            // 根据层级设置样式
-            if (level === 0) {
-                fontSize = 22; // 根节点最大
-                symbolSize = 25;
-            } else if (level === 1) {
-                fontSize = 18; // 第一层（主分支）
-                symbolSize = 16;
-            } else if (level === 2) {
-                fontSize = 16; // 第二层
-                symbolSize = 12;
+    // 定义数据结构
+    const data = {
+      name: "竞赛核心体系",
+      children: [
+        {
+          name: "学习目标",
+          itemStyle: { color: '#3b82f6' }, // Blue
+          children: [
+            {
+              name: "提高能力",
+              children: [
+                { name: "设计能力" },
+                { name: "搭建能力" },
+                { name: "程序编写" },
+                { name: "团队协作" },
+                { name: "解决问题" }
+              ]
             }
-
-            // 设置节点特定的 label 样式
-            node.label = {
-                fontSize: fontSize
-            };
-            node.symbolSize = symbolSize;
-
-            if (node.children) {
-                node.children.forEach(child => processLevelStyles(child, level + 1));
+          ]
+        },
+        {
+          name: "学习规则",
+          itemStyle: { color: '#10b981' }, // Emerald
+          children: [
+            { name: "赛事说明" },
+            {
+              name: "赛局要素",
+              children: [
+                { name: "车子 (Robot)" },
+                { name: "Pin (销)" },
+                { name: "Beam (梁)" },
+                { name: "赛台" },
+                { name: "得分规则" },
+                { name: "违规判定" },
+                { name: "操作手职责" },
+                { name: "队号牌" },
+                { name: "特定赛制" }
+              ]
             }
-        }
-
-        // 初始化处理样式
-        processLevelStyles(data, 0);
-
-        var option = {
-            tooltip: {
-                trigger: 'item',
-                triggerOn: 'mousemove',
-                formatter: '{b}'
+          ]
+        },
+        {
+          name: "运用规则 & 训练",
+          itemStyle: { color: '#f59e0b' }, // Amber
+          children: [
+            {
+              name: "工程循环",
+              children: [
+                { name: "搭建" },
+                { name: "测试" },
+                { name: "解决问题" },
+                { name: "升级迭代" }
+              ]
             },
-            series: [
+            {
+              name: "执行流程",
+              children: [
+                { name: "制定策略" },
+                { name: "日常训练" },
+                { name: "发现问题" },
+                { name: "解决问题" }
+              ]
+            },
+            {
+              name: "专项练习",
+              children: [
                 {
-                    type: 'tree',
-                    data: [data],
-                    top: '5%',
-                    left: '10%',
-                    bottom: '5%',
-                    right: '20%',
-                    
-                    // 布局方式：正交布局 (orthogonal)
-                    layout: 'orthogonal',
-                    orient: 'LR', // Left to Right
-
-                    label: {
-                        position: 'left',
-                        verticalAlign: 'middle',
-                        align: 'right',
-                        // fontSize 移除，由 data 属性控制
-                        color: '#333'
-                    },
-
-                    leaves: {
-                        label: {
-                            position: 'right',
-                            verticalAlign: 'middle',
-                            align: 'left'
-                        }
-                    },
-
-                    emphasis: {
-                        focus: 'descendant'
-                    },
-
-                    expandAndCollapse: true,
-                    initialTreeDepth: 2, // 初始展开深度
-                    
-                    lineStyle: {
-                        color: '#ccc',
-                        curveness: 0.5
-                    },
-                    
-                    itemStyle: {
-                        color: '#fff',
-                        borderColor: '#666',
-                        borderWidth: 2
+                  name: "高目标/高难度",
+                  children: [
+                    {
+                                            name: "远端/近端",
+                      children: [
+                        { name: "中心区" },
+                        { name: "三角区" },
+                        { name: "边桩" }
+                      ]
                     }
+                  ]
+                },
+                {
+                  name: "低目标/基础",
+                  children: [
+                    {
+                                            name: "远端/近端",
+                      children: [
+                        { name: "中心区" },
+                        { name: "三角区" },
+                        { name: "边桩" }
+                      ]
+                    }
+                  ]
                 }
-            ]
-        };
-
-        if (option && typeof option === 'object') {
-            myChart.setOption(option);
+              ]
+            },
+            {
+              name: "闭环优化",
+              children: [
+                { name: "训练中发现问题" },
+                { name: "解决问题" },
+                { name: "优化策略" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "实战比赛",
+          itemStyle: { color: '#ef4444' }, // Red
+          children: [
+            {
+              name: "赛前准备",
+              children: [
+                { name: "联队队友沟通" },
+                { name: "了解己方优势" },
+                { name: "确定策略" },
+                { name: "临场应变准备" }
+              ]
+            },
+            {
+              name: "赛后总结",
+              children: [
+                { name: "复盘分析" },
+                { name: "总结经验" },
+                { name: "解决遗留问题" }
+              ]
+            }
+          ]
         }
+      ]
+    };
 
-        // 响应式调整
-        window.addEventListener('resize', myChart.resize);
+    // 递归处理数据，根据层级调整字体大小
+    function processLevelStyles(node, level) {
+      let fontSize = 14; // 默认/底层字体大小
+      let symbolSize = 10; // 默认节点大小
 
-        // 按钮功能：展开所有
-        function expandAll() {
-            // 通过修改 option 并重新 setOption 来实现
-            myChart.setOption({
-                series: [{
-                    initialTreeDepth: 10
-                }]
-            });
+      // 根据层级设置样式
+      if (level === 0) {
+        fontSize = 22; // 根节点最大
+        symbolSize = 25;
+      } else if (level === 1) {
+        fontSize = 18; // 第一层（主分支）
+        symbolSize = 16;
+      } else if (level === 2) {
+        fontSize = 16; // 第二层
+        symbolSize = 12;
+      }
+
+      // 设置节点特定的 label 样式
+      node.label = {
+        fontSize: fontSize
+      };
+      node.symbolSize = symbolSize;
+
+      if (node.children) {
+        node.children.forEach(child => processLevelStyles(child, level + 1));
+      }
+    }
+
+    // 初始化处理样式
+    processLevelStyles(data, 0);
+
+    var option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove',
+        formatter: '{b}'
+      },
+      series: [
+        {
+          type: 'tree',
+          data: [data],
+          top: '5%',
+          left: '10%',
+          bottom: '5%',
+          right: '20%',
+
+          // 布局方式：正交布局 (orthogonal)
+          layout: 'orthogonal',
+          orient: 'LR', // Left to Right
+
+          label: {
+            position: 'left',
+            verticalAlign: 'middle',
+            align: 'right',
+            // fontSize 移除，由 data 属性控制
+            color: '#333'
+          },
+
+          leaves: {
+            label: {
+              position: 'right',
+              verticalAlign: 'middle',
+              align: 'left'
+            }
+          },
+
+          emphasis: {
+            focus: 'descendant'
+          },
+
+          expandAndCollapse: true,
+          initialTreeDepth: 2, // 初始展开深度
+
+          lineStyle: {
+            color: '#ccc',
+            curveness: 0.5
+          },
+
+          itemStyle: {
+            color: '#fff',
+            borderColor: '#666',
+            borderWidth: 2
+          }
         }
+      ]
+    };
 
-        // 按钮功能：折叠所有
-        function collapseAll() {
-             myChart.setOption({
-                series: [{
-                    initialTreeDepth: 1 // 只显示根节点和第一级
-                }]
-            });
-        }
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
 
-    </script>
+    // 响应式调整
+    window.addEventListener('resize', myChart.resize);
+
+    // 按钮功能：展开所有
+    function expandAll() {
+      // 通过修改 option 并重新 setOption 来实现
+      myChart.setOption({
+        series: [{
+          initialTreeDepth: 10
+        }]
+      });
+    }
+
+    // 按钮功能：折叠所有
+    function collapseAll() {
+      myChart.setOption({
+        series: [{
+          initialTreeDepth: 1 // 只显示根节点和第一级
+        }]
+      });
+    }
+
+  </script>
 </body>
+
 </html>

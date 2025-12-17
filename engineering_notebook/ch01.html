@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第一章：我们的故事 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
+    <!-- <style>
+        /* 针对新内容的内联样式补充，确保列表和强调文字显示效果良好 */
+        .sheet ul, .sheet ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .sheet li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .sheet h3 {
+            font-size: 20px;
+            color: #555;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            border-left: 4px solid #007acb;
+            padding-left: 10px;
+            text-align: left;
+        }
+        .sheet h2 {
+            margin-top: 25px;
+        }
+    </style> -->
 </head>
+
 <body class="theme-ch01">
-
-
-
-
 
     <!-- ================= PAGE 1: 封面 ================= -->
     <div class="sheet">
@@ -18,20 +40,22 @@
             <h1 style="font-size: 56px; border: none; color: #005f9e;">我的工程笔记</h1>
             <h2 style="font-size: 36px; background: none; color: #555;">第一章：梦开始的地方</h2>
             <h3 style="font-size: 24px; color: #888; border: none;">Chapter 1: Introduction & Team Story</h3>
-            
+
             <div style="width: 80%; height: 8px; background: #007acb; margin: 40px auto; border-radius: 5px;"></div>
-            
-            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
-                <p><strong>战队编号：</strong> 2276A</p>
-                <p><strong>战队名称：</strong> 机甲梦想家 (Mech Dreamers)</p>
-                <p><strong>所属机构：</strong> 北京西城区青少年科技活动馆</p>
-                <p><strong>指导老师：</strong> 王昕 老师</p>
-                <!-- <p><strong>记录员：</strong> 印涵邸</p> -->
+
+            <!-- 修改部分：替换基本信息为章节介绍 -->
+            <div style="text-align: center; margin: 60px 60px; font-size: 20px; line-height: 1.8; color: #444;">
+                <p>
+                    本章记录了 2276A 战队从零开始的组建过程。
+                    在这里，你将看到我们是如何聚在一起，确立共同的目标与队规。
+                    我们也记录了对竞赛规则的初步研读，以及第一台机器人的诞生故事。
+                    虽然充满挑战，但这正是我们梦想启航的地方。
+                </p>
             </div>
-            
+
             <div class="sticky-note">
                 <strong>我们的口号：</strong><br>
-                梦想启动，智造未来！(Ignite Dreams!)
+                梦想启动，创造未来！(Ignite Dreams!)
             </div>
         </div>
         <div class="page-number">1</div>
@@ -40,13 +64,15 @@
     <!-- ================= PAGE 2: 团队介绍 ================= -->
     <div class="sheet">
         <h1>1.1 我们的大家庭</h1>
-        
-        <div class="img-placeholder" style="height: 350px;">
-            [图片：全队成员身着队服的合影，背景为学校机器人实验室。大家笑得很开心，手里拿着VEX零件]
-        </div>
-        <p class="img-caption">2025年夏天，我们在实验室的“全家福”</p>
 
-        <h2>基本信息卡</h2>
+        <!-- <div class="img-placeholder" style="height: 350px;">
+            [图片：全队成员身着队服的合影，背景为学校机器人实验室。大家笑得很开心，手里拿着VEX零件]
+        </div> -->
+        <img src="assets/ch01/team-photo-1.webp" style="height: 400px;margin:0 auto;display: block;">
+
+        <p class="img-caption">我们的“全家福”</p>
+
+        <h2 style="margin: 0;">基本信息卡</h2>
         <table>
             <tr>
                 <td style="width: 30%;"><strong>战队编号</strong></td>
@@ -57,15 +83,38 @@
                 <td>机甲梦想家 (Mech Dreamers)</td>
             </tr>
             <tr>
-                <td><strong>成立时间</strong></td>
+                <td><strong>成立日期</strong></td>
                 <td>2025年7月1日</td>
             </tr>
+            <tr>
+                <td><strong>大本营</strong></td>
+                <td>北京师西城区青少年科技活动馆</td>
+            </tr>
+            <tr>
+                <td><strong>指导老师</strong></td>
+                <td>王昕</td>
+            </tr>
+            <tr>
+                <td><strong>战队口号</strong></td>
+                <td>梦想启动，创造未来 ！</td>
+            </tr>
         </table>
+
+
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+            <span>见证人：王昕老师</span>
+        </div>
+        <div class="page-number">2</div>
+    </div>
+    <div class="sheet">
+        <h1>1.1 我们的大家庭（续）</h1>
 
         <h2>我们的愿景</h2>
         <div class="diary-card" style="margin-top: 20px;">
             <p>
-                在这个 Mix & Match 赛季，我们的目标可不仅仅是赢比赛拿奖杯哦！我们更想成为一名真正的“小小工程师”。
+                在这个 Mix & Match 赛季，我们的目标可不仅仅是赢比赛拿奖杯哦！我们更想成为真正的“小小工程师”。
             </p>
             <p>
                 我们要把<strong>工程设计</strong>、<strong>写代码</strong>和<strong>天马行空的想象力</strong>全部结合起来。
@@ -81,148 +130,287 @@
         </div>
         <div class="page-number">2</div>
     </div>
-
     <!-- ================= PAGE 3-6: 队员介绍 (合并展示，节省篇幅) ================= -->
-    <!-- 为了结构完整，依然保留队员介绍，但略微简化布局 -->
     <div class="sheet">
-        <h1>1.1 认识一下我们</h1>
+        <h1>1.2 成员介绍</h1>
 
-        <div style="display: flex; margin-bottom: 20px;">
-            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：叶恒瑞]</div>
-            <div>
-                <h2>叶恒瑞 (队长 & 程序员)</h2>
-                <p><strong>特长：</strong> C++ 编程、搞定传感器</p>
-                <p>他是我们的“超级大脑”，最喜欢对着电脑敲代码。虽然有时候代码报错会让他抓狂，但他总能冷静下来解决问题。</p>
-            </div>
-        </div>
+        <h2>叶恒瑞 哥哥 (元宝)</h2>
+        <div class="img-placeholder" style="margin: 10px 0;">[图片：正在编写代码的照片]</div>
+        <p><strong>年龄：</strong> 11岁 (五年级)</p>
+        <p><strong>战队角色：</strong> 操作手、搭建员</p>
+        <p>很小的时候，我就痴迷乐高搭建。四年级开始，我加入到北京西城科技馆，由王昕老师指导，开始系统的学习VEX的课程。在25年的7月我开始尝试参加比赛。理论与实际相结合，让我对VEX有了更深的了解，也懂得了团队协作的重要性，学会了直面困难。未来我会继续学习、探索，在机器人竞赛中取得更好的成绩。
+        </p>
 
-        <div style="display: flex; margin-bottom: 20px;">
-            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：叶恒嘉]</div>
-            <div>
-                <h2>叶恒嘉 (搭建大师)</h2>
-                <p><strong>特长：</strong> 机械结构、修理坏零件</p>
-                <p>如果你找不到零件，问他准没错！他对机械结构特别痴迷，看到齿轮转动就两眼放光。</p>
-            </div>
+        <div class="footer">
+            <span>记录人：周同学</span>
+            <span>见证人：张同学</span>
         </div>
-
-        <div style="display: flex; margin-bottom: 20px;">
-            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：宋书玥]</div>
-            <div>
-                <h2>宋书玥 (神级车手)</h2>
-                <p><strong>特长：</strong> 反应快、心理素质好</p>
-                <p>她的反应速度超级快！今年的比赛需要换手操作，她说：“没问题，包在我身上！”</p>
-            </div>
-        </div>
-        
-        <div class="footer"><span>记录人：印涵邸</span></div>
         <div class="page-number">3</div>
     </div>
-    
+
     <div class="sheet">
-        <h1>1.1 认识一下我们 (续)</h1>
-         <div style="display: flex; margin-bottom: 20px;">
-            <div class="img-placeholder" style="width: 120px; height: 160px; margin-right: 15px;">[照片：印涵邸]</div>
-            <div>
-                <h2>印涵邸 (设计师 & 记录员)</h2>
-                <p><strong>特长：</strong> 画画、写日记</p>
-                <p>这就是我啦！我觉得工程笔记就是机器人的“日记本”。我喜欢把大家的奇思妙想都画下来，哪怕是失败的尝试，也很有趣！</p>
-            </div>
-        </div>
+        <h1>1.2 成员介绍 (续)</h1>
 
-        <h2>1.2 我们的队规</h2>
+        <h2>叶恒嘉 弟弟 (英俊)</h2>
+        <div class="img-placeholder" style="margin: 10px 0;">[图片：正在组装齿轮的照片]</div>
+        <p><strong>年龄：</strong> 11岁 (五年级)</p>
+        <p><strong>战队角色：</strong> 搭建员、操作手</p>
+        <p>受哥哥影响，我也很喜欢乐高的搭建，从小我就是哥哥最得力的助手。经过系统的学习了VEX课程后，在赛场上我和哥哥相互配合得更加默契。今后我会和哥哥还有其他队员一起，继续探索、创新、争取在今后的机器人比赛中取得更好的成绩。
+        </p>
+
+        <div class="footer">
+            <span>记录人：周同学</span>
+            <span>见证人：李同学</span>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+
+    <div class="sheet">
+        <h1>1.2 成员介绍 (续)</h1>
+
+        <h2>宋书玥 (小米)</h2>
+        <div class="img-placeholder" style="margin: 10px 0;">[图片：正在绘制草图的照片]</div>
+        <p><strong>年龄：</strong> 9岁 (四年级)</p>
+        <p><strong>战队角色：</strong> 操作手、装填手</p>
+        <p>我就读于北京市西城区黄城根小学，是一个活泼开朗、热爱动手操作的女生。我喜欢VEX，还喜欢英语和打羽毛球。三年级开始在北京市西城区科技馆跟王昕老师学习VEX课程。在队伍中我主要担任装填手、操作手，我和我的队友一起相互配合，把每场比赛打好。
+        </p>
+
+        <div class="footer">
+            <span>记录人：周同学</span>
+            <span>见证人：王同学</span>
+        </div>
+        <div class="page-number">5</div>
+    </div>
+
+    <div class="sheet">
+        <h1>1.2 成员介绍 (续)</h1>
+        <p>25年的11月，我们增加了新队友，让战队更具活力。我们在装填操作、物料登记保管、训练计划制定、训练效果监督以及赛场外联的内容上都更了新的执行细节和标准。让团队分工更加明确细致，从战术衔接到赛场实战，每个环紧也更加紧凑高效。大家训练氛围越来越专注、外联更加顺畅，战队协作配合更加默契。战队提升了整体战斗力，朝着赛季目标稳稳推进。
+        </p>
+
+        <h2>印涵邸 (小印)</h2>
+        <div class="img-placeholder" style="margin: 10px 0;">[图片：手持遥控器练习的照片]</div>
+        <p><strong>年龄：</strong> 10岁 (五年级)</p>
+        <p><strong>战队角色：</strong> 装填手</p>
+        <p>我叫印涵邸，今年10岁，就读于陶然亭小学五年级。我从小就特别喜欢机器人。三年纪开始在北京少年宫搭乐高。今年五月开始跟着北京西城科技馆王昕老师学VEX课程。25年
+            月我在西城区“青少年未来工程师”竞赛中获得奖，这让我更加坚定了自己的兴趣。这次是我第一次参加VEX比赛，我希望能队友一起取得好成绩。</p>
+        <div class="footer"><span>见证人：全员</span></div>
+        <div class="page-number">5-2</div>
+    </div>
+
+    <!-- ================= NEW PAGE: 赛队分工及管理制度 (1) ================= -->
+    <div class="sheet">
+        <h1>1.3 赛队分工及赛队管理制度</h1>
+        <!-- <p style="text-align: center; color: #666; font-style: italic; margin-bottom: 30px;">(本部分侧重技术执行、硬件维护与规则合规)</p> -->
+
+        <h2>1、队员分工</h2>
+        <p>明确职责边界，确保训练与比赛高效运转。</p>
+        <ul style="list-style-type: disc; margin-left: 20px;">
+            <li><strong>叶恒瑞：</strong> 队长、搭建员、操作手（负责统筹及核心搭建）</li>
+            <li><strong>叶恒嘉：</strong> 搭建员、操作手、设备维护（负责硬件状态保障）</li>
+            <li><strong>宋书玥：</strong> 操控手、装填手、外联员（负责场上协同及对外沟通）</li>
+            <li><strong>印涵邸：</strong> 装填手、物料保管（负责后勤物资与赛场辅助）</li>
+        </ul>
+
+        <h2>2、规则遵守：一队一机原则 (&lt;R1&gt;)</h2>
+        <p>严格执行 VEX 竞赛规则 &lt;R1&gt;，确保合规参赛：</p>
+        <ol style="margin-left: 20px;">
+            <li><strong>唯一性原则：</strong> 一支队伍只能使用一台机器人。任何比赛现场，绝不携带第二台组装好的机器人。</li>
+            <li><strong>合规性检查：</strong> 机器人外观设计及尺寸严格遵守检录要求。</li>
+            <li><strong>备件管理：</strong> 所有的备用结构件、电子件均严格以“散件”形式存放，杜绝违规风险。</li>
+        </ol>
+
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">6</div>
+    </div>
+
+    <!-- ================= NEW PAGE: 赛队分工及管理制度 (2) ================= -->
+    <div class="sheet">
+        <h1>1.3 赛队分工及赛队管理制度 (续)</h1>
+
+        <h2>3、器材管理</h2>
+        <p>规范化管理物资，落实到每一个螺丝与电池。</p>
+
+        <h3>1. 电池管理 (&lt;R12&gt;)：</h3>
+        <ul>
+            <li>严格遵守游戏手册规定使用电池。</li>
+            <li>实行<strong>标签登记制</strong>，对电池进行编号，由叶恒瑞、宋书玥负责每次训练/比赛前的电量检查。</li>
+            <li>充电区张贴安全指南，确保及时充电且用电安全。</li>
+        </ul>
+
+        <h3>2. 固件与系统 (&lt;R10&gt;)：</h3>
+        <ul>
+            <li>实行<strong>周检制</strong>，由叶恒瑞、叶恒嘉每周检查 VEXos 固件，确保主机、手柄和电机均为最新版本。</li>
+        </ul>
+
+        <h3>3. 零件清点与归位：</h3>
+        <ul>
+            <li><strong>分类存储：</strong> 所有零件按“齿轮”、“轴”、“销钉”等分类装袋、装箱，并贴好标签。</li>
+            <li><strong>动态维护：</strong> 训练后定时检查机器各处衔接；使用后的工具与零件必须及时归位；根据机器升级情况，及时进行维修或补充申报。</li>
+        </ul>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">7</div>
+    </div>
+    <div class="sheet">
+        <h1>1.3 赛队分工及赛队管理制度 (续)</h1>
+
+        <h2>4、安全准则 (&lt;S1&gt;)</h2>
+        <p>王昕老师特别强调的安全红线：</p>
+        <ol style="margin-left: 20px;">
+            <li><strong>操作安全：</strong> 机器人运行期间，手部严禁伸入齿轮及运动部件区域。</li>
+            <li><strong>环境安全：</strong> 严禁在潮湿环境操作；除赛台外，尽量选择干净干燥的地面。</li>
+            <li><strong>防水保护：</strong> 水杯等液体必须远离电子设备，严禁让机器人“喝水”。</li>
+            <li><strong>搬运安全：</strong> 恢复赛台摆放及搬运机器时，务必注意脚下，防止摔倒或踩踏器材。</li>
+        </ol>
+
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">7</div>
+    </div>
+
+    <!-- ================= NEW PAGE: 团队管理制度与冲突解决 (1) ================= -->
+    <div class="sheet">
+        <h1>1.4 团队管理制度与冲突解决</h1>
+        <!-- <p style="text-align: center; color: #666; font-style: italic; margin-bottom: 30px;">(本部分侧重团队建设、行为准则与决策机制)</p> -->
+
+        <h2>1、尊重原则 (&lt;G1&gt;)</h2>
+        <p>VEX 核心精神的体现，尊重是合作的前提。</p>
+        <ul>
+            <li><strong>对内：</strong> 尊重每一位队友的想法，不嘲笑失败的尝试，构建心理安全感。</li>
+            <li><strong>对外：</strong> 尊重对手、裁判和志愿者。胜不骄，败不馁，展现专业素养。</li>
+        </ul>
+
+        <h2>2、核心准则：团结、钻研、爱惜、荣誉</h2>
+        <h3>1. 团结协作 · 心往一处想</h3>
+        <ul>
+            <li><strong>主动补位：</strong> 在明确分工的基础上，随时为队友提供支持。</li>
+            <li><strong>良性沟通：</strong> 讨论方案时认真倾听、大胆表达；训练比赛中互相鼓励，不抱怨、不指责，共克难关。</li>
+        </ul>
+
+        <h3>2. 刻苦钻研 · 功到自然成</h3>
+        <ul>
+            <li><strong>严守纪律：</strong> 严格遵守训练时间，全神贯注；请假需提前向队长和指导老师报备。</li>
+            <li><strong>持续精进：</strong> 遇到难题（规则、结构、编程）不轻言放弃，主动请教；正视失误，活动后必须记录问题、总结经验。</li>
+        </ul>
+
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">8</div>
+    </div>
+
+    <!-- ================= NEW PAGE: 团队管理制度与冲突解决 (2) ================= -->
+    <div class="sheet">
+        <h1>1.4 团队管理制度与冲突解决 (续)</h1>
+
+        <h3>3. 爱护用具 · 珍惜每一件</h3>
+        <ul>
+            <li><strong>物资爱惜：</strong> 树立“爱惜公物”的意识，规范使用每一件工具和工程笔记，杜绝暴力使用。</li>
+            <li><strong>场地维护：</strong> 自觉维护训练场地整洁，养成“训练结束即场地复原”的习惯。</li>
+        </ul>
+
+        <h3>4. 珍惜荣誉 · 荣辱共担当</h3>
+        <ul>
+            <li><strong>服从大局：</strong> 严格遵守战术安排，以完成团队任务为最高优先级。</li>
+            <li><strong>形象维护：</strong> 在赛场内外自觉维护战队形象，以文明举止为团队争取良好口碑。</li>
+        </ul>
+
+        <h2>3、决策与冲突解决机制</h2>
+        <p>当意见出现分歧时，按照以下流程高效解决：</p>
         <div class="diary-card">
-             <p><strong>1. 一队一机 (&lt;R1&gt;)：</strong> 绝对不带两台机器人去比赛！我们要做诚实的孩子。</p>
-             <p><strong>2. 安全第一 (&lt;S1&gt;)：</strong> 王老师说了无数遍：手不要伸进齿轮里！会被咬到的！</p>
-             <p><strong>3. 吵架了怎么办？</strong></p>
-             <p class="dialogue">“用数据说话！”</p>
-             <p>如果意见不统一，我们就分头搭样机，谁的跑得好听谁的。</p>
+            <p><strong>1. 技术/设计分歧：</strong> 实行<strong>“数据说话”</strong>。所有人共同参与讨论，通过搭建原型、测试获取数据，以实际效果选出最优解。</p>
+            <p><strong>2. 战术/策略分歧：</strong> 实行<strong>“充分辩论+请教”</strong>。各抒己见阐明利弊，无法达成共识时向指导老师请教，确定最终方案。</p>
+            <p><strong>3. 考勤/纪律问题：</strong> 队员若迟到或缺席，必须说明原因，并利用课余时间补齐相应的训练量，确保进度同步。</p>
         </div>
 
-        <h2>1.3 我们的冒险地图 (赛季规划)</h2>
+        <div class="footer"><span>见证人：全员</span></div>
+        <div class="page-number">9</div>
+    </div>
+
+    <!-- ================= PAGE: 赛季规划 ================= -->
+    <div class="sheet">
+        <h1>1.5 赛季总览</h1>
+        <h2>1、 赛季规划</h2>
         <p>我们为这个赛季画好了一张“冒险地图”！每一步都要踩稳哦！</p>
         <table>
             <thead>
                 <tr>
-                    <th>时间</th>
+                    <th style="width: 20%; white-space: nowrap;">时间</th>
                     <th>我们的小目标</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>六月</td>
-                    <td>研究规则，当个“规则小博士”，然后做出我们的一代车！</td>
+                    <td>2025年6月</td>
+                    <td>学习分析规则、研发第一代赛车</td>
                 </tr>
                 <tr>
-                    <td>七月</td>
-                    <td>带着一代车去参加个小比赛，看看它几斤几两，然后回家“升级”它！</td>
+                    <td>2025年7月</td>
+                    <td>训练调试，首赛试水，改进赛车</td>
                 </tr>
                 <tr>
-                    <td>八月</td>
-                    <td>参加城市赛，希望能战胜其他队伍，拿到去大区赛的“门票”！</td>
+                    <td>2025年8月</td>
+                    <td>参加城市赛，晋级大区赛，改进赛车</td>
                 </tr>
                 <tr>
-                    <td>十月</td>
-                    <td>挑战市级邀请赛，如果能赢，我们就有机会去国赛啦！</td>
+                    <td>2025年10月</td>
+                    <td>参加市级邀请赛，取得国赛资格</td>
                 </tr>
                 <tr>
-                    <td>十一月</td>
-                    <td>参加“白名单”比赛，多积累经验，继续给机器人“加装备”！</td>
+                    <td>2025年11月</td>
+                    <td>参加白名单赛事，改进赛车</td>
                 </tr>
                 <tr>
-                    <td>十二月</td>
-                    <td>向亚洲公开赛出发！如果表现得好，说不定就能去世界锦标赛了！想想就激动！</td>
+                    <td>2025年12月</td>
+                    <td>参加亚公赛，冲击世锦赛</td>
                 </tr>
             </tbody>
         </table>
         <div class="footer"><span>见证人：全员</span></div>
-        <div class="page-number">4</div>
+        <div class="page-number">10</div>
     </div>
 
     <div class="sheet">
-        <h2>1.4 赛季流程图</h2>
-        <p>我们给自己定下了一个行动指南，就像玩游戏做任务一样！</p>
-        <iframe src="ch01_process_diagram.html" style="width: 100%; border: none;" onload="this.style.height=this.contentWindow.document.body.scrollHeight+'px';" scrolling="no"></iframe>
-        <div class="diary-card" style="margin-top: 30px; border-color: #E74C3C; text-align:center;">
-            <p><strong>我们的目标</strong></p>
-            <p>认真学习、稳步精进（成长）、全力以赴、功到自成</p>
-        </div>
+        <h1>1.5 赛季总览（续）</h1>
+        <h2>2、 赛季流程图</h2>
+        <!-- <p>我们给自己定下了一个行动指南，就像玩游戏做任务一样！</p> -->
+        <iframe src="ch01_process_diagram.html" style="width: 100%; border: none;"
+            onload="this.style.height=this.contentWindow.document.body.scrollHeight+'px';" scrolling="no"></iframe>
+            <p><strong>我们的目标：</strong>认真学习、稳步成长、全力以赴、功到自成</p>
+        <!-- <div class="diary-card" style="margin-top: 30px; border-color: #E74C3C; text-align:center;">
+        </div> -->
         <div class="footer"><span>记录人：印涵邸</span></div>
-        <div class="page-number">5</div>
+        <div class="page-number">11</div>
     </div>
 
-    <!-- ================= PAGE 5-13 省略中间常规计划部分，直接进入改写后的会议记录 ================= -->
-    <!-- ... (此处省略常规计划表页 P5-P13) ... -->
-    <!-- 为了响应您的要求，下面直接展示改写后的 P14-P21 部分 -->
-    
+    <!-- ================= PAGE: LOG 封面 ================= -->
     <div class="sheet">
         <div style="text-align: center; margin-top: 100px;">
             <h1 style="font-size: 40px; color: #333;">我们的会议故事</h1>
             <p style="font-size: 20px; color: #666;">这里记录了我们从迷茫到坚定的每一步</p>
-            <div style="width: 100px; height: 100px; border-radius: 50%; background: #FFD700; margin: 30px auto; line-height: 100px; font-size: 30px; color: white; font-weight: bold;">LOG</div>
+            <div
+                style="width: 100px; height: 100px; border-radius: 50%; background: #FFD700; margin: 30px auto; line-height: 100px; font-size: 30px; color: white; font-weight: bold;">
+                LOG</div>
         </div>
         <div class="page-number">13</div>
     </div>
 
-    <!-- ================= P14: 规则研读 (改写) ================= -->
+    <!-- ================= P14: 规则研读 ================= -->
     <div class="sheet">
         <h1>📅 7月12日：发现大秘密！</h1>
-        
+
         <div class="diary-card">
             <div class="diary-date">会议日记</div>
             <p>今天王老师让我们把规则书读透。那本书好厚啊，看得我头都晕了！不过，我们像寻宝一样，发现了几个<strong>超级重要的秘密</strong>：</p>
-            
+
             <p><strong>1. Beam (梁) 是个宝！</strong></p>
             <p class="dialogue">叶恒瑞突然大叫一声：“你们快看！一个 Beam 居然有 10 分！”</p>
             <p>大家都围了过去。天哪，一个普通的 Pin 才 1 分，这个长条条居然值 10 分？大家一致认为：<strong>必须设计一个能抓 Beam 的爪子，不然就亏大了！</strong></p>
-            
+
             <p><strong>2. 机器人要会“缩骨功”</strong></p>
             <p>叶恒嘉拿着尺子量了半天底盘，愁眉苦脸地说：“其实尺寸限制好严啊，开始的时候必须缩在 11x20x15 英寸的格子里。”</p>
             <p>宋书玥却发现了新大陆：“但是规则 &lt;SG3&gt; 说比赛开始后可以<strong>无限长高</strong>！哇，这不就是让我们造个梯子吗？”</p>
-            
+
             <div class="img-placeholder" style="height: 250px;">
                 [图片：印涵邸的笔记手稿，上面用红笔画了一个大大的 Beam，旁边写着“10分！！必拿！！”]
             </div>
-            
+
             <p><strong>今天的决定：</strong> 不管多难，一定要搞定那个长长的 Beam！</p>
         </div>
 
@@ -232,24 +420,24 @@
         <div class="page-number">14</div>
     </div>
 
-    <!-- ================= P15: 头脑风暴 (改写) ================= -->
+    <!-- ================= P15: 头脑风暴 ================= -->
     <div class="sheet">
         <h1>📅 7月13日：脑洞大开的一天</h1>
-        
+
         <div class="diary-card">
             <div class="diary-date">头脑风暴</div>
             <p>今天是我们最吵的一天（嘿嘿）。我们在讨论到底用什么样的爪子。大家在白板上画了好多奇怪的草图。</p>
-            
+
             <p><strong>方案 A（宋书玥提的）：</strong> 像螃蟹一样的夹子。简单直接，但是叶恒嘉担心：“那个 Beam 那么滑，会不会夹不住掉下来？”</p>
-            
+
             <p><strong>方案 B（叶恒瑞提的）：</strong> 像吸尘器一样的滚轮。他说：“嗖的一下就吸进去了，多快！” 但是我们比划了一下，那个结构太大了，底盘都放不下了。</p>
-            
+
             <p><strong>方案 C（我提的）：</strong> 像叉车一样的铲子。结果被大家集体否决了，因为根本举不高，只能在地上推。</p>
-            
+
             <div class="img-placeholder" style="height: 250px;">
                 [图片：白板上画满了乱七八糟的线条和草图，大家正指着方案A激烈讨论]
             </div>
-            
+
             <p><strong>最后决定：</strong> 我们投票决定先做<strong>方案 A（螃蟹夹）</strong>试试看。毕竟我们是一代车，先求稳，做出来再说！</p>
         </div>
 
@@ -259,24 +447,24 @@
         <div class="page-number">15</div>
     </div>
 
-    <!-- ================= P16: 一代车测试 (改写) ================= -->
+    <!-- ================= P16: 一代车测试 ================= -->
     <div class="sheet">
         <h1>📅 7月26日：翻车现场...</h1>
-        
+
         <div class="diary-card">
             <div class="diary-date">测试日记</div>
             <p>今天是个悲伤的日子。我们的一代车终于造好了，但是...</p>
-            
+
             <p><strong>它跑得太快了！</strong></p>
             <p>叶恒嘉为了追求速度，用了 2:1 的加速齿轮。结果宋书玥一推遥控器，机器人就“嗖”地一下飞出去了，根本停不下来！就像脱缰的野马，把场上的 Pin 撞得东倒西歪。</p>
             <p class="dialogue">宋书玥绝望地喊：“我控制不住它啊！”</p>
-            
+
             <p>而且，那个螃蟹爪子也抓不住 Pin，总是滑掉。最惨的是，我们的手臂太短了，根本够不到中间那个最高的塔 (Standoff Goal)。</p>
-            
+
             <div class="img-placeholder" style="height: 250px;">
                 [图片：一代车停在场地中间，前面倒了一片 Pin，队员们双手抱头，表情很无奈]
             </div>
-            
+
             <p>王老师安慰我们说：“没关系，发现问题就是进步。”好吧，我们要开始做二代车了！这次一定要慢一点，稳一点。</p>
         </div>
 
@@ -286,22 +474,22 @@
         <div class="page-num">16</div>
     </div>
 
-    <!-- ================= P17: 二代车汇报 (改写) ================= -->
+    <!-- ================= P17: 二代车汇报 ================= -->
     <div class="sheet">
         <h1>📅 8月16日：二代车好多了！</h1>
-        
+
         <div class="diary-card">
             <div class="diary-date">进度汇报</div>
             <p>经过半个月的努力，二代车终于有点样子了！大家松了一口气。</p>
-            
+
             <p><strong>机械方面：</strong> 叶恒嘉把齿轮改回了 1:1，虽然慢了点，但是宋书玥试驾后说：“终于能控制住它了，指哪打哪，太舒服了！”</p>
-            
+
             <p><strong>程序方面：</strong> 叶恒瑞写好了基础的遥控程序，按键很顺手。但是自动程序还在调试，机器人经常跑着跑着就歪了。</p>
-            
+
             <p>不过我们发现了一个<strong>新问题</strong>：</p>
             <p class="dialogue">“我们要把手臂举很高去挂塔，结果机器人重心变高了，急转弯的时候感觉要翻车！”</p>
             <p>叶恒嘉想了个办法，他要在底盘下面加点铁块配重。希望能管用！</p>
-            
+
             <div class="img-placeholder" style="height: 200px;">
                 [图片：二代车正在场地上平稳地行驶，旁边放着准备加装的配重铁块]
             </div>
@@ -313,14 +501,14 @@
         <div class="page-number">17</div>
     </div>
 
-    <!-- ================= P18: 中期检查 (改写) ================= -->
+    <!-- ================= P18: 中期检查 ================= -->
     <div class="sheet">
         <h1>📅 11月8日：我们要用黑科技！(1/2)</h1>
-        
+
         <div class="diary-card">
             <div class="diary-date">重要会议</div>
             <p>今天开了个很重要的会。我们在校际练习赛里只拿了 <strong>50 分</strong>。虽然不算差，但距离那些拿 80 分的强队还有很大差距。</p>
-            
+
             <p class="dialogue">
                 印涵邸：“我看别的队动作好快，我们就慢吞吞的。”<br>
                 大家听了都有点沉默，确实感觉到了压力。我们的爪子一次只能抓一个，效率太低了。
@@ -337,25 +525,25 @@
         <div class="page-number">18</div>
     </div>
 
-    <!-- ================= P19: 中期检查续 (改写) ================= -->
+    <!-- ================= P19: 中期检查续 ================= -->
     <div class="sheet">
         <h1>📅 11月8日：我们要用黑科技！(2/2)</h1>
-        
+
         <div class="diary-card">
             <div class="diary-date">重大决定</div>
             <p>突然，叶恒瑞很激动地站起来说：</p>
             <p class="dialogue">“我们用<strong>气动装置 (Pneumatics)</strong> 吧！我看过视频，气动爪子‘咔’一下就能抓住，特别快，而且不用担心电机过热。”</p>
-            
+
             <p>叶恒嘉有点担心：“可是我们以前从来没用过气动啊，那么多管子，很难接的。万一漏气了怎么办？”</p>
-            
+
             <p>王老师鼓励我们：“如果不挑战新技术，就很难突破瓶颈哦。”</p>
-            
+
             <p>最后大家一咬牙：<strong>拼了！</strong> 我们要造三代车，上气动！虽然要把现在的车拆了重做很心疼，但为了世锦赛，值了！</p>
-            
+
             <div class="img-placeholder" style="height: 200px;">
                 [图片：叶恒瑞拿着气缸给大家演示，大家的眼神里充满了好奇和期待]
             </div>
-            
+
             <p><strong>行动：</strong> 王老师负责买气动套件，叶恒瑞负责研究怎么编程。冲鸭！</p>
         </div>
 
@@ -368,14 +556,14 @@
     <!-- ================= P20: 章末总结 ================= -->
     <div class="sheet">
         <h1>第一章小结：准备起飞</h1>
-        
+
         <p class="highlight">写完这 20 页的日记，我感觉我们战队真的长大了！</p>
-        
+
         <p>从一开始连名字都想不出来，到现在敢挑战复杂的气动系统。虽然中间一代车失败了，二代车也不完美，但我们大家都没有放弃。</p>
         <p>大家在一起吵吵闹闹，一起吃零食，一起修机器人，真的很快乐。</p>
-        
+
         <p>接下来的三代车一定会是最棒的！机甲梦想家，目标世锦赛！</p>
-        
+
         <div class="img-placeholder" style="height: 350px;">
             [图片：全体队员把手叠在一起加油的照片，特写，光线温暖，背景是我们的二代车]
         </div>
@@ -387,7 +575,9 @@
         <div class="page-number">20</div>
     </div>
 
+    <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
 </body>
+
 </html>
