@@ -208,7 +208,7 @@ li {
 }
 
 .meeting-id {
-    font-size: 20px;
+    font-size: 22px;
 }
 
 /* 战术板/计算纸样式 */
@@ -400,7 +400,6 @@ body.hide-dark-text li,
 body.hide-dark-text .dialogue,
 body.hide-dark-text .sticky-note,
 body.hide-dark-text .img-caption,
-body.hide-dark-text th,
 body.hide-dark-text td,
 body.hide-dark-text .chinese-label,
 body.hide-dark-text .math-paper {
@@ -432,6 +431,7 @@ body.hide-other-elements * {
 }
 
 /* 3. Specifically hide the Headings and Images completely (Visibility Hidden) */
+body.hide-other-elements th,
 body.hide-other-elements h1,
 body.hide-other-elements h2,
 body.hide-other-elements h3,

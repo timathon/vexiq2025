@@ -1,31 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第六章：测试验证与实战评估 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        /* --- Cover Page Styling (Matches Ch01 Pattern) --- */
+        .cover-section {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .cover-section h1 {
+            font-size: 56px;
+            border: none;
+            color: var(--secondary-color);
+            /* Matches theme */
+            margin-bottom: 10px;
+        }
+
+        .cover-section h2 {
+            font-size: 36px;
+            background: none;
+            color: #555;
+            padding: 0;
+            margin: 5px 0;
+            border: none;
+        }
+
+        .cover-section h3 {
+            font-size: 24px;
+            color: #888;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .cover-divider {
+            width: 80%;
+            height: 8px;
+            background-color: var(--primary-color);
+            margin: 40px auto;
+            border-radius: 5px;
+        }
+
+        .cover-intro {
+            margin: 60px 80px;
+            font-size: 20px;
+            line-height: 2;
+            text-align: left;
+            color: #444;
+        }
+
+        /* --- Log & Content Specific Styles --- */
+        .log-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .log-list li {
+            list-style: none;
+            /* margin-bottom: 20px; */
+            /* padding-bottom: 20px; */
+            /* border-bottom: 1px dashed #ddd; */
+        }
+
+        .log-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Utility text classes */
+        .text-error {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .text-success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .text-highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Table extensions */
+        .strategy-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .strategy-table td {
+            vertical-align: top;
+        }
+
+        .result-table th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Box variations */
+        .result-summary {
+            background-color: #f8f9fa;
+            border: 2px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
 </head>
+
 <body class="theme-cyan">
 
     <!-- ================= PAGE 109: 章节封面 ================= -->
     <div class="sheet">
-        <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #00BCD4;">测试验证与实战评估</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第六章：系统迭代与北京城市赛</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 6: System Testing & Competition Analysis</h3>
-            
-            <div style="width: 80%; height: 8px; background: #00ACC1; margin: 40px auto; border-radius: 5px;"></div>
-            
-            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+
+        <div class="cover-section">
+            <h1 style="font-size: 56px; ">测试验证与实战评估</h1>
+            <h2>第六章：一代车实测与北京城市赛</h2>
+            <h3>Chapter 6: System Testing & Competition Analysis</h3>
+
+            <div class="cover-divider"></div>
+
+            <div class="cover-intro">
                 <p>
                     本章节记录了“一代车 (Gen 1)”在完成物理搭建后的性能测试过程，以及在“2025 胜炫北京城市赛”中的实战表现。
                 </p>
                 <p>
-                    我们将通过详细的训练日志，复盘在底盘移动、抓取稳定性和自动化控制方面遇到的技术瓶颈，并记录针对性采取的工程改进措施。
+                    我们将通过详细的训练日志（6月30日-8月12日），复盘在底盘移动、抓取稳定性和自动化控制方面遇到的技术瓶颈，并记录针对性采取的工程改进措施。
                 </p>
                 <p>
-                    <strong>本章核心任务：</strong> 评估一代车设计的有效性，为后续机型的研发积累数据支持。
+                    <strong>本章核心任务：</strong> 评估一代车的设计，验证“91分低塔”与“110分高塔”策略的可行性。
                 </p>
             </div>
         </div>
@@ -33,211 +141,259 @@
 
     <!-- ================= PAGE 110: 训练日志-抓取优化 ================= -->
     <div class="sheet">
+        <h1>6.1 单元测试：底盘与抓取系统的物理调优</h1>
 
-        <h1>6.1 单元测试：抓取系统的摩擦力优化</h1>
-        
-        <p>在初期测试中，我们发现气动抓手在处理光滑的销钉（Pin）时存在严重的滑移问题，直接影响了得分效率。</p>
+        <p>在初期测试中，我们发现气动抓手在处理光滑的销钉（Pin）时存在滑移问题，且底盘存在不可忽视的漂移现象。</p>
 
-        <div class="build-log">
-            <span class="log-date">测试记录：第 1-4 轮训练</span>
-            <p><strong>问题描述：</strong> 
-                虽然气缸闭合速度快，但由于销钉表面主要为光面塑料，L型铝合金爪与其接触面摩擦系数不足。在机器人进行 180 度翻转动作或快速急停时，销钉极易因惯性脱落。
-            </p>
-            <p><strong>工程改进方案：</strong> </p>
-            <ul>
-                <li><strong>材料改性：</strong> 在抓手内侧接触面粘贴了高摩擦系数的黑色橡胶垫层（部分区域缠绕橡胶筋），利用物理形变增加静摩擦力。</li>
-                <li><strong>力学结构微调：</strong> 加长了爪臂长度，优化了夹持力矩的施加点，使其更靠近销钉重心。</li>
+        <div class="highlight-box type-cyan">
+            <p class="meeting-id"><strong>测试日期：</strong> 2025年6月30日 | <strong>地点：</strong> 建外SOHO</p>
+
+            <ul class="log-list">
+                <li>
+                    <span class="text-error">问题 A：底盘漂移 (Chassis Drift)</span><br>
+                    <strong>现象：</strong> 机器人在直行测试中无法保持直线，呈现左右漂移状态，导致长距离移动后的定位误差累积。<br>
+                    <strong>诊断：</strong> 两侧驱动电机输出功率不匹配。<br>
+                    <strong>改进：</strong> <span class="text-success">更换电机</span> - 进行了电机适配性测试，更换了一组内阻一致性更好的电机，并重刷了固件。
+                </li>
+
+                <li>
+                    <span class="text-error">问题 B：抓取滑落 (Gripper Slip)</span><br>
+                    <strong>现象：</strong> 销钉抓取不牢，在进行180度反转堆叠时，销钉因离心力发生偏移甚至掉落。<br>
+                    <strong>改进：</strong><span class="text-success">增加摩擦点</span> - 在机械爪内侧增加橡胶皮筋，利用其高摩擦系数锁死销钉位置。
+                    <span class="text-success">结构微调</span> - 调整了气缸的闭合限位，确保夹持力直接作用于销钉重心。
+                </li>
             </ul>
-            <p><strong>测试结果：</strong> 
-                经过 4 轮迭代测试，抓取成功率由初期的 60% 提升至 95% 以上，剧烈晃动下的保持能力显著增强。
-            </p>
         </div>
 
-        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
-            
-        </div>
+        <img src="assets/ch06/6_1_1.webp" alt="一代车完整形态"
+            style="height:260px; display: block; margin: 20px auto; border-radius: 10px;">
     </div>
 
-    <!-- ================= PAGE 111: 训练日志-堆叠辅助 ================= -->
+    <!-- ================= PAGE 111: 训练日志-结构优化 ================= -->
     <div class="sheet">
+        <h1>6.2 功能测试：堆叠与挂钩的改进</h1>
 
-        <h1>6.2 功能测试：堆叠定位精度的提升</h1>
+        <div class="highlight-box type-default">
+            <p class="meeting-id"><strong>测试日期：</strong> 2025年7月6日 | <strong>地点：</strong> 建外SOHO</p>
+            <p><strong>测试项目：</strong> 操作手练习二层堆叠 & 万能梁拖拽</p>
 
-        <div class="build-log">
-            <span class="log-date">测试记录：第 6 轮训练</span>
-            <p><strong>问题描述：</strong> 
-                在进行第二层销钉堆叠时，完全依赖操作手目视对齐。由于底盘存在微小惯性，且赛场视角受限，对位误差导致上层销钉倾倒的频率较高。
-            </p>
-            <p><strong>解决方案：引入机械限位装置</strong></p>
-            <p>
-                我们在抓取结构下方设计并安装了一个<strong>辅助定位支架 (Positioning Bracket)</strong>。
-            </p>
-            <ul>
-                <li><strong>工作原理：</strong> 利用下层销钉的顶部结构作为导向基准。当机器人推进时，定位支架会优先接触下层销钉，强制纠正机器人的横向偏差，实现“盲操作”对齐。</li>
-                <li><strong>验证效果：</strong> 第二层堆叠的稳定性大幅提升，操作手无需进行耗时的微调，单次堆叠时间缩短约 3 秒。</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">故障现象</th>
+                        <th>工程解决方案</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>万能梁脱钩</strong><br>
+                            在拖拽万能梁移动时，钩爪容易滑脱。
+                        </td>
+                        <td>
+                            <strong>优化钩爪弧度：</strong><br>
+                            重新弯折了聚碳酸酯钩爪的末端角度，使其能更深地卡入万能梁结构，确保抓取点对准中心。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>动作不协调</strong><br>
+                            “拖拽+翻转”同时进行时，车身重心失稳。
+                        </td>
+                        <td>
+                            <strong>动力空间重配：</strong><br>
+                            对底盘、抓取、钩取和翻转机构的安装空间进行了重新布局，优化了重心分布。
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>验证结果：</strong> 改进后，操作手可以流畅完成“中心区堆叠二层”动作，准确性显著提高。</p>
         </div>
 
-        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
-            
+        <div class="img-placeholder" style="height: 200px;">
+            [图片：钩爪改进前后的对比图]
         </div>
     </div>
 
     <!-- ================= PAGE 112: 训练日志-自动化 ================= -->
     <div class="sheet">
-
         <h1>6.3 系统集成：半自动化逻辑导入</h1>
 
-        <p>为减轻操作手在紧张赛程中的认知负荷，我们尝试通过传感器辅助实现半自动化控制。</p>
+        <p>为减轻操作手在紧张赛程中的认知负荷，我们依据7月6日的测试反馈，引入了传感器辅助。</p>
 
-        <div class="build-log">
-            <span class="log-date">测试记录：第 5-8 轮训练</span>
-            <p><strong>主要痛点：</strong> 纯手动控制底盘微调距离非常困难，且容易误触气缸开关导致掉分。</p>
+        <div class="highlight-box type-cyan">
+            <p><strong>软件迭代：自动化抓取 (Auto-Grab)</strong></p>
+            <p><strong>背景（7月6日总结）：</strong> 发现操作手需频繁进行手动微调，按键操作繁琐，导致比赛后半程效率下降。</p>
             <p><strong>技术实施：</strong> 集成前置距离传感器 (Distance Sensor)。</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;">
-                <tr style="background: #e0f7fa;">
-                    <th style="border: 1px solid #ccc; padding: 5px;">检测条件</th>
-                    <th style="border: 1px solid #ccc; padding: 5px;">系统响应</th>
-                    <th style="border: 1px solid #ccc; padding: 5px;">操作手获益</th>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ccc; padding: 5px;">距离 < 50mm (检测到销钉)</td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">LED 灯带变色 + 允许触发抓取</td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">获得明确的视觉反馈，减少误操作。</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid #ccc; padding: 5px;">接近场地边界</td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">自动限制底盘最大功率 (50%)</td>
-                    <td style="border: 1px solid #ccc; padding: 5px;">防止因速度过快撞翻已堆叠的目标。</td>
-                </tr>
-            </table>
+            <ul>
+                <li><strong>逻辑：</strong> 当 Distance < 50mm（检测到销钉）时 → 自动触发气缸闭合。</li>
+                <li><strong>收益：</strong> 将“肉眼判断+手指按键”的开环操作，升级为“传感器触发”的闭环操作，抓取反应速度提升约 0.5秒/次。</li>
+            </ul>
+        </div>
+
+        <div class="img-placeholder" style="height: 250px;">
+            [图片：距离传感器安装位置及代码逻辑截图]
         </div>
     </div>
 
-    <!-- ================= PAGE 113: 参赛概况 ================= -->
+    <!-- ================= PAGE 113: 模拟实战 ================= -->
     <div class="sheet">
+        <h1>6.4 模拟实战：团队配合演练</h1>
 
-        <h1>6.4 实战记录：胜炫北京城市赛</h1>
-
-        <div class="info-box" style="border: 1px solid #aaa; padding: 20px; background: #f4f4f4; margin-bottom: 20px;">
-            <p><strong>赛事名称：</strong> 2025 胜炫北京城市赛 (Beijing Urban Competition)</p>
-            <p><strong>时间：</strong> 2025年8月20日 - 21日</p>
-            <p><strong>地点：</strong> 北京</p>
-            <p><strong>参赛机型：</strong> 一代车 (Gen 1)</p>
-            <p><strong>比赛性质：</strong> 2025-2026 赛季首场正式积分赛</p>
+        <div class="knowledge-card">
+            <h3>模拟实战信息</h3>
+            <p><strong>时间：</strong> 2025年7月16日</p>
+            <p><strong>内容：</strong> 全流程模拟实战（Simulated Match）</p>
+            <p><strong>目的：</strong> 暴露非机械层面的配合问题</p>
         </div>
 
-        <h3>赛前状态确认</h3>
-        <p>
-            经过前期的 10 轮高强度综合测试，我们对一代车的底盘传动、抓取机构及气路密封性进行了最终检查。
-            尽管仍存在底盘高速漂移的隐患，但鉴于气动抓取的高稳定性，团队决定采取“稳扎稳打”的战术策略。
-        </p>
-
-        <div class="img-placeholder" style="height: 250px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
-            
-        </div>
-    </div>
-
-    <!-- ================= PAGE 114: 技术复盘 ================= -->
-    <div class="sheet">
-
-        <h1>6.5 赛后技术评估：优势与缺陷</h1>
-
-        <p>基于《2025胜炫北京城市赛参赛总结》及现场比赛数据，我们对一代车的实际表现进行了客观评估：</p>
+        <p>在距离北京城市赛仅剩一个月时，我们进行了一次完全模拟正规流程的测试。此次演练暴露了严重的团队协作短板：</p>
 
         <div class="two-column-layout">
             <div class="column">
-                <h3 style="color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 5px;">性能优势 (Strengths)</h3>
+                <h3 class="text-error">暴露的问题 (Issues)</h3>
                 <ul class="notebook-list">
-                    <li>
-                        <strong>气动系统的高效性：</strong> 
-                        相较于电机驱动的抓手，气动爪的瞬时闭合特性在抢夺中立销钉时具有显著速度优势。
-                    </li>
-                    <li>
-                        <strong>结构稳定性：</strong> 
-                        改进后的摩擦爪在整场比赛中未出现一次严重掉落事故，验证了赛前优化方案的有效性。
-                    </li>
-                    <li>
-                        <strong>系统可靠性：</strong> 
-                        全天高频次运行下，未发生气管脱落、电机过热或程序死机等故障。
-                    </li>
+                    <li><strong>策略混乱：</strong> 队员对策略路线不熟，出现“只会操作不会描述”的情况，导致与联队队友沟通低效。</li>
+                    <li><strong>换手慌乱：</strong> 25秒-35秒的换手期间，操作手站位重叠，交接手柄时引发了车身意外停顿。</li>
+                    <li><strong>记录潦草：</strong> 赛前会议记录不完整，未能准确传达规则细节。</li>
                 </ul>
             </div>
             <div class="column">
-                <h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px;">设计缺陷 (Weaknesses)</h3>
+                <h3 class="text-success">整改措施 (Actions)</h3>
                 <ul class="notebook-list">
-                    <li>
-                        <strong>底盘漂移 (Chassis Drift)：</strong> 
-                        2倍速齿轮比在光滑的赛台地垫上导致抓地力不足，高速移动时的惯性滑移多次撞散已得分的堆叠塔。
-                    </li>
-                    <li>
-                        <strong>垂直行程受限：</strong> 
-                        单级连杆结构的最大举升高度不足，导致机器人无法触及场地中央的高塔得分区，限制了得分上限。
-                    </li>
-                    <li>
-                        <strong>自动化程度低：</strong> 
-                        由于缺乏闭环控制程序，操作手需全程手动微调，比赛后半程因疲劳导致操作精度下降。
-                    </li>
+                    <li><strong>强化描述训练：</strong> 要求队员不仅要会跑图，还要能清晰口述“远端”和“近端”的路线逻辑。</li>
+                    <li><strong>标准化站位：</strong> 明确了主副操作手的站位区域，预先协调好换手角度。</li>
+                    <li><strong>赛前集训：</strong> 加大训练强度，重点练习“卡点换手”和“赛前策略沟通”。</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- ================= PAGE 115: 比赛结果 ================= -->
+    <!-- ================= PAGE 114: 参赛概况与策略 ================= -->
     <div class="sheet">
+        <h1>6.5 实战记录：胜炫北京城市赛</h1>
 
-        <h1>6.6 比赛数据与结果公示</h1>
+        <div class="highlight-box type-default">
+            <p><strong>赛事名称：</strong> 2025 胜炫北京城市赛 (Beijing Urban Competition)</p>
+            <p><strong>时间：</strong> 2025年8月20日 - 21日</p>
+            <p><strong>参赛机型：</strong> 一代车 (Gen 1)</p>
+        </div>
 
-        <p>尽管存在硬件性能瓶颈，团队凭借稳定的操作策略与极低的失误率，在资格赛中稳步晋级，并在淘汰赛阶段发挥出色。</p>
+        <h3>预定战术策略 (Strategy Plan)</h3>
+        <p>基于《路线策略对比图》，我们为一代车制定了以下几种标准得分模型，以适应不同能力的队友：</p>
 
-        <h3>关键场次数据 (Match Data)</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; text-align: center;">
-            <tr style="background: #00BCD4; color: white;">
-                <th style="padding: 10px; border: 1px solid #ddd;">阶段</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">场次 ID</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">得分</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">排名情况</th>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">资格赛</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Match #38</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">249 分</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">资格赛第 8 名</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">淘汰赛</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Finals Match #1-14</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">254 分</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">-</td>
-            </tr>
+        <table class="strategy-table">
+            <thead>
+                <tr>
+                    <th>策略代号</th>
+                    <th>核心动作</th>
+                    <th>理论得分 (Gen 1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>91分近端/远端</strong><br>(Low Tower)</td>
+                    <td>
+                        - 侧重于低塔堆叠<br>
+                        - 中心区：2个双色堆叠<br>
+                        - 放弃三角区（一代车无三角区机构）
+                    </td>
+                    <td>105 分</td>
+                </tr>
+                <tr>
+                    <td><strong>110分近端/远端</strong><br>(High Tower)</td>
+                    <td>
+                        - 尝试冲击高塔<br>
+                        - 中心区：2个双色堆叠<br>
+                        - 依赖精准的送爪时间控制
+                    </td>
+                    <td>144 分</td>
+                </tr>
+                <tr>
+                    <td><strong>手动技能赛</strong><br>(Skills)</td>
+                    <td>
+                        - 稳健路线，放弃高风险的高塔
+                    </td>
+                    <td>144 分</td>
+                </tr>
+            </tbody>
         </table>
 
-        <div style="border: 2px solid #ccc; padding: 20px; text-align: center; margin: 30px 0; background-color: #f8f9fa;">
-            <h2 style="color: #333; margin: 0;">最终成绩：亚军 (Runner-up)</h2>
-            <p style="color: #666; margin-top: 5px;">2025 VEX IQ Robotics Competition - Beijing Urban Series</p>
-        </div>
+        <p style="font-size: 14px; color: #666; margin-top: 5px;">*注：理论得分基于理想状态下的路线规划，实战中依据队友配合情况会有波动。</p>
     </div>
 
-    <!-- ================= PAGE 116: 总结与展望 ================= -->
+    <!-- ================= PAGE 115: 比赛结果与复盘 ================= -->
     <div class="sheet">
+        <h1>6.6 赛后评估与成绩公示</h1>
 
+        <p>尽管一代车存在底盘速度慢、垂直行程有限等先天劣势，但得益于赛前对“钩爪”和“摩擦力”的针对性优化，机器在实战中表现出了极高的稳定性。</p>
+
+        <h3>关键场次表现</h3>
+        <ul>
+            <li><strong>稳定性：</strong> 全场比赛中，改进后的摩擦爪未发生销钉滑落。</li>
+            <li><strong>高塔挑战：</strong> 在尝试“110分策略”时，确实出现了搭高塔Beam歪倒的情况（正如8月12日集训时发现的问题），这受限于一代车较短的机械臂力臂。</li>
+            <li><strong>底盘瓶颈：</strong> 2倍速底盘在长距离移动中明显拖慢了得分节奏，且在光面地垫上仍有轻微漂移。</li>
+        </ul>
+
+    </div>
+    <div class="sheet">
+        <h1>6.6 赛后评估与成绩公示（续）</h1>
+        <h3>最终成绩 (Final Results)</h3>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>阶段</th>
+                    <th>场次 ID</th>
+                    <th>得分</th>
+                    <th>排名</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>资格赛</td>
+                    <td>Match #38</td>
+                    <td>249 分</td>
+                    <td>资格赛第 8 名</td>
+                </tr>
+                <tr>
+                    <td>淘汰赛</td>
+                    <td>Finals Match #1-14</td>
+                    <td>254 分</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="result-summary">
+            <h2 style="margin: 0; color: #333;">最终成绩：亚军 (Runner-up)</h2>
+            <p style="color: #666; margin-top: 5px;">2025 VEX IQ Robotics Competition - Beijing Urban Series</p>
+        </div>
+        <img src="assets/ch06/6_6_2.webp" alt="奖杯" style="height:300px; margin: 30px auto;border-radius: 10px;">
+
+
+
+    </div>
+    <!-- ================= PAGE 116: 总结与迭代计划 ================= -->
+    <div class="sheet">
         <h1>第六章总结：设计验证与迭代计划</h1>
 
         <p>
-            通过本次“胜炫北京城市赛”的实战检验，一代车完成了其作为“原理验证机”的历史使命。它证明了气动抓取方案在 Mix & Match 赛季中的可行性，同时也充分暴露了当前设计在底盘控制与垂直作业范围上的局限性。
+            通过本次“胜炫北京城市赛”的实战检验，一代车完成了其作为“原理验证机”的历史使命。它证明了气动抓取方案的可行性，但也充分暴露了局限性。
         </p>
-        
+
         <h3>二代车 (Gen 2) 研发规划</h3>
-        <p>基于本章收集的测试数据与实战反馈，工程团队已制定下一阶段的迭代目标：</p>
+        <p>基于《8月12日赛后总结》及实战数据，工程团队已明确下一阶段的迭代方向：</p>
+
         <div class="highlight-box type-cyan">
             <ol style="line-height: 1.8;">
-                <li><strong>底盘重构：</strong> 调整齿轮比，降低速度以换取更高的扭矩与控制精度，消除漂移现象。</li>
-                <li><strong>结构升级：</strong> 重新设计抬升机构，增加有效行程以覆盖高塔得分区；优化“面状”辅助定位结构。</li>
-                <li><strong>自动化集成：</strong> 深入开发传感器算法，实现全流程的自动化控制程序，减少对人为操作的依赖。</li>
+                <li><strong>底盘提速：</strong> 当前移动速度严重影响得分，需调整底盘齿轮结构，在保证不漂移的前提下提升速度。</li>
+                <li><strong>高塔优化：</strong> 针对高塔Beam歪倒问题，计划加长机械臂力臂，并优化送爪时间的控制逻辑。</li>
+                <li><strong>三角区突破：</strong> 一代车完全放弃了三角区得分（Strategy: "无"），二代车必须增加专门的三角区定位机构。</li>
+                <li><strong>配合协同：</strong> 解决操作手与装填手配合不好的问题（爪子方向与装Pin方向需匹配）。</li>
             </ol>
         </div>
 
-        <p style="margin-top: 30px;">
+        <p style="margin-top: 40px;">
             <strong>决策：</strong> 正式退役一代车，立即启动二代车的设计与制造工作。
         </p>
     </div>
@@ -246,4 +402,5 @@
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
 </body>
+
 </html>
