@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     linksContainer.classList.add('navigation-links');
     menu.appendChild(linksContainer);
 
-            const chapterPageCounts = {
+                const chapterPageCounts = {
         "index": 4,
         "glossary": 0,
-        "ch01": 26,
+        "ch01": 27,
         "ch02": 25,
         "ch03": 10,
         "ch04": 10,
