@@ -71,7 +71,8 @@
         /* Table Styles */
         .comparison-table,
         .parts-table,
-        .training-table {
+        .training-table,
+        .debug-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
@@ -80,7 +81,8 @@
 
         .comparison-table th,
         .parts-table th,
-        .training-table th {
+        .training-table th,
+        .debug-table th {
             background-color: var(--secondary-color);
             color: white;
             padding: 10px;
@@ -88,7 +90,8 @@
 
         .comparison-table td,
         .parts-table td,
-        .training-table td {
+        .training-table td,
+        .debug-table td {
             text-align: center;
             padding: 8px;
             border: 1px solid #ddd;
@@ -116,6 +119,7 @@
             border: 1px solid var(--secondary-color);
             padding: 0 20px;
             margin-top: 20px;
+            border-radius: 8px;
         }
 
         .bg-light-purple {
@@ -131,6 +135,49 @@
             font-size: 13px;
             line-height: 1.5;
             margin: 10px 0;
+        }
+
+        .analysis-section {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
+        /* Two Column Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Two equal columns */
+            gap: 20px;
+            /* Space between images */
+            margin-top: 20px;
+        }
+
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            /* Limit height to fit page */
+            object-fit: contain;
+            /* Ensure image fits nicely */
+            border-radius: 2px;
+        }
+
+        .caption {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
         }
     </style>
 </head>
@@ -151,7 +198,7 @@
                     本章节详细记录了战队基于一代车（Gen 1）在训练与城市赛中暴露的底盘漂移、抓取偏差及抬升不足等问题，研发并制造二代车（Gen 2）的全过程。
                 </p>
                 <p>
-                    核心改进包括：底盘降速稳压处理（由2倍速优化为1.5倍速）、一体化4X梁抓取结构、气动定位角引入以及一键自动化连贯动作编程。
+                    核心改进包括：底盘降速稳压处理（由2倍速优化为1.5倍速）、一体化4X梁抓取结构、抬升结构的物理极限调试、气动定位角引入以及一键自动化连贯动作编程。
                 </p>
                 <p>
                     <strong>本章核心任务：</strong> 打造一台通过性更强、操作更灵活、堆叠更稳定的进阶机型。
@@ -171,8 +218,8 @@
             <ol style="line-height: 2;">
                 <li><strong>底盘稳定性提升：</strong> 解决2倍速底盘带来的高速漂移问题，通过程序系数将配比优化至1.5倍速效果。</li>
                 <li><strong>抓取精度优化：</strong> 采用一体4X梁固定摩擦点，解决翻转销钉至万能梁时的位置偏差（Offset）。</li>
-                <li><strong>抬升能力增强：</strong> 加长力臂并调整旋转支点，确保在高塔挂载任务中具备充足的高度冗余。</li>
-                <li><strong>程序自动化集成：</strong> 编写“一键完成”程序，实现翻转、抬升、堆叠的连贯动作，降低得分耗时。</li>
+                <li><strong>抬升结构调试：</strong> 针对中心区高塔需求，重新计算力臂长度与旋转角，确保高度与稳定性并重。</li>
+                <li><strong>三角区效率优化：</strong> 引入可动定位角结构，配合自动化程序，实现快速、精准的三角得分入场。</li>
             </ol>
         </div>
         <img src="assets/ch07/7_1_1.webp" alt="Gen2整体侧视图"
@@ -194,15 +241,11 @@
         </div>
         <img src="assets/ch07/7_2_1.webp" alt="2代车底盘"
             style="display: block;height:350px; margin: 20px auto; border-radius: 10px;">
-
-        <!-- <div class="img-placeholder" style="height: 220px;">
-            [底盘降速程序代码截图与齿轮布局对比图图片]
-        </div> -->
     </div>
 
-    <!-- ================= PAGE 120: 抓取与抬升系统 ================= -->
+    <!-- ================= PAGE 120: 抓取系统 ================= -->
     <div class="sheet">
-        <h1>7.3 机械优化二：抓取、勾取与抬升系统</h1>
+        <h1>7.3 机械优化二：一体化抓取与勾取系统</h1>
 
         <div class="two-column-layout">
             <div class="column">
@@ -214,73 +257,128 @@
                 style="display: block;height:200px; margin: 10px auto; border-radius: 10px;">
 
             <div class="column">
-                <h3 class="text-purple">2. 勾爪弧度与力臂优化</h3>
-                <p><strong>措施：</strong> 调整勾爪角度和弧度，使抓取点对准万能梁中心。加长抬升力臂，并优化角度与位置。</p>
-                <p><strong>优势：</strong> 兼顾勾取万能梁与销钉的功能，满足中心区高塔所需的最高堆叠高度。</p>
+                <h3 class="text-purple">2. 勾爪弧度优化</h3>
+                <p><strong>措施：</strong> 调整勾爪角度和弧度，使抓取点对准万能梁中心。优化物理限位位置，防止抓取时因震动导致的滑脱。</p>
+                <p><strong>优势：</strong> 兼顾勾取万能梁与销钉的功能，为后续的抬升与堆叠提供了稳固的基础载体。</p>
             </div>
             <img src="assets/ch07/7_3_2.webp" alt="2代车钩爪"
                 style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
-
         </div>
+    </div>
 
-        <!-- <div class="img-placeholder" style="height: 200px;">
-            [一体4X梁细节图及后的勾爪结构图片]
+    <!-- ================= PAGE 121: 抬升结构调试 (FULL PAGE) ================= -->
+    <div class="sheet">
+        <h1>7.4 机械优化三：抬升结构调试与高度冗余优化</h1>
+
+        <h3 class="text-purple">问题诊断：高度与稳定性的失衡</h3>
+        <p>在 1.0 版本中，机器人勉强能堆叠至中心区高塔的第二层。由于力臂较短，当需要触及更高点位时，电机负载剧增且结构晃动严重，导致第三层销钉极易倒塌。</p>
+
+        <h3 class="text-purple">改进措施：几何结构重构</h3>
+        <p><strong>1. 加长抬升力臂：</strong> 将原有抬升臂增长了 2.5 英寸。根据杠杆原理，虽然这增加了电机的扭矩负担，但通过增加 1:5 的减速齿轮组成功抵消了负荷，获得了更大的顶端行程高度。</p>
+        <p><strong>2. 兼顾抓取功能：</strong> 在加长力臂的同时，保留了对销钉底座的物理限位，保证抓取销钉的精准度。</p>
+
+        <h3 class="text-purple">调试效果评估：</h3>
+        <p>
+            高塔堆叠高度满足要求，抬升稳定性提高。
+        </p>
+
+        <img src="assets/ch07/7_4_1.webp" alt="2代车钩爪"
+            style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+
+        <!-- <div class="img-placeholder" style="height: 150px; margin-top:15px;">
+            [抬升臂力臂增长前后的几何结构对比示意图]
         </div> -->
     </div>
 
-    <!-- ================= PAGE 121: 定位角与面状辅助 ================= -->
+    <!-- ================= PAGE 122: 三角区域定位角 ================= -->
     <div class="sheet">
-        <h1>7.4 机械优化三：气动定位角与面状辅助系统</h1>
+        <h1>7.5 机械优化四：三角区气动定位角系统</h1>
 
-        <div class="highlight-box type-default">
-            <p class="text-purple">优化项目 A：气动定位角（半收起形态）</p>
+        <div class="analysis-section">
+            <p class="text-purple">改进背景：解决入场干涉</p>
+            <p>传统固定角在三角区边缘易卡顿，微调极耗时。改进旨在消除物理隔阂，提升投放流畅度。</p>
+        </div>
+
+        <div class="box-purple">
+            <h3 class="text-purple">核心方案：气动收放 + 自动化联动</h3>
             <ul>
-                <li><strong>结构：</strong> 引入气动系统，由气杆通过拉动绳索完成动作。将原有的全收起改为“半收起”形态，更换短气杆缩短行程。</li>
-                <li><strong>功能：</strong> 解决送入三角区时反复调整的问题，一键瞬间展开定位，操作极速简化。</li>
+                <li><strong>气动结构：</strong> 增设气缸控制模块，在接近边缘时自动抬升/收起定位角，避免物理摩擦。</li>
+                <li><strong>一键程序：</strong> 开发 <code>Score_In_Triangle()</code> 函数，按下按键即可自动完成“抬升-收角-后退”全套动作。</li>
             </ul>
         </div>
 
-        <div class="highlight-box type-default">
-            <p class="text-purple">优化项目 B：面状辅助定位装置</p>
-            <ul>
-                <li><strong>原理：</strong> 采用宽板凹槽结构替换点状支架，利用物理限位强制纠正销钉姿态。</li>
-                <li><strong>效果：</strong> 有效解决了翻转后销钉晃动的问题，确保第二层及以上堆叠的垂直度。</li>
-            </ul>
+        <div class="highlight-box type-purple" style="margin-top: 20px;">
+            <h3>实测成效 (Efficiency Gains)</h3>
+            <p><strong>1. 动作丝滑：</strong> 操作由繁琐对齐变为一键自动化，无卡顿。</p>
+            <p><strong>2. 效率倍增：</strong> 投放时间由 <strong>6s 降至 2.5s</strong>，场均多送入 <strong>2 个塔</strong>。</p>
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
-            [气动定位角绳索结构图及面状辅助定位板细节图片]
-        </div>
+        <img src="assets/ch07/7_5_1.webp" alt="2代车抬起定位角"
+            style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+
     </div>
 
-    <!-- ================= PAGE 122: 自动化编程 ================= -->
+    <!-- ================= PAGE 123: 自动化编程 ================= -->
     <div class="sheet">
-        <h1>7.5 程序优化：一键调整连贯动作逻辑</h1>
+        <h1>7.6 程序优化：一键调整连贯动作</h1>
 
-        <p>为提高得分效率，我们将手动分步操作精简为高度集成的自动化代码。</p>
-
-        <div class="code-block">
-            // 自动化翻转、抬升与堆叠逻辑伪代码
-            WHEN Controller.Button_LA.Pressed {
-            LF_Motor.RotateTo(-840, degrees); // 抬升至预设堆叠高度
-            RF_Motor.RotateTo(-840, degrees);
-            WaitUntilDone();
-
-            Grab_Pneumatic.Extend(); // 气缸伸展完成抓取
-            Wait(0.2, seconds);
-
-            Arm_Motor.RotateTo(370, degrees); // 翻转动作无缝衔接
-            WaitUntilDone();
-
-            // 位置反馈检测：精度控制在 5 度以内，防止过冲
-            }
+        <p>为配合上述机械优化（特别是抬升与定位角的联动），我们将手动分步操作精简为高度集成的自动化代码。</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="assets/ch07/image11.png" alt="Optimization Diagram 1">
+                <div class="caption">图 7.6.1 初始状态检查</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image12.png" alt="Optimization Diagram 2">
+                <div class="caption">图 7.6.2 连贯动作流图</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image13.png" alt="Optimization Diagram 3">
+                <div class="caption">图 7.6.3 机械臂抬升示意</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image14.png" alt="Optimization Diagram 4">
+                <div class="caption">图 7.6.4 定位角修正</div>
+            </div>
         </div>
-        <p class="text-gray">注：程序中加入了对电机转速的动态调整（abs函数限制），确保在高速移动和精准堆叠间灵活切换。</p>
+
+    </div>
+    <div class="sheet">
+        <h1>7.6 程序优化：一键调整连贯动作（续）</h1>
+
+        <!-- <p>为配合上述机械优化（特别是抬升与定位角的联动），我们将手动分步操作精简为高度集成的自动化代码。</p> -->
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="assets/ch07/image15.png" alt="Optimization Diagram 5">
+                <div class="caption">图 7.6.5 代码逻辑结构</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image16.png" alt="Optimization Diagram 6">
+                <div class="caption">图 7.6.6 负载响应曲线</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image17.png" alt="Optimization Diagram 7">
+                <div class="caption">图 7.6.7 最终执行效果 A</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image18.png" alt="Optimization Diagram 8">
+                <div class="caption">图 7.6.8 最终执行效果 B</div>
+            </div>
+            <!-- <div class="image-item">
+                <img src="assets/ch07/image19.png" alt="Optimization Diagram 9">
+                <div class="caption">图 7.6.9 误差分析统计</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch07/image20.png" alt="Optimization Diagram 10">
+                <div class="caption">图 7.6.10 优化前后对比</div>
+            </div> -->
+        </div>
+
     </div>
 
-    <!-- ================= PAGE 123: 详细迭代训练记录 ================= -->
+    <!-- ================= PAGE 124: 详细迭代训练记录 ================= -->
     <div class="sheet">
-        <h1>7.6 二代车迭代训练记录 (详细过程)</h1>
+        <h1>7.7 二代车迭代训练记录 (详细过程)</h1>
 
         <table class="training-table">
             <thead>
@@ -300,33 +398,21 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>高塔堆叠不够稳，高度略低</td>
-                    <td>调整抬升力臂长度，增加面状辅助</td>
-                    <td>堆叠高度增加，稳定性大幅提升</td>
+                    <td>高塔堆叠高度受限</td>
+                    <td>加长抬升力臂，重设支点角度</td>
+                    <td>成功触达最高塔点位，结构更稳</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>勾取万能梁时角度不准导致滑落</td>
-                    <td>调整勾爪弧度，优化物理限位位置</td>
-                    <td>勾取稳定性提升，滑落现象减少</td>
+                    <td>三角区入场被挡板卡住</td>
+                    <td>增加气动控制定位角收起功能</td>
+                    <td>入场顺滑，完全消除物理干涉</td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>翻转与抬升动作手动衔接慢</td>
                     <td>编写程序实现一键连贯执行动作</td>
                     <td>操作流程极大简化，得分效率提高</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>连续抓取多个销钉时偶有滑动</td>
-                    <td>微调摩擦点位置，加厚橡皮筋</td>
-                    <td>抓取成功率稳定在 95% 以上</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>连续动作程序衔接略显生涩</td>
-                    <td>优化程序内部延时（Delay）参数</td>
-                    <td>动作衔接更流畅，单任务时间缩短</td>
                 </tr>
                 <tr>
                     <td>10</td>
@@ -340,7 +426,7 @@
 
     <!-- ================= PAGE 124: 核心零件清单 ================= -->
     <div class="sheet">
-        <h1>7.7 二代车核心零件清单 (BOM)</h1>
+        <h1>7.8 二代车核心零件清单 (BOM)</h1>
 
         <table class="parts-table">
             <thead>
@@ -406,7 +492,7 @@
 
     <!-- ================= PAGE 125: 性能测试指标 ================= -->
     <div class="sheet">
-        <h1>7.8 性能测试与最终调试</h1>
+        <h1>7.9 性能测试与最终调试总结</h1>
 
         <h3>核心性能指标对比 (Gen 1 vs Gen 2)</h3>
         <table class="comparison-table">
@@ -441,12 +527,11 @@
         </table>
 
         <div class="box-purple">
-            <h3>性能调试结论</h3>
+            <h3>本章调试结论</h3>
             <ul>
-                <li><strong>底盘：</strong> 降速至 1.5 倍速后，漂移明显减少，碰散销钉概率降至 5% 以下。</li>
-                <li><strong>抓取：</strong> 4X 梁与橡皮筋组合解决了滑动问题，确保了堆叠位置的一致性。</li>
-                <li><strong>抬升：</strong> 力臂加长后不仅满足高塔高度，且增加了勾取销钉的灵活性。</li>
-                <li><strong>自动化：</strong> 连贯动作消除手动延迟，单场比赛任务完成效率提升 35%。</li>
+                <li><strong>抬升结构：</strong> 增加力臂不仅解决了高度物理极限，更通过重心的后移提高了高速移动中的防翻扣能力。</li>
+                <li><strong>定位角系统：</strong> 气动化的引入是本章最大的“效率黑科技”，将三角区任务从“细活”变成了“快活”。</li>
+                <li><strong>综合评价：</strong> 二代机在解决一代机稳定性的基础上，通过机械与程序的深度协同，实现了从“能跑”到“稳赢”的跨越。</li>
             </ul>
         </div>
     </div>
@@ -472,10 +557,12 @@
                 战队将以此成熟机型备战即将到来的教委市赛，并在后续章节中进一步探索针对极端赛况的微调策略。
             </p>
         </div>
+        <img src="assets/ch07/7_z.webp" alt="2代车顶视图"
+            style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
 
-        <div class="img-placeholder" style="height: 250px; margin-top: 50px;">
+        <!-- <div class="img-placeholder" style="height: 250px; margin-top: 50px;">
             [二代车在校际联赛现场的完赛状态照片图片]
-        </div>
+        </div> -->
     </div>
 
     <script src="assets/scripts/toggle-buttons.js"></script>
