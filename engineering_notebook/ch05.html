@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第五章：系统实施与搭建 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
+
 <body class="theme-reddish-brown">
 
     <!-- ================= PAGE 91: 章节封面 ================= -->
@@ -15,9 +17,9 @@
             <h1 style="font-size: 56px; border: none; color: #E74C3C;">系统实施</h1>
             <h2 style="font-size: 36px; background: none; color: #555;">第五章：物理搭建与软件配置</h2>
             <h3 style="font-size: 24px; color: #888; border: none;">Chapter 5: System Implementation & Assembly</h3>
-            
+
             <div style="width: 80%; height: 8px; background: #E74C3C; margin: 40px auto; border-radius: 5px;"></div>
-            
+
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
                 <p>
                     本章节详细记录了从设计图纸到实体机器人的转化过程。
@@ -36,47 +38,90 @@
     <div class="sheet">
 
         <h1>5.1 资源统筹与端口规划</h1>
-        
+
         <p>在正式组装前，团队依据第四章的设计方案进行了物料清单 (BOM) 的核对，并完成了 VEX IQ 主控的端口映射规划。</p>
 
         <h3>关键物料清单 (Bill of Materials)</h3>
+        <ul style="margin-top: 10px; font-size: 16px; line-height: 1.8;">
+            <li>
+                <strong>执行器:</strong> Smart Motor (Gen 2) × 4
+                <br>应用模块: 底盘(2), 抬升(1), 翻转(1)
+                <img src="assets/ch05/5_1_1.webp" alt="电机"
+                    style="width:100%; display: block; margin: 10px auto; border-radius: 10px; transform: translateX(-50px);">
+            </li>
+            <li>
+                <strong>气动元件:</strong> 气缸, 电磁阀, 气瓶 × 1套
+                <br>应用模块: 抓取系统
+                <img src="assets/ch05/5_1_2.webp" alt="气动组件"
+                    style="width:80%; display: block; margin: 10px auto; border-radius: 10px; transform: translate(-50px, 0px);">
+            </li>
+            <li>
+                <strong>传感器:</strong> Distance Sensor × 1
+                <br>应用模块: 距离检测 / 自动抓取辅助
+                <img src="assets/ch05/5_1_3.webp" alt="距离传感器"
+                    style="height:180px; display: block; margin: 10px auto; border-radius: 10px; transform: translate(-50px, -10px);">
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="sheet">
+
+        <h1>5.1 资源统筹与端口规划（续）</h1>
+        <h3>端口映射图</h3>
         <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;">
             <tr style="background-color: #eee;">
-                <th style="border: 1px solid #ccc; padding: 5px;">组件类别</th>
-                <th style="border: 1px solid #ccc; padding: 5px;">规格/型号</th>
-                <th style="border: 1px solid #ccc; padding: 5px;">数量</th>
-                <th style="border: 1px solid #ccc; padding: 5px;">应用模块</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">端口</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">设备</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">类型</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">备注</th>
             </tr>
             <tr>
-                <td style="border: 1px solid #ccc; padding: 5px;">执行器</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">Smart Motor (Gen 2)</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">4</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">底盘(2), 抬升(1), 翻转(1)</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">端口 1</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">左驱动电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">反转</td>
             </tr>
             <tr>
-                <td style="border: 1px solid #ccc; padding: 5px;">气动元件</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">气缸, 电磁阀, 气瓶</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">1套</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">抓取系统</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">端口 6</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">右驱动电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">反转</td>
             </tr>
             <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">端口 4</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">升降电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">端口 11</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">翻转电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">电机</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">端口 2</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">陀螺仪传感器</td>
                 <td style="border: 1px solid #ccc; padding: 5px;">传感器</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">Inertial, Distance</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">2</td>
-                <td style="border: 1px solid #ccc; padding: 5px;">姿态控制, 距离检测</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">端口 3</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">距离传感器</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">传感器</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>端口 10</strong></td>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>气动电磁阀</strong></td>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>数字输出</strong></td>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>数字输出端口</strong></td>
             </tr>
         </table>
+        <img src="assets/ch05/5_1_4.webp" alt="主控电脑"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 10px;">
 
-        <h3>端口映射图 (Port Map)</h3>
-        <div class="build-log" style="font-family: monospace; background: #f4f4f4;">
-            Port 1: Left Drive Motor (Rev)<br>
-            Port 6: Right Drive Motor (Rev)<br>
-            Port 4: Lift Motor<br>
-            Port 11: Flipper Motor<br>
-            Port 2: Gyro Sensor<br>
-            Port 3: Distance Sensor<br>
-            <strong>Port 10: Pneumatic Solenoid (Digital Out)</strong>
-        </div>
     </div>
 
     <!-- ================= PAGE 93: 底盘装配 ================= -->
@@ -85,17 +130,16 @@
         <h1>5.2 机械装配：底盘系统</h1>
 
         <div class="build-log">
-            <span class="log-date">2025/08/01 - 08/02</span>
+            <!-- <span class="log-date">2025/08/01 - 08/02</span> -->
             <p><strong>子系统描述：</strong> 双电机差速驱动底盘。</p>
             <p><strong>传动方案：</strong> 采用 48T:24T 齿轮组，实现 1:2 的增速比。该设计旨在保证机器人具备足够的场地覆盖速度。</p>
             <p><strong>工程挑战：</strong> 高速齿轮组对结构刚性要求较高，初步测试中发现底盘在大扭矩下有形变风险。</p>
             <p><strong>解决方案：</strong> 在底盘中部引入 "H" 型加强横梁结构，并增加额外的轴承座以支撑齿轮轴，显著提升了底盘的抗扭刚性。</p>
         </div>
-        
-        <div class="img-placeholder" style="height: 220px;">
-            
-            <br>(展示齿轮咬合与H型加固结构)
-        </div>
+        <br>
+
+        <img src="assets/ch05/5_2_1_chassis.webp" alt="底盘搭建"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE 94: 机械臂与抓手 ================= -->
@@ -104,7 +148,6 @@
         <h1>5.3 机械装配：操作臂与气动抓手</h1>
 
         <div class="build-log">
-            <span class="log-date">2025/08/04 - 08/07</span>
             <p><strong>抬升机构 (Lift)：</strong> 搭建单边四连杆结构。为降低电机负载，在力臂支点处配置了三角形挂点的橡皮筋重力补偿系统。测试显示，电机仅需极低电流即可维持悬停状态。</p>
             <p><strong>气动抓手 (Intake)：</strong></p>
             <ul>
@@ -114,10 +157,8 @@
             </ul>
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
-            
-            <br>(包含气缸安装位置与橡胶防滑层)
-        </div>
+        <img src="assets/ch05/5_2_2_claw.webp" alt="抓手"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE 95: 系统集成 ================= -->
@@ -126,7 +167,6 @@
         <h1>5.4 系统集成与布线工艺</h1>
 
         <div class="build-log">
-            <span class="log-date">2025/08/10</span>
             <p>随着各子系统组装完成，进入整车集成阶段。重点工作集中在电气布线与气路铺设。</p>
         </div>
 
@@ -137,6 +177,9 @@
             <li><strong>翻转关节处理：</strong> 针对 180 度翻转手腕，将连接末端气缸的气管盘绕成螺旋状（Spiral Wrap），预留充足的伸缩余量，消除应力集中。</li>
             <li><strong>固定工艺：</strong> 使用尼龙扎带沿结构梁进行固定，确保整机外观整洁且易于维护。</li>
         </ul>
+        <img src="assets/ch05/5_4_1.webp" alt="布线工艺"
+            style="height:300px; display: block; margin: 10px auto; border-radius: 10px;">
+
     </div>
 
     <!-- ================= PAGE 96: 软件配置 ================= -->
@@ -145,11 +188,11 @@
         <h1>5.5 软件配置：设备初始化</h1>
 
         <div class="build-log">
-            <span class="log-date">2025/08/12</span>
             <p>基于 VEXcode IQ 平台进行底层驱动配置。针对气动系统，需将控制端口配置为数字输出模式。</p>
         </div>
 
-        <div class="code-snippet" style="background: #f8f9fa; border: 1px solid #ddd; padding: 15px; font-family: 'Courier New', monospace;">
+        <div class="code-snippet"
+            style="background: #f8f9fa; border: 1px solid #ddd; padding: 15px; font-family: 'Courier New', monospace;">
             <span style="color: #008000;">// Device Configuration</span><br>
             motor LeftDrive = motor(PORT1, ratio18_1, false);<br>
             motor RightDrive = motor(PORT6, ratio18_1, true);<br>
@@ -173,7 +216,6 @@
         <h1>5.6 遥控逻辑设计 (Teleop)</h1>
 
         <div class="build-log">
-            <span class="log-date">2025/08/13 - 08/14</span>
             <p>为满足操作手在比赛中的即时反应需求，确立了以下人机交互逻辑：</p>
         </div>
 
@@ -185,25 +227,28 @@
             </tr>
             <tr>
                 <td>底盘移动</td>
-                <td>摇杆 (A/D)</td>
+                <td>摇杆 (A/B/C/D)</td>
                 <td>采用坦克模式 (Tank Drive)，左右摇杆独立控制对应侧电机。</td>
             </tr>
             <tr>
                 <td>气动抓手</td>
-                <td>R1 / R2</td>
+                <td>R Up / R Down</td>
                 <td>R1 触发闭合（抓取），R2 触发断开（释放）。利用气动瞬时响应特性实现快速抓取。</td>
             </tr>
             <tr>
                 <td>翻转手腕</td>
-                <td>F 键 (Toggle)</td>
+                <td>L Down</td>
                 <td>单键切换。按下旋转至 180 度，再次按下复位至 0 度。</td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td><strong>速度控制</strong></td>
                 <td><strong>L 键 (Hold)</strong></td>
                 <td><strong>精准模式 (Precision Mode)：</strong> 按住 L 键时，底盘输出功率限制为 50%，用于精细对准目标。</td>
-            </tr>
+            </tr> -->
         </table>
+
+        <img src="assets/ch05/5_6_1.webp" alt="遥控器按键布局"
+            style="height:300px; display: block; margin: 20px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE 98: 传感器与自动化 ================= -->
@@ -212,19 +257,18 @@
         <h1>5.7 传感器集成与自动化测试</h1>
 
         <div class="build-log">
-            <span class="log-date">2025/08/16 - 08/17</span>
             <p>为提高机器人的环境感知能力及自动赛表现，集成了以下传感器模块：</p>
         </div>
 
         <div class="two-column-layout">
             <div class="column">
-                <h4>1. 惯性传感器 (Inertial Sensor)</h4>
-                <p>用于实时监测机器人的航向角 (Heading)。通过 PID 算法修正左右轮速差，显著改善了底盘在高速行驶下的直线保持能力。</p>
-            </div>
-            <div class="column">
-                <h4>2. 距离传感器 (Distance Sensor)</h4>
+                <h4>距离传感器 (Distance Sensor)</h4>
                 <p>前置安装。在自动程序中实现“接近检测”：当检测到前方障碍物或得分桩距离小于设定阈值（100mm）时，自动触发刹车逻辑，防止剧烈碰撞。</p>
             </div>
+            <!-- <div class="column">
+                <h4>惯性传感器 (Inertial Sensor)</h4>
+                <p>用于实时监测机器人的航向角 (Heading)。通过 PID 算法修正左右轮速差，显著改善了底盘在高速行驶下的直线保持能力。</p>
+            </div> -->
         </div>
 
         <h3>初步自动程序测试</h3>
@@ -249,14 +293,13 @@
             目前系统状态良好，已具备参加实战测试的条件。下一阶段，我们将通过模拟赛与即将到来的北京城市赛，对机器人的综合性能进行极限测试。
         </p>
 
-        <div class="img-placeholder" style="height: 250px;">
-            
-            <br>(展示完整的气路布局与机械结构)
-        </div>
+        <img src="assets/ch05/5_z.webp" alt="一代车完整形态"
+            style="height:300px; display: block; margin: 40px auto; border-radius: 10px;">
     </div>
 
     <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
 </body>
+
 </html>
