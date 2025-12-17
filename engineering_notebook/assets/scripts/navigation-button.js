@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch04": "#8E44AD",
         "ch05": "#E74C3C",
         "ch06": "#00ACC1",
-        "ch07": "#8E44AD",
+        "ch07": "#450693", // Updated color
         "ch08": "#008080",
         "glossary": "#5D6D7E" // A neutral color for glossary
     };

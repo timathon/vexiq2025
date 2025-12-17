@@ -57,13 +57,13 @@
 }
 
 .theme-purple-7 {
-    --primary-color: #8E44AD;
-    --secondary-color: #9B59B6;
-    --tertiary-color: #9B59B6;
-    --quaternary-color: #D2B4DE;
-    --background-color-light: #F5EEF8;
-    --sheet-border-color: #9B59B6;
-    --chapter-marker-color: #9B59B6;
+    --primary-color: #450693;
+    --secondary-color: #5E11AF;
+    --tertiary-color: #5E11AF;
+    --quaternary-color: #C2A4E0;
+    --background-color-light: #F2ECF7;
+    --sheet-border-color: #5E11AF;
+    --chapter-marker-color: #5E11AF;
     --chapter-marker-top: 201mm;
     /* 85mm + 29mm */
 }
