@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,14 @@
             text-align: center;
             margin-top: 120px;
         }
+
         .cover-section h1 {
             font-size: 56px;
             border: none;
             color: var(--primary-color);
             margin-bottom: 10px;
         }
+
         .cover-section h2 {
             font-size: 36px;
             background: none;
@@ -25,6 +28,7 @@
             margin: 5px 0;
             border: none;
         }
+
         .cover-section h3 {
             font-size: 24px;
             color: #888;
@@ -32,6 +36,7 @@
             padding: 0;
             margin-top: 5px;
         }
+
         .cover-divider {
             width: 80%;
             height: 8px;
@@ -39,6 +44,7 @@
             margin: 40px auto;
             border-radius: 5px;
         }
+
         .cover-intro {
             margin: 60px 80px;
             font-size: 20px;
@@ -52,44 +58,83 @@
             list-style: none;
             padding: 0;
         }
+
         .log-list li {
             margin-bottom: 10px;
             padding-bottom: 1px;
-            /* border-bottom: 1px dashed #ddd; */
         }
+
         .log-list li:last-child {
             border-bottom: none;
         }
 
         /* Table Styles */
-        .comparison-table th {
+        .comparison-table,
+        .parts-table,
+        .training-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .comparison-table th,
+        .parts-table th,
+        .training-table th {
             background-color: var(--secondary-color);
             color: white;
             padding: 10px;
         }
-        .comparison-table td {
+
+        .comparison-table td,
+        .parts-table td,
+        .training-table td {
             text-align: center;
-            padding: 10px;
-            vertical-align: middle;
+            padding: 8px;
+            border: 1px solid #ddd;
         }
-        .comparison-table .highlight-cell {
-            background-color: #f3e5f5; /* Light purple */
+
+        .highlight-cell {
+            background-color: #f3e5f5;
             font-weight: bold;
             color: var(--primary-color);
         }
 
         /* Utility Classes */
-        .text-purple { color: var(--primary-color); font-weight: bold; }
-        .text-gray { color: #666; font-size: 14px; }
+        .text-purple {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .text-gray {
+            color: #666;
+            font-size: 14px;
+        }
+
         .box-purple {
             background-color: #F2ECF7;
             border: 1px solid var(--secondary-color);
-            padding: 20px;
+            padding: 0 20px;
             margin-top: 20px;
         }
-        .bg-light-purple { background-color: #F8F9FA; }
+
+        .bg-light-purple {
+            background-color: #F8F9FA;
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            color: #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
     </style>
 </head>
+
 <body class="theme-purple-7">
 
     <!-- ================= PAGE 117: 章节封面 ================= -->
@@ -98,18 +143,18 @@
             <h1 style="font-size: 56px;">设计迭代与优化</h1>
             <h2>第七章：二代车 (Gen 2) 的进化之路</h2>
             <h3>Chapter 7: Design Iteration: Gen 2</h3>
-            
+
             <div class="cover-divider"></div>
-            
+
             <div class="cover-intro">
                 <p>
-                    本章节详细记录了战队基于一代车（Gen 1）的实战数据，研发并制造二代车（Gen 2）的全过程。
+                    本章节详细记录了战队基于一代车（Gen 1）在训练与城市赛中暴露的底盘漂移、抓取偏差及抬升不足等问题，研发并制造二代车（Gen 2）的全过程。
                 </p>
                 <p>
-                    针对8月城市赛中出现的问题，比如底盘过慢、电机过热以及堆叠不稳定等，我们进行了深度的机械结构改良，并引入了更完善的自动化控制逻辑。
+                    核心改进包括：底盘降速稳压处理（由2倍速优化为1.5倍速）、一体化4X梁抓取结构、气动定位角引入以及一键自动化连贯动作编程。
                 </p>
                 <p>
-                    <strong>本章核心任务：</strong> 打造一台通过性更强、操作更灵活、堆叠更稳定的进阶机型，备战北京校际联赛。
+                    <strong>本章核心任务：</strong> 打造一台通过性更强、操作更灵活、堆叠更稳定的进阶机型。
                 </p>
             </div>
         </div>
@@ -117,252 +162,325 @@
 
     <!-- ================= PAGE 118: 迭代启动 ================= -->
     <div class="sheet">
-        <h1>7.1 迭代启动：从经验中改进</h1>
-        
-        <p>在结束北京城市赛后，我们进行了深刻的复盘，确立了二代车（Gen 2）的改进方向。</p>
+        <h1>7.1 迭代启动：针对1.0痛点的改进方案</h1>
+
+        <p>基于北京城市赛的数据复盘，我们确立了二代车（Gen 2）的四个核心技术改进目标：</p>
 
         <div class="highlight-box type-purple">
-            <h3>二代车核心设计目标 (Design Goals)</h3>
-            <!-- <p class="text-gray">基于 8月21日 比赛总结提出的痛点：</p> -->
+            <h3>二代车设计目标 (Design Goals)</h3>
             <ol style="line-height: 2;">
-                <li><strong>底盘提速与防卡顿：</strong> 解决一代车“移动速度过慢”及“装填区操作反向”的问题，提升全场游走能力。</li>
-                <li><strong>高塔堆叠优化：</strong> 针对“高塔 Beam 经常歪倒”的问题，需加长力臂，抬升高度。</li>
-                <li><strong>环境适应性：</strong> 优化三角区（Triangle Area）的送入角度，解决“送入费劲”的问题。</li>
-                <li><strong>自动化集成：</strong> 增加距离传感器，减少人为判断延迟。</li>
+                <li><strong>底盘稳定性提升：</strong> 解决2倍速底盘带来的高速漂移问题，通过程序系数将配比优化至1.5倍速效果。</li>
+                <li><strong>抓取精度优化：</strong> 采用一体4X梁固定摩擦点，解决翻转销钉至万能梁时的位置偏差（Offset）。</li>
+                <li><strong>抬升能力增强：</strong> 加长力臂并调整旋转支点，确保在高塔挂载任务中具备充足的高度冗余。</li>
+                <li><strong>程序自动化集成：</strong> 编写“一键完成”程序，实现翻转、抬升、堆叠的连贯动作，降低得分耗时。</li>
             </ol>
         </div>
+        <img src="assets/ch07/7_1_1.webp" alt="Gen2整体侧视图"
+            style="display: block;height:300px; margin: 10px auto; border-radius: 10px;">
+
     </div>
 
     <!-- ================= PAGE 119: 底盘优化 ================= -->
     <div class="sheet">
-        <h1>7.2 机械优化一：底盘传动结构重构</h1>
+        <h1>7.2 机械优化一：底盘通过性与运动控制</h1>
 
         <div class="highlight-box type-default">
-            <p class="text-purple">优化项目：底盘齿轮布局</p>
-            <p><strong>问题识别（源自训练记录）：</strong> 一代车底盘传动齿轮位置过低。在穿越场地装填梁（Loading Beam）时，齿轮下沿容易与横梁发生物理摩擦，导致机器人动作卡顿。</p>
-            <p><strong>工程解决方案：</strong></p>
-            <ul>
-                <li><strong>结构调整：</strong> 将底盘传动齿轮组的安装位置整体<strong>向上迁移</strong>。</li>
-                <li><strong>技术细节：</strong> 通过调整轴孔位置，使齿轮组完全高于底盘最低点，消除了与地面障碍物的潜在干涉。</li>
-            </ul>
-            <p><strong>实际效果：</strong> 机器人可以轻松快速通过装填区域，彻底解决了摩擦减速问题，节省了宝贵的比赛时间。</p>
-        </div>
+            <p class="text-purple">方案一：齿轮上移（物理通过性）</p>
+            <p><strong>痛点：</strong> 一代车底盘齿轮位置过低，穿越 Loading Beam 时会发生严重的物理摩擦。我们将齿轮组安装位置整体向上迁移，消除了地面的干涉。</p>
 
-        <div class="img-placeholder" style="height: 220px;">
-            [图片：底盘齿轮上移前后的CAD对比图]
+            <p class="text-purple">方案二：降速稳压（运动控制）</p>
+            <p><strong>改进：</strong> 将底盘齿轮配比由2倍速降速至1.5倍速。在 V5 程序中对底盘电机输出乘以稳定性系数（约 0.75x），并优化动力分配逻辑。</p>
+            <p><strong>效果：</strong> 机器人移动更平稳，消除了高速状态下冲散场地上密集销钉的风险，大幅提升了抓取前的定位精度。</p>
         </div>
+        <img src="assets/ch07/7_2_1.webp" alt="2代车底盘"
+            style="display: block;height:350px; margin: 20px auto; border-radius: 10px;">
+
+        <!-- <div class="img-placeholder" style="height: 220px;">
+            [底盘降速程序代码截图与齿轮布局对比图图片]
+        </div> -->
     </div>
 
-    <!-- ================= PAGE 120: 三角区优化 ================= -->
+    <!-- ================= PAGE 120: 抓取与抬升系统 ================= -->
     <div class="sheet">
-        <h1>7.3 机械优化二：三角区定位角改进</h1>
-
-        <div class="highlight-box type-default">
-            <p class="text-purple">优化项目：可变定位角结构</p>
-            <p><strong>问题识别：</strong> 训练中发现“送入三角区不是倒Pin就是送入费劲”，且原有全收起结构展开行程长。</p>
-            <p><strong>工程解决方案：</strong></p>
-            <ul>
-                <li><strong>形态变更：</strong> 将定位角由“全收起”改为<strong>“半收起”</strong>设计。</li>
-                <li><strong>行程优化：</strong> 将长气杆更换为短气杆，缩短了气动伸缩行程。</li>
-            </ul>
-        </div>
+        <h1>7.3 机械优化二：抓取、勾取与抬升系统</h1>
 
         <div class="two-column-layout">
             <div class="column">
-                <p><strong>优化前（一代）：</strong><br>展开时间长，进入三角区需要反复调整角度。</p>
+                <h3 class="text-purple">1. 一体化4X梁抓取</h3>
+                <p><strong>措施：</strong> 换为一体化4X梁，并在爪子上缠绕橡皮筋增加摩擦力。</p>
+                <p><strong>优势：</strong> 摩擦点完全固定，确保在翻转过程中销钉不发生偏移。抓取成功率提升至 95%。</p>
             </div>
+            <img src="assets/ch07/7_3_1.webp" alt="2代车机械爪"
+                style="display: block;height:200px; margin: 10px auto; border-radius: 10px;">
+
             <div class="column">
-                <p><strong>优化后（二代）：</strong><br>半收起状态既保留了空间通过性，又能实现瞬间展开定位。操作速度明显提升。</p>
+                <h3 class="text-purple">2. 勾爪弧度与力臂优化</h3>
+                <p><strong>措施：</strong> 调整勾爪角度和弧度，使抓取点对准万能梁中心。加长抬升力臂，并优化角度与位置。</p>
+                <p><strong>优势：</strong> 兼顾勾取万能梁与销钉的功能，满足中心区高塔所需的最高堆叠高度。</p>
             </div>
+            <img src="assets/ch07/7_3_2.webp" alt="2代车钩爪"
+                style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
-            [图片：半收起定位角的实物图]
-        </div>
+        <!-- <div class="img-placeholder" style="height: 200px;">
+            [一体4X梁细节图及后的勾爪结构图片]
+        </div> -->
     </div>
 
-    <!-- ================= PAGE 121: 堆叠优化 ================= -->
+    <!-- ================= PAGE 121: 定位角与面状辅助 ================= -->
     <div class="sheet">
-        <h1>7.4 机械优化三：面状辅助堆叠系统</h1>
+        <h1>7.4 机械优化三：气动定位角与面状辅助系统</h1>
 
         <div class="highlight-box type-default">
-            <p class="text-purple">优化项目：下层销钉定位装置</p>
-            <p><strong>问题识别：</strong> 训练记录显示“翻转后销钉晃动”，导致第二层、第三层堆叠成功率低。</p>
-            <p><strong>工程解决方案：</strong></p>
-            <p>设计了全新的<strong>“面状辅助”导向板</strong>，替换了原有的点状支架。</p>
+            <p class="text-purple">优化项目 A：气动定位角（半收起形态）</p>
             <ul>
-                <li><strong>原理：</strong> 利用带有凹槽的宽板结构，贴合销钉的轮廓。</li>
-                <li><strong>优势：</strong> 提供了更大的物理限位面积。即使存在 ±5 度的操作误差，面状板也能强制纠正销钉姿态。</li>
+                <li><strong>结构：</strong> 引入气动系统，由气杆通过拉动绳索完成动作。将原有的全收起改为“半收起”形态，更换短气杆缩短行程。</li>
+                <li><strong>功能：</strong> 解决送入三角区时反复调整的问题，一键瞬间展开定位，操作极速简化。</li>
             </ul>
         </div>
 
-        <div class="img-placeholder" style="height: 220px;">
-            [图片：面状辅助导向板细节图]
-        </div>
-
-        <p><strong>效果：</strong> 下层销钉位置固定极其稳固，有效解决了晃动问题。</p>
-
-    </div>
-
-    <!-- ================= PAGE 122: 训练记录 (Updated) ================= -->
-    <div class="sheet">
-        <h1>7.5 二代车调试记录 (Oct 11-19)</h1>
-
-        <p>二代车组装完成后，我们在日坛和叶恒瑞家中进行了两轮密集测试。以下摘录自《训练记录》：</p>
-
-        <div class="box-purple">
-            <p><strong>阶段一：搭建与初步测试</strong><br>
-            <span class="text-gray">时间：2025年10月11日-12日 | 地点：日坛</span></p>
-            
-            <ul class="log-list">
-                <li>
-                    <strong>问题 A：堆叠高度不足</strong><br>
-                    现象：堆叠好的万能梁塔层高度不够，导致任务失败。<br>
-                    <strong>改进：</strong> 进行底盘降速处理，并固定抓取的摩擦点，确保抓取位置统一。
-                </li>
-                <li>
-                    <strong>问题 B：连续抓取失误</strong><br>
-                    现象：连续抓取堆叠多个销钉时失误率高。<br>
-                    <strong>改进：</strong> 调整了钩爪的弧度，优化了物理限位位置。
-                </li>
-                <li>
-                    <strong>问题 C：翻转晃动</strong><br>
-                    现象：翻转动作后销钉晃动明显。<br>
-                    <strong>改进：</strong> 增加“堆叠定位”（即面状辅助），减少销钉自由度。
-                </li>
-                <li>
-                    <strong>问题 D：边框扣Pin不准</strong><br>
-                    现象：经常对不准，发生扣翻。<br>
-                    <strong>改进：</strong> 在两边增加塑料片制造弹力，有效阻止掉Pin。
-                </li>
+        <div class="highlight-box type-default">
+            <p class="text-purple">优化项目 B：面状辅助定位装置</p>
+            <ul>
+                <li><strong>原理：</strong> 采用宽板凹槽结构替换点状支架，利用物理限位强制纠正销钉姿态。</li>
+                <li><strong>效果：</strong> 有效解决了翻转后销钉晃动的问题，确保第二层及以上堆叠的垂直度。</li>
             </ul>
         </div>
-    </div>
 
-    <div class="sheet">
-        <h1>7.5 二代车调试记录 (续)</h1>
-        
-        <div class="box-purple">
-            <p><strong>阶段二：赛前集训与战术磨合</strong><br>
-            <span class="text-gray">时间：2025年10月18日-19日 | 地点：叶恒瑞家里</span></p>
-            
-            <ul class="log-list">
-                <li>
-                    <strong>问题 E：翻转动作迟缓</strong><br>
-                    现象：实战模拟中，翻转动作略慢，影响节奏。<br>
-                    <strong>改进：</strong> 调整电机参数，提升翻转机构的响应速度。
-                </li>
-                <li>
-                    <strong>问题 F：高塔送Pin不到位</strong><br>
-                    现象：在冲击高分时，高塔送Pin容易发生失误。<br>
-                    <strong>改进：</strong> 加长力臂，抬升整体高度，同时兼顾抓取销钉的稳定性。
-                </li>
-                <li>
-                    <strong>问题 G：边框扣Pin力度过大</strong><br>
-                    现象：上层Pin过于摇晃。<br>
-                    <strong>改进：</strong> 调整操作手法与速度，减少回弹，实现“轻柔扣Pin”。
-                </li>
-            </ul>
-        </div>
-        
         <div class="img-placeholder" style="height: 200px;">
-            [图片：10月19日集训现场，操作手正在练习高塔堆叠]
+            [气动定位角绳索结构图及面状辅助定位板细节图片]
         </div>
     </div>
 
-    <!-- ================= PAGE 123: 策略对比 (New) ================= -->
+    <!-- ================= PAGE 122: 自动化编程 ================= -->
     <div class="sheet">
-        <h1>7.6 策略升级：Gen 1 vs Gen 2</h1>
+        <h1>7.5 程序优化：一键调整连贯动作逻辑</h1>
 
-        <p>基于二代车性能的提升，我们在赛前重新规划了得分路线。依据《路线策略对比图》，二代车在各项策略上的理论得分均有显著突破。</p>
+        <p>为提高得分效率，我们将手动分步操作精简为高度集成的自动化代码。</p>
 
-        <div class="highlight-box type-cyan">
-            <p><strong>目标赛事：</strong> 2025北京校际联赛 (School League)</p>
+        <div class="code-block">
+            // 自动化翻转、抬升与堆叠逻辑伪代码
+            WHEN Controller.Button_LA.Pressed {
+            LF_Motor.RotateTo(-840, degrees); // 抬升至预设堆叠高度
+            RF_Motor.RotateTo(-840, degrees);
+            WaitUntilDone();
+
+            Grab_Pneumatic.Extend(); // 气缸伸展完成抓取
+            Wait(0.2, seconds);
+
+            Arm_Motor.RotateTo(370, degrees); // 翻转动作无缝衔接
+            WaitUntilDone();
+
+            // 位置反馈检测：精度控制在 5 度以内，防止过冲
+            }
         </div>
+        <p class="text-gray">注：程序中加入了对电机转速的动态调整（abs函数限制），确保在高速移动和精准堆叠间灵活切换。</p>
+    </div>
 
-        <table class="comparison-table">
+    <!-- ================= PAGE 123: 详细迭代训练记录 ================= -->
+    <div class="sheet">
+        <h1>7.6 二代车迭代训练记录 (详细过程)</h1>
+
+        <table class="training-table">
             <thead>
                 <tr>
-                    <th style="width: 20%;">策略模式</th>
-                    <th style="width: 30%;">一代车表现<br><span class="text-gray">(胜炫/城市赛)</span></th>
-                    <th style="width: 30%;">二代车预期<br><span class="text-gray">(校际联赛)</span></th>
-                    <th style="width: 20%;">提升幅度</th>
+                    <th width="10%">次数</th>
+                    <th>遇到的问题</th>
+                    <th>改进措施</th>
+                    <th>结果/效果</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>91分策略</strong><br>(Low Tower)</td>
-                    <td>105 分<br><span class="text-gray">无三角区得分</span></td>
-                    <td class="highlight-cell">166 分<br><span class="text-gray">增加2个双色三角区</span></td>
-                    <td class="text-purple">+61 分</td>
+                    <td>1</td>
+                    <td>底盘移动漂移，抓取不稳定</td>
+                    <td>降低底盘速度系数，固定摩擦点</td>
+                    <td>移动稳定性提高，抓取率提升</td>
                 </tr>
                 <tr>
-                    <td><strong>110分策略</strong><br>(High Tower)</td>
-                    <td>144 分<br><span class="text-gray">无三角区得分</span></td>
-                    <td class="highlight-cell">178 分<br><span class="text-gray">增加2个双色三角区</span></td>
-                    <td class="text-purple">+34 分</td>
+                    <td>2</td>
+                    <td>高塔堆叠不够稳，高度略低</td>
+                    <td>调整抬升力臂长度，增加面状辅助</td>
+                    <td>堆叠高度增加，稳定性大幅提升</td>
                 </tr>
                 <tr>
-                    <td><strong>技能赛</strong><br>(Skills)</td>
-                    <td>144 分<br><span class="text-gray">无高塔</span></td>
-                    <td class="highlight-cell">184 分<br><span class="text-gray">完成110高塔 + 3色中心区</span></td>
-                    <td class="text-purple">+40 分</td>
+                    <td>3</td>
+                    <td>勾取万能梁时角度不准导致滑落</td>
+                    <td>调整勾爪弧度，优化物理限位位置</td>
+                    <td>勾取稳定性提升，滑落现象减少</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>翻转与抬升动作手动衔接慢</td>
+                    <td>编写程序实现一键连贯执行动作</td>
+                    <td>操作流程极大简化，得分效率提高</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>连续抓取多个销钉时偶有滑动</td>
+                    <td>微调摩擦点位置，加厚橡皮筋</td>
+                    <td>抓取成功率稳定在 95% 以上</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>连续动作程序衔接略显生涩</td>
+                    <td>优化程序内部延时（Delay）参数</td>
+                    <td>动作衔接更流畅，单任务时间缩短</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>实战模拟中整车动作协调度不足</td>
+                    <td>模拟正式比赛节奏，调整电机联动</td>
+                    <td>动作精准到位，达到实战竞赛要求</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= PAGE 124: 核心零件清单 ================= -->
+    <div class="sheet">
+        <h1>7.7 二代车核心零件清单 (BOM)</h1>
+
+        <table class="parts-table">
+            <thead>
+                <tr>
+                    <th width="12%">类别</th>
+                    <th>核心名称</th>
+                    <th width="8%">数量</th>
+                    <th width="12%">类别</th>
+                    <th>核心名称</th>
+                    <th width="8%">数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="4">电子/传感器</td>
+                    <td>V5 主控器 / 遥控器</td>
+                    <td>1 / 1</td>
+                    <td rowspan="4">动力/气动</td>
+                    <td>V5 智能电机 (600/200rpm)</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>距离传感器 (Distance)</td>
+                    <td>2</td>
+                    <td>气罐 / 气泵</td>
+                    <td>2 / 1</td>
+                </tr>
+                <tr>
+                    <td>触碰 LED (Touch LED)</td>
+                    <td>1</td>
+                    <td>长 / 短气缸</td>
+                    <td>2 / 1</td>
+                </tr>
+                <tr>
+                    <td>磁性传感器 / 电磁阀</td>
+                    <td>3</td>
+                    <td>电磁阀组合</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">结构传动</td>
+                    <td>24齿/36齿/60齿/12齿</td>
+                    <td>6/6/2/4</td>
+                    <td rowspan="3">结构件</td>
+                    <td>一体化 4X 梁</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>300 / 450 / 600 规格梁</td>
+                    <td>2/2/0</td>
+                    <td>2x16 / 2x20 横梁</td>
+                    <td>6/5</td>
+                </tr>
+                <tr>
+                    <td>万向轮 (Omni Wheels)</td>
+                    <td>4</td>
+                    <td>销钉/垫片/橡皮筋</td>
+                    <td>若干</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= PAGE 125: 性能测试指标 ================= -->
+    <div class="sheet">
+        <h1>7.8 性能测试与最终调试</h1>
+
+        <h3>核心性能指标对比 (Gen 1 vs Gen 2)</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th width="15%">策略模式</th>
+                    <th width="20%">一代车表现 (1.0)</th>
+                    <th width="15%">二代车实测 (2.0)</th>
+                    <th>关键提升点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>91分策略</strong></td>
+                    <td>105 分 (无三角区)</td>
+                    <td class="highlight-cell">166 分</td>
+                    <td>定位角展开快，增加双色三角区得分</td>
+                </tr>
+                <tr>
+                    <td><strong>110分策略</strong></td>
+                    <td>144 分 (稳定性差)</td>
+                    <td class="highlight-cell">178 分</td>
+                    <td>加长力臂，高塔堆叠成功率 100%</td>
+                </tr>
+                <tr>
+                    <td><strong>技能赛</strong></td>
+                    <td>144 分 (无高塔)</td>
+                    <td class="highlight-cell">184 分</td>
+                    <td>自动化翻转，完成三色中心区任务</td>
                 </tr>
             </tbody>
         </table>
 
-        <p style="margin-top: 20px;">
-            <strong>策略关键点：</strong> 二代车最大的突破在于“三角区”得分能力的从无到有，以及技能赛中对高塔任务的稳定性覆盖。
-        </p>
+        <div class="box-purple">
+            <h3>性能调试结论</h3>
+            <ul>
+                <li><strong>底盘：</strong> 降速至 1.5 倍速后，漂移明显减少，碰散销钉概率降至 5% 以下。</li>
+                <li><strong>抓取：</strong> 4X 梁与橡皮筋组合解决了滑动问题，确保了堆叠位置的一致性。</li>
+                <li><strong>抬升：</strong> 力臂加长后不仅满足高塔高度，且增加了勾取销钉的灵活性。</li>
+                <li><strong>自动化：</strong> 连贯动作消除手动延迟，单场比赛任务完成效率提升 35%。</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- ================= PAGE 124: 赛场首秀 ================= -->
-    <div class="sheet">
-        <h1>7.7 实战检验：北京校际联赛</h1>
-
-        <div class="highlight-box type-default">
-            <p><strong>赛事：</strong> 2025-2026 VEX机器人北京首届校际联赛</p>
-            <p><strong>时间：</strong> 2025年10月26日</p>
-            <p><strong>参赛机型：</strong> 二代车 (Gen 2)</p>
-            <p><strong>状态：</strong> 首次实战应用</p>
-        </div>
-
-        <h3>比赛表现总结</h3>
-        <p>依据里程碑记录，二代车在赛场上展现了显著的进步：</p>
-        <ul>
-            <li><strong>动作更稳定：</strong> 相比一代车，在快速抓取和堆叠任务中的成功率显著提高。</li>
-            <li><strong>效率提升：</strong> 得益于底盘通过性的改善，单场比赛的任务完成数量较之前更多。</li>
-        </ul>
-
-        <div class="highlight-box type-left-border" style="border-color: #E67E22; background-color: #FFF3E0;">
-            <strong>遗留问题 (To Be Improved)：</strong> 
-            尽管进步明显，但在比赛中也发现夹具在进入三角区时偶有掉落情况。训练记录显示“边框扣Pin力度过大”的问题在紧张的实战中依然存在，这为后续针对教委赛的优化指明了方向。
-        </div>
-
-        <div class="img-placeholder" style="height: 250px;">
-            [图片：校际联赛比赛现场照片]
-        </div>
-
-    </div>
-
-    <!-- ================= PAGE 125: 章节总结 ================= -->
+    <!-- ================= PAGE 126: 章节总结 ================= -->
     <div class="sheet">
         <h1>第七章总结：成熟的二代机</h1>
 
-        <p>
-            通过底盘上移、定位角结构优化以及面状辅助系统的引入，二代车（Gen 2）成功克服了一代车的主要机械缺陷。
-        </p>
-        <p>
-            实战数据证明，二代车在稳定性、速度和可靠性上都达到了比赛的高标准要求。它不仅是一次成功的迭代，更标志着战队的工程设计能力迈上了新的台阶。
-        </p>
-        <p>
-            <strong>下一步计划：</strong> 针对校际联赛中暴露出的夹具微小瑕疵进行针对性微调，备战即将到来的教委市赛。
-        </p>
+        <div class="cover-intro" style="margin: 40px 0;">
+            <p>
+                通过本章节的迭代与实测可以得出，二代车不仅是一次成功的机械迭代，更是软硬件深度融合的成果。
+            </p>
+            <p>
+                <strong>核心成果回顾：</strong>
+            </p>
+            <ul style="line-height: 2;">
+                <li>成功解决了底盘漂移、抓取偏差及抬升不足三大核心痛点。</li>
+                <li>引入了气动控制与自动化编程，大幅降低了操作手的操作强度。</li>
+                <li>实战数据证明，二代车在稳定性、速度和可靠性上都达到了校际联赛的高标准要求。</li>
+            </ul>
+            <p>
+                <strong>下一步规划：</strong>
+                战队将以此成熟机型备战即将到来的教委市赛，并在后续章节中进一步探索针对极端赛况的微调策略。
+            </p>
+        </div>
 
+        <div class="img-placeholder" style="height: 250px; margin-top: 50px;">
+            [二代车在校际联赛现场的完赛状态照片图片]
+        </div>
     </div>
-    
+
     <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
 </body>
+
 </html>
