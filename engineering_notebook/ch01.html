@@ -6,31 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第一章：我们的故事 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
-    <!-- <style>
-        /* 针对新内容的内联样式补充，确保列表和强调文字显示效果良好 */
-        .sheet ul, .sheet ol {
-            padding-left: 20px;
-            margin-bottom: 15px;
-            text-align: left;
+    <style>
+        /* 补充样式，确保新插入的会议记录表格美观 */
+        /* .meeting-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .sheet li {
-            margin-bottom: 8px;
-            line-height: 1.6;
+        .meeting-header {
+            border-bottom: 2px solid #007acb;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
-        .sheet h3 {
-            font-size: 20px;
+        .meeting-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .meeting-id {
+            font-size: 14px;
+            color: #888;
+            font-family: monospace;
+        } */
+        .meeting-info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .meeting-info-table td {
+            border: 1px solid #e0e0e0;
+            padding: 6px 10px;
+        }
+        .meeting-info-table .label {
+            background-color: #f0f4f8;
+            font-weight: bold;
+            width: 15%;
             color: #555;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            border-left: 4px solid #007acb;
-            padding-left: 10px;
-            text-align: left;
         }
-        .sheet h2 {
-            margin-top: 25px;
+        /* .meeting-content h4 {
+            font-size: 15px;
+            margin: 10px 0 5px 0;
+            color: #007acb;
+            border-left: 3px solid #007acb;
+            padding-left: 8px;
         }
-    </style> -->
-</head>
+        .meeting-content ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        .meeting-content li {
+            margin-bottom: 4px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.5;
+        } */
+        /* 保持原有的 sheet 样式兼容 */
+    </style></head>
 
 <body class="theme-ch01">
 
@@ -379,143 +417,402 @@
         <div class="page-number">11</div>
     </div>
 
-    <!-- ================= PAGE: LOG 封面 ================= -->
+    <!-- ================= REPLACED CONTENT START: 1.6 会议记录 ================= -->
+    <!-- ================= PAGE: LOG Cover / Intro ================= -->
     <div class="sheet">
-        <div style="text-align: center; margin-top: 100px;">
-            <h1 style="font-size: 40px; color: #333;">我们的会议故事</h1>
-            <p style="font-size: 20px; color: #666;">这里记录了我们从迷茫到坚定的每一步</p>
+        <h1>1.6 会议记录 (LOG)</h1>
+        <p style="font-size: 20px; color: #666;">记录我们成长的每一步脚印</p>
+        <!-- <div style="text-align: center; margin-top: 50px;">
             <div
-                style="width: 100px; height: 100px; border-radius: 50%; background: #FFD700; margin: 30px auto; line-height: 100px; font-size: 30px; color: white; font-weight: bold;">
+                style="width: 100px; height: 100px; border-radius: 50%; background: #007acb; margin: 30px auto; line-height: 100px; font-size: 30px; color: white; font-weight: bold;">
                 LOG</div>
+        </div> -->
+
+        <h2>头脑风暴与思维导图</h2>
+        <div class="diary-card">
+            <p><strong>学习目标：</strong>提高能力（设计、搭建、编程）→ 团队协作 → 解决问题</p>
+            <p><strong>学习规则：</strong>赛事说明 → 赛局（车子、Pin/Beam、赛台、得分、违规）→ 操作手/特定赛</p>
+            <p><strong>运用规则：</strong>搭建测试 → 解决问题 → 升级</p>
+            <p><strong>执行规则：</strong>制定策略 → 训练 → 发现问题/解决问题</p>
+            <p><strong>练习重点：</strong>
+                <ul>
+                    <li>高/低挂</li>
+                    <li>远端/近端/中心区/三角区/边桩</li>
+                </ul>
+            </p>
+            <p><strong>实战比赛：</strong>
+                <ul>
+                    <li>赛前：联队队友 → 了解优势 → 确定策略 → 临场应变</li>
+                    <li>赛后：复盘分析总结 → 解决问题</li>
+                </ul>
+            </p>
         </div>
         <div class="page-number">13</div>
     </div>
 
-    <!-- ================= P14: 规则研读 ================= -->
+    <!-- ================= PAGE: Meeting 1 & 2 ================= -->
     <div class="sheet">
-        <h1>📅 7月12日：发现大秘密！</h1>
+        <h1>会议记录 (1/5)</h1>
 
-        <div class="diary-card">
-            <div class="diary-date">会议日记</div>
-            <p>今天王老师让我们把规则书读透。那本书好厚啊，看得我头都晕了！不过，我们像寻宝一样，发现了几个<strong>超级重要的秘密</strong>：</p>
-
-            <p><strong>1. Beam (梁) 是个宝！</strong></p>
-            <p class="dialogue">叶恒瑞突然大叫一声：“你们快看！一个 Beam 居然有 10 分！”</p>
-            <p>大家都围了过去。天哪，一个普通的 Pin 才 1 分，这个长条条居然值 10 分？大家一致认为：<strong>必须设计一个能抓 Beam 的爪子，不然就亏大了！</strong></p>
-
-            <p><strong>2. 机器人要会“缩骨功”</strong></p>
-            <p>叶恒嘉拿着尺子量了半天底盘，愁眉苦脸地说：“其实尺寸限制好严啊，开始的时候必须缩在 11x20x15 英寸的格子里。”</p>
-            <p>宋书玥却发现了新大陆：“但是规则 &lt;SG3&gt; 说比赛开始后可以<strong>无限长高</strong>！哇，这不就是让我们造个梯子吗？”</p>
-
-            <div class="img-placeholder" style="height: 250px;">
-                [图片：印涵邸的笔记手稿，上面用红笔画了一个大大的 Beam，旁边写着“10分！！必拿！！”]
+        <!-- Meeting 1 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">1) 团队成立大会</span>
+                <span class="meeting-id">编号: 230501</span>
             </div>
-
-            <p><strong>今天的决定：</strong> 不管多难，一定要搞定那个长长的 Beam！</p>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>战队成立、分工与赛季启动</td>
+                    <td class="label">时间</td>
+                    <td>2025年7月1日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>西城区科技馆</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>正式组建战队，制定战队口号，起个响亮的战队队名！</li>
+                    <li>观看 Mix & Match 官方动画，初步学习了解新赛季规则。</li>
+                    <li>根据个人特长分配角色。</li>
+                </ul>
+                <h4>讨论过程及结果 - 破冰与起名:</h4>
+                <p>叶恒瑞：“叫‘光速机甲’怎么样？听起来速度很快，有科技感！”</p>
+                <p>叶恒嘉：“我觉得‘量子泰坦’更酷！就像电影里一样。”</p>
+                <p>宋书玥：“嗯...‘拼搭梦想家’也不错，能体现我们的拼装过程。”</p>
+                <p><strong>最终决定：</strong> 大家投票决定战队叫 <strong>“机甲梦想家” (Mech Dreamers)</strong>！听起来既有科技感又有梦想，大家都觉得很棒！</p>
+                <p><strong>战队口号：</strong> 梦想启动，创造未来</p>
+            </div>
+            <div style="font-size: 12px; text-align: right; color: #888; margin-top: 10px;">记录人：印涵邸 &nbsp;&nbsp; 审核人：叶恒瑞</div>
         </div>
 
-        <div class="footer">
-            <span>记录人：印涵邸</span>
+        <!-- Meeting 2 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">2) 备赛集训: 首次参赛-梦想开始</span>
+                <span class="meeting-id">编号: 250601</span>
+            </div>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>集训: 备赛 WRC 北京选拔赛</td>
+                    <td class="label">时间</td>
+                    <td>2025年6月25日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>儿童中心麦当劳</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>2025年6月28日-7月2日为期5天的集训，为参加7月19日的 WRC 北京选拔赛做准备。</li>
+                    <li>集训时间为5天，每天 10:00-17:00。</li>
+                    <li>到了先领购置的装备零件，带好记号笔将马达、主机、传感器、电池写上队号及名字。</li>
+                    <li>带好水杯，每个队至少带上一台电脑拷贝程序。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>6月28日 9:50 集训场地汇合，由叶恒瑞带上记号笔在器材上写好队号及名字，由叶恒嘉和宋书玥检查。</li>
+                </ul>
+            </div>
         </div>
+
         <div class="page-number">14</div>
     </div>
 
-    <!-- ================= P15: 头脑风暴 ================= -->
+    <!-- ================= PAGE: Meeting 3 & 4 ================= -->
     <div class="sheet">
-        <h1>📅 7月13日：脑洞大开的一天</h1>
+        <h1>会议记录 (2/5)</h1>
 
-        <div class="diary-card">
-            <div class="diary-date">头脑风暴</div>
-            <p>今天是我们最吵的一天（嘿嘿）。我们在讨论到底用什么样的爪子。大家在白板上画了好多奇怪的草图。</p>
-
-            <p><strong>方案 A（宋书玥提的）：</strong> 像螃蟹一样的夹子。简单直接，但是叶恒嘉担心：“那个 Beam 那么滑，会不会夹不住掉下来？”</p>
-
-            <p><strong>方案 B（叶恒瑞提的）：</strong> 像吸尘器一样的滚轮。他说：“嗖的一下就吸进去了，多快！” 但是我们比划了一下，那个结构太大了，底盘都放不下了。</p>
-
-            <p><strong>方案 C（我提的）：</strong> 像叉车一样的铲子。结果被大家集体否决了，因为根本举不高，只能在地上推。</p>
-
-            <div class="img-placeholder" style="height: 250px;">
-                [图片：白板上画满了乱七八糟的线条和草图，大家正指着方案A激烈讨论]
+        <!-- Meeting 3 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">3) WRC 选拔赛赛前动员</span>
+                <span class="meeting-id">编号: 250701</span>
             </div>
-
-            <p><strong>最后决定：</strong> 我们投票决定先做<strong>方案 A（螃蟹夹）</strong>试试看。毕竟我们是一代车，先求稳，做出来再说！</p>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>WRC 选拔赛赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年7月10日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>西城区冠英园</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>7月18日下午 14:00-18:00 要去场地报到注册。</li>
+                    <li>制定训练计划，赛前增加训练强度：周中保证每次训练2个小时，周末每次训练6-8个小时。</li>
+                    <li><strong>强化叶恒嘉 110 装填操作。</strong></li>
+                    <li>比赛前一天检查好车子各项零件。</li>
+                    <li>开始计分训练。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>7月18日下午由叶恒瑞带车子去场地签录，其他人继续用备用车辆训练。</li>
+                    <li>由宋书玥和叶恒嘉检查赛前清单，逐一落实。</li>
+                    <li>航空箱钥匙由叶恒嘉、宋书玥各保管一把。</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="footer">
-            <span>记录人：印涵邸</span>
+        <!-- Meeting 4 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">4) 2025年练兵赛赛前动员</span>
+                <span class="meeting-id">编号: 250702</span>
+            </div>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>练兵赛-赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年7月14日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>建外 SOHO</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>7月16日在建外 SOHO 举行交流赛，将带领参赛队员模拟正式赛流程。</li>
+                    <li>针对对战策略进行训练：
+                        <ul>
+                            <li><strong>91分场：</strong> 叶恒瑞先手、叶恒嘉后手。</li>
+                            <li><strong>110分场：</strong> 叶恒嘉先手、叶恒瑞后手。</li>
+                        </ul>
+                    </li>
+                    <li>叶恒瑞、叶恒嘉携带参赛用具。</li>
+                    <li>由宋书玥和叶恒嘉检查赛前清单，逐一落实。</li>
+                    <li>选手会议记清笔记内容。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>航空箱钥匙由宋书玥保管。</li>
+                    <li>绘制打印外联表。</li>
+                    <li>7月16日早上 9:50 赛场汇合。</li>
+                </ul>
+            </div>
         </div>
         <div class="page-number">15</div>
     </div>
 
-    <!-- ================= P16: 一代车测试 ================= -->
+    <!-- ================= PAGE: Meeting 5 & 6 ================= -->
     <div class="sheet">
-        <h1>📅 7月26日：翻车现场...</h1>
+        <h1>会议记录 (3/5)</h1>
 
-        <div class="diary-card">
-            <div class="diary-date">测试日记</div>
-            <p>今天是个悲伤的日子。我们的一代车终于造好了，但是...</p>
-
-            <p><strong>它跑得太快了！</strong></p>
-            <p>叶恒嘉为了追求速度，用了 2:1 的加速齿轮。结果宋书玥一推遥控器，机器人就“嗖”地一下飞出去了，根本停不下来！就像脱缰的野马，把场上的 Pin 撞得东倒西歪。</p>
-            <p class="dialogue">宋书玥绝望地喊：“我控制不住它啊！”</p>
-
-            <p>而且，那个螃蟹爪子也抓不住 Pin，总是滑掉。最惨的是，我们的手臂太短了，根本够不到中间那个最高的塔 (Standoff Goal)。</p>
-
-            <div class="img-placeholder" style="height: 250px;">
-                [图片：一代车停在场地中间，前面倒了一片 Pin，队员们双手抱头，表情很无奈]
+        <!-- Meeting 5 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">5) 2025年北京胜炫赛赛前动员</span>
+                <span class="meeting-id">编号: 250801</span>
             </div>
-
-            <p>王老师安慰我们说：“没关系，发现问题就是进步。”好吧，我们要开始做二代车了！这次一定要慢一点，稳一点。</p>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>胜炫赛赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年8月07日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>建外 SOHO</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>8月19日下午 14:00-17:00 要去场地报到注册。</li>
+                    <li>制定训练计划，赛前增加训练强度：周中保证每次训练3个小时，周末每次训练6-8个小时。</li>
+                    <li>91和110都由叶恒瑞先手操作，叶恒嘉后手操作。</li>
+                    <li>比赛前一天检查好车子及各项零件。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>参赛时由叶恒瑞和叶恒嘉携带比赛用具。</li>
+                    <li>将赛车全面做一次保养。</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="footer">
-            <span>记录人：印涵邸</span>
+        <!-- Meeting 6 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">6) 亚公赛石家庄站赛前动员</span>
+                <span class="meeting-id">编号: 250901</span>
+            </div>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>亚公赛石家庄站赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年9月11日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>西城区冠英园</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>制定训练计划，赛前增加训练强度：周中保证每次训练3个小时，周末每次训练8个小时。</li>
+                    <li>91和110都由叶恒瑞先手操作，叶恒嘉后手操作。</li>
+                    <li>比赛前一天检查好车子及各项零件。</li>
+                    <li>参赛时由叶恒瑞和宋书玥携带航空箱，由宋书玥保管钥匙。</li>
+                    <li>三人共同整理检查参赛比赛物品，核对清单。</li>
+                    <li>制定参赛行程，和家长一起买火车票、订酒店，定好出发时间。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>提前一天到达石家庄。</li>
+                    <li>学会使用对讲机。</li>
+                </ul>
+            </div>
         </div>
-        <div class="page-num">16</div>
+        <div class="page-number">16</div>
     </div>
 
-    <!-- ================= P17: 二代车汇报 ================= -->
+    <!-- ================= PAGE: Meeting 7 & 8 ================= -->
     <div class="sheet">
-        <h1>📅 8月16日：二代车好多了！</h1>
+        <h1>会议记录 (4/5)</h1>
 
-        <div class="diary-card">
-            <div class="diary-date">进度汇报</div>
-            <p>经过半个月的努力，二代车终于有点样子了！大家松了一口气。</p>
-
-            <p><strong>机械方面：</strong> 叶恒嘉把齿轮改回了 1:1，虽然慢了点，但是宋书玥试驾后说：“终于能控制住它了，指哪打哪，太舒服了！”</p>
-
-            <p><strong>程序方面：</strong> 叶恒瑞写好了基础的遥控程序，按键很顺手。但是自动程序还在调试，机器人经常跑着跑着就歪了。</p>
-
-            <p>不过我们发现了一个<strong>新问题</strong>：</p>
-            <p class="dialogue">“我们要把手臂举很高去挂塔，结果机器人重心变高了，急转弯的时候感觉要翻车！”</p>
-            <p>叶恒嘉想了个办法，他要在底盘下面加点铁块配重。希望能管用！</p>
-
-            <div class="img-placeholder" style="height: 200px;">
-                [图片：二代车正在场地上平稳地行驶，旁边放着准备加装的配重铁块]
+        <!-- Meeting 7 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">7) 首届北京校际联赛赛前动员</span>
+                <span class="meeting-id">编号: 2501001</span>
+            </div>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>首届北京校际联赛赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年10月15日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>西城区冠英园</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>车子升级，全员培训，重新制定策略。</li>
+                    <li><strong>91分场：</strong> 宋书玥先手，叶恒瑞后手。宋书玥和叶恒瑞加强配合练习。</li>
+                    <li><strong>110分场：</strong> 叶恒嘉先手，叶恒瑞后手。</li>
+                    <li>周中增加到三次训练，保证每次训练3个小时，周末每次训练8个小时。</li>
+                    <li>选手会议由周六 15:00-17:30 改到周日上午 8:30-9:00。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>首次参加技能赛，学习技能赛相关知识。</li>
+                    <li>熟悉自动场、手动场的场地摆放，计分练习。</li>
+                    <li>增加车子“手动改自动”环节，具体分工到人。</li>
+                    <li>赛前按照参赛物品清单整理，修订外联表。</li>
+                </ul>
             </div>
         </div>
 
-        <div class="footer">
-            <span>记录人：印涵邸</span>
+        <!-- Meeting 8 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">8) 西城区教委机器人智能大赛</span>
+                <span class="meeting-id">编号: 2501002</span>
+            </div>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>区教委机器人智能大赛赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年10月25日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>西城区冠英园</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>参赛队伍水平参差不齐，外联细节要沟通到位。</li>
+                    <li>向学校科学老师报道，领取参赛证。</li>
+                    <li>比赛当天上午，技能赛手动、自动再练几遍，手动转自动环节再熟悉几遍。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li><strong>自动场：</strong> 叶恒嘉负责检查场地摆放位置，宋书玥负责开启自动按钮，叶恒瑞负责更换转换销。</li>
+                    <li>带好自动场地摆放图。</li>
+                </ul>
+            </div>
         </div>
         <div class="page-number">17</div>
     </div>
 
-    <!-- ================= P18: 中期检查 ================= -->
+    <!-- ================= PAGE: Meeting 9 ================= -->
     <div class="sheet">
-        <h1>📅 11月8日：我们要用黑科技！(1/2)</h1>
+        <h1>会议记录 (5/5)</h1>
 
-        <div class="diary-card">
-            <div class="diary-date">重要会议</div>
-            <p>今天开了个很重要的会。我们在校际练习赛里只拿了 <strong>50 分</strong>。虽然不算差，但距离那些拿 80 分的强队还有很大差距。</p>
-
-            <p class="dialogue">
-                印涵邸：“我看别的队动作好快，我们就慢吞吞的。”<br>
-                大家听了都有点沉默，确实感觉到了压力。我们的爪子一次只能抓一个，效率太低了。
-            </p>
-
-            <div class="img-placeholder" style="height: 200px;">
-                [图片：练习赛的得分表，上面的分数被红笔圈了出来，旁边写着“加油！”]
+        <!-- Meeting 9 -->
+        <div class="meeting-card">
+            <div class="meeting-header">
+                <span class="meeting-title">9) 北京市教委机器人智能大赛</span>
+                <span class="meeting-id">编号: 2501102</span>
+            </div>
+            <table class="meeting-info-table">
+                <tr>
+                    <td class="label">主题</td>
+                    <td>北京市教委机器人智能大赛赛前动员</td>
+                    <td class="label">时间</td>
+                    <td>2025年10月25日</td>
+                </tr>
+                <tr>
+                    <td class="label">出席人</td>
+                    <td>叶恒瑞、叶恒嘉、宋书玥</td>
+                    <td class="label">地点</td>
+                    <td>日坛</td>
+                </tr>
+            </table>
+            <div class="meeting-content">
+                <h4>会议内容:</h4>
+                <ul>
+                    <li>区教委赛后训练中，中控坏了，更换新中控。</li>
+                    <li>技能赛手动自动只打出91，110塌了。</li>
+                    <li>车子升级，针对升级部分涉及环节重点训练。</li>
+                </ul>
+                <h4>讨论结果:</h4>
+                <ul>
+                    <li>赛前组织联队练习。</li>
+                    <li>带好场地队伍桌号排队图 (多打几份)。</li>
+                    <li>提前一天入住场地附近酒店，保证参赛当天队员精神状态。</li>
+                </ul>
             </div>
         </div>
 
@@ -524,34 +821,7 @@
         </div>
         <div class="page-number">18</div>
     </div>
-
-    <!-- ================= P19: 中期检查续 ================= -->
-    <div class="sheet">
-        <h1>📅 11月8日：我们要用黑科技！(2/2)</h1>
-
-        <div class="diary-card">
-            <div class="diary-date">重大决定</div>
-            <p>突然，叶恒瑞很激动地站起来说：</p>
-            <p class="dialogue">“我们用<strong>气动装置 (Pneumatics)</strong> 吧！我看过视频，气动爪子‘咔’一下就能抓住，特别快，而且不用担心电机过热。”</p>
-
-            <p>叶恒嘉有点担心：“可是我们以前从来没用过气动啊，那么多管子，很难接的。万一漏气了怎么办？”</p>
-
-            <p>王老师鼓励我们：“如果不挑战新技术，就很难突破瓶颈哦。”</p>
-
-            <p>最后大家一咬牙：<strong>拼了！</strong> 我们要造三代车，上气动！虽然要把现在的车拆了重做很心疼，但为了世锦赛，值了！</p>
-
-            <div class="img-placeholder" style="height: 200px;">
-                [图片：叶恒瑞拿着气缸给大家演示，大家的眼神里充满了好奇和期待]
-            </div>
-
-            <p><strong>行动：</strong> 王老师负责买气动套件，叶恒瑞负责研究怎么编程。冲鸭！</p>
-        </div>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">19</div>
-    </div>
+    <!-- ================= REPLACED CONTENT END ================= -->
 
     <!-- ================= P20: 章末总结 ================= -->
     <div class="sheet">
