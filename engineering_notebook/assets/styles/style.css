@@ -453,6 +453,7 @@ body.hide-other-elements .footer {
         background-image: none !important;
     }
 
+    #navigation-menu,
     .page-number,
     .a4-height-indicator,
     #toggle-dark-text-btn,

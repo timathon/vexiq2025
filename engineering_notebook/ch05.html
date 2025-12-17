@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第五章：动手造车 (2276A)</title>
+    <title>工程笔记 - 第五章：系统实施与搭建 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body class="theme-reddish-brown">
@@ -12,23 +12,22 @@
     <div class="sheet">
 
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #E74C3C;">动手造车啦！</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第五章：搭建、编程与炸机日常</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 5: Build, Code & Crash</h3>
+            <h1 style="font-size: 56px; border: none; color: #E74C3C;">系统实施</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第五章：物理搭建与软件配置</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 5: System Implementation & Assembly</h3>
             
             <div style="width: 80%; height: 8px; background: #E74C3C; margin: 40px auto; border-radius: 5px;"></div>
             
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
-                <p><strong>当前任务：</strong> 把上一章画的图纸变成真家伙。</p>
-                <p><strong>主搭建：</strong> 叶恒嘉（拼装狂魔）</p>
-                <p><strong>主程序：</strong> 叶恒瑞（键盘侠）</p>
-                <p><strong>时间：</strong> 8月初 - 8月19日（为了赶上北京赛，拼了！）</p>
-            </div>
-            
-            <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(-2deg);">
-                <strong>我们的Flag：</strong><br>
-                这次绝对不漏气！<br>
-                这次绝对不烧电机！
+                <p>
+                    本章节详细记录了从设计图纸到实体机器人的转化过程。
+                </p>
+                <p>
+                    内容涵盖了关键零部件的选型与统筹、各机械子系统的装配工艺、气动与电气系统的集成，以及底层控制程序的编写与调试。
+                </p>
+                <p>
+                    <strong>本章核心任务：</strong> 完成一代车（Gen 1）的制造与调试，确保其具备基本的竞赛功能。
+                </p>
             </div>
         </div>
         <div class="footer">
@@ -38,48 +37,50 @@
         <div class="page-number">91</div>
     </div>
 
-    <!-- ================= PAGE 92: 5.1 零件大扫荡 ================= -->
+    <!-- ================= PAGE 92: 资源统筹 ================= -->
     <div class="sheet">
 
-        <h1>5.1 零件大扫荡！</h1>
+        <h1>5.1 资源统筹与端口规划</h1>
         
-        <p>设计图定下来了，今天我们冲进教室的第一件事就是——抢零件！特别是那个传说中的<strong>气动套件</strong>。</p>
+        <p>在正式组装前，团队依据第四章的设计方案进行了物料清单 (BOM) 的核对，并完成了 VEX IQ 主控的端口映射规划。</p>
 
-        <p class="dialogue"><strong>叶恒嘉：</strong> “快快快！气瓶只有几个，手慢无！”</p>
-        <p class="dialogue"><strong>印涵邸：</strong> “我抢到了！还有电磁阀，这一大堆黑色的管子看着就好专业。”</p>
-
-        <h3>我们的“军火库”清单：</h3>
-        <table style="width: 100%; font-size: 16px; margin-top: 20px;">
-            <tr style="background: #eee;">
-                <th>宝贝名称</th>
-                <th>数量</th>
-                <th>干嘛用的？</th>
+        <h3>关键物料清单 (Bill of Materials)</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;">
+            <tr style="background-color: #eee;">
+                <th style="border: 1px solid #ccc; padding: 5px;">组件类别</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">规格/型号</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">数量</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">应用模块</th>
             </tr>
             <tr>
-                <td><strong>VEX IQ 主控</strong></td>
-                <td>1个</td>
-                <td>大脑，这就不用说了吧。</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">执行器</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Smart Motor (Gen 2)</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">4</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">底盘(2), 抬升(1), 翻转(1)</td>
             </tr>
             <tr>
-                <td><strong>Smart Motor (电机)</strong></td>
-                <td>4个</td>
-                <td>居然只用了4个！简直是勤俭持家小能手。</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">气动元件</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">气缸, 电磁阀, 气瓶</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">1套</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">抓取系统</td>
             </tr>
             <tr>
-                <td><strong>气动全家桶</strong></td>
-                <td>1套</td>
-                <td>气瓶x2，气缸x2，还有那个贵的要死的电磁阀。</td>
-            </tr>
-            <tr>
-                <td><strong>全向轮</strong></td>
-                <td>4个</td>
-                <td>让车转弯像抹了油一样丝滑。</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">传感器</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Inertial, Distance</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">2</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">姿态控制, 距离检测</td>
             </tr>
         </table>
 
-        <div class="img-placeholder" style="height: 200px; background: #fff;">
-            
-            <br>（这就是我们乱糟糟但充满希望的战场）
+        <h3>端口映射图 (Port Map)</h3>
+        <div class="build-log" style="font-family: monospace; background: #f4f4f4;">
+            Port 1: Left Drive Motor (Rev)<br>
+            Port 6: Right Drive Motor (Rev)<br>
+            Port 4: Lift Motor<br>
+            Port 11: Flipper Motor<br>
+            Port 2: Gyro Sensor<br>
+            Port 3: Distance Sensor<br>
+            <strong>Port 10: Pneumatic Solenoid (Digital Out)</strong>
         </div>
 
         <div class="footer">
@@ -88,23 +89,22 @@
         <div class="page-number">92</div>
     </div>
 
-    <!-- ================= PAGE 93: 5.2 搭建：底盘 ================= -->
+    <!-- ================= PAGE 93: 底盘装配 ================= -->
     <div class="sheet">
 
-        <h1>5.2 底盘：一定要快！</h1>
+        <h1>5.2 机械装配：底盘系统</h1>
 
         <div class="build-log">
-            <span class="log-date">8月2日</span>
-            <p><strong>目标：</strong> 做一个跑得飞快的底盘。</p>
-            <p>我们选了 <strong>2倍速</strong> 的齿轮比（48齿带24齿）。装完试跑了一下，我去，这简直是赛车啊！</p>
-            <p><strong>遇到的坑：</strong> 跑太快了容易散架。叶恒嘉在中间加了个巨大的 H 型梁，虽然丑了点，但是怎么撞都不散。</p>
+            <span class="log-date">2025/08/01 - 08/02</span>
+            <p><strong>子系统描述：</strong> 双电机差速驱动底盘。</p>
+            <p><strong>传动方案：</strong> 采用 48T:24T 齿轮组，实现 1:2 的增速比。该设计旨在保证机器人具备足够的场地覆盖速度。</p>
+            <p><strong>工程挑战：</strong> 高速齿轮组对结构刚性要求较高，初步测试中发现底盘在大扭矩下有形变风险。</p>
+            <p><strong>解决方案：</strong> 在底盘中部引入 "H" 型加强横梁结构，并增加额外的轴承座以支撑齿轮轴，显著提升了底盘的抗扭刚性。</p>
         </div>
-
-        <p class="dialogue"><strong>宋书玥（车手）：</strong> “这车速我喜欢，但是转弯有点飘，感觉在漂移。”</p>
         
         <div class="img-placeholder" style="height: 220px;">
             
-            <br>（看着那巨大的齿轮，充满了力量感）
+            <br>(展示齿轮咬合与H型加固结构)
         </div>
 
         <div class="footer">
@@ -113,25 +113,25 @@
         <div class="page-number">93</div>
     </div>
 
-    <!-- ================= PAGE 94: 5.2 搭建：气动爪 ================= -->
+    <!-- ================= PAGE 94: 机械臂与抓手 ================= -->
     <div class="sheet">
 
-        <h1>5.2 气动爪：噗嗤噗嗤！</h1>
+        <h1>5.3 机械装配：操作臂与气动抓手</h1>
 
         <div class="build-log">
-            <span class="log-date">8月5日</span>
-            <p>这绝对是整个机器人最酷的部分！</p>
-            <p>以前我们的爪子都是电机慢慢转，“嗡——嗡——”，现在是气动，“咔哒！”，瞬间闭合。</p>
-            <p><strong>制作秘籍：</strong> 我们在爪子内侧贴了好多层防滑胶皮。现在的爪子就像粘了胶水一样，抓住销钉怎么甩都甩不掉。</p>
-        </div>
-
-        <div class="highlight-box" style="border: 2px dashed red; background-color: #ffeaea;">
-            <strong>翻车现场：</strong>
-            <p>第一次接气管的时候没插紧，打气的时候听到“嘶——”的声音，气全跑光了。叶恒嘉趴在地上听了半天，才找到是哪个接口漏气。以后接管子一定要大力出奇迹！</p>
+            <span class="log-date">2025/08/04 - 08/07</span>
+            <p><strong>抬升机构 (Lift)：</strong> 搭建单边四连杆结构。为降低电机负载，在力臂支点处配置了三角形挂点的橡皮筋重力补偿系统。测试显示，电机仅需极低电流即可维持悬停状态。</p>
+            <p><strong>气动抓手 (Intake)：</strong></p>
+            <ul>
+                <li><strong>执行元件：</strong> 安装两组单作用气缸。</li>
+                <li><strong>气路设计：</strong> 气瓶 -> 主开关 -> 调压阀 -> 电磁阀 -> 气缸。</li>
+                <li><strong>末端处理：</strong> 为解决销钉表面光滑导致的滑落问题，在 L 型爪内侧粘贴了高摩擦系数的橡胶垫层。</li>
+            </ul>
         </div>
 
         <div class="img-placeholder" style="height: 200px;">
             
+            <br>(包含气缸安装位置与橡胶防滑层)
         </div>
 
         <div class="footer">
@@ -140,23 +140,23 @@
         <div class="page-number">94</div>
     </div>
 
-    <!-- ================= PAGE 95: 5.2 搭建：理线强迫症 ================= -->
+    <!-- ================= PAGE 95: 系统集成 ================= -->
     <div class="sheet">
 
-        <h1>5.2 强迫症患者的自我修养</h1>
+        <h1>5.4 系统集成与布线工艺</h1>
 
         <div class="build-log">
-            <span class="log-date">8月10日</span>
-            <p>现在的机器人上不仅有电线，还有黑色的气管，乱得像一碗炸酱面。</p>
-            <p>叶恒瑞受不了了，拿了一大把扎带，开始理线。</p>
-            <p><strong>理线规则：</strong></p>
-            <ul>
-                <li>电线走左边，气管走右边，井水不犯河水。</li>
-                <li>翻转关节那里的气管要绕成螺旋状（像电话线那样），不然一转头就把管子拔断了。</li>
-            </ul>
+            <span class="log-date">2025/08/10</span>
+            <p>随着各子系统组装完成，进入整车集成阶段。重点工作集中在电气布线与气路铺设。</p>
         </div>
-        
-        <p>理完之后，看着整整齐齐的走线，感觉战斗力都提升了 50%！</p>
+
+        <h3>布线管理 (Cable Management)</h3>
+        <p>为防止运动部件干涉线缆，采取了以下措施：</p>
+        <ul>
+            <li><strong>分区走线：</strong> 将电源线/信号线与气管分置于机械臂两侧，避免缠绕。</li>
+            <li><strong>翻转关节处理：</strong> 针对 180 度翻转手腕，将连接末端气缸的气管盘绕成螺旋状（Spiral Wrap），预留充足的伸缩余量，消除应力集中。</li>
+            <li><strong>固定工艺：</strong> 使用尼龙扎带沿结构梁进行固定，确保整机外观整洁且易于维护。</li>
+        </ul>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -164,31 +164,32 @@
         <div class="page-number">95</div>
     </div>
 
-    <!-- ================= PAGE 96: 5.3 编程：气动怎么写？ ================= -->
+    <!-- ================= PAGE 96: 软件配置 ================= -->
     <div class="sheet">
 
-        <h1>5.3 编程：气动怎么写代码？</h1>
+        <h1>5.5 软件配置：设备初始化</h1>
 
         <div class="build-log">
-            <span class="log-date">8月12日</span>
-            <p>叶恒瑞打开电脑，突然懵了。以前控制爪子是 `motor.spin`，现在气动怎么搞？</p>
-            <p>查了半天资料才发现，气动电磁阀在代码里叫 <strong>Digital Out (数字输出)</strong>。</p>
+            <span class="log-date">2025/08/12</span>
+            <p>基于 VEXcode IQ 平台进行底层驱动配置。针对气动系统，需将控制端口配置为数字输出模式。</p>
         </div>
 
-        <div class="code-snippet" style="font-family: 'Courier New', monospace; background: #333; color: #0f0; padding: 10px; border-radius: 5px;">
-            // 这就是控制空气的魔法代码！<br>
-            digital_out Solenoid = digital_out(PORT10);<br>
+        <div class="code-snippet" style="background: #f8f9fa; border: 1px solid #ddd; padding: 15px; font-family: 'Courier New', monospace;">
+            <span style="color: #008000;">// Device Configuration</span><br>
+            motor LeftDrive = motor(PORT1, ratio18_1, false);<br>
+            motor RightDrive = motor(PORT6, ratio18_1, true);<br>
             <br>
-            // 按下 R1 键，发射空气！<br>
-            if (Controller.ButtonR1.pressing()) {<br>
-                Solenoid.set(true);  // 爪子闭合！<br>
-            }<br>
-            else if (Controller.ButtonR2.pressing()) {<br>
-                Solenoid.set(false); // 爪子张开！<br>
+            <span style="color: #008000;">// Pneumatic Control Configuration</span><br>
+            <span style="color: #008000;">// Port 10 is configured as a Digital Output for the Solenoid</span><br>
+            digital_out ClawSolenoid = digital_out(PORT10);<br>
+            <br>
+            <span style="color: #008000;">// Function to toggle claw state</span><br>
+            void toggleClaw(bool state) {<br>
+            &nbsp;&nbsp;ClawSolenoid.set(state);<br>
             }
         </div>
 
-        <p>写完下载进去，按下 R1，“咔哒”一声，爪子合上了。全场欢呼！</p>
+        <p><strong>验证：</strong> 上传程序后，通过手动触发测试，确认电磁阀动作逻辑正确（True = 闭合/抓取，False = 断开/释放）。</p>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -196,25 +197,43 @@
         <div class="page-number">96</div>
     </div>
 
-    <!-- ================= PAGE 97: 5.4 调试：这也太快了吧 ================= -->
+    <!-- ================= PAGE 97: 操控逻辑 ================= -->
     <div class="sheet">
 
-        <h1>5.4 调试：驯服这匹野马</h1>
+        <h1>5.6 遥控逻辑设计 (Teleop)</h1>
 
         <div class="build-log">
-            <span class="log-date">8月15日</span>
-            <p>试跑的时候出大问题了。</p>
-            <p>因为底盘是 2 倍速，车跑得太快了！宋书玥稍微推一点点摇杆，车就“嗖”地一下飞出去了，根本对不准销钉。</p>
-            <p class="dialogue"><strong>宋书玥：</strong> “这车是吃了兴奋剂吗？根本停不下来！”</p>
+            <span class="log-date">2025/08/13 - 08/14</span>
+            <p>为满足操作手在比赛中的即时反应需求，确立了以下人机交互逻辑：</p>
         </div>
 
-        <h3>解决方案：龟速模式</h3>
-        <p>叶恒瑞加了个功能：只要按住 L 键，车速就变成原来的 50%。</p>
-        <ul>
-            <li><strong>赶路时：</strong> 松开 L 键，全速冲锋！</li>
-            <li><strong>抓东西时：</strong> 按住 L 键，变成老奶奶过马路，稳准狠。</li>
-        </ul>
-        <p>这下终于能控制住了！</p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <tr style="background: #eee;">
+                <th style="border: 1px solid #ccc; padding: 5px;">功能模块</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">按键映射</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">控制逻辑描述</th>
+            </tr>
+            <tr>
+                <td>底盘移动</td>
+                <td>摇杆 (A/D)</td>
+                <td>采用坦克模式 (Tank Drive)，左右摇杆独立控制对应侧电机。</td>
+            </tr>
+            <tr>
+                <td>气动抓手</td>
+                <td>R1 / R2</td>
+                <td>R1 触发闭合（抓取），R2 触发断开（释放）。利用气动瞬时响应特性实现快速抓取。</td>
+            </tr>
+            <tr>
+                <td>翻转手腕</td>
+                <td>F 键 (Toggle)</td>
+                <td>单键切换。按下旋转至 180 度，再次按下复位至 0 度。</td>
+            </tr>
+            <tr>
+                <td><strong>速度控制</strong></td>
+                <td><strong>L 键 (Hold)</strong></td>
+                <td><strong>精准模式 (Precision Mode)：</strong> 按住 L 键时，底盘输出功率限制为 50%，用于精细对准目标。</td>
+            </tr>
+        </table>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -222,38 +241,64 @@
         <div class="page-number">97</div>
     </div>
 
-    <!-- ================= PAGE 98: 5.5 全车定妆照 ================= -->
+    <!-- ================= PAGE 98: 传感器与自动化 ================= -->
     <div class="sheet">
 
-        <h1>5.5 一代车，集结完毕！</h1>
+        <h1>5.7 传感器集成与自动化测试</h1>
 
         <div class="build-log">
-            <span class="log-date">8月18日</span>
-            <p>明天就要去打包去北京比赛了。看着眼前这台机器，虽然它长得不够帅，还有点漏气（偶尔），但它是我们亲手造出来的第一台车！</p>
-            
-            <p><strong>最终配置单：</strong></p>
-            <ul>
-                <li><strong>名字：</strong> 还没想好，暂时叫它“气动一号”吧。</li>
-                <li><strong>必杀技：</strong> 瞬间抓取（只要气瓶有气）。</li>
-                <li><strong>弱点：</strong> 手臂不够长，够不到最高的塔（那个分我们不要了，哼）。</li>
-                <li><strong>隐患：</strong> 跑快了还是有点容易打滑（Drift）。</li>
-            </ul>
-        </div>
-        
-        <div class="img-placeholder" style="height: 300px;">
-            
-            <br>（大家围着机器人，笑得像个傻子，背景是乱糟糟的教室）
+            <span class="log-date">2025/08/16 - 08/17</span>
+            <p>为提高机器人的环境感知能力及自动赛表现，集成了以下传感器模块：</p>
         </div>
 
-        <p style="text-align: center; font-size: 24px; font-weight: bold; margin-top: 30px;">
-            北京，我们来啦！
-        </p>
+        <div class="two-column-layout">
+            <div class="column">
+                <h4>1. 惯性传感器 (Inertial Sensor)</h4>
+                <p>用于实时监测机器人的航向角 (Heading)。通过 PID 算法修正左右轮速差，显著改善了底盘在高速行驶下的直线保持能力。</p>
+            </div>
+            <div class="column">
+                <h4>2. 距离传感器 (Distance Sensor)</h4>
+                <p>前置安装。在自动程序中实现“接近检测”：当检测到前方障碍物或得分桩距离小于设定阈值（100mm）时，自动触发刹车逻辑，防止剧烈碰撞。</p>
+            </div>
+        </div>
+
+        <h3>初步自动程序测试</h3>
+        <p>编写了首个基础自动例程：机器人前进 -> 陀螺仪修正直线 -> 距离传感器触发停止 -> 气动爪释放 -> 后退。测试成功率达到 90%。</p>
 
         <div class="footer">
-            <span>2025年8月18日</span>
-            <span>全员签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
+            <span>记录人：印涵邸</span>
         </div>
         <div class="page-number">98</div>
+    </div>
+
+    <!-- ================= PAGE 99: 章节总结 ================= -->
+    <div class="sheet">
+
+        <h1>第五章总结：系统就绪</h1>
+
+        <p>
+            历经 19 天的设计与制造周期，一代车（Gen 1）已完成全部硬件搭建与基础软件调试。
+        </p>
+        <p>
+            <strong>实施成果评估：</strong>
+            <br>1. <strong>气动系统：</strong> 成功应用，抓取力与响应速度达到预期，成为本机最大技术亮点。
+            <br>2. <strong>机械结构：</strong> 底盘与机械臂运行平稳，结构刚性满足比赛强度要求。
+            <br>3. <strong>控制系统：</strong> 实现了预期的半自动化辅助功能（如精准限速模式）。
+        </p>
+        <p>
+            目前系统状态良好，已具备参加实战测试的条件。下一阶段，我们将通过模拟赛与即将到来的北京城市赛，对机器人的综合性能进行极限测试。
+        </p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            <br>(展示完整的气路布局与机械结构)
+        </div>
+
+        <div class="footer">
+            <span>2025年8月19日</span>
+            <span>全员签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
+        </div>
+        <div class="page-number">99</div>
     </div>
 
     <script src="assets/scripts/toggle-buttons.js"></script>

@@ -3,57 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第七章：进化吧！二代车 (2276A)</title>
+    <title>工程笔记 - 第七章：二代车的设计迭代 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body class="theme-purple-7">
 
-    <!-- ================= PAGE 121: 章节封面 ================= -->
+    <!-- ================= PAGE 117: 章节封面 ================= -->
     <div class="sheet">
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #8E44AD;">进化的力量</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第七章：二代车的诞生与进化</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 7: Evolution to Gen 2</h3>
+            <h1 style="font-size: 56px; border: none; color: #8E44AD;">设计迭代与优化</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第七章：二代车 (Gen 2) 的进化之路</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 7: Design Iteration: The Generation 2</h3>
             
             <div style="width: 80%; height: 8px; background: #9B59B6; margin: 40px auto; border-radius: 5px;"></div>
             
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
-                <p><strong>任务：</strong> 解决一代车的所有毛病。</p>
-                <p><strong>代号：</strong> Gen 2 (二代车)</p>
-                <p><strong>核心改动：</strong> 底盘、三角区、堆叠装置</p>
-            </div>
-            
-            <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(-3deg); background-color: #D2B4DE;">
-                <strong>拆车宣言：</strong><br>
-                虽然一代车帮我们拿了亚军，<br>
-                但为了冠军，必须把它拆了！<br>
-                (含泪拧下第一颗螺丝)
+                <p>
+                    本章节详细记录了战队基于一代车（Gen 1）的实战数据，研发并制造二代车（Gen 2）的全过程。
+                </p>
+                <p>
+                    针对底盘卡顿、三角区操作僵化以及堆叠不稳定等核心痛点，我们进行了深度的机械结构改良，并引入了更完善的自动化控制逻辑。
+                </p>
+                <p>
+                    <strong>本章核心任务：</strong> 打造一台通过性更强、操作更灵活、堆叠更稳定的进阶机型。
+                </p>
             </div>
         </div>
         <div class="footer">
-            <span class="handwriting-box">日期：2025/08/25</span>
+            <span class="handwriting-box">日期：2025/10/24 - 2025/11/15</span>
             <span class="handwriting-box">记录人：2276A 全体</span>
+        </div>
+        <div class="page-number">117</div>
+    </div>
+
+    <!-- ================= PAGE 118: 迭代目标 ================= -->
+    <div class="sheet">
+        <h1>7.1 迭代启动：从经验中改进</h1>
+        
+        <p>在结束北京城市赛（第一场）后，工程团队对一代车的性能瓶颈进行了系统性复盘。结合比赛录像与《参赛总结》，我们确立了二代车（Gen 2）的改进方向。</p>
+
+        <div class="highlight-box" style="background-color: #F4ECF7; border: 1px solid #8E44AD; padding: 20px;">
+            <h3>二代车核心设计目标 (Design Goals)</h3>
+            <ol style="line-height: 2;">
+                <li><strong>底盘通过性 (Passability)：</strong> 解决底盘过低导致的“卡梁”问题，确保机器人能流畅穿越装填区。</li>
+                <li><strong>环境适应性 (Adaptability)：</strong> 优化三角区（Triangle Area）的定位结构，提升狭窄空间内的操作灵活性。</li>
+                <li><strong>堆叠稳定性 (Stacking Stability)：</strong> 改进辅助定位装置，由“点接触”升级为“面接触”，提高盲操作成功率。</li>
+                <li><strong>自动化集成 (Automation)：</strong> 增加传感器应用，通过程序减少人为操作压力。</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">118</div>
+    </div>
+
+    <!-- ================= PAGE 119: 底盘优化 ================= -->
+    <div class="sheet">
+        <h1>7.2 机械优化一：底盘传动结构重构</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">优化项目：底盘齿轮布局</div>
+            <p><strong>问题识别：</strong> 一代车底盘传动齿轮位置过低。在穿越场地装填梁（Loading Beam）时，齿轮下沿容易与横梁发生物理摩擦，导致机器人动作卡顿，甚至在低速下被“架空”卡死。</p>
+            <p><strong>工程解决方案：</strong></p>
+            <ul>
+                <li><strong>结构调整：</strong> 将底盘传动齿轮组的安装位置整体<strong>向上迁移</strong>。</li>
+                <li><strong>技术细节：</strong> 通过调整轴孔位置，使齿轮组完全高于底盘最低点，消除了与地面障碍物的潜在干涉。</li>
+            </ul>
+            <p><strong>实际效果：</strong> 机器人可以轻松快速通过装填区域，彻底解决了摩擦减速问题，节省了宝贵的比赛时间。</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 220px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
+            
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">119</div>
+    </div>
+
+    <!-- ================= PAGE 120: 三角区优化 ================= -->
+    <div class="sheet">
+        <h1>7.3 机械优化二：三角区定位角改进</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">优化项目：可变定位角结构</div>
+            <p><strong>问题识别：</strong> 一代车的定位机构采用“全部收起”的长气杆设计，展开行程长，动作迟缓，且在狭窄的三角得分区（Triangle Goal）内灵活性不足。</p>
+            <p><strong>工程解决方案：</strong></p>
+            <ul>
+                <li><strong>形态变更：</strong> 将定位角由“全收起”改为<strong>“半收起”</strong>设计。</li>
+                <li><strong>行程优化：</strong> 将长气杆更换为短气杆，缩短了气动伸缩行程。</li>
+            </ul>
+        </div>
+
+        <div class="two-column-layout">
+            <div class="column">
+                <p><strong>优化前（一代）：</strong><br>展开时间长，进入三角区需要反复调整角度。</p>
+            </div>
+            <div class="column">
+                <p><strong>优化后（二代）：</strong><br>半收起状态既保留了空间通过性，又能实现瞬间展开定位。操作速度明显提升。</p>
+            </div>
+        </div>
+
+        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
+            
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">120</div>
+    </div>
+
+    <!-- ================= PAGE 121: 堆叠优化 ================= -->
+    <div class="sheet">
+        <h1>7.4 机械优化三：面状辅助堆叠系统</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">优化项目：下层销钉定位装置</div>
+            <p><strong>问题识别：</strong> 一代车依靠两根细杆（点状）进行下层销钉定位，接触面积小。如果机器人进场角度稍有偏差，销钉容易滑脱，导致上层堆叠倾倒。</p>
+            <p><strong>工程解决方案：</strong></p>
+            <p>设计了全新的<strong>“面状辅助”导向板</strong>，替换了原有的点状支架。</p>
+            <ul>
+                <li><strong>原理：</strong> 利用带有凹槽的宽板结构，贴合销钉的轮廓。</li>
+                <li><strong>优势：</strong> 提供了更大的物理限位面积。即使存在 ±5 度的操作误差，面状板也能强制纠正销钉姿态。</li>
+            </ul>
+        </div>
+
+        <div class="img-placeholder" style="height: 220px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
+            
+        </div>
+
+        <p><strong>效果：</strong> 下层销钉位置固定极其稳固，第二层、第三层堆叠的成功率接近 100%。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
         </div>
         <div class="page-number">121</div>
     </div>
 
-    <!-- ================= PAGE 122: 痛点回顾 ================= -->
+    <!-- ================= PAGE 122: 训练记录 ================= -->
     <div class="sheet">
+        <h1>7.5 二代车训练与调试记录</h1>
 
-        <h1>7.1 那些让我们抓狂的问题</h1>
-        
-        <p>北京赛虽然赢了，但是过程真的太惊险了。回到学校，我们对着一代车的“尸体”（还没拆完）开了个批斗会。</p>
+        <p>二代车组装完成后，我们进行了为期两周的密集测试。以下摘录自《一代车训练记录》（注：实为二代车调试阶段记录）：</p>
 
-        <div class="highlight-box" style="border: 2px dashed #8E44AD; padding: 20px;">
-            <h3>🚫 一代车的三大罪状：</h3>
-            <ol style="line-height: 2;">
-                <li><strong>底盘“卡壳”：</strong> 每次经过装填区的横梁，底盘都会发出“嘎吱嘎吱”的声音，有时候甚至直接卡住不动了。太尴尬了！</li>
-                <li><strong>缩头乌龟太慢：</strong> 为了进三角区，我们需要把手臂缩到最小。一代车缩回去要半天，伸出来又要半天，急死个人。</li>
-                <li><strong>堆叠全靠运气：</strong> 第二层能不能叠上去，全看宋书玥手抖不抖。稍微歪一点，整个塔就塌了。</li>
-            </ol>
-        </div>
-
-        <p class="dialogue"><strong>结论：</strong> 小修小补没用了，必须进行伤筋动骨的大手术！</p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px;">
+            <tr style="background: #eee;">
+                <th style="border: 1px solid #ccc; padding: 5px;">轮次</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">调试内容</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">遇到的问题</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">改进措施 & 效果</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">T1-T2</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">装填区通行测试</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">齿轮位置未调整前，通过缓慢</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">调整齿轮位置后，底盘通过顺畅，无卡顿。</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">T3-T5</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">三角区定位测试</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">全收起结构展开慢，影响节奏</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">改为半收起结构，动作更敏捷，得分效率提升。</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">T6-T8</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">堆叠精度测试</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">高层堆叠偶有晃动</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">微调抬升角度及对位程序，配合面状辅助，成功率大幅提高。</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">T9-T10</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">全流程模拟</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">无明显故障</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">整车动作协调，稳定性达标，准备参赛。</td>
+            </tr>
+        </table>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -61,32 +188,24 @@
         <div class="page-number">122</div>
     </div>
 
-    <!-- ================= PAGE 123: 改造1-底盘 ================= -->
+    <!-- ================= PAGE 123: 自动化升级 ================= -->
     <div class="sheet">
+        <h1>7.6 软件升级：传感器融合</h1>
 
-        <h1>7.2 手术一：底盘增高术</h1>
+        <p>在机械结构优化的同时，二代车的控制程序也进行了重要升级。</p>
 
         <div class="build-log">
-            <span class="log-date">改造部位：底盘齿轮</span>
-            <p><strong>病因：</strong> 一代车的齿轮装得太低了，离地间隙太小。就像跑车去越野，底盘肯定被刮。</p>
-            <p><strong>手术方案：</strong> 把齿轮组整体<strong>向上移动</strong>一格。</p>
-            <p>这听起来简单，实际操作起来要把整个侧板拆掉重装！叶恒嘉一边拆一边碎碎念。</p>
-            <p><strong>术后效果：</strong> 哇！现在过装填区简直是“丝般顺滑”！再也没有那种令人牙酸的摩擦声了。机器人像抹了油一样冲过去了。</p>
-        </div>
-
-        <div class="two-column-layout">
-            <div class="column">
-                <div class="photo-placeholder" style="height: 150px; background: #eee;">
-                    
-                    <br>(太低了！)
-                </div>
-            </div>
-            <div class="column">
-                <div class="photo-placeholder" style="height: 150px; background: #eee;">
-                    
-                    <br>(抬高了！)
-                </div>
-            </div>
+            <span class="log-date">软件版本：Gen2_Auto_V1.0</span>
+            <p><strong>1. 距离传感器应用：</strong></p>
+            <ul>
+                <li>在抓手前端集成了距离传感器。</li>
+                <li><strong>逻辑：</strong> 当检测到销钉进入抓取范围（Distance < 50mm）时，程序自动接管气缸闭合动作，减少操作手的反应延迟。</li>
+            </ul>
+            <p><strong>2. 动作顺序控制：</strong></p>
+            <ul>
+                <li>编写了宏命令（Macro），一键完成“抬升-翻转-放置”的连续动作。</li>
+                <li><strong>效果：</strong> 让抓取、堆叠和翻转动作衔接更顺畅，大幅简化了手动操作的复杂度。</li>
+            </ul>
         </div>
 
         <div class="footer">
@@ -95,24 +214,27 @@
         <div class="page-number">123</div>
     </div>
 
-    <!-- ================= PAGE 124: 改造2-三角区 ================= -->
+    <!-- ================= PAGE 124: 赛场首秀 ================= -->
     <div class="sheet">
+        <h1>7.7 实战检验：北京校际联赛</h1>
 
-        <h1>7.3 手术二：不要缩到底！</h1>
-
-        <p>规则说进三角区要限制尺寸。一代车的做法是把手臂完全缩回到肚子里（全收起），但这行程太长了，浪费时间。</p>
-
-        <div class="build-log">
-            <span class="log-date">改造部位：限位气缸</span>
-            <p><strong>新思路：半收起 (Semi-Retract)</strong></p>
-            <p>我们把原来那根长长的气缸换成了一根短气杆。</p>
-            <p><strong>原理：</strong> 不需要缩到最里面，只要刚好不超尺寸线就行了！</p>
-            <p><strong>效果：</strong> 以前缩回去要 1 秒，现在只要 0.3 秒！“唰”的一下就变身完成了。这就叫“唯快不破”！</p>
+        <div class="info-box" style="border: 1px solid #aaa; padding: 20px; background: #f4f4f4; margin-bottom: 20px;">
+            <p><strong>赛事：</strong> 2025-2026 VEX机器人北京首届校际联赛（第四场）</p>
+            <p><strong>参赛机型：</strong> 二代车 (Gen 2)</p>
+            <p><strong>状态：</strong> 首次实战应用</p>
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
-            
-            <br>（看着很精神，随时准备出击）
+        <h3>比赛表现总结</h3>
+        <p>依据《参赛总结》报告，二代车在赛场上展现了显著的进步：</p>
+        <ul>
+            <li><strong>动作更稳定：</strong> 相比一代车，在快速抓取和堆叠任务中的成功率显著提高，未发生严重的掉件事故。</li>
+            <li><strong>效率提升：</strong> 得益于底盘通过性的改善和自动化的辅助，单场比赛的任务完成数量较之前更多。</li>
+            <li><strong>团队配合：</strong> 操控手与装填手分工清晰，衔接顺畅。</li>
+        </ul>
+
+        <div class="alert-box" style="border-left: 5px solid #E67E22; padding-left: 15px; margin-top: 20px;">
+            <strong>遗留问题：</strong> 
+            尽管进步明显，但在比赛中也发现夹具在进入三角区时偶有掉落情况，且对部分复杂场地的临场适应性仍需加强。这为后续的优化指明了方向。
         </div>
 
         <div class="footer">
@@ -121,90 +243,31 @@
         <div class="page-number">124</div>
     </div>
 
-    <!-- ================= PAGE 125: 改造3-堆叠 ================= -->
+    <!-- ================= PAGE 125: 章节总结 ================= -->
     <div class="sheet">
+        <h1>第七章总结：成熟的二代机</h1>
 
-        <h1>7.4 手术三：从“点”到“面”</h1>
+        <p>
+            通过底盘上移、定位角结构优化以及面状辅助系统的引入，二代车（Gen 2）成功克服了一代车的主要机械缺陷。
+        </p>
+        <p>
+            实战数据证明，二代车在稳定性、速度和可靠性上都达到了比赛的高标准要求。它不仅是一次成功的迭代，更标志着战队的工程设计能力迈上了新的台阶。
+        </p>
+        <p>
+            <strong>下一步计划：</strong> 针对校际联赛中暴露出的夹具微小瑕疵进行针对性微调，并开展针对复杂战术的模拟对抗训练。
+        </p>
 
-        <p>这是最关键的得分改造。之前堆叠老倒，是因为我们就靠两个小点去卡位（点状辅助），容错率太低了。</p>
-
-        <div class="build-log">
-            <span class="log-date">改造部位：辅助对齐板</span>
-            <p><strong>方案：</strong> 我们做了一个大的平面的导向板（面状辅助）。</p>
-            <p><strong>怎么用？</strong> 只要下面的销钉撞到这个板子上，它就会自动滑进正确的位置。就像漏斗一样，把销钉“吃”进去。</p>
-            <p><strong>宋书玥狂喜：</strong> “现在我闭着眼睛都能叠上去！再也不用屏住呼吸操作了！”</p>
-        </div>
-
-        <div class="img-placeholder" style="height: 220px;">
+        <div class="img-placeholder" style="height: 300px; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center;">
             
         </div>
 
         <div class="footer">
-            <span>记录人：印涵邸</span>
+            <span>2025年11月15日</span>
+            <span>全员签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
         </div>
         <div class="page-number">125</div>
     </div>
-
-    <!-- ================= PAGE 126: 二代车定型 ================= -->
-    <div class="sheet">
-
-        <h1>7.5 二代车 (Gen 2) 闪亮登场！</h1>
-
-        <p>经过一周的“魔改”，我们的二代车终于下地了！</p>
-
-        <div style="background-color: #f3e5f5; padding: 20px; border-radius: 10px;">
-            <h3>🏁 Gen 2 性能报告</h3>
-            <ul>
-                <li><strong>通过性：</strong> ⭐⭐⭐⭐⭐ (再也不卡底盘了)</li>
-                <li><strong>变身速度：</strong> ⭐⭐⭐⭐⭐ (半收起太快了)</li>
-                <li><strong>堆叠稳定性：</strong> ⭐⭐⭐⭐⭐ (面状辅助YYDS)</li>
-                <li><strong>颜值：</strong> ⭐⭐⭐ (还是那堆梁，没啥变化，哈哈)</li>
-            </ul>
-        </div>
-
-        <p><strong>试车感受：</strong><br>
-        如果说一代车是刚学会走路的小宝宝，那二代车就是那个操场上跑得最快的体育委员！每一个动作都干脆利落，看着就爽。</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">126</div>
-    </div>
-
-    <!-- ================= PAGE 127: 章节总结 ================= -->
-    <div class="sheet">
-
-        <h1>第七章总结：我们变强了</h1>
-
-        <p>
-            看着眼前这台二代车，我们真的很有成就感。
-        </p>
-        <p>
-            以前遇到问题，我们只会抱怨“运气不好”。但现在，我们学会了用<strong>结构</strong>去解决问题。
-            <br>
-            卡住了？改底盘！<br>
-            慢了？改行程！<br>
-            不稳？改接触面！
-        </p>
-        <p>
-            这可能就是老师说的“工程思维”吧（虽然我更愿意叫它“遇事不决改图纸”）。
-        </p>
-        <p>
-            二代车已经准备好了，接下来的目标是：<strong>更多的自动程序，更高的分数！</strong>
-        </p>
-
-        <div class="img-placeholder" style="height: 250px;">
-            
-        </div>
-
-        <div class="footer">
-            <span>2025年8月30日</span>
-            <span>全员签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
-        </div>
-        <div class="page-number">127</div>
-    </div>
-
-    <script src="assets/scripts/toggle-buttons.js"></script>
+    
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
 </body>

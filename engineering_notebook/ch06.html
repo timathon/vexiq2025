@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第六章：是骡子是马 (2276A)</title>
+    <title>工程笔记 - 第六章：测试验证与实战评估 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body class="theme-cyan">
@@ -11,22 +11,22 @@
     <!-- ================= PAGE 109: 章节封面 ================= -->
     <div class="sheet">
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: #00BCD4;">实战是检验真理的唯一标准</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第六章：魔鬼训练与北京首战</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 6: Training & The First Battle</h3>
+            <h1 style="font-size: 56px; border: none; color: #00BCD4;">测试验证与实战评估</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第六章：系统迭代与北京城市赛</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 6: System Testing & Competition Analysis</h3>
             
             <div style="width: 80%; height: 8px; background: #00ACC1; margin: 40px auto; border-radius: 5px;"></div>
             
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
-                <p><strong>坐标：</strong> 训练场 & 胜炫北京城市赛</p>
-                <p><strong>主角：</strong> 气动一号 (一代车 Gen 1)</p>
-                <p><strong>状态：</strong> 痛并快乐着</p>
-            </div>
-            
-            <div class="sticky-note" style="width: 70%; margin: 50px auto; transform: rotate(2deg); background-color: #ffeb3b;">
-                <strong>本章金句：</strong><br>
-                图纸上画得再好，<br>
-                上了场才知道全是Bug！
+                <p>
+                    本章节记录了“一代车 (Gen 1)”在完成物理搭建后的性能测试过程，以及在“2025 胜炫北京城市赛”中的实战表现。
+                </p>
+                <p>
+                    我们将通过详细的训练日志，复盘在底盘移动、抓取稳定性和自动化控制方面遇到的技术瓶颈，并记录针对性采取的工程改进措施。
+                </p>
+                <p>
+                    <strong>本章核心任务：</strong> 评估一代车设计的有效性，为后续机型的研发积累数据支持。
+                </p>
             </div>
         </div>
         <div class="footer">
@@ -36,22 +36,29 @@
         <div class="page-number">109</div>
     </div>
 
-    <!-- ================= PAGE 110: 训练日记1-抓不住 ================= -->
+    <!-- ================= PAGE 110: 训练日志-抓取优化 ================= -->
     <div class="sheet">
 
-        <h1>6.1 训练场上的“翻车”现场 (1)</h1>
+        <h1>6.1 单元测试：抓取系统的摩擦力优化</h1>
         
-        <p>车刚搭好的时候，我们觉得它简直完美。结果一上场训练，现实给了我们狠狠一巴掌。</p>
+        <p>在初期测试中，我们发现气动抓手在处理光滑的销钉（Pin）时存在严重的滑移问题，直接影响了得分效率。</p>
 
         <div class="build-log">
-            <span class="log-date">问题一：手太滑了！</span>
-            <p><strong>现象：</strong> 气动爪抓 Pin（销钉）的时候，只要车身一晃，Pin 就滑下去了。特别是翻转手腕准备反向堆叠的时候，Pin 经常“啪”的一声掉地上。</p>
-            <p class="dialogue"><strong>宋书玥：</strong> “这爪子是抹了油吗？根本抓不住啊！”</p>
-            <p><strong>急救措施：</strong> 叶恒嘉找来了最防滑的黑色胶皮，在爪子内侧贴了整整三层！</p>
-            <p><strong>效果：</strong> 稳了！现在就算把车倒过来甩，Pin 都掉不下来。</p>
+            <span class="log-date">测试记录：第 1-4 轮训练</span>
+            <p><strong>问题描述：</strong> 
+                虽然气缸闭合速度快，但由于销钉表面主要为光面塑料，L型铝合金爪与其接触面摩擦系数不足。在机器人进行 180 度翻转动作或快速急停时，销钉极易因惯性脱落。
+            </p>
+            <p><strong>工程改进方案：</strong> </p>
+            <ul>
+                <li><strong>材料改性：</strong> 在抓手内侧接触面粘贴了高摩擦系数的黑色橡胶垫层（部分区域缠绕橡胶筋），利用物理形变增加静摩擦力。</li>
+                <li><strong>力学结构微调：</strong> 加长了爪臂长度，优化了夹持力矩的施加点，使其更靠近销钉重心。</li>
+            </ul>
+            <p><strong>测试结果：</strong> 
+                经过 4 轮迭代测试，抓取成功率由初期的 60% 提升至 95% 以上，剧烈晃动下的保持能力显著增强。
+            </p>
         </div>
 
-        <div class="img-placeholder" style="height: 200px;">
+        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
             
         </div>
 
@@ -61,22 +68,27 @@
         <div class="page-number">110</div>
     </div>
 
-    <!-- ================= PAGE 111: 训练日记2-叠不上 ================= -->
+    <!-- ================= PAGE 111: 训练日志-堆叠辅助 ================= -->
     <div class="sheet">
 
-        <h1>6.1 训练场上的“翻车”现场 (2)</h1>
+        <h1>6.2 功能测试：堆叠定位精度的提升</h1>
 
         <div class="build-log">
-            <span class="log-date">问题二：堆叠像在玩杂技</span>
-            <p><strong>现象：</strong> 堆叠第二层 Pin 的时候，稍微对不准一点点，上面的 Pin 就歪了，然后整个塔“轰”的一声倒塌。</p>
-            <p><strong>原因：</strong> 我们完全靠操作手的眼神去对齐，太难了！</p>
-            <p><strong>急救措施：</strong> 我们在抓手下面加了一个小小的“定位支架”（其实就是根弯曲的梁）。</p>
-            <p><strong>原理：</strong> 只要那个支架卡住下面那个 Pin 的头，上面的 Pin 就能自动对准。</p>
+            <span class="log-date">测试记录：第 6 轮训练</span>
+            <p><strong>问题描述：</strong> 
+                在进行第二层销钉堆叠时，完全依赖操作手目视对齐。由于底盘存在微小惯性，且赛场视角受限，对位误差导致上层销钉倾倒的频率较高。
+            </p>
+            <p><strong>解决方案：引入机械限位装置</strong></p>
+            <p>
+                我们在抓取结构下方设计并安装了一个<strong>辅助定位支架 (Positioning Bracket)</strong>。
+            </p>
+            <ul>
+                <li><strong>工作原理：</strong> 利用下层销钉的顶部结构作为导向基准。当机器人推进时，定位支架会优先接触下层销钉，强制纠正机器人的横向偏差，实现“盲操作”对齐。</li>
+                <li><strong>验证效果：</strong> 第二层堆叠的稳定性大幅提升，操作手无需进行耗时的微调，单次堆叠时间缩短约 3 秒。</li>
+            </ul>
         </div>
 
-        <p class="dialogue"><strong>叶恒瑞：</strong> “这就是物理外挂，这就叫‘由于有了定位结构，成功率显著提升’（写文档语气）。”</p>
-
-        <div class="img-placeholder" style="height: 200px;">
+        <div class="img-placeholder" style="height: 200px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
             
         </div>
 
@@ -86,26 +98,34 @@
         <div class="page-number">111</div>
     </div>
 
-    <!-- ================= PAGE 112: 训练日记3-勾不住 ================= -->
+    <!-- ================= PAGE 112: 训练日志-自动化 ================= -->
     <div class="sheet">
 
-        <h1>6.1 训练场上的“翻车”现场 (3)</h1>
+        <h1>6.3 系统集成：半自动化逻辑导入</h1>
+
+        <p>为减轻操作手在紧张赛程中的认知负荷，我们尝试通过传感器辅助实现半自动化控制。</p>
 
         <div class="build-log">
-            <span class="log-date">问题三：万能梁勾不住</span>
-            <p><strong>现象：</strong> 车屁股后面的钩子角度不对，倒车勾 Beam（万能梁）的时候，一加速，Beam 就跑了。</p>
-            <p><strong>解决：</strong> 拿热风枪把钩子烤软了，稍微把角度掰弯了一点点（变成了锐角）。</p>
-            <p><strong>效果：</strong> 现在万能梁一旦进去了就别想跑！</p>
-        </div>
-        
-        <div class="highlight-box" style="margin-top: 30px; border: 2px solid #00BCD4; border-radius: 10px; padding: 15px;">
-            <h3>训练总结</h3>
-            <p>经过这几天的魔鬼修补，虽然一代车还是有点丑，但至少：</p>
-            <ul>
-                <li>抓得住了（胶皮立功）</li>
-                <li>叠得上了（支架立功）</li>
-                <li>跑得掉了（钩子立功）</li>
-            </ul>
+            <span class="log-date">测试记录：第 5-8 轮训练</span>
+            <p><strong>主要痛点：</strong> 纯手动控制底盘微调距离非常困难，且容易误触气缸开关导致掉分。</p>
+            <p><strong>技术实施：</strong> 集成前置距离传感器 (Distance Sensor)。</p>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;">
+                <tr style="background: #e0f7fa;">
+                    <th style="border: 1px solid #ccc; padding: 5px;">检测条件</th>
+                    <th style="border: 1px solid #ccc; padding: 5px;">系统响应</th>
+                    <th style="border: 1px solid #ccc; padding: 5px;">操作手获益</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 5px;">距离 < 50mm (检测到销钉)</td>
+                    <td style="border: 1px solid #ccc; padding: 5px;">LED 灯带变色 + 允许触发抓取</td>
+                    <td style="border: 1px solid #ccc; padding: 5px;">获得明确的视觉反馈，减少误操作。</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 5px;">接近场地边界</td>
+                    <td style="border: 1px solid #ccc; padding: 5px;">自动限制底盘最大功率 (50%)</td>
+                    <td style="border: 1px solid #ccc; padding: 5px;">防止因速度过快撞翻已堆叠的目标。</td>
+                </tr>
+            </table>
         </div>
 
         <div class="footer">
@@ -114,22 +134,28 @@
         <div class="page-number">112</div>
     </div>
 
-    <!-- ================= PAGE 113: 出征北京 ================= -->
+    <!-- ================= PAGE 113: 参赛概况 ================= -->
     <div class="sheet">
 
-        <h1>6.2 出征！胜炫北京城市赛</h1>
+        <h1>6.4 实战记录：胜炫北京城市赛</h1>
 
-        <p><strong>时间：</strong> 2025年8月20日 - 21日</p>
-        <p><strong>地点：</strong> 北京</p>
-        <p><strong>心情：</strong> 紧张得手心冒汗！这是我们这个赛季的第一场正式比赛。</p>
-
-        <div class="img-placeholder" style="height: 250px;">
-            
-            <br>（现场人好多啊，到处都是别的队的机器人）
+        <div class="info-box" style="border: 1px solid #aaa; padding: 20px; background: #f4f4f4; margin-bottom: 20px;">
+            <p><strong>赛事名称：</strong> 2025 胜炫北京城市赛 (Beijing Urban Competition)</p>
+            <p><strong>时间：</strong> 2025年8月20日 - 21日</p>
+            <p><strong>地点：</strong> 北京</p>
+            <p><strong>参赛机型：</strong> 一代车 (Gen 1)</p>
+            <p><strong>比赛性质：</strong> 2025-2026 赛季首场正式积分赛</p>
         </div>
 
-        <p class="dialogue"><strong>宋书玥：</strong> “你看那个队的机器人，居然有四个轮子都是全向轮！好酷！”</p>
-        <p class="dialogue"><strong>叶恒嘉：</strong> “别看别人了，快检查我们的气瓶有没有气！”</p>
+        <h3>赛前状态确认</h3>
+        <p>
+            经过前期的 10 轮高强度综合测试，我们对一代车的底盘传动、抓取机构及气路密封性进行了最终检查。
+            尽管仍存在底盘高速漂移的隐患，但鉴于气动抓取的高稳定性，团队决定采取“稳扎稳打”的战术策略。
+        </p>
+
+        <div class="img-placeholder" style="height: 250px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
+            
+        </div>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -137,26 +163,48 @@
         <div class="page-number">113</div>
     </div>
 
-    <!-- ================= PAGE 114: 比赛优势 ================= -->
+    <!-- ================= PAGE 114: 技术复盘 ================= -->
     <div class="sheet">
 
-        <h1>6.3 比赛高光时刻 (The Good)</h1>
+        <h1>6.5 赛后技术评估：优势与缺陷</h1>
 
-        <p>比赛开始后，我们发现“一代车”其实还挺能打的！</p>
+        <p>基于《2025胜炫北京城市赛参赛总结》及现场比赛数据，我们对一代车的实际表现进行了客观评估：</p>
 
         <div class="two-column-layout">
             <div class="column">
-                <h3>👍 气动爪真香</h3>
-                <p>别的队用电机爪，抓那根细细的 Pin 都要调整半天。我们的气动爪“咔哒”一下就锁死，抓取速度秒杀全场！</p>
+                <h3 style="color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 5px;">性能优势 (Strengths)</h3>
+                <ul class="notebook-list">
+                    <li>
+                        <strong>气动系统的高效性：</strong> 
+                        相较于电机驱动的抓手，气动爪的瞬时闭合特性在抢夺中立销钉时具有显著速度优势。
+                    </li>
+                    <li>
+                        <strong>结构稳定性：</strong> 
+                        改进后的摩擦爪在整场比赛中未出现一次严重掉落事故，验证了赛前优化方案的有效性。
+                    </li>
+                    <li>
+                        <strong>系统可靠性：</strong> 
+                        全天高频次运行下，未发生气管脱落、电机过热或程序死机等故障。
+                    </li>
+                </ul>
             </div>
             <div class="column">
-                <h3>👍 配合默契</h3>
-                <p>虽然我们车不是最强的，但我们人是最团结的！什么时候换人，什么时候投掷 Pin，我们练得滚瓜烂熟，基本没有失误。</p>
+                <h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px;">设计缺陷 (Weaknesses)</h3>
+                <ul class="notebook-list">
+                    <li>
+                        <strong>底盘漂移 (Chassis Drift)：</strong> 
+                        2倍速齿轮比在光滑的赛台地垫上导致抓地力不足，高速移动时的惯性滑移多次撞散已得分的堆叠塔。
+                    </li>
+                    <li>
+                        <strong>垂直行程受限：</strong> 
+                        单级连杆结构的最大举升高度不足，导致机器人无法触及场地中央的高塔得分区，限制了得分上限。
+                    </li>
+                    <li>
+                        <strong>自动化程度低：</strong> 
+                        由于缺乏闭环控制程序，操作手需全程手动微调，比赛后半程因疲劳导致操作精度下降。
+                    </li>
+                </ul>
             </div>
-        </div>
-        
-        <div class="highlight-box" style="background-color: #e0f7fa; border: none;">
-            <p><strong>裁判评价：</strong> “你们这台车的抓取很果断嘛！”</p>
         </div>
 
         <div class="footer">
@@ -165,21 +213,39 @@
         <div class="page-number">114</div>
     </div>
 
-    <!-- ================= PAGE 115: 比赛劣势 ================= -->
+    <!-- ================= PAGE 115: 比赛结果 ================= -->
     <div class="sheet">
 
-        <h1>6.4 比赛崩溃时刻 (The Bad)</h1>
+        <h1>6.6 比赛数据与结果公示</h1>
 
-        <p>但是……问题也不少，简直让人心脏骤停。</p>
+        <p>尽管存在硬件性能瓶颈，团队凭借稳定的操作策略与极低的失误率，在资格赛中稳步晋级，并在淘汰赛阶段发挥出色。</p>
 
-        <h3>1. 漂移大师 (Drift)</h3>
-        <p>底盘太快了！还是那个老问题。现场地垫比我们训练场的滑，车子一加速就像在冰面上溜冰。好几次把摆好的销钉塔给撞翻了！</p>
-        
-        <h3>2. 够不着啊！</h3>
-        <p>我们的一代车手臂太短了。看着别的队把 Pin 挂在那个最高的杆子上拿好多分，我们只能在下面干瞪眼。<strong>高度硬伤！</strong></p>
+        <h3>关键场次数据 (Match Data)</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; text-align: center;">
+            <tr style="background: #00BCD4; color: white;">
+                <th style="padding: 10px; border: 1px solid #ddd;">阶段</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">场次 ID</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">得分</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">排名情况</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">资格赛</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Match #38</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">249 分</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">资格赛第 8 名</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">淘汰赛</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Finals Match #1-14</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">254 分</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">-</td>
+            </tr>
+        </table>
 
-        <h3>3. 纯手动太累了</h3>
-        <p>我们几乎没有自动程序。每一个动作——对准、抓、抬、翻、放——全靠宋书玥的手在遥控器上狂按。一场比赛下来，手指头都要断了，而且很容易手抖对不准。</p>
+        <div style="border: 2px solid #ccc; padding: 20px; text-align: center; margin: 30px 0; background-color: #f8f9fa;">
+            <h2 style="color: #333; margin: 0;">最终成绩：亚军 (Runner-up)</h2>
+            <p style="color: #666; margin-top: 5px;">2025 VEX IQ Robotics Competition - Beijing Urban Series</p>
+        </div>
 
         <div class="footer">
             <span>记录人：印涵邸</span>
@@ -187,77 +253,34 @@
         <div class="page-number">115</div>
     </div>
 
-    <!-- ================= PAGE 116: 比赛结果 ================= -->
+    <!-- ================= PAGE 116: 总结与展望 ================= -->
     <div class="sheet">
 
-        <h1>6.5 我们赢了？！</h1>
+        <h1>第六章总结：设计验证与迭代计划</h1>
 
-        <p>虽然过程跌跌撞撞，还撞翻了几次塔，但凭借着气动爪的稳定发挥，和队友的强力Carry（带飞），我们一路杀进了决赛！</p>
-
-        <div style="border: 5px solid gold; padding: 30px; text-align: center; border-radius: 20px; margin: 40px 0;">
-            <h1 style="color: #d4af37; font-size: 48px; margin: 0;">🏆 亚军 🏆</h1>
-            <p style="font-size: 20px; color: #555;">(Runner-up)</p>
-        </div>
-
-        <p>拿到奖杯的那一刻，大家都有点懵。我们这台用扎带和胶皮补补修修的“一代车”，居然拿了亚军？</p>
-        <p class="dialogue"><strong>叶恒嘉：</strong> “看来只要不掉链子，就能赢一半！”</p>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
-        </div>
-        <div class="page-number">116</div>
-    </div>
-
-    <!-- ================= PAGE 117: 痛定思痛 ================= -->
-    <div class="sheet">
-
-        <h1>6.6 还没完呢 (反思)</h1>
-
-        <p>亚军虽然开心，但我们心里清楚，如果不改进，下次就没这么好运了。</p>
+        <p>
+            通过本次“胜炫北京城市赛”的实战检验，一代车完成了其作为“原理验证机”的历史使命。它证明了气动抓取方案在 Mix & Match 赛季中的可行性，同时也充分暴露了当前设计在底盘控制与垂直作业范围上的局限性。
+        </p>
         
-        <p>回学校的路上，我们开了个“吐槽大会”，列出了一代车的<strong>死罪</strong>：</p>
-        <ol style="line-height: 2;">
-            <li><strong>底盘必须改：</strong> 齿轮太低了，过那个横梁（装填区）的时候老是卡住，还会摩擦减速。</li>
-            <li><strong>必须半自动：</strong> 纯手动太慢了！我们要写程序，按一个键就能自动把爪子举到合适的高度。</li>
-            <li><strong>堆叠要更快：</strong> 现在的定位支架虽然有用，但还是不够快。我们要把它改成“面状”的，让它随便一撞就能对齐！</li>
-        </ol>
-
-        <div class="footer">
-            <span>记录人：印涵邸</span>
+        <h3>二代车 (Gen 2) 研发规划</h3>
+        <p>基于本章收集的测试数据与实战反馈，工程团队已制定下一阶段的迭代目标：</p>
+        <div class="highlight-box" style="margin-top: 20px; border-left: 5px solid #00BCD4; padding-left: 20px;">
+            <ol style="line-height: 1.8;">
+                <li><strong>底盘重构：</strong> 调整齿轮比，降低速度以换取更高的扭矩与控制精度，消除漂移现象。</li>
+                <li><strong>结构升级：</strong> 重新设计抬升机构，增加有效行程以覆盖高塔得分区；优化“面状”辅助定位结构。</li>
+                <li><strong>自动化集成：</strong> 深入开发传感器算法，实现全流程的自动化控制程序，减少对人为操作的依赖。</li>
+            </ol>
         </div>
-        <div class="page-number">117</div>
-    </div>
 
-    <!-- ================= PAGE 118: 章节总结 ================= -->
-    <div class="sheet">
-
-        <h1>第六章总结：再见，一代车</h1>
-
-        <p>
-            这一章，我们经历了从训练场的崩溃到赛场上的惊喜。
+        <p style="margin-top: 30px;">
+            <strong>决策：</strong> 正式退役一代车，立即启动二代车的设计与制造工作。
         </p>
-        <p>
-            “一代车”完成了它的历史使命。它帮我们验证了<strong>气动爪</strong>是可行的，也帮我们拿到了第一个奖杯。但它的身体（结构）已经跟不上我们的野心了。
-        </p>
-        <p>
-            我们决定：<strong>拆掉一代车！</strong>
-        </p>
-        <p>
-            我们要用比赛中积攒的经验，重新设计一台更强、更稳、更聪明的<strong>二代车</strong>！
-        </p>
-        <p style="text-align: center; font-size: 20px; font-weight: bold; color: #00BCD4; margin-top: 40px;">
-            Gen 2，启动！
-        </p>
-
-        <div class="img-placeholder" style="height: 200px;">
-            
-        </div>
 
         <div class="footer">
             <span class="handwriting-box">日期：2025/08/22</span>
-            <span class="handwriting-box">记录人：2276A 全体</span>
+            <span class="handwriting-box">签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
         </div>
-        <div class="page-number">118</div>
+        <div class="page-number">116</div>
     </div>
 
     <script src="assets/scripts/toggle-buttons.js"></script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第四章：脑洞大开 (2276A)</title>
+    <title>工程笔记 - 第四章：概念设计与方案研讨 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
@@ -14,9 +14,9 @@
     <div class="sheet">
 
         <div style="text-align: center; margin-top: 120px;">
-            <h1 style="font-size: 56px; border: none; color: var(--primary-color);">脑洞大开时刻！</h1>
-            <h2 style="font-size: 36px; background: none; color: #555;">第四章：我们要造个什么样的车？</h2>
-            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 4: Concept Design</h3>
+            <h1 style="font-size: 56px; border: none; color: var(--primary-color);">设计原点</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第四章：概念设计与方案研讨</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 4: Concept Design & Strategy</h3>
 
             <div
                 style="width: 80%; height: 8px; background: var(--secondary-color); margin: 40px auto; border-radius: 5px;">
@@ -24,16 +24,13 @@
 
             <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
                 <p>
-                    终于到了最激动人心的环节了！
+                    本章节记录了 2276A 战队针对 2025-2026 赛季 VEX IQ Mix & Match 竞赛规则进行的深度分析与概念设计过程。
                 </p>
                 <p>
-                    我们要从零开始设计自己的机器人啦！看着空空如也的桌子，虽然有点不知所措，但更多的是兴奋。
+                    我们将从竞赛任务需求出发，拆解机器人的核心功能模块，对比不同的机械结构方案，并最终确定“一代车”的整体设计架构。
                 </p>
                 <p>
-                    这一章，我们要把脑子里的那些奇奇怪怪的想法都倒出来，然后选出一个最靠谱的，把它画在纸上！
-                </p>
-                <p>
-                    <strong>目标：</strong> 设计出一台能打比赛的“一代车”！
+                    <strong>本章核心任务：</strong> 确立一代车（Gen 1）的设计蓝图与技术路线。
                 </p>
             </div>
         </div>
@@ -47,25 +44,23 @@
 
     <!-- ================= PAGE 62: 需求分析 ================= -->
     <div class="sheet">
-        <h1>4.1 规则我们背得滚瓜烂熟！</h1>
+        <h1>4.1 竞赛规则分析与功能定义</h1>
 
-        <h3>我们要干什么？</h3>
-        <p>那个官方的 Mix & Match 视频，我们大概看了有一百遍吧（夸张了点，但真的看了很多遍）。大家围在一起吵了半天，最后总结出来，要想拿高分，我们的机器人必须得会做这 <strong>6 件事</strong>：</p>
+        <h3>任务拆解</h3>
+        <p>通过研读《Game Manual》及官方演示视频，团队对比赛得分机制进行了详细分析。为了最大化得分效率，我们总结出机器人必须具备以下<strong>6项核心功能</strong>：</p>
 
-        <div class="highlight-box" style="background-color: #f0f0ff; border: 2px dashed #888; padding: 20px; border-radius: 15px;">
-            <ol style="line-height: 2.2; font-size: 18px;">
-                <li><strong>跑得快：</strong> 场地那么大，跑得慢黄花菜都凉了。</li>
-                <li><strong>抓得牢：</strong> 那个紫色的 Pin（销钉）滑溜溜的，绝对不能抓起来又掉了，那就太尴尬了。</li>
-                <li><strong>举高高：</strong> 抓到了还得举起来，因为分都在高处嘛。</li>
-                <li><strong>钩梁：</strong> 地上那些黄色的 Beam（万能梁），得想办法把它们拖走。</li>
-                <li><strong>叠叠乐：</strong> 最难的就是这个！要把销钉和梁像搭积木一样叠起来。</li>
-                <li><strong>大翻转：</strong> 规则说还有反向堆叠，所以我们的爪子得会“倒立”，也就是水平翻转 180 度！</li>
+        <div class="highlight-box" style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 20px;">
+            <ol style="line-height: 2;">
+                <li><strong>快速移动 (Mobility)：</strong> 具备在场地内灵活穿梭的能力，能够快速到达得分区域。</li>
+                <li><strong>销钉抓取 (Pin Acquisition)：</strong> 能够准确、稳固地抓取形状不规则的销钉，防止在移动中滑落。</li>
+                <li><strong>销钉堆叠 (Pin Stacking)：</strong> 具备垂直抬升机构，能够完成销钉的多层堆叠以获取高分。</li>
+                <li><strong>万能梁勾取 (Beam Manipulation)：</strong> 能够准确勾住场地上的万能梁并进行拖拽移动。</li>
+                <li><strong>正向堆叠 (Standard Stacking)：</strong> 能够配合抬升机构，将万能梁与销钉进行组合得分。</li>
+                <li><strong>反向堆叠 (Reverse Stacking)：</strong> 抓取机构需具备水平翻转功能，以完成规则要求的反向堆叠任务。</li>
             </ol>
         </div>
 
-        <p style="margin-top: 30px;">
-            <strong>最大的难题：</strong> 我们的电机数量只有 6 个（还要留备用），气瓶也不能带太多，尺寸还不能超标。感觉像是在戴着镣铐跳舞啊！
-        </p>
+        <p style="margin-top: 20px;"><strong>设计约束：</strong> 所有功能必须在限制尺寸（11"x20"x15"）内实现，且需受限于 VEX IQ 主控的端口数量（12个）及气动元件的使用限制。</p>
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -74,49 +69,74 @@
         <div class="page-number">62</div>
     </div>
 
-    <!-- ================= PAGE 63: 模块划分 ================= -->
+    <!-- ================= PAGE 63: 模块化架构 ================= -->
     <div class="sheet">
-        <h1>4.2 把大象装进冰箱分几步？</h1>
+        <h1>4.2 系统架构与模块划分</h1>
 
-        <h3>机器人也要分块搞</h3>
-        <p>为了不乱套，我们决定像拼乐高一样，把机器人分成四个部分来设计。大家分工合作，谁有点子听谁的。</p>
+        <h3>模块化设计思路</h3>
+        <p>基于上述功能需求，我们将一代车划分为四个独立的子系统，各系统协同工作以完成比赛任务：</p>
 
         <div class="two-column-layout">
             <div class="column">
                 <ul class="notebook-list">
                     <li>
-                        <strong>1. 腿（底盘）：</strong> 
-                        <br>负责跑路。一定要稳，不能一撞就散架。
+                        <strong>1. 底盘系统 (Chassis Subsystem)</strong>
+                        <br>功能：负责机器人的全场定位与移动。
+                        <br>要求：结构稳固，具备一定的推力和速度。
                     </li>
                     <li>
-                        <strong>2. 手（抓手）：</strong> 
-                        <br>这是灵魂！得能张嘴闭嘴，抓住那个圆圆的销钉。
+                        <strong>2. 抓取系统 (Intake Subsystem)</strong>
+                        <br>功能：负责销钉的获取与保持。
+                        <br>要求：抓取力大，兼容性强。
                     </li>
                     <li>
-                        <strong>3. 尾巴（钩子）：</strong> 
-                        <br>装在车屁股后面，倒车的时候顺便钩走万能梁，主打一个“顺手牵羊”。
+                        <strong>3. 拖拽系统 (Hook Subsystem)</strong>
+                        <br>功能：负责万能梁的移动。
+                        <br>要求：布局在车尾，不干涉主抓取动作。
                     </li>
                     <li>
-                        <strong>4. 胳膊（抬升）：</strong> 
-                        <br>要把手举起来，还要能翻手腕。这部分结构最复杂，想想都头大。
+                        <strong>4. 举升与翻转系统 (Lift & Flip Subsystem)</strong>
+                        <br>功能：实现垂直高度变化与末端执行器的姿态调整。
+                        <br>要求：动作精准，具备 180 度翻转能力。
                     </li>
                 </ul>
             </div>
             <div class="column">
-                <div class="photo-placeholder" style="height: 300px; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; font-family: 'Comic Sans MS', cursive;">
-                    [此处贴一张我们在白板上画的火柴人版设计图]
+                <div class="photo-placeholder" style="height: 300px; border: 1px solid #aaa; display: flex; align-items: center; justify-content: center;">
+                    
+                    <br>(底盘/手臂/气动系统布局示意)
                 </div>
             </div>
         </div>
 
-        <h3>省电机大作战</h3>
-        <p>因为 VEX IQ 的主控最多只能插 12 个口，而且我们想多留几个口给传感器。所以电机得省着用：</p>
-        <p>
-            <strong>底盘：</strong> 2个电机（左边一个，右边一个，经典配置）。<br>
-            <strong>抬升：</strong> 1个电机（希望能拉得动）。<br>
-            <strong>翻转：</strong> 1个电机（转手腕用）。<br>
-            <strong>抓手：</strong> <strong>0个电机！</strong> 没错，是零！我们打算用<strong>气动</strong>！
-        </p>
+        <h3>资源分配计划</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
+            <tr style="background: #eee;">
+                <th style="border: 1px solid #999; padding: 5px;">子系统</th>
+                <th style="border: 1px solid #999; padding: 5px;">动力源规划</th>
+                <th style="border: 1px solid #999; padding: 5px;">设计考量</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">底盘</td>
+                <td style="border: 1px solid #999; padding: 5px;">2 x Smart Motor</td>
+                <td style="border: 1px solid #999; padding: 5px;">采用差速驱动，平衡速度与扭矩。</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">抬升</td>
+                <td style="border: 1px solid #999; padding: 5px;">1 x Smart Motor</td>
+                <td style="border: 1px solid #999; padding: 5px;">单电机驱动连杆，利用皮筋补偿重力。</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">翻转</td>
+                <td style="border: 1px solid #999; padding: 5px;">1 x Smart Motor</td>
+                <td style="border: 1px solid #999; padding: 5px;">实现手腕处的 180 度旋转。</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">抓取</td>
+                <td style="border: 1px solid #999; padding: 5px;"><strong>气动系统 (Pneumatics)</strong></td>
+                <td style="border: 1px solid #999; padding: 5px;">使用气缸驱动，节省电机资源，提供瞬间抓取力。</td>
+            </tr>
+        </table>
 
         <div class="footer">
             <span class="handwriting-box">日期：</span>
@@ -125,28 +145,37 @@
         <div class="page-number">63</div>
     </div>
 
-    <!-- ================= PAGE 64: 淘汰方案 ================= -->
+    <!-- ================= PAGE 64: 方案筛选 ================= -->
     <div class="sheet">
-        <h1>4.3 那些被我们枪毙的“天才想法”</h1>
+        <h1>4.3 备选方案评估与淘汰</h1>
 
-        <p>虽然最后的方案定下来了，但其实一开始我们脑洞特别大。为了证明我们是认真思考过的（不是瞎选的），我要把那些被淘汰的方案记下来。</p>
+        <p>在设计初期，团队提出了多种机械结构方案。通过对可行性、复杂度及资源消耗的综合评估，我们对以下方案进行了筛选。</p>
 
-        <div style="margin-top: 20px; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
-            <h4>🙅‍♂️ 想法一：滚筒吸尘器 (Roller Intake)</h4>
-            <p><strong>啥意思：</strong> 像以前那个吸球的比赛一样，做个大滚筒把销钉卷进来。</p>
-            <p><strong>为什么不用：</strong> 销钉不是球啊！它是有棱有角的，滚筒根本卷不准。而且那玩意儿太大了，装上去像个收割机，完全没法做精细动作。</p>
+        <div style="margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4>方案 A：滚筒吸入式 (Roller Intake) - <span style="color: red;">淘汰</span></h4>
+            <p><strong>描述：</strong> 利用高速旋转的柔性滚筒将销钉“卷”入舱内。</p>
+            <p><strong>淘汰理由：</strong> 
+                1. 销钉形状不规则，滚筒难以控制其最终姿态，不利于后续的精准堆叠。
+                2. 机构体积庞大，难以在有限空间内集成翻转机构。
+            </p>
         </div>
 
-        <div style="margin-top: 20px; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
-            <h4>🙅‍♂️ 想法二：螃蟹走路 (H-Drive 底盘)</h4>
-            <p><strong>啥意思：</strong> 在中间加个横着的轮子，车就能横着平移了，超级酷！</p>
-            <p><strong>为什么不用：</strong> 酷是酷，但是要多费好几个电机。我们电机不够了！而且横着走的轮子抓地力不行，容易打滑。还是老老实实走直线吧。</p>
+        <div style="margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4>方案 B：H型全向底盘 (H-Drive) - <span style="color: red;">淘汰</span></h4>
+            <p><strong>描述：</strong> 在传统四轮底盘基础上增加横向从动轮，实现全向移动。</p>
+            <p><strong>淘汰理由：</strong> 
+                1. 至少需要 3-5 个电机，超出电机预算。
+                2. 横向轮在 VEX IQ 场地垫上的抓地力不足，且容易造成推力损失。
+            </p>
         </div>
 
         <div style="margin-top: 20px;">
-            <h4>🙅‍♂️ 想法三：擎天柱 (DR4B 双反四连杆)</h4>
-            <p><strong>啥意思：</strong> 一种能升特别特别高的结构。</p>
-            <p><strong>为什么不用：</strong> 太重了！装上去之后车头重脚轻的，跑快了绝对翻车。我们才刚开始做一代车，还是稳一点比较好，别搞这些花里胡哨的。</p>
+            <h4>方案 C：双反四连杆 (DR4B) - <span style="color: red;">淘汰</span></h4>
+            <p><strong>描述：</strong> 高行程的剪叉式或多连杆升降结构。</p>
+            <p><strong>淘汰理由：</strong> 
+                1. 自重过大，导致机器人重心过高，移动时极易发生倾倒。
+                2. 一代车的设计原则是“稳定优先”，DR4B 结构复杂度过高。
+            </p>
         </div>
 
         <div class="footer">
@@ -158,34 +187,33 @@
 
     <!-- ================= PAGE 65: 最终定稿 ================= -->
     <div class="sheet">
-        <h1>4.4 最终决定：就是你了，一代车！</h1>
+        <h1>4.4 一代车设计定稿 (Final Design)</h1>
 
-        <h3>我们的“秘密武器”：气动系统</h3>
-        <p>既然决定了不用电机抓，我们就把赌注压在了<strong>气动系统</strong>上！</p>
-        <p>以前看别的队用气动，“噗嗤”一声就能把东西抓得死死的，简直帅呆了。虽然我们还没用过，但我们决定挑战一下！</p>
+        <h3>技术路线确认</h3>
+        <p>经过多轮研讨与权衡，我们确立了一代车的最终设计方案。该方案旨在保证基本得分功能的前提下，追求结构的简单性与可靠性。</p>
 
         <div class="two-column-layout">
             <div class="column">
-                <h4>✅ 底盘方案：坦克驱动</h4>
-                <p>左右各一个电机，加上齿轮加速。虽然看起来土土的，但是它最可靠，劲儿大，不容易坏。</p>
+                <h4>1. 底盘系统：六轮差速驱动 (Tank Drive)</h4>
+                <p>采用经典的左右双电机驱动模式。配置 2 倍速齿轮组（48:24），以平衡移动速度与推力。该结构机械故障率低，控制逻辑简单。</p>
 
-                <h4>✅ 抓手方案：气动大钳子</h4>
-                <p>用两个气缸推一个 L 形的爪子。气缸一推，爪子闭合；气缸一拉，爪子张开。简单粗暴！</p>
+                <h4>2. 抓取系统：气动钳形爪 (Pneumatic Claw)</h4>
+                <p>利用气动系统的瞬时响应特性，设计 L 型开合爪。气缸伸出时闭合抓取，缩回时张开释放。此方案有效减少了电机占用，且抓取力度恒定。</p>
             </div>
             <div class="column">
-                <h4>✅ 抬升方案：单臂侠</h4>
-                <p>只用一边的电机带动连杆。虽然只有一只“胳膊”，但只要结构做得好，照样能举重。</p>
+                <h4>3. 抬升系统：单电机连杆</h4>
+                <p>采用单边驱动的四连杆结构，配合橡皮筋进行重力补偿。该结构足以满足两层销钉堆叠的高度需求。</p>
 
-                <h4>✅ 翻转方案：电动手腕</h4>
-                <p>在爪子后面装个电机，让它能像手腕一样转 180 度。这样就能把销钉倒过来放了。</p>
+                <h4>4. 翻转系统：末端旋转手腕</h4>
+                <p>在机械臂末端集成翻转电机，实现抓手 0-180 度的姿态切换，满足反向堆叠的规则要求。</p>
             </div>
         </div>
 
-        <div style="margin: 30px auto; width: 90%; border: 3px solid #333; padding: 10px; text-align: center; background-color: #fff;">
-            <h3 style="margin: 0;">我们画的最终设计草图</h3>
+        <div style="margin: 30px auto; width: 90%; border: 1px solid #ccc; padding: 10px; text-align: center; background-color: #fff;">
+            <h3 style="margin: 0; font-size: 18px; color: #333;">一代车概念设计草图</h3>
             <div class="photo-placeholder" style="height: 250px; margin-top: 10px;">
                 
-                <br>（看着虽然潦草，但这可是未来的冠军车原型！）
+                <br>(包含底盘、气路布局及机械臂结构的详细草图)
             </div>
         </div>
 
@@ -196,24 +224,33 @@
         <div class="page-number">65</div>
     </div>
 
-    <!-- ================= PAGE 66: 策略与计划 ================= -->
+    <!-- ================= PAGE 66: 策略规划 ================= -->
     <div class="sheet">
-        <h1>4.5 既然还没造出来，先想想怎么赢</h1>
+        <h1>4.5 预设比赛策略 (Initial Strategy)</h1>
 
-        <p>车还没影呢，我们已经开始幻想在赛场上怎么大杀四方了。</p>
+        <p>在硬件设计定稿的同时，我们也对机器人的实战策略进行了初步规划，这将指导后续的搭建与编程工作。</p>
 
-        <h3>我们的战术：</h3>
-        <ul>
-            <li><strong>这分必拿：</strong> 只要能抓起销钉，我们就赢了一半。所以抓手一定要稳！</li>
-            <li><strong>角落捡漏：</strong> 场地角落里分很多，我们的车不能做得太大，不然钻不进去。</li>
-            <li><strong>操作要傻瓜：</strong> 最好按一个键就能抓，按一个键就能举。要是操作太复杂，比赛一紧张肯定手忙脚乱。</li>
-        </ul>
+        <h3>策略要点</h3>
+        <ol>
+            <li>
+                <strong>核心得分点：销钉堆叠</strong>
+                <br>鉴于销钉得分权重较高，首要任务是保证气动爪的抓取成功率。
+            </li>
+            <li>
+                <strong>空间利用：场地角落</strong>
+                <br>设计时需严格控制车身尺寸，确保机器人能够顺畅进入场地角落的得分区（Goal）。
+            </li>
+            <li>
+                <strong>操作优化：半自动化逻辑</strong>
+                <br>为降低操作手的认知负荷，计划通过编程实现“一键抓取”和“一键释放”功能，利用气动系统的二值特性（开/关）简化控制。
+            </li>
+        </ol>
 
-        <div class="highlight-box" style="margin-top: 40px; border-left: 5px solid var(--primary-color); padding-left: 20px; background-color: #eef;">
-            <h3>接下来几天的安排 (To-Do List)</h3>
-            <p><strong>第一步：</strong> 去老师那领零件！先把好用的全向轮和气瓶抢到手。</p>
-            <p><strong>第二步：</strong> 叶恒嘉负责搭车，叶恒瑞负责研究气动怎么编程。</p>
-            <p><strong>第三步：</strong> 争取这周让它动起来！</p>
+        <div class="highlight-box" style="margin-top: 40px; border-left: 5px solid var(--primary-color); padding-left: 20px;">
+            <h3>下一阶段工作计划 (Next Steps)</h3>
+            <p><strong>Phase 1:</strong> 物料准备，特别是气动元件的气密性检查。</p>
+            <p><strong>Phase 2:</strong> 依据定稿图纸进行底盘与机械臂的实体搭建。</p>
+            <p><strong>Phase 3:</strong> 编写基础控制程序，验证气动系统与电机的协同工作。</p>
         </div>
 
         <div class="footer">
@@ -225,23 +262,19 @@
 
     <!-- ================= PAGE 67: 章节总结 ================= -->
     <div class="sheet">
-        <h1>第四章总结：开工开工！</h1>
+        <h1>第四章总结：设计完成</h1>
 
         <p>
-            这章写完了，我们的脑暴也结束了。
+            本章完成了从需求分析到方案定稿的全过程。
         </p>
         <p>
-            说实话，从无到有想出一个机器人的样子真的挺难的。有时候觉得这个主意好，有时候又觉得那个主意棒，大家争得面红耳赤的。
+            通过对竞赛规则的深入剖析，我们明确了机器人的功能边界。在资源受限的前提下，我们做出了理性的取舍，否定了高风险的复杂结构，最终选择了“稳定底盘 + 高效气动爪”的技术路线。
         </p>
         <p>
-            不过现在好了，图纸定下来了！我们有了明确的目标：
-            <br>
-            <strong>做一个带气动爪子、能翻跟头、跑得贼快的坦克车！</strong>
+            这一设计方案在理论上满足了移动、抓取、堆叠及翻转的所有核心需求，具备较高的可行性。
         </p>
         <p>
-            别光说不练，下一章，我们要拿起螺丝刀，把这些图纸变成真的机器人！
-            <br>
-            <strong>2276A，冲鸭！</strong>
+            下一阶段，我们将进入实质性的制造与调试环节，验证这一设计理念在物理世界中的表现。
         </p>
 
         <div class="footer">
