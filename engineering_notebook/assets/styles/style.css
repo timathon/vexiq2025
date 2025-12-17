@@ -201,6 +201,10 @@ li {
     margin-top: 10px;
 }
 
+.meeting-id {
+    font-size: 20px;
+}
+
 /* 战术板/计算纸样式 */
 .math-paper {
     /* background-image: linear-gradient(#cfcfcf 1px, transparent 1px), linear-gradient(90deg, #cfcfcf 1px, transparent 1px); */
