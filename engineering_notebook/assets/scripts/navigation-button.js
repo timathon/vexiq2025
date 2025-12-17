@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                             const chapterPageCounts = {
         "index": 4,
-        "glossary": 0,
         "ch01": 27,
         "ch02": 25,
         "ch03": 10,
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const chapterColors = {
-        "index": "#005f9e",
+        "index": "#F79A19",
         "ch01": "#005f9e",
         "ch02": "#D35400",
         "ch03": "#27AE60",
@@ -37,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch06": "#00ACC1",
         "ch07": "#450693", // Updated color
         "ch08": "#008080",
-        "glossary": "#5D6D7E" // A neutral color for glossary
     };
 
     // Add link for Introduction
@@ -59,15 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         link.style.color = 'white';
         linksContainer.appendChild(link);
     }
-
-    // Add link for Glossary
-    const glossaryLink = document.createElement('a');
-    glossaryLink.href = 'glossary.html';
-    glossaryLink.textContent = 'Glossary (' + chapterPageCounts['glossary'] + ' pages)';
-    glossaryLink.style.backgroundColor = chapterColors['glossary'];
-    glossaryLink.style.color = 'white';
-    linksContainer.appendChild(glossaryLink);
-
 
     document.body.appendChild(menu);
 

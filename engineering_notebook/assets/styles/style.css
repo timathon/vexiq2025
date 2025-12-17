@@ -21,6 +21,17 @@
     --chapter-marker-top: 27mm;
 }
 
+.theme-index {
+    --primary-color: #F79A19;
+    --secondary-color: #F57C00;
+    --tertiary-color: #FFB74D;
+    --quaternary-color: #FFE0B2;
+    --background-color-light: #FFF8E1;
+    --sheet-border-color: #F57C00;
+    --chapter-marker-color: #F57C00;
+    --chapter-marker-top: 27mm;
+}
+
 .theme-orange {
     --primary-color: #D35400;
     --secondary-color: #E67E22;
