@@ -181,6 +181,37 @@
             ]
         };
 
+        // 递归处理数据，根据层级调整字体大小
+        function processLevelStyles(node, level) {
+            let fontSize = 14; // 默认/底层字体大小
+            let symbolSize = 10; // 默认节点大小
+
+            // 根据层级设置样式
+            if (level === 0) {
+                fontSize = 22; // 根节点最大
+                symbolSize = 25;
+            } else if (level === 1) {
+                fontSize = 18; // 第一层（主分支）
+                symbolSize = 16;
+            } else if (level === 2) {
+                fontSize = 16; // 第二层
+                symbolSize = 12;
+            }
+
+            // 设置节点特定的 label 样式
+            node.label = {
+                fontSize: fontSize
+            };
+            node.symbolSize = symbolSize;
+
+            if (node.children) {
+                node.children.forEach(child => processLevelStyles(child, level + 1));
+            }
+        }
+
+        // 初始化处理样式
+        processLevelStyles(data, 0);
+
         var option = {
             tooltip: {
                 trigger: 'item',
@@ -195,7 +226,6 @@
                     left: '10%',
                     bottom: '5%',
                     right: '20%',
-                    symbolSize: 10,
                     
                     // 布局方式：正交布局 (orthogonal)
                     layout: 'orthogonal',
@@ -205,7 +235,7 @@
                         position: 'left',
                         verticalAlign: 'middle',
                         align: 'right',
-                        fontSize: 14,
+                        // fontSize 移除，由 data 属性控制
                         color: '#333'
                     },
 
@@ -248,8 +278,6 @@
         // 按钮功能：展开所有
         function expandAll() {
             // 通过修改 option 并重新 setOption 来实现
-            // ECharts tree 图表对于展开状态的处理比较特殊，
-            // 简单的方法是设置 initialTreeDepth 为一个很大的数
             myChart.setOption({
                 series: [{
                     initialTreeDepth: 10
