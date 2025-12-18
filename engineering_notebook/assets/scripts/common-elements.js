@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create date box
             const dateBox = document.createElement('span');
-            dateBox.textContent = '日期：' + date;
+            dateBox.innerHTML = '<span class="footer-label">日期：</span><span class="footer-value">' + date + '</span>';
             footer.appendChild(dateBox);
 
             // Create recorder box
             const recorderBox = document.createElement('span');
-            recorderBox.textContent = '记录人：' + recorder;
+            recorderBox.innerHTML = '<span class="footer-label">记录人：</span><span class="footer-value">' + recorder + '</span>';
             footer.appendChild(recorderBox);
             
             if (pageNumberEl) {

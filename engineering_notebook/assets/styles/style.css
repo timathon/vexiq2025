@@ -417,6 +417,21 @@ body.hide-dark-text .math-paper {
     color: transparent !important;
 }
 
+/* New rule to hide specific footer values but keep labels */
+body.hide-dark-text .footer .footer-value {
+    color: transparent !important;
+}
+
+/* New rule to hide specific footer values when decorative elements are off */
+/* body.hide-other-elements .footer .footer-value {
+    color: transparent !important;
+    } */
+    
+    body.hide-other-elements .footer .footer-label {
+        /* display: none !important; */
+        color: transparent !important;
+}
+
 /* STATE: Hide Decorative Elements 
    Goal: Clean text only. No borders, no backgrounds, no images, no headers.
 */
@@ -454,8 +469,7 @@ body.hide-other-elements .a4-height-indicator {
 }
 
 /* 4. Ensure Page Numbers disappear if considered decoration */
-body.hide-other-elements .page-number,
-body.hide-other-elements .footer {
+body.hide-other-elements .page-number {
     display: none !important;
 }
 
