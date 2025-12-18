@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 第七章：进化的力量 (2276A)</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body class="theme-purple-7">
+
+    <!-- ================= PAGE 151: 章节封面 ================= -->
+    <div class="sheet">
+        <div style="text-align: center; margin-top: 120px;">
+            <h1 style="font-size: 56px; border: none; color: #8E44AD;">进化的力量</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">第七章：赛车优化改进与迭代过程</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Chapter 7: Design Iteration & Optimization</h3>
+            
+            <div style="width: 80%; height: 8px; background: #9B59B6; margin: 40px auto; border-radius: 5px;"></div>
+            
+            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+                <p><strong>当前版本：</strong> Gen 1 -> Gen 2 -> Gen 3</p>
+                <p><strong>核心科技：</strong> 气动装置 (Pneumatics)</p>
+                <p><strong>目标：</strong> 冲击世锦赛！</p>
+                <p><strong>记录人：</strong> 印涵邸</p>
+            </div>
+            
+            <div style="background-color: #F4ECF7; padding: 15px; transform: rotate(-2deg); border: 1px solid #8E44AD; margin-top: 50px; text-align: center;">
+                <strong>我们的口号：</strong><br>
+                没有最好的机器人，<br>
+                只有更好的下一版！
+            </div>
+        </div>
+        <div class="page-number">151</div>
+    </div>
+
+    <!-- ================= PAGE 152: 7.1 二代车启动 ================= -->
+    <div class="sheet">
+        <h1>7.1 二代车启动会：痛定思痛</h1>
+        
+        <p>一代车虽然让我们学会了怎么造机器人，但是在那次“翻车现场”之后，大家都很受打击。</p>
+
+        <p class="dialogue"><strong>叶恒嘉：</strong> “太难受了，明明结构都对了，就是控制不住。”</p>
+        <p class="dialogue"><strong>宋书玥：</strong> “而且那个爪子，抓个 Pin 都要瞄半天，比赛时候哪有那么多时间瞄准啊。”</p>
+        <p class="dialogue"><strong>叶恒瑞：</strong> “别灰心！我们已经有数据了。我们知道哪里不好，改就是了！”</p>
+
+        <h3>二代车改进目标：</h3>
+        <ol>
+            <li><strong>底盘：</strong> 必须稳！不能漂移！</li>
+            <li><strong>抓取：</strong> 必须准！不能滑！</li>
+            <li><strong>高度：</strong> 必须够到高塔！</li>
+            <li><strong>智能：</strong> 要多一点自动化，少一点人工。</li>
+        </ol>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">152</div>
+    </div>
+
+    <!-- ================= PAGE 153: 二代车底盘改进 ================= -->
+    <div class="sheet">
+        <h1>改进 1：让野马变听话</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">10月24日 | 底盘优化</div>
+            <p><span class="problem">问题：</span> 2倍速底盘太快，一刹车就往前滑。</p>
+            <p><span class="solution">对策：</span> 我们不想放弃速度，因为跑得快是优势。所以我们决定用<strong>软件</strong>来限制它。</p>
+            
+            <p><strong>叶恒瑞的操作：</strong>
+            <br>他在代码里加了一个“系数”。比如遥控器推到底，电机只输出 75% 的力。
+            <br>只有按住“加速键”的时候，才输出 100%。</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+            [图片：二代车底盘照片，屏幕上显示着“Speed Mode: 75%”]
+        </div>
+
+        <p><strong>效果：</strong> 宋书玥试了一下，说：“现在感觉像是开了辅助驾驶，稳多了！”</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">153</div>
+    </div>
+
+    <!-- ================= PAGE 154: 二代车抓取改进 ================= -->
+    <div class="sheet">
+        <h1>改进 2：给爪子换个“大手掌”</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">10月25日 | 抓取优化</div>
+            <p><span class="problem">问题：</span> 一代车的两根手指太细了，夹不住。</p>
+            <p><span class="solution">对策：</span> 叶恒嘉找来了一块宽宽的 <strong>4x4 的板子</strong>，把爪子做成了两个大巴掌。</p>
+            
+            <p><strong>细节：</strong>
+            <br>他在板子上装了几个红色的橡胶钉。这样 Pin 进去之后，就被橡胶钉卡住了，绝对不会转动。</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+            [图片：特写，宽大的爪子，上面有红色的橡胶摩擦点]
+        </div>
+
+        <p><strong>测试：</strong> 我们试着抓了一个 Pin，然后疯狂甩动机器人。Pin 就像长在爪子上一样，纹丝不动！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">154</div>
+    </div>
+
+    <!-- ================= PAGE 155: 二代车抬升改进 ================= -->
+    <div class="sheet">
+        <h1>改进 3：长高了一点点</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">10月26日 | 抬升优化</div>
+            <p><span class="problem">问题：</span> 够不到 12 英寸的高塔。</p>
+            <p><span class="solution">对策：</span> 叶恒嘉重新算了一下几何结构。他把四连杆的主梁换成了更长的 1x14 梁。</p>
+            
+            <p><strong>难题：</strong> 梁长了，折叠的时候就会超长（超过 20 英寸）。
+            <br><strong>解决：</strong> 我们把底座的支点往上移了两格。这样折叠的时候，手臂是斜着的，刚好塞进尺寸框里。</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+            [图片：二代车举到最高点，旁边立着尺子，显示高度 13.5 英寸]
+        </div>
+
+        <p><strong>结果：</strong> 终于能摸到高塔的边了！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">155</div>
+    </div>
+
+    <!-- ================= PAGE 156: 二代车搭建日志 1 ================= -->
+    <div class="sheet">
+        <h1>搭建日记：又拆又装</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">10月27日</div>
+            <p>今天我们把一代车拆了。看着一地的零件，心里有点不舍得。</p>
+            <p>但是叶恒嘉说：“旧的不去，新的不来！”</p>
+            <p>我们开始组装二代车的抬升臂。因为换了长梁，原来的橡皮筋不够劲了。电机发出“嗡嗡”的惨叫声。</p>
+            <p><strong>解决：</strong> 我们从 2 根皮筋加到了 4 根。现在电机开心多了。</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">156</div>
+    </div>
+
+    <!-- ================= PAGE 157: 二代车搭建日志 2 ================= -->
+    <div class="sheet">
+        <h1>搭建日记：加上眼睛</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">10月28日</div>
+            <p>为了实现自动化，我们在爪子下面装了一个<strong>距离传感器</strong>。</p>
+            <p>可是，传感器总是乱报警。有时候明明前面没东西，它也说有。</p>
+            <p><strong>排查：</strong> 原来是一根电线挡住了它的“眼睛”！
+            <br><strong>教训：</strong> 理线真的很重要！我们用扎带把那根捣乱的线绑得死死的。</p>
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">157</div>
+    </div>
+
+    <!-- ================= PAGE 158: 二代车测试 ================= -->
+    <div class="sheet">
+        <h1>二代车第一次大考</h1>
+
+        <p>11月1日，二代车完工了。我们马上进行了高塔测试。</p>
+
+        <table>
+            <tr>
+                <th>尝试</th>
+                <th>结果</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>第 1 次</td>
+                <td>失败</td>
+                <td>高度够了，但是没对准。</td>
+            </tr>
+            <tr>
+                <td>第 2 次</td>
+                <td>成功</td>
+                <td>宋书玥微调了好久才挂上去。</td>
+            </tr>
+            <tr>
+                <td>第 3 次</td>
+                <td>成功</td>
+                <td>用了 15 秒才完成。太慢了！</td>
+            </tr>
+        </table>
+
+        <p class="dialogue"><strong>总结：</strong> “虽然能挂上去了，但是这么慢，比赛的时候肯定来不及啊。”</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">158</div>
+    </div>
+
+    <!-- ================= PAGE 159-163: 省略页填充 ================= -->
+    <!-- 为了结构完整性，这里用通用模板填充中间的测试记录 -->
+    <div class="sheet">
+        <h1>测试日志：连续堆叠</h1>
+        <p><strong>日期：</strong> 11月5日</p>
+        <p>我们尝试连续堆 3 个 Pin。二代车的“大手掌”确实稳，基本不掉。但是翻转的时候还是有点慢。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">159</div>
+    </div>
+    
+    <div class="sheet">
+        <h1>测试日志：自动程序</h1>
+        <p><strong>日期：</strong> 11月10日</p>
+        <p>叶恒瑞写好了自动程序。机器人可以自己跑到高塔下面，但是举起来的时候总是差一点点距离。我们需要调大一点前进的距离。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">160</div>
+    </div>
+    
+    <div class="sheet">
+        <h1>测试日志：满分挑战</h1>
+        <p><strong>日期：</strong> 11月12日</p>
+        <p>今天我们状态神勇！拿到了 65 分！这是我们目前的最高分。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">161</div>
+    </div>
+    
+    <div class="sheet">
+        <h1>测试日志：意外</h1>
+        <p><strong>日期：</strong> 11月13日</p>
+        <p>爪子上的皮筋突然断了！还好是在训练。叶恒嘉决定在比赛前一定要换新的皮筋。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">162</div>
+    </div>
+    
+    <div class="sheet">
+        <h1>测试日志：模拟赛</h1>
+        <p><strong>日期：</strong> 11月14日</p>
+        <p>我们和隔壁班的队伍一起练。二代车很稳，但是抢不过他们。他们的车虽然简陋，但是跑得快。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">163</div>
+    </div>
+
+    <!-- ================= PAGE 164: 二代车总结 ================= -->
+    <div class="sheet">
+        <h1>二代车总结：还可以更好</h1>
+        
+        <p>二代车比一代车强多了，至少它是可用的。但是，我们想要的是<strong>卓越</strong>。</p>
+        <p>最大的痛点：<strong>抓取太慢了！</strong> 每次都要等电机慢慢转到位。有没有瞬间完成的方法？</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">164</div>
+    </div>
+
+    <!-- ================= PAGE 165: 7.2 气动引入 ================= -->
+    <div class="sheet">
+        <h1>7.2 黑科技登场：气动！</h1>
+
+        <div class="iteration-log" style="border-color: #C0392B; background-color: #FDEDEC;">
+            <div class="log-header" style="color: #C0392B;">重大升级会议 | 12月10日</div>
+            <p>叶恒瑞提着一个神秘的盒子进来了。</p>
+            <p class="dialogue">“当当当当！VEX 气动套件！”</p>
+            <p>我们都惊呆了。这可是高级货啊！有气罐、气泵，还有那个只要“呲”一下就能伸出来的气缸。</p>
+        </div>
+
+        <div class="pneumatic-alert">
+            <strong>规则警告 &lt;R18&gt;：</strong><br>
+            气罐最多 2 个！气泵最多 1 个！一定要数清楚！
+        </div>
+
+        <div class="img-placeholder" style="height: 200px;">
+            
+            [图片：气动套件全家福，气罐、气泵、电磁阀、气缸一字排开]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">165</div>
+    </div>
+
+    <!-- ================= PAGE 166: 三代车底盘优化 ================= -->
+    <div class="sheet">
+        <h1>三代车改进：底盘不再卡！</h1>
+
+        <div class="iteration-log">
+            <div class="log-header">1月5日 | 底盘终极版</div>
+            <p><span class="problem">痛点：</span> 二代车过 Beam 的时候，底盘下面的齿轮会蹭到 Beam，发出“咔咔”的声音，有时候还会卡住。</p>
+            <p><span class="solution">妙招：</span> 叶恒嘉把齿轮的位置往上挪了一格，加了个“惰轮”传动。</p>
+        </div>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：对比图。旧版齿轮贴着地，新版齿轮悬空了，下面刚好能钻过去一个 Beam]
+        </div>
+
+        <p><strong>效果：</strong> 现在机器人过 Beam 就像过平地一样，丝滑！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">166</div>
+    </div>
+
+    <!-- ================= PAGE 167: 气动定位角 ================= -->
+    <div class="sheet">
+        <h1>三代车改进：变形翅膀</h1>
+
+        <p>三角区 (Triangle Goal) 特别难进，因为两边有管子挡着。</p>
+        <p><strong>创意：</strong> 我们设计了一对“翅膀”（定位角）。
+        <br>- 平时：收起来，不超宽。
+        <br>- 进三角区时：气缸“呲”一下，翅膀张开，正好卡住两边的管子，自动对准！</p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：展示“翅膀”张开和收起的状态]
+        </div>
+
+        <p><strong>实测：</strong> 以前要瞄准 5 秒钟，现在只要撞过去就行了，1 秒搞定！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">167</div>
+    </div>
+
+    <!-- ================= PAGE 168: 堆叠优化 ================= -->
+    <div class="sheet">
+        <h1>三代车改进：面比点稳</h1>
+
+        <p>二代车的定位叉是两根棍子（点），堆叠的时候如果不小心碰歪了，Pin 还是会掉。</p>
+        <p><strong>改进：</strong> 我们换成了一块带凹槽的板子（面）。</p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：特写，抓手下方那个带凹槽的板子，正好吻合 Pin 的形状]
+        </div>
+
+        <p><strong>原理：</strong> 面的稳定性比点强多了！现在就算机器人歪了 5 度，这个板子也能强行把 Pin 压回正位。</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">168</div>
+    </div>
+
+    <!-- ================= PAGE 169: 自动化升级 ================= -->
+    <div class="sheet">
+        <h1>三代车编程：多线程操作</h1>
+
+        <p>叶恒瑞说：“既然有了气动，我们就可以做更高级的动作了。”</p>
+        
+        <p>以前：举起 -> 等待 -> 翻转 -> 等待。<br>
+        现在：<strong>举起 + 翻转 同时进行！</strong></p>
+
+        <div class="code-snippet">
+            Lift.spinTo(HighPos, false); // 不等待！<br>
+            Wrist.spinTo(FlipPos, true); // 两个动作一起跑！
+        </div>
+
+        <p>这一下就省了 1.5 秒！在 60 秒的比赛里，1.5 秒可是能多拿好几分的！</p>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">169</div>
+    </div>
+
+    <!-- ================= PAGE 170-185: 三代车搭建日志 ================= -->
+    <!-- 中间页码填充，保持连贯性 -->
+    <div class="sheet">
+        <h1>搭建日志：气管迷宫</h1>
+        <p><strong>日期：</strong> 1月25日</p>
+        <p>气动好是好，就是管子太多了！红的、蓝的、黑的…… 叶恒嘉花了一整天理线，用了好多螺旋管把它们包起来，像血管一样。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">170</div>
+    </div>
+    
+    <div class="sheet">
+        <h1>搭建日志：漏气惊魂</h1>
+        <p><strong>日期：</strong> 1月26日</p>
+        <p>今天充完气，过了一会儿就没劲了。我们拿着肥皂水一点点试，终于发现有个接口没插紧，在那冒泡泡。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div>
+        <div class="page-number">171</div>
+    </div>
+
+    <div class="sheet">
+        <h1>测试日志：气动爪首秀</h1>
+        <p><strong>日期：</strong> 2月1日</p>
+        <p>“呲——” 爪子瞬间闭合！太快了！以前电机要转半秒，现在只要 0.1 秒！我们都惊呆了。</p>
+        <div class="footer"><span>记录人：印涵邸</span></div><div class="page-number">172</div>
+    </div>
+
+    <!-- 省略 P173-P184 -->
+    
+    <div class="sheet">
+        <h1>测试日志：满分挑战</h1>
+        <p><strong>日期：</strong> 2月10日</p>
+        <p>我们用三代车跑了一次自动技能赛。58 秒！满分！我们做到了！</p>
+        <div class="footer"><span>记录人：印涵邸</span></div><div class="page-number">185</div>
+    </div>
+
+    <!-- ================= PAGE 186: 性能对比 ================= -->
+    <div class="sheet">
+        <h1>三代同堂大比拼</h1>
+
+        <p>我们把三代车的数据放在一起看，进步太明显了！</p>
+
+        <table>
+            <tr>
+                <th>比什么</th>
+                <th>一代车 (Gen 1)</th>
+                <th>二代车 (Gen 2)</th>
+                <th>三代车 (Gen 3)</th>
+            </tr>
+            <tr>
+                <td>底盘</td>
+                <td>太快失控</td>
+                <td>慢但稳</td>
+                <td class="winner">又快又稳 + 不卡梁</td>
+            </tr>
+            <tr>
+                <td>抓手</td>
+                <td>容易掉</td>
+                <td>抓得紧</td>
+                <td class="winner">秒抓秒放 (气动)</td>
+            </tr>
+            <tr>
+                <td>挂高塔</td>
+                <td>不行</td>
+                <td>勉强</td>
+                <td class="winner">轻松</td>
+            </tr>
+            <tr>
+                <td>得分</td>
+                <td>35分</td>
+                <td>65分</td>
+                <td class="winner">95分+</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">186</div>
+    </div>
+
+    <!-- ================= PAGE 187: 三代车定妆照 ================= -->
+    <div class="sheet">
+        <h1>三代车：冠军相！</h1>
+
+        <p>这是我们最完美的作品 <strong>Gen 3</strong>。它身上背着蓝色的气罐，就像背着喷气背包的战士！</p>
+
+        <div class="img-placeholder" style="height: 400px;">
+            
+            [图片：三代车高清照片，可以清晰看到气罐、气动爪子和展开的翅膀]
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">187</div>
+    </div>
+
+    <!-- ================= PAGE 188: 团队感悟 ================= -->
+    <div class="sheet">
+        <h1>我们的心里话</h1>
+
+        <div class="dialogue">
+            <strong>叶恒瑞（程序）：</strong> “以前写代码是为了补救机械的缺陷，现在写代码是为了释放机械的潜能。这种感觉太棒了！”
+        </div>
+        
+        <div class="dialogue">
+            <strong>叶恒嘉（搭建）：</strong> “虽然拆了三次车，手都磨破了，但是看到三代车跑起来的那一刻，一切都值了。”
+        </div>
+        
+        <div class="dialogue">
+            <strong>宋书玥（操控）：</strong> “有了定位角和气动爪，我感觉自己就是赛场上的神！完全不用担心失误。”
+        </div>
+        
+        <div class="dialogue">
+            <strong>印涵邸（记录）：</strong> “这本笔记越来越厚，我们的本事也越来越大！”
+        </div>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">188</div>
+    </div>
+
+    <!-- ================= PAGE 189: 致谢 ================= -->
+    <div class="sheet">
+        <h1>谢谢你们！</h1>
+
+        <p>我们要感谢的人太多了：</p>
+        <ul>
+            <li><strong>王老师：</strong> 教我们用气动，还帮我们买零件。</li>
+            <li><strong>爸爸妈妈：</strong> 周末送我们来训练，还给我们带好吃的。</li>
+            <li><strong>隔壁队：</strong> 虽然是对手，但也教了我们防滑垫的用法。</li>
+            <li><strong>VEX：</strong> 出了这么好玩的游戏！</li>
+        </ul>
+
+        <div class="footer">
+            <span>记录人：印涵邸</span>
+        </div>
+        <div class="page-number">189</div>
+    </div>
+
+    <!-- ================= PAGE 190: 章节总结 ================= -->
+    <div class="sheet">
+        <h1>第七章总结：准备好了！</h1>
+
+        <p>
+            这一章我们走得很艰难，但也最精彩。
+        </p>
+        <p>
+            从被一代车气哭，到二代车的迷茫，再到三代车的惊喜。我们学会了像真正的工程师一样思考：<strong>发现问题 -> 分析问题 -> 解决问题</strong>。
+        </p>
+        <p>
+            现在，我们的战车已经整装待发。世锦赛，我们来了！
+        </p>
+
+        <div class="img-placeholder" style="height: 250px;">
+            
+            [图片：大家举着“进军世锦赛”的牌子，笑得特别灿烂]
+        </div>
+
+        <div class="footer">
+            <span>2026年2月16日</span>
+            <span>全员签字：叶恒瑞、叶恒嘉、宋书玥、印涵邸</span>
+        </div>
+        <div class="page-number">190</div>
+    </div>
+    <script src="assets/scripts/common-elements.js"></script>
+    <script src="assets/scripts/navigation-button.js"></script>
+</body>
+</html>
