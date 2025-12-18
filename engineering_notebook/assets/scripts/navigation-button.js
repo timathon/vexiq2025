@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
     linksContainer.classList.add('navigation-links');
     menu.appendChild(linksContainer);
 
-                                                                    const chapterPageCounts = {
+                                                                                const chapterPageCounts = {
         "index": 4,
         "glossary": 0,
         "ch01": 27,
         "ch02": 25,
         "ch03": 10,
         "ch04": 10,
-        "ch05": 10,
+        "ch05": 11,
         "ch06": 15,
-        "ch07": 12,
+        "ch07": 13,
         "ch08": 19
     };
 

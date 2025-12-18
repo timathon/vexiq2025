@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Sheet Navigator",
+  "version": "1.0",
+  "description": "Navigate through sheet elements on web pages with a control panel",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+  }
+}

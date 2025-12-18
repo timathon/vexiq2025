@@ -14,8 +14,8 @@ SCALE_W = 3.81762
 SCALE_H = 3.73187   
 
 # Directories
-INPUT_FOLDER = 'mm-coordinates'
-OUTPUT_FOLDER = 'robot-coordinates'
+INPUT_FOLDER = 'artifects/mm-coordinates'
+OUTPUT_FOLDER = 'artifects/robot-coordinates'
 
 # ==========================================
 # 2. ROBOT CONFIGURATION TEMPLATES
@@ -28,7 +28,7 @@ DEFAULT_PAGE_INFO = {
     "pageHeight": 20.735, "pageWidth": 166.92, 
     "space": 1, "lineGapOffset": 0, "isDefault": False,
     "lineNum": 0, "fontSize": 100, "rightGap": 0,
-    "fontPath": ["33_kvenjoy_66.gfont", "Apollo_kvenjoy_Zl.gfont"]
+    "fontPath": [ "DJ_kvenjoy_DJ.gfont","Xztianyuanti_kvenjoy_田园.gfont"]
 }
 
 DEFAULT_CONTENT_FORMAT = "{\"charset\":\"UTF-8\",\"autoGp\":false,\"gpNum\":1,\"firstLineAlign\":\"LEFT\"}"
@@ -69,21 +69,22 @@ def convert_item(item):
     }
 
 def process_file(file_path):
-    """Reads a JSON file, converts all items, and saves to output folder."""
+    """Reads a JSON file, converts items, saves to output, and deletes input."""
     filename = os.path.basename(file_path)
     output_path = os.path.join(OUTPUT_FOLDER, filename)
 
     try:
+        # 1. Read input file
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # Handle both list of items (snippet output) or full object
+        # 2. Handle both list of items (snippet output) or full object
         items_list = data if isinstance(data, list) else data.get('items', [])
 
-        # Convert all items
+        # 3. Convert all items
         robot_items = [convert_item(item) for item in items_list]
 
-        # Wrap in final robot document structure
+        # 4. Wrap in final robot document structure
         final_json = {
             "orientation": 0,
             "width": 21,    # A4 Width (cm)
@@ -93,14 +94,19 @@ def process_file(file_path):
             "items": robot_items
         }
 
-        # Save to output folder
+        # 5. Save to output folder
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(final_json, f, indent=2, ensure_ascii=False)
         
         print(f"✅ Converted: {filename}")
 
+        # 6. DELETE INPUT FILE (Only reached if steps above succeed)
+        os.remove(file_path)
+        print(f"🗑️  Deleted input file: {filename}")
+
     except Exception as e:
         print(f"❌ Error processing {filename}: {e}")
+        print("   (Input file was NOT deleted due to error)")
 
 # ==========================================
 # 3. MAIN EXECUTION LOOP

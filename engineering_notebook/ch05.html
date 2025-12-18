@@ -6,6 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工程笔记 - 第五章：系统实施与搭建 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        /* Two Column Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Two equal columns */
+            gap: 20px;
+            /* Space between images */
+            margin-top: 20px;
+        }
+
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            /* Limit height to fit page */
+            object-fit: contain;
+            /* Ensure image fits nicely */
+            border-radius: 2px;
+        }
+
+        .caption {
+            margin-top: 8px;
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body class="theme-reddish-brown">
@@ -28,7 +66,7 @@
                     内容涵盖了关键零部件的选型与统筹、各机械子系统的装配工艺、气动与电气系统的集成，以及底层控制程序的编写与调试。
                 </p>
                 <p>
-                    <strong>本章核心任务：</strong> 完成一代车（Gen 1）的制造与调试，确保其具备基本的竞赛功能。
+                    <strong>本章核心任务：</strong> 完成一代车（Gen 1）的搭建与调试，确保其具备基本的竞赛功能。
                 </p>
             </div>
         </div>
@@ -184,45 +222,66 @@
 
     <!-- ================= PAGE 96: 软件配置 ================= -->
     <div class="sheet">
+        <h1>5.5 程序设计</h1>
 
-        <h1>5.5 软件配置：设备初始化</h1>
+        <p>这一节记录了我们如何用代码给机器人“注入灵魂”，把原本繁琐的手动操作变成了一键完成的智能自动化指令。通过程序控制，让机器人的动作既丝滑又精准。</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="assets/ch05/image11.png" alt="Optimization Diagram 1">
+                <div class="caption">图 5.5.1 初始状态检查</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch05/image12.png" alt="Optimization Diagram 2">
+                <div class="caption">图 5.5.2 连贯动作流图</div>
+            </div>
 
-        <div class="build-log">
-            <p>基于 VEXcode IQ 平台进行底层驱动配置。针对气动系统，需将控制端口配置为数字输出模式。</p>
         </div>
 
-        <div class="code-snippet"
-            style="background: #f8f9fa; border: 1px solid #ddd; padding: 15px; font-family: 'Courier New', monospace;">
-            <span style="color: #008000;">// Device Configuration</span><br>
-            motor LeftDrive = motor(PORT1, ratio18_1, false);<br>
-            motor RightDrive = motor(PORT6, ratio18_1, true);<br>
-            <br>
-            <span style="color: #008000;">// Pneumatic Control Configuration</span><br>
-            <span style="color: #008000;">// Port 10 is configured as a Digital Output for the Solenoid</span><br>
-            digital_out ClawSolenoid = digital_out(PORT10);<br>
-            <br>
-            <span style="color: #008000;">// Function to toggle claw state</span><br>
-            void toggleClaw(bool state) {<br>
-            &nbsp;&nbsp;ClawSolenoid.set(state);<br>
-            }
-        </div>
-
-        <p><strong>验证：</strong> 上传程序后，通过手动触发测试，确认电磁阀动作逻辑正确（True = 闭合/抓取，False = 断开/释放）。</p>
     </div>
+    <div class="sheet">
+        <h1>5.5 程序设计（续）</h1>
 
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="assets/ch05/image15.png" alt="Optimization Diagram 5">
+                <div class="caption">图 5.5.3 代码逻辑结构</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch05/image14.png" alt="Optimization Diagram 4">
+                <div class="caption">图 5.5.4 定位角修正</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch05/image13.png" alt="Optimization Diagram 3">
+                <div class="caption">图 5.5.5 机械臂抬升示意</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch05/image16.png" alt="Optimization Diagram 6">
+                <div class="caption">图 5.5.6 负载响应曲线</div>
+            </div>
+            <!-- <div class="image-item">
+                <img src="assets/ch05/image17.png" alt="Optimization Diagram 7">
+                <div class="caption">图 5.5.7 最终执行效果 A</div>
+            </div>
+            <div class="image-item">
+                <img src="assets/ch05/image18.png" alt="Optimization Diagram 8">
+                <div class="caption">图 5.5.8 最终执行效果 B</div>
+            </div> -->
+        </div>
+
+    </div>
     <!-- ================= PAGE 97: 操控逻辑 ================= -->
     <div class="sheet">
 
         <h1>5.6 遥控逻辑设计 (Teleop)</h1>
 
         <div class="build-log">
-            <p>为满足操作手在比赛中的即时反应需求，确立了以下人机交互逻辑：</p>
+            <p>为满足操作手在比赛中的即时反应需求，确立如下人机交互逻辑：</p>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
             <tr style="background: #eee;">
-                <th style="border: 1px solid #ccc; padding: 5px;">功能模块</th>
-                <th style="border: 1px solid #ccc; padding: 5px;">按键映射</th>
+                <th style="width: 20%;border: 1px solid #ccc; padding: 5px;">功能模块</th>
+                <th style="width: 20%;border: 1px solid #ccc; padding: 5px;">按键映射</th>
                 <th style="border: 1px solid #ccc; padding: 5px;">控制逻辑描述</th>
             </tr>
             <tr>
@@ -248,7 +307,7 @@
         </table>
 
         <img src="assets/ch05/5_6_1.webp" alt="遥控器按键布局"
-            style="height:300px; display: block; margin: 20px auto; border-radius: 10px;">
+            style="height:300px; display: block; margin: 40px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE 98: 传感器与自动化 ================= -->
@@ -281,7 +340,7 @@
         <h1>第五章总结：系统就绪</h1>
 
         <p>
-            历经两周的设计与制造周期，一代车（Gen 1）已完成全部硬件搭建与基础软件调试。
+            历经两周的设计与搭建周期，一代车（Gen 1）已完成全部硬件搭建与基础软件调试。
         </p>
         <p>
             <strong>实施成果评估：</strong>

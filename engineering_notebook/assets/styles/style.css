@@ -408,22 +408,33 @@ th {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* STATE: Hide Dark Text 
-   Keeps the layout/colors, but makes text invisible 
+/* STATE: Hide Dark Text
+   Keeps the layout/colors, but makes text invisible
 */
 body.hide-dark-text p,
 body.hide-dark-text li,
+body.hide-dark-text a,
 body.hide-dark-text .dialogue,
 body.hide-dark-text .sticky-note,
 body.hide-dark-text .img-caption,
 body.hide-dark-text td,
 body.hide-dark-text .chinese-label,
-body.hide-dark-text .math-paper {
+body.hide-dark-text .math-paper,
+body.hide-dark-text .highlight-box,
+body.hide-dark-text .highlight-box.type-default,
+body.hide-dark-text .highlight-box.type-purple,
+body.hide-dark-text .highlight-box.type-left-border,
+body.hide-dark-text .highlight-box.type-teal,
+body.hide-dark-text .highlight-box.type-cyan,
+body.hide-dark-text p .text-error,
+body.hide-dark-text p .text-success,
+body.hide-dark-text li .text-error,
+body.hide-dark-text li .text-success {
     color: transparent !important;
 }
 
 /* New rule to hide specific footer values but keep labels */
-body.hide-dark-text .footer .footer-value {
+body.hide-dark-text .footer {
     color: transparent !important;
 }
 
@@ -432,7 +443,7 @@ body.hide-dark-text .footer .footer-value {
     color: transparent !important;
     } */
     
-    body.hide-other-elements .footer .footer-label {
+    body.hide-other-elements .footer .footer-label{
         display: none !important;
         /* color: transparent !important; */
 }
@@ -464,12 +475,14 @@ body.hide-other-elements * {
 /* 3. Specifically hide the Headings and Images completely (Visibility Hidden) */
 body.hide-other-elements th,
 body.hide-other-elements h1,
+body.hide-other-elements iframe,
 body.hide-other-elements h2,
 body.hide-other-elements h3,
 body.hide-other-elements h4,
 body.hide-other-elements img,
 body.hide-other-elements .chapter-marker,
-body.hide-other-elements .a4-height-indicator {
+body.hide-other-elements .a4-height-indicator,
+body.hide-other-elements .footer-recorder {
     visibility: hidden !important;
 }
 

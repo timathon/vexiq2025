@@ -166,7 +166,7 @@
         .image-item img {
             width: 100%;
             height: auto;
-            max-height: 300px;
+            max-height: 600px;
             /* Limit height to fit page */
             object-fit: contain;
             /* Ensure image fits nicely */
@@ -175,7 +175,7 @@
 
         .caption {
             margin-top: 8px;
-            font-size: 12px;
+            font-size: 18px;
             color: #666;
             text-align: center;
         }
@@ -320,63 +320,54 @@
 
     <!-- ================= PAGE 123: 自动化编程 ================= -->
     <div class="sheet">
-        <h1>7.6 程序优化：一键调整连贯动作</h1>
+        <h1>7.6 程序优化（1）</h1>
 
-        <p>为配合上述机械优化（特别是抬升与定位角的联动），我们将手动分步操作精简为高度集成的自动化代码。</p>
+        <p>为了提升操控效率，我们设计了“自动找零点”与“状态反馈”功能：利用电机堵转特性自动修正机械臂位置误差；同时通过LED灯颜色变化（红/黄/紫/绿）直观反馈距离，像“红绿灯”一样辅助操作手判断发射时机。</p>
         <div class="image-grid">
             <div class="image-item">
-                <img src="assets/ch07/image11.png" alt="Optimization Diagram 1">
-                <div class="caption">图 7.6.1 初始状态检查</div>
+                <img src="assets/ch07/image20.png" alt="Optimization Diagram 1">
+                <div class="caption">图 7.6.1 抬升机构：卡住即归零 (Lifting Reset)</div>
             </div>
             <div class="image-item">
-                <img src="assets/ch07/image12.png" alt="Optimization Diagram 2">
-                <div class="caption">图 7.6.2 连贯动作流图</div>
+                <img src="assets/ch07/image21.png" alt="Optimization Diagram 2">
+                <div class="caption">图 7.6.2 翻转机构：自动复位逻辑 (Flip Reset)</div>
             </div>
             <div class="image-item">
-                <img src="assets/ch07/image13.png" alt="Optimization Diagram 3">
-                <div class="caption">图 7.6.3 机械臂抬升示意</div>
+                <img src="assets/ch07/image30.png" alt="Optimization Diagram 3">
+                <div class="caption">图 7.6.3 组合键控制：一键切换状态</div>
             </div>
             <div class="image-item">
-                <img src="assets/ch07/image14.png" alt="Optimization Diagram 4">
-                <div class="caption">图 7.6.4 定位角修正</div>
+                <img src="assets/ch07/image31.png" alt="Optimization Diagram 4">
+                <div class="caption">图 7.6.4 “红绿灯”反馈：距离检测</div>
             </div>
         </div>
 
     </div>
     <div class="sheet">
-        <h1>7.6 程序优化：一键调整连贯动作（续）</h1>
+        <h1>7.6 程序优化（2）</h1>
 
-        <!-- <p>为配合上述机械优化（特别是抬升与定位角的联动），我们将手动分步操作精简为高度集成的自动化代码。</p> -->
+        <p>“初始化”模块如同赛前准备：程序启动瞬间会自动锁紧气缸并拉满电机扭矩，防止机构因重力意外滑落，确保机器人以最佳状态随时待命。</p>
         <div class="image-grid">
             <div class="image-item">
-                <img src="assets/ch07/image15.png" alt="Optimization Diagram 5">
-                <div class="caption">图 7.6.5 代码逻辑结构</div>
+                <img src="assets/ch07/image22.png" alt="Optimization Diagram 5">
+                <div class="caption">图 7.6.5 开机准备：锁气缸与设扭矩 (Init)</div>
             </div>
-            <div class="image-item">
-                <img src="assets/ch07/image16.png" alt="Optimization Diagram 6">
-                <div class="caption">图 7.6.6 负载响应曲线</div>
-            </div>
-            <div class="image-item">
-                <img src="assets/ch07/image17.png" alt="Optimization Diagram 7">
-                <div class="caption">图 7.6.7 最终执行效果 A</div>
-            </div>
-            <div class="image-item">
-                <img src="assets/ch07/image18.png" alt="Optimization Diagram 8">
-                <div class="caption">图 7.6.8 最终执行效果 B</div>
-            </div>
-            <!-- <div class="image-item">
-                <img src="assets/ch07/image19.png" alt="Optimization Diagram 9">
-                <div class="caption">图 7.6.9 误差分析统计</div>
-            </div>
-            <div class="image-item">
-                <img src="assets/ch07/image20.png" alt="Optimization Diagram 10">
-                <div class="caption">图 7.6.10 优化前后对比</div>
-            </div> -->
+
         </div>
 
     </div>
+    <div class="sheet">
+        <h1>7.6 程序优化（3）</h1>
 
-    <!-- ================= PAGE 124: 详细迭代训练记录 ================= -->
+        <p>底盘操控程序集成了“防手抖”过滤（死区设置）：系统会忽略手指轻微震动带来的误触信号，只有明确推杆时才输出动力，保证机器人的全向移动平稳、丝滑。</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="assets/ch07/image23.png" alt="Optimization Diagram 6">
+                <div class="caption">图 7.6.6 底盘控制：带防抖的摇杆程序</div>
+            </div>
+        </div>
+    </div>
+    </div> <!-- ================= PAGE 124: 详细迭代训练记录 ================= -->
     <div class="sheet">
         <h1>7.7 二代车迭代训练记录 (详细过程)</h1>
 
