@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     linksContainer.classList.add('navigation-links');
     menu.appendChild(linksContainer);
 
-                                                                                const chapterPageCounts = {
+                                                                                    const chapterPageCounts = {
         "index": 4,
         "glossary": 0,
         "ch01": 27,
@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch05": 11,
         "ch06": 15,
         "ch07": 13,
-        "ch08": 19
+        "ch08": 28,
+        "chzz": 4
     };
 
     const chapterColors = {
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch06": "#00ACC1",
         "ch07": "#450693", // Updated color
         "ch08": "#008080",
+        "chzz": "#F79A19",
     };
 
     // Add link for Introduction
@@ -59,6 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
         linksContainer.appendChild(link);
     }
 
+    // Add link for chzz
+    const chzzLink = document.createElement('a');
+    chzzLink.href = 'chzz.html';
+    chzzLink.textContent = 'Chapter ZZ (' + chapterPageCounts['chzz'] + ' pages)';
+    chzzLink.style.backgroundColor = chapterColors['chzz'];
+    chzzLink.style.color = 'white';
+    linksContainer.appendChild(chzzLink);
+
     document.body.appendChild(menu);
 
     // Dynamically generate page numbers
@@ -69,11 +79,31 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentChapterMatch) {
         const chapterNumber = parseInt(currentChapterMatch[1], 10);
         let startPage = 1;
-        
+
         // Add pages from index.html
         startPage += chapterPageCounts['index'] || 0;
 
         for (let i = 1; i < chapterNumber; i++) {
+            const chapterKey = 'ch' + ('0' + i).slice(-2);
+            startPage += chapterPageCounts[chapterKey] || 0;
+        }
+
+        const sheets = document.querySelectorAll('.sheet');
+        sheets.forEach((sheet, index) => {
+            const pageNumberDiv = document.createElement('div');
+            pageNumberDiv.classList.add('page-number');
+            pageNumberDiv.textContent = startPage + index;
+            sheet.appendChild(pageNumberDiv);
+        });
+    } else if (currentPage === 'chzz.html') {
+        // Handle page numbering for chzz
+        let startPage = 1;
+
+        // Add pages from index.html
+        startPage += chapterPageCounts['index'] || 0;
+
+        // Add pages from chapters 1-8
+        for (let i = 1; i <= 8; i++) {
             const chapterKey = 'ch' + ('0' + i).slice(-2);
             startPage += chapterPageCounts[chapterKey] || 0;
         }

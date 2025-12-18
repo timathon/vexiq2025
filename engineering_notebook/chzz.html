@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工程笔记 - 附录 (2276A)</title>
+  <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body class="theme-index">
+
+  <style>
+    /* --- Cover Page Styling --- */
+    .cover-section {
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .cover-section h1 {
+      font-size: 56px;
+      border: none;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .cover-section h2 {
+      font-size: 36px;
+      background: none;
+      color: #555;
+      padding: 0;
+      margin: 5px 0;
+      border: none;
+    }
+
+    .cover-section h3 {
+      font-size: 24px;
+      color: #888;
+      border: none;
+      padding: 0;
+      margin-top: 5px;
+    }
+
+    .cover-divider {
+      width: 80%;
+      height: 8px;
+      background-color: var(--secondary-color);
+      margin: 40px auto;
+      border-radius: 5px;
+    }
+
+    .cover-intro {
+      margin: 60px 80px;
+      font-size: 20px;
+      line-height: 2;
+      text-align: left;
+      color: #444;
+    }
+
+    /* --- Content Components --- */
+    .strategy-card {
+      background-color: #E0F2F1;
+      border-left: 5px solid var(--primary-color);
+      padding: 0 15px;
+      margin-bottom: 20px;
+    }
+
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .checklist-table td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .checklist-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Match Record Table */
+    .match-table th {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px;
+    }
+
+    .match-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .match-table td.desc {
+      text-align: left;
+    }
+
+    /* Analysis Sections */
+    .analysis-section {
+      margin-bottom: 20px;
+    }
+
+    .analysis-title {
+      font-weight: bold;
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .text-teal {
+      color: var(--primary-color);
+    }
+
+    .text-red {
+      color: #c0392b;
+    }
+
+    .text-green {
+      color: #27ae60;
+    }
+
+    .highlight-box.type-teal {
+      border-left: 5px solid #008080;
+      padding-left: 15px;
+      background-color: #f0fdfc;
+    }
+
+    /* Placeholder for images */
+    .img-placeholder {
+      border: 2px dashed #ccc;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 18px;
+      border-radius: 8px;
+      /* Removed default margin to handle it via grid/flex gaps */
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* --- NEW LAYOUT STYLES --- */
+
+    /* 3 Pictures: 2 Top, 1 Bottom */
+    .gallery-2-1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* Two equal columns */
+      grid-template-rows: 1fr 1fr;
+      /* Two equal rows */
+      gap: 20px;
+      height: 800px;
+      /* Total height of the gallery area */
+      margin-top: 20px;
+    }
+
+    /* The last child (3rd image) spans both columns */
+    .gallery-2-1 .img-placeholder:last-child {
+      grid-column: span 2;
+    }
+
+    /* 2 Pictures: Left and Right */
+    .gallery-1-1 {
+      display: flex;
+      gap: 20px;
+      height: 800px;
+      /* Total height of the gallery area */
+      margin-top: 20px;
+    }
+
+    .gallery-1-1 .img-placeholder {
+      flex: 1;
+      /* Each takes equal width */
+      height: 100%;
+    }
+  </style>
+  </head>
+
+  <body class="theme-teal">
+
+    <div class="sheet">
+      <h1>最终章：感悟与成长</h1>
+
+      <h3 class="text-teal">我们的心路历程</h3>
+
+      <div class="highlight-box type-teal">
+        <p>
+          是VEX的赛场教会我们：真正的竞技从不是孤军奋战。从开始面对陌生的队友，连主动沟通都需鼓足勇气，到自信地站在领奖台上，从只顾自身操作到根据队友特长迅速制定策略完成分工。我们渐渐懂得，协作不是妥协，而是1+1＞2的智慧。
+        </p>
+      </div>
+
+      <p style="margin-top: 20px; line-height: 1.8;">
+        比赛的压力是我们成长的催化剂。当倒计时的铃声响起，当机器人突发故障，我们学会了沉着应对、放平心态。严格的赛事规则，让我们树立了强烈的规则意识；与不同团队的交流碰撞，锻炼了我们的表达沟通能力；合理分配训练与学习时间，让时间管理成为刻在骨子里的习惯。
+      </p>
+      <p style="margin-top: 20px; line-height: 1.8;">
+        VEX带给我们的勇于探索的进取精神、精益求精的追求，以及面对挑战时的抗压能力，都已融入我们的学习与生活，成为人生路上宝贵的财富。
+      </p>
+
+
+      <img src="assets/chzz/image2.png" alt="2276A军团"
+        style="display: block;height:240px; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <div class="sheet">
+      <h1>曾获奖项（1）</h1>
+      <p>记录我们在赛季中获得的荣誉与肯定。</p>
+
+      <div class="gallery-2-1">
+        <div class="img-placeholder">
+          <img src="assets/chzz/image4.png" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image5.png" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image3.png" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <h1>曾获奖项（2）</h1>
+
+      <div class="gallery-2-1">
+        <div class="img-placeholder">
+          <img src="assets/chzz/image8.png" alt="2276A军团"
+            style="display: block;width:300px; margin: 10px auto; border-radius: 10px;">
+
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image9.png" alt="2276A军团"
+            style="display: block;width:300px; margin: 10px auto; border-radius: 10px;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image10.png" alt="2276A军团"
+            style="display: block;width:500px; margin: 10px auto; border-radius: 10px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <h1>曾获奖项（3）</h1>
+
+      <div class="gallery-1-1">
+        <div class="img-placeholder">
+          <img src="assets/chzz/image6.png" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image7.png" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/scripts/toggle-buttons.js"></script>
+    <script src="assets/scripts/navigation-button.js"></script>
+    <script src="assets/scripts/common-elements.js"></script>
+  </body>
+
+</html>

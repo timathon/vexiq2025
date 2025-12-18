@@ -10,7 +10,7 @@ NAV_SCRIPT="assets/scripts/navigation-button.js"
 # Generate the new chapterPageCounts object content
 JSON_CONTENT="    const chapterPageCounts = {\n"
 
-FILES=("index.html" "glossary.html" $(find . -maxdepth 1 -name 'ch[0-9][0-9].html' | sort))
+FILES=("index.html" "glossary.html" $(find . -maxdepth 1 -name 'ch[0-9][0-9].html' | sort) $(find . -maxdepth 1 -name 'chzz.html' | sort))
 
 for i in "${!FILES[@]}"; do
     FILE="${FILES[$i]}"

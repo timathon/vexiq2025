@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ...Object.fromEntries(Array.from({ length: 12 }, (_, i) => [i + 102, "叶恒瑞"])),
         // ch08
         ...Object.fromEntries(Array.from({ length: 15 }, (_, i) => [i + 114, "叶恒瑞"])),
-        ...Object.fromEntries(Array.from({ length: 4 }, (_, i) => [i + 129, "印涵邸"])),
+        ...Object.fromEntries(Array.from({ length: 15 }, (_, i) => [i + 129, "印涵邸"])),
     };
 
 
