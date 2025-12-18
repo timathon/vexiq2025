@@ -14,8 +14,8 @@ SCALE_W = 3.81762
 SCALE_H = 3.73187   
 
 # Directories
-INPUT_FOLDER = 'artifects/mm-coordinates'
-OUTPUT_FOLDER = 'artifects/robot-coordinates'
+INPUT_FOLDER = 'artifacts/mm-coordinates'
+OUTPUT_FOLDER = 'artifacts/robot-coordinates'
 
 # ==========================================
 # 2. ROBOT CONFIGURATION TEMPLATES
@@ -68,10 +68,35 @@ def convert_item(item):
         "pageInfo": page_info
     }
 
+def find_next_layout_number():
+    """Finds the highest layout_*.json number and returns the next number."""
+    layout_files = glob.glob(os.path.join(OUTPUT_FOLDER, "layout_*.json"))
+    if not layout_files:
+        return 1
+
+    max_number = 0
+    for file_path in layout_files:
+        filename = os.path.basename(file_path)
+        if filename.startswith("layout_") and filename.endswith(".json"):
+            try:
+                # Extract number from layout_1.json, layout_2.json, etc.
+                number_part = filename[7:-5]  # Remove "layout_" and ".json"
+                number = int(number_part)
+                max_number = max(max_number, number)
+            except ValueError:
+                # If the number part is not a valid integer, skip this file
+                continue
+
+    return max_number + 1
+
 def process_file(file_path):
     """Reads a JSON file, converts items, saves to output, and deletes input."""
     filename = os.path.basename(file_path)
-    output_path = os.path.join(OUTPUT_FOLDER, filename)
+
+    # Determine the next layout number and create output filename
+    next_number = find_next_layout_number()
+    output_filename = f"layout_{next_number}.json"
+    output_path = os.path.join(OUTPUT_FOLDER, output_filename)
 
     try:
         # 1. Read input file
@@ -94,11 +119,11 @@ def process_file(file_path):
             "items": robot_items
         }
 
-        # 5. Save to output folder
+        # 5. Save to output folder with new name
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(final_json, f, indent=2, ensure_ascii=False)
-        
-        print(f"✅ Converted: {filename}")
+
+        print(f"✅ Converted: {filename} -> {output_filename}")
 
         # 6. DELETE INPUT FILE (Only reached if steps above succeed)
         os.remove(file_path)
