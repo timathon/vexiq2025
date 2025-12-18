@@ -72,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create date box
             const dateBox = document.createElement('span');
-            dateBox.innerHTML = '<span class="footer-label">日期：</span><span class="footer-value">' + date + '</span>';
+            // dateBox.innerHTML = '<span class="footer-label">日期：</span><span class="footer-value">' + date + '</span>';
+            dateBox.innerHTML = '<span class="footer-value">' + date + '</span>';
             footer.appendChild(dateBox);
 
             // Create recorder box

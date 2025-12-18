@@ -324,6 +324,11 @@ th {
     font-size: 22px;
 }
 
+/* .footer-value {
+    position: absolute;
+    left: 30mm;
+} */
+
 .handwriting-box {
     /* Adds 40mm of empty space to the right of the text */
     padding-right: 40mm;
@@ -428,8 +433,8 @@ body.hide-dark-text .footer .footer-value {
     } */
     
     body.hide-other-elements .footer .footer-label {
-        /* display: none !important; */
-        color: transparent !important;
+        display: none !important;
+        /* color: transparent !important; */
 }
 
 /* STATE: Hide Decorative Elements 
