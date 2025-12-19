@@ -429,7 +429,8 @@ body.hide-dark-text .highlight-box.type-cyan,
 body.hide-dark-text p .text-error,
 body.hide-dark-text p .text-success,
 body.hide-dark-text li .text-error,
-body.hide-dark-text li .text-success {
+body.hide-dark-text li .text-success,
+body.hide-dark-text li .text-teal {
     color: transparent !important;
 }
 
@@ -480,6 +481,7 @@ body.hide-other-elements h2,
 body.hide-other-elements h3,
 body.hide-other-elements h4,
 body.hide-other-elements img,
+body.hide-other-elements .caption,
 body.hide-other-elements .chapter-marker,
 body.hide-other-elements .a4-height-indicator,
 body.hide-other-elements .footer-recorder {
