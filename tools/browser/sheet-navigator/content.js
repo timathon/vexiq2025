@@ -188,7 +188,7 @@
         // 2. Select all text elements you want to print
         // UPDATED: Added 'td, th' for tables, 'h1-h6' for titles, and '.page-number'
         const elements = Array.from(sheet.querySelectorAll(
-            'h1, h2, h3, h4, h5, h6, p, .sticky-note, .footer, li, td, th, .page-number'
+            'h1, h2, h3, h4, h5, h6, p, .sticky-note, .footer, li, td, th, .page-number, .caption'
         ));
         
         const items = elements.map((el, index) => {
