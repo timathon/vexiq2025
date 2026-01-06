@@ -43,6 +43,28 @@
             color: #666;
             text-align: center;
         }
+
+        /* BOM Table Styles (Synchronized from ch07) */
+        .parts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .parts-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .parts-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            line-height: 1.5;
+        }
     </style>
 </head>
 
@@ -79,29 +101,116 @@
 
         <p>在正式组装前，团队依据第四章的设计方案进行了物料清单 (BOM) 的核对，并完成了 VEX IQ 主控的端口映射规划。</p>
 
-        <h3>关键物料清单 (Bill of Materials)</h3>
-        <ul style="margin-top: 10px; font-size: 16px; line-height: 1.8;">
-            <li>
-                <strong>执行器:</strong> Smart Motor (Gen 2) × 4
-                <br>应用模块: 底盘(2), 抬升(1), 翻转(1)
-                <img src="assets/ch05/5_1_1.webp" alt="电机"
-                    style="width:100%; display: block; margin: 10px auto; border-radius: 10px; transform: translateX(-50px);">
-            </li>
-            <li>
-                <strong>气动元件:</strong> 气缸, 电磁阀, 气瓶 × 1套
-                <br>应用模块: 抓取系统
-                <img src="assets/ch05/5_1_2.webp" alt="气动组件"
-                    style="width:80%; display: block; margin: 10px auto; border-radius: 10px; transform: translate(-50px, 0px);">
-            </li>
-            <li>
-                <strong>传感器:</strong> Distance Sensor × 1
-                <br>应用模块: 距离检测 / 自动抓取辅助
-                <img src="assets/ch05/5_1_3.webp" alt="距离传感器"
-                    style="height:180px; display: block; margin: 10px auto; border-radius: 10px; transform: translate(-50px, -10px);">
-            </li>
-        </ul>
+        <h3>一代车核心零件清单 (BOM)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">类别</th>
+                    <th width="35%">核心名称</th>
+                    <th width="12%">数量</th>
+                    <th width="25%">零件照片</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>电子系统</td>
+                    <td>主控</td>
+                    <td>1</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image34.png" alt="Robot Brain" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>电子系统</td>
+                    <td>智能电池</td>
+                    <td>1</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/battery.png" alt="Robot Battery" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>电子系统</td>
+                    <td>遥控器</td>
+                    <td>1</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image38.png" alt="Controller" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>电子系统</td>
+                    <td>智能电机 (Smart Motor)</td>
+                    <td>6</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image40.png" alt="Smart Motor" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>气动系统</td>
+                    <td>气瓶 / 气泵</td>
+                    <td>2 / 1</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image46.png" alt="Air Pump" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>气动系统</td>
+                    <td>电磁阀 / 气缸</td>
+                    <td>2 / 2-3</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image44.png" alt="Pneumatic Solenoid" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+    <div class="sheet">
+        
+        <h1>5.1 资源统筹与端口规划（续）</h1>
+        
+        
+        <h3>一代车核心零件清单 (BOM)（续）</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">类别</th>
+                    <th width="35%">核心名称</th>
+                    <th width="12%">数量</th>
+                    <th width="25%">零件照片</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>结构传动</td>
+                    <td>48齿 / 24齿 齿轮组</td>
+                    <td>4 / 4</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image37.png" alt="Gear" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>结构传动</td>
+                    <td>全向轮</td>
+                    <td>4</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image42.png" alt="Omni-Directional Wheel" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>结构件</td>
+                    <td>2x16 / 2x20 横梁</td>
+                    <td>4 / 4-6</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image77.png" alt="Beam" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>结构件</td>
+                    <td>1x 规格梁</td>
+                    <td>若干</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image81.png" alt="Beam" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>结构件</td>
+                    <td>转角连接器 / 橡皮筋</td>
+                    <td>8+ / 10+</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image67.png" alt="Corner Connector" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>结构件</td>
+                    <td>连接销钉 (黑色/蓝色)</td>
+                    <td>200+</td>
+                    <td style="color: #bbb;"><img src="assets/ch05/image63.png" alt="Connector Pin" style="max-width:100%; max-height:40px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
+
+
 
     <div class="sheet">
 
@@ -258,14 +367,6 @@
                 <img src="assets/ch05/image16.png" alt="Optimization Diagram 6">
                 <div class="caption">图 5.5.6 负载响应曲线</div>
             </div>
-            <!-- <div class="image-item">
-                <img src="assets/ch05/image17.png" alt="Optimization Diagram 7">
-                <div class="caption">图 5.5.7 最终执行效果 A</div>
-            </div>
-            <div class="image-item">
-                <img src="assets/ch05/image18.png" alt="Optimization Diagram 8">
-                <div class="caption">图 5.5.8 最终执行效果 B</div>
-            </div> -->
         </div>
 
     </div>
@@ -299,11 +400,6 @@
                 <td>L Down</td>
                 <td>单键切换。按下旋转至 180 度，再次按下复位至 0 度。</td>
             </tr>
-            <!-- <tr>
-                <td><strong>速度控制</strong></td>
-                <td><strong>L 键 (Hold)</strong></td>
-                <td><strong>精准模式 (Precision Mode)：</strong> 按住 L 键时，底盘输出功率限制为 50%，用于精细对准目标。</td>
-            </tr> -->
         </table>
 
         <img src="assets/ch05/5_6_1.webp" alt="遥控器按键布局"
@@ -324,10 +420,6 @@
                 <h4>距离传感器 (Distance Sensor)</h4>
                 <p>前置安装。在自动程序中实现“接近检测”：当检测到前方障碍物或得分桩距离小于设定阈值（100mm）时，自动触发刹车逻辑，防止剧烈碰撞。</p>
             </div>
-            <!-- <div class="column">
-                <h4>惯性传感器 (Inertial Sensor)</h4>
-                <p>用于实时监测机器人的航向角 (Heading)。通过 PID 算法修正左右轮速差，显著改善了底盘在高速行驶下的直线保持能力。</p>
-            </div> -->
         </div>
 
         <h3>初步自动程序测试</h3>
