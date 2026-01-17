@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程笔记 - 第八章：比赛策略与赛后分析 (2276A)</title>
+    <title>工程笔记 - 第八章：三代车的搭建与实战 (2276A)</title>
     <link rel="stylesheet" href="assets/styles/style.css">
     <style>
-        /* --- Cover Page Styling --- */
         .cover-section {
             text-align: center;
             margin-top: 120px;
@@ -16,14 +15,11 @@
         .cover-section h1 {
             font-size: 56px;
             border: none;
-            color: var(--primary-color);
-            margin-bottom: 10px;
         }
 
         .cover-section h2 {
             font-size: 36px;
             background: none;
-            color: #555;
             padding: 0;
             margin: 5px 0;
             border: none;
@@ -53,359 +49,239 @@
             color: #444;
         }
 
-        /* --- Content Components --- */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .comparison-table th {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px;
+        }
+
+        .comparison-table.small-font th,
+        .comparison-table.small-font td {
+            font-size: 19px;
+            padding: 8px;
+        }
+
+        .comparison-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .highlight-cell {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .text-purple {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
         .strategy-card {
             background-color: #E0F2F1;
             border-left: 5px solid var(--primary-color);
             padding: 15px;
             margin-bottom: 20px;
         }
-
-        .checklist-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .checklist-table td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .checklist-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Match Record Table */
-        .match-table th {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px;
-        }
-
-        .match-table td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        .match-table td.desc {
-            text-align: left;
-        }
-
-        /* Analysis Sections */
-        .analysis-section {
-            margin-bottom: 20px;
-        }
-
-        .analysis-title {
-            font-weight: bold;
-            font-size: 22px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .text-teal {
-            color: var(--primary-color);
-        }
-
-        .text-red {
-            color: #c0392b;
-        }
-
-        .text-green {
-            color: #27ae60;
-        }
-
-        .highlight-box.type-teal {
-            border-left: 5px solid #008080;
-            padding-left: 15px;
-            background-color: #f0fdfc;
-        }
     </style>
 </head>
 
 <body class="theme-teal">
 
-    <!-- ================= PAGE 126: 章节封面 ================= -->
     <div class="sheet">
         <div class="cover-section">
-            <h1 style="font-size: 56px;">策略与复盘</h1>
-            <h2>第八章：赛季中期关键赛事与策略复盘</h2>
-            <h3>Chapter 8: Mid-Season Competitions & Strategy Review</h3>
+            <h1 style="font-size: 56px;">三代车：追求卓越</h1>
+            <h2>第八章：三代车 (Gen 3) 的研发与实战</h2>
+            <h3>Chapter 8: Gen 3 - R&D and Competitions</h3>
 
             <div class="cover-divider"></div>
 
-            <table style="width: 85%;margin: 0 auto;border-collapse: collapse;border: none;">
-                <tbody>
-                    <tr>
-                        <td width="25%" style="border: none; vertical-align: top;"><strong>赛事周期：</strong></td>
-                        <td style="border: none;">
-                            2025年10月 - 11月密集赛季<br>
-                            (华北大区赛 / 北京校际联赛 / 西城区赛 / 北京市赛)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="border: none;"><strong>参赛机型：</strong></td>
-                        <td style="border: none;">二代车 (Gen 2)</td>
-                    </tr>
-                    <tr>
-                        <td style="border: none; vertical-align: top;"><strong>核心任务：</strong></td>
-                        <td style="border: none;">
-                            1. 验证二代车在封闭高压环境下的实战稳定性。<br>
-                            2. 争取上海交大国赛及北京市赛的晋级资格。<br>
-                            3. 收集实战数据，启动针对自动赛短板的三代车迭代。
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- <div class="sticky-note">
-                <strong>本章摘要：</strong><br>
-                本章记录了战队在赛季中期四大核心赛事中的征程。虽然在积分赛中多次斩获高分并成功晋级，但频发的硬件故障与自动赛失误暴露了系统性短板，促使团队做出了全面转向自动化特训的战略决策。
-            </div> -->
+            <div class="cover-intro">
+                <p>
+                    在经历了二代车（Gen 2）的实战考验后，我们在欣喜于其巨大进步的同时，也清醒地认识到其在面对高强度、长赛程时的稳定性和散热瓶颈。这些“不完美”之处，成为了我们研发三代车（Gen 3）的最大动力。
+                </p>
+                <p>
+                    本章将详细记录三代车如何针对二代车的核心痛点进行结构性优化，以及它在后续关键赛事中的表现。
+                </p>
+                <p>
+                    <strong>本章核心任务：</strong> 打造一台更快、更灵活、更稳定的全能型竞赛机器，并在实战中验证其性能。
+                </p>
+            </div>
         </div>
     </div>
+
     <div class="sheet">
-        <h1>8.1 一般策略规划</h1>
-        <p>在参与正式竞技前，团队需建立统一的策略框架，确保在技能挑战赛与团队协作赛中表现稳定。</p>
+        <h1>8.1 三代车设计：源于实战的核心改进</h1>
+        <p>基于二代车在华北大区赛等赛事中暴露出的问题，我们确立了三代车的核心设计目标，旨在实现性能的全面超越。</p>
 
-        <h3 class="text-teal">一、 比赛策略规划</h3>
+        <div class="highlight-box type-purple">
+            <h3>三代车设计目标 (Gen 3 Design Goals)</h3>
+            <ol style="line-height: 2;">
+                <li><strong>底盘通行性优化：</strong> 彻底解决底盘齿轮与“装填梁”的摩擦问题，实现无障碍快速通过。</li>
+                <li><strong>三角区效率提升：</strong> 优化定位角结构，使其在适应不同场景的同时，进一步缩短操作时间。</li>
+                <li><strong>堆叠稳定性增强：</strong> 改进下层销钉的定位方式，从“点”辅助升级为“面”辅助，杜绝高层堆叠时的意外倾倒。</li>
+                <li><strong>自动化流程完善：</strong> 优化程序，使连续抓取、堆叠等复杂动作的自动化执行更流畅、更可靠。</li>
+            </ol>
+        </div>
+        <img src="assets/ch08/gen3_overview.webp" alt="Gen 3 概览"
+            style="display: block; max-height: 300px; margin: 20px auto; border-radius: 10px;">
+    </div>
 
-        <h4>A. 技能挑战赛路线规划</h4>
+    <div class="sheet">
+        <h1>8.2 机械搭建：底盘优化</h1>
+
+        <h3 class="text-purple">1. 底盘优化：齿轮上移</h3>
+        <p><strong>改进措施：</strong> 将底盘的传动齿轮组整体向上移动了一个单位高度。</p>
+        <p><strong>效果：</strong> 彻底消除了底盘与“装填梁”之间的物理摩擦。相比二代车，三代车通过装填区域时更加流畅，速度更快，为比赛节省了宝贵的时间。</p>
+        <br>
+        <div class="two-column-layout">
+            <div class="column"><img src="assets/ch08/gen3_chassis_old.webp"
+                    style="display: block; max-height: 220px; margin: 20px auto; border-radius: 10px;" alt="旧版底盘">
+                <p class="img-caption">旧版底盘（齿轮位置较低）</p>
+            </div>
+            <div class="column"><img src="assets/ch08/gen3_chassis_new.webp"
+                    style="display: block; max-height: 220px; margin: 20px auto; border-radius: 10px;" alt="新版底盘">
+                <p class="img-caption">新版底盘（齿轮上移）</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="sheet">
+        <h1>8.2 机械搭建（续）：三角区定位角优化</h1>
+
+        <h3 class="text-purple" style="margin-top: 20px;">2. 三角区定位角优化：半收起结构</h3>
+        <p><strong>改进措施：</strong> 将原先完全收起的定位角改为“半收起”形态，并将长气杆更换为短气杆，缩短了气缸的运动行程。</p>
+        <p><strong>效果：</strong> 在保留了灵活性的同时，显著加快了定位角的响应速度，使得进入三角区得分的操作更迅捷。</p>
+        <br>
+        <img src="assets/ch08/aligner_above.webp" alt="三角区定位角俯视"
+            style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
+        <p class="img-caption">三角区定位角俯视</p>
+
+        <img src="assets/ch08/aligner_below.webp" alt="三角区定位角仰视"
+            style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
+        <p class="img-caption">三角区定位角仰视</p>
+
+    </div>
+
+    <div class="sheet">
+        <h1>8.2 机械搭建（续）：堆叠结构优化</h1>
+        <h3 class="text-purple">3. 堆叠结构优化：面状辅助</h3>
+        <p><strong>改进措施：</strong> 将二代车用于固定下层销钉的“点状”辅助结构，升级为“面状”辅助结构。</p>
+        <p><strong>效果：</strong> 新的结构能更稳固地固定住下层销钉，极大地减少了高层堆叠时因机器人自身或对手碰撞导致的倾倒风险，显著提升了堆叠成功率和比赛节奏的流畅性。</p>
+        <br>
+        <div>
+            <!-- <div class="column"><img src="assets/ch08/gen2_stacking.webp" alt="二代车点状辅助">
+                <p style="text-align:center;">二代车：点状辅助</p>
+            </div> -->
+            <img src="assets/ch08/aligner_2.webp" alt="三代车面状辅助"
+                style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
+            <p class="img-caption">三代车：面状辅助</p>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="sheet">
+        <h1>8.3 编程与自动化：追求极致流畅</h1>
+        <p>三代车的机械结构优化，为更高阶的自动化编程提供了基础。我们的编程重点在于将独立的自动化功能串联成一个有机的整体，实现“一键式”高效得分。</p>
+
+        <h3 class="text-purple">核心程序优化</h3>
         <ul>
-            <li><strong>专人专项职责：</strong> 严格按照训练分工，确保操作手对相应模块的操作熟练度达到肌肉记忆级别。</li>
-            <li><strong>环境点检：</strong> 赛前必须确认 <strong>Pin（销钉）</strong> 的摆放位置是否精准，避免因起始位置微调导致自动路径偏移。</li>
-            <li><strong>设备确认：</strong> 确认启动按键（Start Button）反馈是否灵敏。</li>
+            <li><strong>完善三角区动作控制：</strong> 结合新的“半收起”定位角，编写了更快速的进入、得分、退出的自动化程序，将操作手的负担降至最低。</li>
+            <li><strong>优化连续堆叠流程：</strong> 针对高层堆叠，优化了机械臂的抬升曲线和翻转时机，减少了等待时间，使整个堆叠过程一气呵成。</li>
+            <!-- <li><strong>提升程序鲁棒性：</strong> 增加了更多的传感器反馈和异常处理逻辑。例如，如果抓取失败，机器人会尝试重新抓取而不是停滞，确保在真实赛场中的可靠性。</li> -->
         </ul>
 
-        <h4>B. 技能挑战赛规则注意事项</h4>
-        <div class="highlight-box type-default" style="background-color: #fff5f5; border-left-color: #e74c3c;">
-            <p><strong>核心红线规则：</strong></p>
-            <ul>
-                <li>机器人必须接触 <strong>红色三角形得分区 (Red Triangle Goal)</strong>。</li>
-                <li>操作过程中仅允许使用 <strong>红色装填区 (Red Load Zone)</strong>。</li>
-            </ul>
-        </div>
-
-    </div>
-    <div class="sheet">
-        <h1>8.1 一般策略规划（续）</h1>
-
-
-        <h3 style="color: #F57F17;">二、 临场策略 (On-field Tactics)</h3>
-        <p>赛场瞬息万变，操作手必须内化以下临场准则：</p>
-        <ol>
-            <li><strong>运动终止：</strong> 必须严格遵守在计时结束的瞬间停止一切运动，避免被判罚违规。</li>
-            <li><strong>换手窗口：</strong> 严格遵守预设的换手时间。若在计划时间内未完成既定动作，<strong>应果断提前换手</strong>，为后手留出调整状态的空间。</li>
-            <li><strong>冲突避让：</strong> 搭建高塔时若与队友在中心区发生空间冲突，可主动<strong>慢1秒</strong>让对方先完成，确保双方得分效率。</li>
-            <li><strong>容错机制：</strong> 当边桩在抓取 Beam 时意外碰掉，后手操作手需立即切换思路，通过<strong>“搭双碟”</strong>模式将其送入三角区以挽回损失。</li>
-            <li><strong>路径调整：</strong>
-                若中心岛双叠位置偏移，<strong>不要专门停下调整</strong>；应利用前往装填区的路程，通过<strong>倒车动作</strong>进行顺带调整。</li>
-        </ol>
+        <h3 class="text-purple">训练成果</h3>
+        <p>经过多轮测试，三代车的自动化程序在稳定性、速度和可靠性上均达到了比赛要求。连续操作的成功率显著高于二代车，尤其是在模拟高强度、快节奏的比赛环境下，表现依然稳定。</p>
     </div>
 
-
-
-    <!-- ================= PAGE 127: 战术规划 ================= -->
     <div class="sheet">
-        <h1>8.2 基于二代车特性的策略</h1>
+        <h1>8.4 训练与测试：性能飞跃</h1>
+        <!-- <p>为了量化三代车的性能提升，我们进行了多轮严格的训练和对比测试。</p> -->
 
-        <p>鉴于二代车在底盘通过性和三角区定位上的改进，我们依据《路线策略对比图》制定了针对“校际联赛”的高分策略。</p>
-
-        <h3 class="text-teal" style="margin-top: 0;">策略目标 (Target Score)</h3>
-        <table style="width: 100%; text-align: center; margin-top: 10px;">
-            <tr style="font-weight: bold; background: rgba(255,255,255,0.5);">
-                <td>策略类型</td>
-                <td>核心配置</td>
-                <td>目标分数</td>
-            </tr>
-            <tr>
-                <td>91分策略 (Low Tower)</td>
-                <td>2个双色三角区 + 2个双色中心区</td>
-                <td class="text-teal" style="font-size: 20px; font-weight: bold;">166</td>
-            </tr>
-            <tr>
-                <td>110分策略 (High Tower)</td>
-                <td>2个双色三角区 + 2个双色中心区 + 110高塔</td>
-                <td class="text-teal" style="font-size: 20px; font-weight: bold;">178</td>
-            </tr>
-            <tr>
-                <td>技能赛 (Skills)</td>
-                <td>110高塔 + 3色中心区 + 1个3色得分区</td>
-                <td class="text-teal" style="font-size: 20px; font-weight: bold;">184</td>
-            </tr>
+        <h3 class="text-purple">三代车训练记录摘要</h3>
+        <table class="comparison-table small-font">
+            <thead>
+                <tr>
+                    <th width="10%">训练次数</th>
+                    <th>核心内容</th>
+                    <th>遇到的问题</th>
+                    <th>改进措施</th>
+                    <th>效果/结果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1-3</td>
+                    <td>底盘与装填梁通行测试</td>
+                    <td>抓取不稳，抬升慢</td>
+                    <td>增加爪部摩擦力，改进抬升力臂</td>
+                    <td>底盘通过顺畅，抓取、抬升效率提升</td>
+                </tr>
+                <tr>
+                    <td>4-6</td>
+                    <td>三角区定位与得分</td>
+                    <td>定位角调整慢</td>
+                    <td>采用半收起结构，优化程序</td>
+                    <td>三角区操作速度加快</td>
+                </tr>
+                <tr>
+                    <td>7-10</td>
+                    <td>高层堆叠与连续操作</td>
+                    <td>高层堆叠精度不足，连续操作有抖动</td>
+                    <td>微调抬升角度，检查连接件紧固</td>
+                    <td>堆叠精度提高，操作稳定性提升</td>
+                </tr>
+            </tbody>
         </table>
 
-        <h3>核心战术执行点</h3>
-        <div class="two-column-layout">
-            <div class="column">
-                <h4>1. 三角区突破</h4>
-                <p><strong>依据：</strong> 二代车新增的“半收起”定位角。</p>
-                <p><strong>战术：</strong> 利用直角定位结构，快速填满两个三角区（Triangle Goal），这是相比一代车得分暴涨 60+ 分的关键。</p>
-            </div>
-            <div class="column">
-                <h4>2. 高塔稳定性</h4>
-                <p><strong>依据：</strong> 机械臂力臂加长。</p>
-                <p><strong>战术：</strong> 在110分策略中，重点保证高塔Beam的送入稳定性。</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= PAGE 128: 赛前准备 ================= -->
-    <div class="sheet">
-        <h1>8.3 赛前集训与检查</h1>
-
-        <p>赛前一周，我们在叶恒瑞家中进行了高强度的针对性集训，重点解决了《训练记录》中暴露出的隐患。</p>
-
-        <div class="highlight-box type-default">
-            <h3>赛前突击集训记录</h3>
-            <ul>
-                <li>
-                    <strong>问题 A：翻转动作略慢</strong><br>
-                    <span class="text-gray">影响：</span> 技能赛时间不够。<br>
-                    <strong>对策：</strong> 调整了电机参数，提升翻转速度。
-                </li>
-                <li>
-                    <strong>问题 B：高塔送Pin不到位</strong><br>
-                    <span class="text-gray">影响：</span> 110分策略成功率低。<br>
-                    <strong>对策：</strong> 物理加长了机械臂力臂，并抬升了整体高度，确保能覆盖高塔接驳点。
-                </li>
-                <li>
-                    <strong>问题 C：边框扣Pin力度过大</strong><br>
-                    <span class="text-gray">影响：</span> 上层Pin过于摇晃，容易掉落。<br>
-                    <strong>对策：</strong> 训练操作手使用“点动”操作，减少回弹，实现轻柔扣Pin。
-                </li>
-            </ul>
-        </div>
-        <img src="assets/ch08/8_2_1.webp" alt="赛前检查清单"
-            style="display: block;height:280px; margin: 10px auto; border-radius: 10px;">
-
-        <!-- <div class="img-placeholder" style="height: 200px;">
-            [图片：赛前检查清单与机器调试照片]
-        </div> -->
-
-    </div>
-    <div class="sheet">
-        <h1>8.4 亚洲公开赛华北大区赛（1）</h1>
-
-        <div class="info-box"
-            style="background: #e8f6f3; padding: 15px; border-left: 5px solid var(--primary-color); margin-bottom: 20px;">
-            <p><strong>赛事名称：</strong> 2025-2026赛季VEX机器人亚洲公开赛华北大区（石家庄站）</p>
-            <p><strong>时间：</strong> 2025年10月4日 - 10月7日</p>
-            <p><strong>性质：</strong> 首次全封闭式长赛程体验</p>
-        </div>
-
-        <h3 class="text-teal">一、 比赛日程记录 (Timeline)</h3>
-        <table class="checklist-table" style="font-size: 14px;">
-            <tr style="background-color: #f9f9f9;">
-                <td width="20%"><strong>10.04</strong></td>
-                <td>全天报到注册、机器检录。</td>
-            </tr>
-            <tr>
-                <td><strong>10.05</strong></td>
-                <td>
-                    09:00 开幕式 & 队长会议<br>
-                    11:00 练习赛<br>
-                    13:00-18:00 资格赛、技能赛启动
-                </td>
-            </tr>
-            <tr style="background-color: #f9f9f9;">
-                <td><strong>10.06</strong></td>
-                <td>
-                    全天资格赛与技能赛。<br>
-                    关键节点：17:00 联队选择与代码最终测试。
-                </td>
-            </tr>
-            <tr>
-                <td><strong>10.07</strong></td>
-                <td>09:00 决赛阶段<br>
-                    3:00 颁奖典礼<br>
-                    16:00 结束。</td>
-            </tr>
+        <h3 class="text-purple" style="margin-top:20px;">二代车 vs 三代车 核心性能对比</h3>
+        <table class="comparison-table small-font">
+            <thead>
+                <tr>
+                    <th>性能指标</th>
+                    <th>二代车 (Gen 2)</th>
+                    <th>三代车 (Gen 3)</th>
+                    <th width="30%">提升说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>通过装填梁时间</strong></td>
+                    <td>约 2.5 秒</td>
+                    <td class="highlight-cell">约 1.5 秒</td>
+                    <td>底盘上移，无摩擦，速度更快</td>
+                </tr>
+                <tr>
+                    <td><strong>三角区操作效率</strong></td>
+                    <td>灵活，但需完全收放</td>
+                    <td class="highlight-cell">更灵活，半收起响应更快</td>
+                    <td>气缸行程缩短，程序配合更紧密</td>
+                </tr>
+                <tr>
+                    <td><strong>高层堆叠稳定性</strong></td>
+                    <td>较高</td>
+                    <td class="highlight-cell">极高</td>
+                    <td>面状辅助结构，有效防止碰撞导致的倾倒</td>
+                </tr>
+            </tbody>
         </table>
-
     </div>
-    <div class="sheet">
-        <h1>8.4 亚洲公开赛华北大区赛（2）</h1>
-        <h3 class="text-teal" style="margin-top: 20px;">二、 赛况与表现 (Performance)</h3>
-        <div class="two-column-layout">
-            <div class="column">
-                <h4>比赛数据</h4>
-                <ul>
-                    <li><strong>场次：</strong> 共完成 8 场资格赛。</li>
-                    <li><strong>最高分：</strong><strong>277分</strong> (联手 683A)。</li>
-                    <li><strong>最终排名：</strong> 决赛联手 391A，排名第 17 名。</li>
-                    <li><strong>奖项：</strong> 获得一等奖（遗憾未晋级西安国赛）。</li>
-                </ul>
-            </div>
-            <img src="assets/ch08/8_4_1.webp" alt="北京市教委机器人大赛参赛照片"
-                style="display: block;height:260px; margin: 10px auto; border-radius: 10px;">
 
-            <div class="column">
-                <h4>现场体验与突发状况</h4>
-                <ul>
-                    <li><strong>封闭环境压力：</strong> 首次面对全封闭赛场与“封箱”规则（赛后机器贴封条不可带出），三人团队心理高度紧张。</li>
-                    <li><strong>评审抽查：</strong> 参与了第一版工程笔记的评审答辩，被重点考察了零件认知与程序掌握能力。</li>
-                    <li><strong>紧急维修：</strong> 严重故障！
-                        备赛中横销断裂。现场紧急借用短销固定，操作手在极度紧张（双手颤抖）的情况下完成了修复并坚持完赛。</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-    <div class="sheet">
-        <h1>8.4 亚洲公开赛华北大区赛（3）</h1>
-
-        <p>石家庄站虽然获得了一等奖，但暴露出的硬件隐患和准备不足几乎导致比赛崩盘。以下是基于本次惨痛教训的深度复盘。</p>
-
-        <h3 class="text-red">严重硬件事故分析 (Critical Issues)</h3>
-        <div class="highlight-box type-default" style="background-color: #fff5f5; border-left-color: #e74c3c;">
-            <p><strong>电机过热危机 (Overheating Incident)</strong></p>
-            <p><strong>现象：</strong> 赛前一晚发现两个核心电机严重发烫，导致功率下降。</p>
-            <p><strong>原因：</strong> 高强度连续训练，且缺乏散热机制。</p>
-            <p><strong>后果：</strong>
-            <ul style="margin-bottom:0;">
-                <li>现场没有备用电机，无法更换。</li>
-                <li>只能购买“速冷气罐”物理降温，被迫中断了关键的赛前练习。</li>
-                <li>比赛全程提心吊胆，存在极大的失控风险。</li>
-            </ul>
-            </p>
-        </div>
-
-    </div>
-    <div class="sheet">
-        <h1>8.4 亚洲公开赛华北大区赛（4）</h1>
-        <h3 class="text-teal" style="margin-top: 20px;">改进措施与行动清单 (Action Plan)</h3>
-
-        <h4>1. 物料清单重构 (Inventory Update)</h4>
-        <p>吸取无备件可用的教训，重新制定了必须携带的“保命清单”：</p>
-        <table style="width: 100%; margin-bottom: 20px;">
-            <tr style=" font-weight: bold;">
-                <td style="padding: 8px;">类别</td>
-                <td style="padding: 8px;">新增必带备件</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border-bottom: 1px solid ">动力系统</td>
-                <td style="padding: 8px; border-bottom: 1px solid "><strong>备用电机 x4</strong>、电机降温喷雾</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px; border-bottom: 1px solid ">结构件</td>
-                <td style="padding: 8px; border-bottom: 1px solid ">长短销（Pin）、横销、气管、气杆</td>
-            </tr>
-        </table>
-
-        <h4>2. 工程笔记迭代</h4>
-        <p>第一版笔记虽然通过了抽查，但内容深度不足。后续需加强对“半年VEX学习历程”的逻辑梳理，而不仅仅是记录结果。</p>
-
-        <div class="strategy-card" style="margin-top: 30px; background-color: #fff8e1; border-left-color: #f39c12;">
-            <h4 style="margin-top: 0; color: #d35400;">⚠️ 战略转折点：启动三代车计划</h4>
-            <p>石家庄站的实战证明，二代车在应对长赛程和高强度对抗时存在底盘不稳和散热瓶颈。
-                <br><strong>决定：</strong> 在完成接下来的北京联赛后，必须立即启动 <strong>三代车 (Gen 3)</strong> 的研发与迭代。
-            </p>
-        </div>
-
-    </div>
     <!-- ================= PAGE 129: 比赛记录 ================= -->
     <div class="sheet">
         <h1>8.5 北京校际联赛（1）</h1>
@@ -626,7 +502,7 @@
         </div>
         <h3>四、 比赛结果</h3>
 
-            <p>尽管过程惊险，但资格赛发挥稳定，最终成功获得 <strong>北京市机器人智能大赛（市赛）资格</strong>。</p>
+        <p>尽管过程惊险，但资格赛发挥稳定，最终成功获得 <strong>北京市机器人智能大赛（市赛）资格</strong>。</p>
 
     </div>
     <div class="sheet">
@@ -719,94 +595,76 @@
         </div>
 
     </div>
-<div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（1）</h1>
+    <div class="sheet">
+        <h1>8.8 各代得分策略对比（1）</h1>
         <img src="assets/ch08/g1vg2_1.webp" alt="一代车二代车对比（1）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（2）</h1>
+        <h1>8.8 各代得分策略对比（2）</h1>
         <img src="assets/ch08/g1vg2_2.webp" alt="一代车二代车对比（2）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（3）</h1>
+        <h1>8.8 各代得分策略对比（3）</h1>
         <img src="assets/ch08/g1vg2_3.webp" alt="一代车二代车对比（3）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（4）</h1>
+        <h1>8.8 各代得分策略对比（4）</h1>
         <img src="assets/ch08/g1vg2_4.webp" alt="一代车二代车对比（4）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（5）</h1>
+        <h1>8.8 各代得分策略对比（5）</h1>
         <img src="assets/ch08/g1vg2_5.webp" alt="一代车二代车对比（5）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（6）</h1>
+        <h1>8.8 各代得分策略对比（6）</h1>
         <img src="assets/ch08/g1vg2_6.webp" alt="一代车二代车对比（6）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（7）</h1>
+        <h1>8.8 各代得分策略对比（7）</h1>
         <img src="assets/ch08/g1vg2_7.webp" alt="一代车二代车对比（7）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（8）</h1>
+        <h1>8.8 各代得分策略对比（8）</h1>
         <img src="assets/ch08/g1vg2_8.webp" alt="一代车二代车对比（8）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 一代车、二代车得分策略对比（9）</h1>
+        <h1>8.8 各代得分策略对比（9）</h1>
         <img src="assets/ch08/g1vg2_9.webp" alt="一代车二代车对比（9）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>第八章总结与未来计划</h1>
-
-        <p>
-            从石家庄的硬件故障，到西城区的流程混乱，再到北京市赛的“偏科”惨剧。第八章记录了二代车在动荡中成长的全过程。
+        <h1>8.9 赛季总结：迈向新的征程</h1>
+        <h3 class="text-purple">从不完美到卓越</h3>
+        <p>回顾整个赛季，我们从一代车的初步探索，到二代车的实战历练，再到三代车的全面成熟，每一步都充满了挑战与收获。二代车的“不完美”暴露了我们的短板，但也正是这些短板，指引了我们三代车的研发方向，并最终让我们登上了冠军的领奖台。
         </p>
 
-        <h3>后续改进方向 (Action Plan)</h3>
-        <div class="highlight-box type-teal">
-            <p><strong>基于连续失利的痛定思痛：</strong></p>
-            <ol>
-                <li>
-                    <strong>自动赛特训：</strong>
-                    今后的训练重心必须彻底倾斜。不再依靠手动赛的优势来掩盖自动赛的短板。<strong>目标：</strong> 形成肌肉记忆般的自动程序启动流程。
-                </li>
-                <li>
-                    <strong>路径优化：</strong>
-                    针对三角区进入慢的问题，计划采用<strong>“贴边直线送入”</strong>策略。即两点直线距离最短，车子前端准确贴边，快速送Pin，减少微调时间。
-                </li>
-                <li>
-                    <strong>底盘参数微调：</strong>
-                    针对漂移问题，将重新调整电机的速度与刹车参数，牺牲极少量的极速换取更强的抓地力。
-                </li>
-                <li>
-                    <strong>扣 Pin 柔性化：</strong>
-                    尝试在程序中减小自动扣 Pin 的瞬时功率，或者在机械结构上增加缓冲，解决“震荡掉件”问题。
-                </li>
-            </ol>
-        </div>
-
-        <p style="font-size: 35px;margin-top: 40px; text-align: center; font-weight: bold; color: #555;">
-            持续改进，永不止步。<br>
+        <h3 class="text-purple">未来展望</h3>
+        <p>VEX 比赛永无止境，技术的迭代也永不停歇。在享受胜利喜悦的同时，我们已经开始思考下一代机器的设计思路。</p>
+        <ul>
+            <li><strong>更强的对抗性：</strong> 未来的比赛可能会更加激烈，我们需要考虑如何在结构上进一步增强机器的抗冲击能力。</li>
+            <li><strong>更智能的自动化：</strong> 我们希望引入更先进的传感器（如视觉传感器），让机器人能够自主识别场地元素，实现更高阶的智能控制。</li>
+            <li><strong>模块化设计：</strong> 探索更加模块化的设计，以便能够根据不同的赛场情况，快速更换和调整功能模块。</li>
+        </ul>
+        <p style="font-size: 24px; margin-top: 40px; text-align: center; font-weight: bold; color: #555;">
+            持续改进，永不止步。2276A 的征程，未完待续。
         </p>
-
     </div>
 
     <script src="assets/scripts/toggle-buttons.js"></script>
