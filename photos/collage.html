@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Collage</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .sheet {
+            background: white;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.5cm;
+            box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+            width: 210mm;
+            height: 297mm;
+            padding: 1cm;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+        .collage-grid {
+            column-count: 3;
+            column-gap: 15px;
+        }
+        .collage-grid .photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+            transition: all 0.2s ease-in-out;
+        }
+        .collage-grid .photo:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+        }
+        .rotate-left {
+            transform: rotate(-4deg);
+        }
+        .rotate-right {
+            transform: rotate(4deg);
+        }
+        .photo-big {
+            column-span: all;
+        }
+    </style>
+</head>
+<body>
+    <div class="sheet">
+        <div class="collage-grid">
+            <img class="photo photo-big" src="big-0.jpg" alt="big-0">
+            <img class="photo rotate-left" src="02750e9a610d0b5bd8837ea221fcb01f.jpg" alt="photo">
+            <img class="photo rotate-right" src="08cc7bf6a1ca8659ee12f15c2bc10b44.jpg" alt="photo">
+            <img class="photo rotate-left" src="0f9ca2d3646487db7426dc090d4588ae.jpg" alt="photo">
+            <img class="photo rotate-right" src="116d05155c0ba6aa7f32db3d305fd75f.jpg" alt="photo">
+            <img class="photo rotate-left" src="117721f06cc799035b5f48a7071558b9.jpg" alt="photo">
+            <img class="photo rotate-right" src="14c05fa3a415ef1e811f846d80af38fd.jpg" alt="photo">
+            <img class="photo rotate-left" src="19f10cc723b9304dbc34d54b8edb37d9.jpg" alt="photo">
+            <img class="photo rotate-right" src="3c53a852226d3b0f102b3cf5068760bc.jpg" alt="photo">
+            <img class="photo rotate-left" src="42b36f30e8372f42ad613d8833599689.jpg" alt="photo">
+            <img class="photo rotate-right" src="50a2acea34be8a59716217c61b373028.jpg" alt="photo">
+            <img class="photo rotate-left" src="53217ef215e63894792b8f49d96c194d.jpg" alt="photo">
+        </div>
+    </div>
+    <div class="sheet">
+        <div class="collage-grid">
+            <img class="photo photo-big" src="big-1.jpg" alt="big-1">
+            <img class="photo rotate-right" src="65edc16e31d96c366556f000b404992d.jpg" alt="photo">
+            <img class="photo rotate-left" src="6b157fb06622ef7084d42705822e130b.jpg" alt="photo">
+            <img class="photo rotate-right" src="6c529a215a72b65d8a30d169b96d8081.jpg" alt="photo">
+            <img class="photo rotate-left" src="6d97ac677b0e32d28366f5d49be1427f.jpg" alt="photo">
+            <img class="photo rotate-right" src="7070da013ff2441646a84f31500434be.jpg" alt="photo">
+            <img class="photo rotate-left" src="708569a6a9e2d71bfb3d01349e4c30c7.jpg" alt="photo">
+            <img class="photo rotate-right" src="7eabeb45c0c7a78fdb5c438a53e70326.jpg" alt="photo">
+            <img class="photo rotate-left" src="8f02eef03913fc475e727ad87f7d548b.jpg" alt="photo">
+            <img class="photo rotate-right" src="9271eada7fb057345fe3e29fe13feba3.jpg" alt="photo">
+            <img class="photo rotate-left" src="94a3092b122355d4079c33b490c255ca.jpg" alt="photo">
+            <img class="photo rotate-right" src="951654c78d7489d81315ec5afc57bffc.jpg" alt="photo">
+        </div>
+    </div>
+    <div class="sheet">
+        <div class="collage-grid">
+            <img class="photo photo-big" src="big-2.jpg" alt="big-2">
+            <img class="photo rotate-left" src="9aefb530073306a0df652cd53aa32478.jpg" alt="photo">
+            <img class="photo rotate-right" src="aafd2c88143d6c4993861620373034d1.jpg" alt="photo">
+            <img class="photo rotate-left" src="acd89c397645e27dd7f8e552067d89c6.jpg" alt="photo">
+            <img class="photo rotate-right" src="ba15ea4355d051ba4384b6b9fff8eb3a.jpg" alt="photo">
+            <img class="photo rotate-left" src="c1b05a846ee7ebebad2dc42f20327781.jpg" alt="photo">
+            <img class="photo rotate-right" src="c5094a1f80dd8cce7416c588d466367f.jpg" alt="photo">
+            <img class="photo rotate-left" src="c9c0636e8635082c605d40f5a7603c93.jpg" alt="photo">
+            <img class="photo rotate-right" src="ca33e6d1c351cd7abe3b912719279249.jpg" alt="photo">
+            <img class="photo rotate-left" src="ca38028a7fcb521b9f5115c9327567a0.jpg" alt="photo">
+            <img class="photo rotate-right" src="cd481d940c55482b090bbf1856a9193b.jpg" alt="photo">
+            <img class="photo rotate-left" src="cd8b1b092d3a91797defa7090afef4e8.jpg" alt="photo">
+            <img class="photo rotate-right" src="d15d0db70a95ef25288eb1b321db79c1.jpg" alt="photo">
+        </div>
+    </div>
+</body>
+</html>

@@ -83,6 +83,17 @@
             margin-bottom: 20px;
         }
 
+        .highlight-box {
+            font-size: 22px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
         .text-purple {
             color: var(--primary-color);
             font-weight: bold;
@@ -93,6 +104,32 @@
             border-left: 5px solid var(--primary-color);
             padding: 15px;
             margin-bottom: 20px;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 20px;
+            /* Adjust gap as needed */
+            align-items: flex-start;
+            /* Aligns content to the top of each column */
+            margin-bottom: 20px;
+        }
+
+        .two-column-layout .column {
+            flex: 1;
+            /* Each column takes equal space */
+        }
+
+        .text-teal {
+            color: var(--primary-color);
+        }
+
+        .text-red {
+            color: #c0392b;
+        }
+
+        .text-green {
+            color: #27ae60;
         }
     </style>
 </head>
@@ -455,7 +492,7 @@
         <h3>三、 突发状况与流程漏洞</h3>
 
         <div class="analysis-section">
-            <span class="analysis-title text-red">1. 外联系统的崩溃</span>
+            <span class="analysis-title text-teal">1. 外联系统的崩溃</span>
             <p>本次比赛的外联环节出现了严重的效率问题，导致有局比赛甚至没能联系上队友，被迫在赛台前临时沟通策略。</p>
             <table class="checklist-table" style="font-size: 13px;">
                 <tr>
@@ -569,10 +606,10 @@
     </div>
     <div class="sheet">
         <h1>8.7 北京市中小学生机器人智能大赛（3）</h1>
-        <h3 class="text-red">三、 深度复盘与教训 (Post-Match Analysis)</h3>
+        <h3 class="text-teal">三、 深度复盘与教训 (Post-Match Analysis)</h3>
 
         <div class="analysis-section">
-            <span class="analysis-title text-red">1. 自动赛的系统性崩盘</span>
+            <span class="analysis-title text-teal">1. 自动赛的系统性崩盘</span>
             <p>连续三场大赛（华北、西城、北京）均在自动赛环节掉链子，暴露出深层问题：</p>
             <ul>
                 <li><strong>训练缺失：</strong> 自动赛未得到应有的重视，已成为团队的“阿喀琉斯之踵”。</li>
@@ -596,61 +633,162 @@
 
     </div>
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（1）</h1>
+        <h1>8.8 VEX亚洲公开赛国际签名赛（1）</h1>
+
+        <div class="info-box"
+            style="background: #fff8e1; padding: 15px; border-left: 5px solid #f39c12; margin-bottom: 20px;">
+            <p><strong>赛事名称：</strong> 2025-2026 VEX机器人亚洲公开赛国际签名赛</p>
+            <p><strong>时间：</strong> 2025年12月18日 - 12月21日</p>
+            <p><strong>地点：</strong> 北京石景山首钢国际会展中心</p>
+            <p><strong>性质：</strong> 亚洲公开赛系列赛事 (Asia Open Signature Event)</p>
+        </div>
+
+        <h3 class="text-teal">一、 比赛日程 (Schedule)</h3>
+        <table class="checklist-table" style="font-size: 14px; margin-bottom: 20px;">
+            <tr style="background-color: #f9f9f9;">
+                <td width="20%"><strong>12.18</strong></td>
+                <td>注册报到、机器人检录</td>
+            </tr>
+            <tr>
+                <td width="20%"><strong>12.19</strong></td>
+                <td>练习赛、资格赛、技能赛</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td width="20%"><strong>12.20</strong></td>
+                <td>资格赛 / 技能赛</td>
+            </tr>
+            <tr>
+                <td width="20%"><strong>12.21</strong></td>
+                <td>决赛</td>
+            </tr>
+        </table>
+
+        <h3 class="text-teal">二、 赛况表现</h3>
+        <div class="two-column-layout">
+            <div class="column">
+                <p>作为赛季末的重要赛事，本次比赛我们的目标是检验三代车的极限性能。然而，比赛过程一波三折，暴露了我们在高压下的稳定性和应变能力问题。</p>
+            </div>
+            <div class="column">
+                <img src="assets/ch08/8_8_1.webp" alt="首钢比赛现场照片"
+                    style="display: block;max-height:250px; margin: 10px auto; border-radius: 10px;">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sheet">
+        <h1>8.8 VEX亚洲公开赛国际签名赛（2）</h1>
+
+        <h3 class="text-teal">三、 核心问题：三角区得分不稳定</h3>
+        <div class="analysis-section">
+            <span class="analysis-title text-teal">1. 故障现象与临时补救</span>
+            <p>比赛中反复出现<strong>“三角区频繁出错，爪子高度不稳定”</strong>的严重问题。预设的自动化路线无法顺利完成，导致我们在关键的得分环节屡屡失手。</p>
+            <ul>
+                <li><strong>根本原因：</strong> 赛后分析发现，问题源于爪子抬升高度的程序变量不够精确。</li>
+                <li><strong>临时措施：</strong>
+                    在赛场上，我们来不及排查根本原因，只能依靠操作手通过“稍微偏一下送进的方向”来手动补偿，但这导致每次操作都额外耗费了<strong>2-3秒</strong>。</li>
+                <li><strong>赛间调整：</strong> 期间，我们曾尝试在程序中将抬升高度（`PIN=5`变量）调高3度，这在一定程度上缓解了问题，但并未根除。</li>
+            </ul>
+        </div>
+        <br>
+        <img src="assets/ch08/8_8_2.webp" alt="比赛现场"
+            style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>8.8 VEX亚洲公开赛国际签名赛（3）</h1>
+
+        <div class="analysis-section">
+            <span class="analysis-title text-teal">2. 资格赛与决赛表现</span>
+            <p>受三角区问题影响，我们在8场资格赛中表现起伏巨大：</p>
+            <ul>
+                <li><strong>高光时刻：</strong> 在问题不突出的场次，与联队打出了 <strong>374分</strong> 的全场最高分。</li>
+                <li><strong>至暗时刻：</strong> 在Q148场次，由于我方三角区失误加上对方路线问题，仅得 <strong>132分</strong>。</li>
+                <li><strong>决赛遗憾：</strong> 在决赛中，联队队友出现失误，将万能梁勾入我方场地，导致我们无法放置双色销钉，损失34分，最终成绩仅为 <strong>217分</strong>。
+                </li>
+            </ul>
+        </div>
+        <br>
+        <img src="assets/ch08/8_8_3.webp" alt="比赛现场"
+            style="display: block;height:300px; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <div class="sheet">
+        <h1>8.8 VEX亚洲公开赛国际签名赛（4）</h1>
+
+        <h3 class="text-teal">四、 技能赛与最终成绩</h3>
+        <h4>技能赛 (Skills)</h4>
+        <ul>
+            <li><strong>自动技能：</strong> <strong>201分 (满分)</strong>，程序稳定性得到验证。
+            </li>
+            <li><strong>手动技能：</strong> 173分，表现尚可，但仍有提升空间。</li>
+            <li><strong>总排名：</strong> 技能赛总分排名 <strong>第5</strong>。</li>
+        </ul>
+        <div class="highlight-box type-teal">
+            <strong>🏆 最终获奖：巧思奖 (Think Award)</strong><br>
+            评委对我队在自动程序设计和调试过程中的严谨测试流程给予了高度评价，最终授予我们“巧思奖”。
+        </div>
+        <br>
+
+        <img src="assets/ch08/8_8_4.webp" alt="巧思奖"
+            style="display: block;height:400px; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <div class="sheet">
+        <h1>8.9 各代得分策略对比（1）</h1>
         <img src="assets/ch08/g1vg2_1.webp" alt="一代车二代车对比（1）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（2）</h1>
+        <h1>8.9 各代得分策略对比（2）</h1>
         <img src="assets/ch08/g1vg2_2.webp" alt="一代车二代车对比（2）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（3）</h1>
+        <h1>8.9 各代得分策略对比（3）</h1>
         <img src="assets/ch08/g1vg2_3.webp" alt="一代车二代车对比（3）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（4）</h1>
+        <h1>8.9 各代得分策略对比（4）</h1>
         <img src="assets/ch08/g1vg2_4.webp" alt="一代车二代车对比（4）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（5）</h1>
+        <h1>8.9 各代得分策略对比（5）</h1>
         <img src="assets/ch08/g1vg2_5.webp" alt="一代车二代车对比（5）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（6）</h1>
+        <h1>8.9 各代得分策略对比（6）</h1>
         <img src="assets/ch08/g1vg2_6.webp" alt="一代车二代车对比（6）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（7）</h1>
+        <h1>8.9 各代得分策略对比（7）</h1>
         <img src="assets/ch08/g1vg2_7.webp" alt="一代车二代车对比（7）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（8）</h1>
+        <h1>8.9 各代得分策略对比（8）</h1>
         <img src="assets/ch08/g1vg2_8.webp" alt="一代车二代车对比（8）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.8 各代得分策略对比（9）</h1>
+        <h1>8.9 各代得分策略对比（9）</h1>
         <img src="assets/ch08/g1vg2_9.webp" alt="一代车二代车对比（9）"
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <div class="sheet">
-        <h1>8.9 赛季总结：迈向新的征程</h1>
+        <h1>8.10 赛季总结：迈向新的征程</h1>
         <h3 class="text-purple">从不完美到卓越</h3>
         <p>回顾整个赛季，我们从一代车的初步探索，到二代车的实战历练，再到三代车的全面成熟，每一步都充满了挑战与收获。二代车的“不完美”暴露了我们的短板，但也正是这些短板，指引了我们三代车的研发方向，并最终让我们登上了冠军的领奖台。
         </p>
