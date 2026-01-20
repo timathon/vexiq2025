@@ -32,9 +32,87 @@
             height: auto;
             max-height: 600px;
             /* Limit height to fit page */
-            object-fit: contain;
-            /* Ensure image fits nicely */
-            border-radius: 2px;
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
         }
 
         .caption {
@@ -448,10 +526,47 @@
             style="height:300px; display: block; margin: 40px auto; border-radius: 10px;">
     </div>
 
+    <!-- Floating scroll buttons -->
+    <div class="scroll-buttons">
+        <button id="scrollToTopBtn" class="scroll-btn" title="回到顶部">↑</button>
+        <button id="scrollToBottomBtn" class="scroll-btn" title="跳转底部">↓</button>
+    </div>
+
     <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/scroll-navigation.js"></script>
+    <script>
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll to bottom function
+        function scrollToBottom() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const topBtn = document.getElementById('scrollToTopBtn');
+            const bottomBtn = document.getElementById('scrollToBottomBtn');
+
+            if (topBtn) {
+                topBtn.addEventListener('click', scrollToTop);
+            }
+
+            if (bottomBtn) {
+                bottomBtn.addEventListener('click', scrollToBottom);
+            }
+        });
+    </script>
 </body>
 
 </html>
