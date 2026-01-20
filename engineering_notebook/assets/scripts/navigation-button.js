@@ -41,30 +41,58 @@ document.addEventListener('DOMContentLoaded', function() {
         "chzz": "#F79A19",
     };
 
+    // Calculate page ranges
+    let currentPageStart = 1;
+
     // Add link for Introduction
     const introLink = document.createElement('a');
     introLink.href = 'index.html';
-    introLink.textContent = 'Introduction (' + chapterPageCounts['index'] + ' pages)';
+    const introStartPage = currentPageStart;
+    const introEndPage = currentPageStart + (chapterPageCounts['index'] - 1);
+    introLink.textContent = 'Introduction (' + introStartPage + '-' + introEndPage + ', ' + chapterPageCounts['index'] + ' pages)';
     introLink.style.backgroundColor = chapterColors['index'];
     introLink.style.color = 'white';
     linksContainer.appendChild(introLink);
 
+    // Update current page start for next chapter
+    currentPageStart = introEndPage + 1;
+
+    // Define Chinese chapter titles to match index.html
+    const chapterTitles = {
+        "ch01": "第一章：梦开始的地方",
+        "ch02": "第二章：2025-2026 规则分析",
+        "ch03": "第三章：STEM 理念与设计概论",
+        "ch04": "第四章：概念设计与方案研讨",
+        "ch05": "第五章：物理搭建与软件配置",
+        "ch06": "第六章：一代车实战验证与竞赛季",
+        "ch07": "第七章：二代车 (Gen 2) 的进化之路",
+        "ch08": "第八章：三代车 (Gen 3) 的研发与实战"
+    };
 
     for (let i = 1; i <= 8; i++) {
         const link = document.createElement('a');
         const chapter = 'ch' + ('0' + i).slice(-2);
+
+        const chapterStartPage = currentPageStart;
+        const chapterEndPage = currentPageStart + (chapterPageCounts[chapter] - 1);
+
         link.href = chapter + '.html';
-        // Example: Display chapter and its page count. Modify as needed.
-        link.textContent = 'Chapter ' + i + ' (' + chapterPageCounts[chapter] + ' pages)';
+        // Use Chinese chapter title instead of generic 'Chapter X'
+        link.textContent = chapterTitles[chapter] + ' (' + chapterStartPage + '-' + chapterEndPage + ', ' + chapterPageCounts[chapter] + ' pages)';
         link.style.backgroundColor = chapterColors[chapter];
         link.style.color = 'white';
         linksContainer.appendChild(link);
+
+        // Update current page start for next chapter
+        currentPageStart = chapterEndPage + 1;
     }
 
     // Add link for chzz
     const chzzLink = document.createElement('a');
     chzzLink.href = 'chzz.html';
-    chzzLink.textContent = 'Chapter ZZ (' + chapterPageCounts['chzz'] + ' pages)';
+    const chzzStartPage = currentPageStart;
+    const chzzEndPage = currentPageStart + (chapterPageCounts['chzz'] - 1);
+    chzzLink.textContent = '附录：感悟与成长及获奖记录 (' + chzzStartPage + '-' + chzzEndPage + ', ' + chapterPageCounts['chzz'] + ' pages)';
     chzzLink.style.backgroundColor = chapterColors['chzz'];
     chzzLink.style.color = 'white';
     linksContainer.appendChild(chzzLink);
@@ -76,43 +104,59 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPage = path.split("/").pop();
     const currentChapterMatch = currentPage.match(/ch(\d+)\.html/);
 
+    // Recalculate page ranges for consistency with navigation menu
+    let calculatedPageStart = 1;
+
     if (currentChapterMatch) {
         const chapterNumber = parseInt(currentChapterMatch[1], 10);
-        let startPage = 1;
+
+        // Calculate the start page for the current chapter
+        calculatedPageStart = 1;
 
         // Add pages from index.html
-        startPage += chapterPageCounts['index'] || 0;
+        calculatedPageStart += chapterPageCounts['index'] || 0;
 
         for (let i = 1; i < chapterNumber; i++) {
             const chapterKey = 'ch' + ('0' + i).slice(-2);
-            startPage += chapterPageCounts[chapterKey] || 0;
+            calculatedPageStart += chapterPageCounts[chapterKey] || 0;
         }
 
         const sheets = document.querySelectorAll('.sheet');
         sheets.forEach((sheet, index) => {
             const pageNumberDiv = document.createElement('div');
             pageNumberDiv.classList.add('page-number');
-            pageNumberDiv.textContent = startPage + index;
+            pageNumberDiv.textContent = calculatedPageStart + index;
             sheet.appendChild(pageNumberDiv);
         });
     } else if (currentPage === 'chzz.html') {
         // Handle page numbering for chzz
-        let startPage = 1;
+        calculatedPageStart = 1;
 
         // Add pages from index.html
-        startPage += chapterPageCounts['index'] || 0;
+        calculatedPageStart += chapterPageCounts['index'] || 0;
 
         // Add pages from chapters 1-8
         for (let i = 1; i <= 8; i++) {
             const chapterKey = 'ch' + ('0' + i).slice(-2);
-            startPage += chapterPageCounts[chapterKey] || 0;
+            calculatedPageStart += chapterPageCounts[chapterKey] || 0;
         }
 
         const sheets = document.querySelectorAll('.sheet');
         sheets.forEach((sheet, index) => {
             const pageNumberDiv = document.createElement('div');
             pageNumberDiv.classList.add('page-number');
-            pageNumberDiv.textContent = startPage + index;
+            pageNumberDiv.textContent = calculatedPageStart + index;
+            sheet.appendChild(pageNumberDiv);
+        });
+    } else if (currentPage === 'index.html') {
+        // Handle page numbering for index.html
+        calculatedPageStart = 1;
+
+        const sheets = document.querySelectorAll('.sheet');
+        sheets.forEach((sheet, index) => {
+            const pageNumberDiv = document.createElement('div');
+            pageNumberDiv.classList.add('page-number');
+            pageNumberDiv.textContent = calculatedPageStart + index;
             sheet.appendChild(pageNumberDiv);
         });
     }
