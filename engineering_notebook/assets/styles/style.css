@@ -653,10 +653,50 @@ body.hide-other-elements .page-number {
 }
 
 .prev-chapter-btn {
-    bottom: 20px;
-    left: 20px;
+    bottom: 200px; /* Position above the scroll buttons */
+    right: 20px;
     background-color: #3498db;
     color: white;
+}
+
+/* Floating scroll buttons */
+.scroll-buttons {
+    position: fixed;
+    bottom: 80px; /* Adjusted to avoid overlap with chapter nav buttons */
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scroll-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px); /* Slight blur effect */
+}
+
+.scroll-btn:hover {
+    background-color: rgba(70, 70, 70, 0.8);
+    transform: scale(1.1);
+}
+
+/* Print styles - hide buttons when printing */
+@media print {
+    .scroll-buttons {
+        display: none;
+    }
 }
 
 /* Hide navigation buttons when printing */

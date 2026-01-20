@@ -34,7 +34,7 @@
         /* Floating scroll buttons */
         .scroll-buttons {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px;
             right: 20px;
             z-index: 1000;
             display: flex;
@@ -870,47 +870,10 @@
         </p>
     </div>
 
-    <!-- Floating scroll buttons -->
-    <div class="scroll-buttons">
-        <button id="scrollToTopBtn" class="scroll-btn" title="回到顶部">↑</button>
-        <button id="scrollToBottomBtn" class="scroll-btn" title="跳转底部">↓</button>
-    </div>
-
     <script src="assets/scripts/toggle-buttons.js"></script>
     <script src="assets/scripts/navigation-button.js"></script>
     <script src="assets/scripts/common-elements.js"></script>
     <script src="assets/scripts/scroll-navigation.js"></script>
-    <script>
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Scroll to bottom function
-        function scrollToBottom() {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-        }
-
-        // Add event listeners when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function () {
-            const topBtn = document.getElementById('scrollToTopBtn');
-            const bottomBtn = document.getElementById('scrollToBottomBtn');
-
-            if (topBtn) {
-                topBtn.addEventListener('click', scrollToTop);
-            }
-
-            if (bottomBtn) {
-                bottomBtn.addEventListener('click', scrollToBottom);
-            }
-        });
-    </script>
 </body>
 
 </html>
