@@ -621,3 +621,47 @@ body.hide-other-elements .page-number {
 .highlight-box.margin-large {
     margin-top: 40px;
 }
+
+/* Chapter Navigation Buttons */
+.chapter-nav-btn {
+    position: fixed;
+    z-index: 1001;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0.95;
+    min-width: 200px;
+    text-align: center;
+}
+
+.chapter-nav-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.next-chapter-btn {
+    bottom: 20px;
+    right: 20px;
+    background-color: #27ae60;
+    color: white;
+}
+
+.prev-chapter-btn {
+    bottom: 20px;
+    left: 20px;
+    background-color: #3498db;
+    color: white;
+}
+
+/* Hide navigation buttons when printing */
+@media print {
+    .chapter-nav-btn {
+        display: none;
+    }
+}
