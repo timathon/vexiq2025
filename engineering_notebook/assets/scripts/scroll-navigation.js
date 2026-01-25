@@ -20,15 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextChapterButton = document.createElement('button');
     nextChapterButton.id = 'next-chapter-btn';
     nextChapterButton.className = 'chapter-nav-btn next-chapter-btn';
-    nextChapterButton.textContent = '点击跳转到下一章';
-    nextChapterButton.setAttribute('aria-label', '点击跳转到下一章');
+    nextChapterButton.textContent = '转到下一章';
+    nextChapterButton.setAttribute('aria-label', '转到下一章');
 
     // Create previous chapter button
     const prevChapterButton = document.createElement('button');
     prevChapterButton.id = 'prev-chapter-btn';
     prevChapterButton.className = 'chapter-nav-btn prev-chapter-btn';
-    prevChapterButton.textContent = '点击跳转到上一章';
-    prevChapterButton.setAttribute('aria-label', '点击跳转到上一章');
+    prevChapterButton.textContent = '转到上一章';
+    prevChapterButton.setAttribute('aria-label', '转到上一章');
 
     // Add buttons to body - add prev button first so it appears above the scroll buttons
     document.body.appendChild(prevChapterButton);
