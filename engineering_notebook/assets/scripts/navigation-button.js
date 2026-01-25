@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch04": 10,
         "ch05": 12,
         "ch06": 15,
-        "ch07": 22,
+        "ch07": 23,
         "ch08": 30,
         "chzz": 6
     };

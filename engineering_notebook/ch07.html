@@ -743,37 +743,72 @@
         </div>
     </div>
     <div class="sheet">
-        <h1>7.12 赛前集训与检查</h1>
+        <h1>7.12 赛前集训与检查 (1)</h1>
 
-        <p>赛前一周，我们在叶恒瑞家中进行了高强度的针对性集训，重点解决了《训练记录》中暴露出的隐患。</p>
+        <p>在华北大区赛前（10月1日至3日），我们在日坛训练基地进行了为期两天的封闭式集训。本次集训的核心目标是针对二代车进行极限性能测试与问题排查，确保其在正式比赛中的稳定性与得分效率。</p>
 
-        <div class="highlight-box type-default">
-            <h3>赛前突击集训记录</h3>
-            <ul>
-                <li>
-                    <strong>问题 A：翻转动作略慢</strong><br>
-                    <span class="text-gray">影响：</span> 技能赛时间不够。<br>
-                    <strong>对策：</strong> 调整了电机参数，提升翻转速度。
-                </li>
-                <li>
-                    <strong>问题 B：高塔送Pin不到位</strong><br>
-                    <span class="text-gray">影响：</span> 110分策略成功率低。<br>
-                    <strong>对策：</strong> 物理加长了机械臂力臂，并抬升了整体高度，确保能覆盖高塔接驳点。
-                </li>
-                <li>
-                    <strong>问题 C：边框扣Pin力度过大</strong><br>
-                    <span class="text-gray">影响：</span> 上层Pin过于摇晃，容易掉落。<br>
-                    <strong>对策：</strong> 训练操作手使用“点动”操作，减少回弹，实现轻柔扣Pin。
-                </li>
-            </ul>
-        </div>
-        <img src="assets/ch08/8_2_1.webp" alt="赛前检查清单"
-            style="display: block;height:280px; margin: 10px auto; border-radius: 10px;">
+        <table class="training-table">
+            <thead>
+                <tr>
+                    <th width="15%">测试项目</th>
+                    <th width="15%">策略目标</th>
+                    <th>发现问题 & 解决方案</th>
+                    <th width="15%">效果/得分影响</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>高塔堆叠能力</td>
+                    <td>确保110分策略中高塔任务的稳定性。</td>
+                    <td><strong>问题：</strong>堆叠的万能梁高度不够，无法完成高塔任务。<br><strong>解决：</strong>底盘降速，增加抬升过程的稳定性；固定抓取摩擦点，确保初始位置精准。</td>
+                    <td class="text-green">高塔堆叠成功率提升，为178分策略奠定基础。</td>
+                </tr>
+                <tr>
+                    <td>连续抓取与堆叠</td>
+                    <td>测试自动化抓取和堆叠多个销钉的连贯性。</td>
+                    <td><strong>问题：</strong>连续抓取失误率高；动作衔接慢。<br><strong>解决：</strong>调整钩爪弧度，优化程序延时，使动作更流畅。</td>
+                    <td>单次循环时间减少，提升了技能赛中快速得分的能力。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sheet">
+        <h1>7.12 赛前集训与检查 (2)</h1>
+        
+        <table class="training-table">
+            <thead>
+                <tr>
+                    <th width="15%">测试项目</th>
+                    <th width="15%">策略目标</th>
+                    <th>发现问题 & 解决方案</th>
+                    <th width="15%">效果/得分影响</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>边框扣Pin</td>
+                    <td>提升边框扣Pin的速度和准确性。</td>
+                    <td><strong>问题：</strong>扣Pin时常对不准，导致销钉掉落。<br><strong>解决：</strong>在抓手两侧增加塑料片，利用其弹力辅助定位，有效防止失误。</td>
+                    <td class="text-green">边框得分稳定性大幅提升。</td>
+                </tr>
+                <tr>
+                    <td>堆叠顺序与路线</td>
+                    <td>优化得分路线，找出最高效的堆叠顺序。</td>
+                    <td><strong>发现：</strong>不同的堆叠顺序对最终结果有显著影响。<br><strong>策略：</strong>根据测试结果，固化了“先三角区，后中心区”的最优路线方案。</td>
+                    <td>为自动赛和手动赛制定了标准操作流程。</td>
+                </tr>
+                <tr>
+                    <td>翻转稳定性</td>
+                    <td>减少销钉在翻转过程中的晃动。</td>
+                    <td><strong>问题：</strong>翻转后销钉晃动，影响堆叠精度。<br><strong>解决：</strong>在机械结构上增加堆叠定位装置，减少晃动。</td>
+                    <td>确保了在复杂动作后，销钉姿态依然稳定。</td>
+                </tr>
+            </tbody>
+        </table>
 
-        <!-- <div class="img-placeholder" style="height: 200px;">
-            [图片：赛前检查清单与机器调试照片]
-        </div> -->
+        <p style="margin-top: 20px;">通过本次集训，我们系统性地解决了二代车在抓取、堆叠和自动化程序中的多个关键问题。不仅优化了硬件，更重要的是固化了比赛策略和操作流程，为即将到来的大赛做好了充分的技术和战术准备。</p>
 
+        <!-- <img src="assets/ch08/8_2_1.webp" alt="赛前检查清单" style="display: block;height:280px; margin: 10px auto; border-radius: 10px;"> -->
     </div>
     <div class="sheet">
         <h1>7.13 亚洲公开赛华北大区赛（1）</h1>
