@@ -136,6 +136,17 @@
     /* 172mm + 29mm */
 }
 
+.theme-ch09 {
+    --primary-color: #34495E; /* Dark Slate Blue */
+    --secondary-color: #4A6572; /* Desaturated Dark Cyan */
+    --tertiary-color: #607D8B; /* Light Slate Gray */
+    --quaternary-color: #B0BEC5; /* Light Blue Gray */
+    --background-color-light: #ECEFF1; /* Very Light Gray */
+    --sheet-border-color: #4A6572;
+    --chapter-marker-color: #4A6572;
+    --chapter-marker-top: 259mm; /* 230mm + 29mm */
+}
+
 
 /* 页面基础设置 */
 @page {

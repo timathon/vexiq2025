@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch06": 15,
         "ch07": 23,
         "ch08": 30,
+        "ch09": 12,
         "chzz": 6
     };
 
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch06": "#00ACC1",
         "ch07": "#450693", // Updated color
         "ch08": "#008080",
+        "ch09": "#34495E",
         "chzz": "#F79A19",
     };
 
@@ -66,10 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch05": "第五章：物理搭建与软件配置",
         "ch06": "第六章：一代车实战验证与竞赛季",
         "ch07": "第七章：二代车 (Gen 2) 的进化之路",
-        "ch08": "第八章：三代车 (Gen 3) 的研发与实战"
+        "ch08": "第八章：三代车 (Gen 3) 的研发与实战",
+        "ch09": "第九章：四代车编程升级"
     };
 
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 9; i++) {
         const link = document.createElement('a');
         const chapter = 'ch' + ('0' + i).slice(-2);
 
@@ -135,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add pages from index.html
         calculatedPageStart += chapterPageCounts['index'] || 0;
 
-        // Add pages from chapters 1-8
-        for (let i = 1; i <= 8; i++) {
+        // Add pages from chapters 1-9
+        for (let i = 1; i <= 9; i++) {
             const chapterKey = 'ch' + ('0' + i).slice(-2);
             calculatedPageStart += chapterPageCounts[chapterKey] || 0;
         }

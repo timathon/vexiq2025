@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEX IQ Robot Code Documentation (2025-2026)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        .placeholder-img {
+            background-color: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.2s;
+        }
+        .placeholder-img:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight"><i class="fas fa-robot mr-2"></i>VEX IQ Season 2025-2026</h1>
+            <div class="hidden md:flex space-x-6 text-sm">
+                <a href="#controllers" class="hover:text-blue-300 transition">Hardware</a>
+                <a href="#init" class="hover:text-blue-300 transition">Setup</a>
+                <a href="#drive" class="hover:text-blue-300 transition">Drive & UI</a>
+                <a href="#logic" class="hover:text-blue-300 transition">Logic Flow</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Intro -->
+    <header class="bg-white border-b border-gray-200">
+        <div class="container mx-auto px-6 py-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Robot Code Documentation</h2>
+            <p class="text-lg text-slate-600 max-w-3xl">
+                Complete documentation for the 2025-2026 Season VEX IQ Robot. 
+                This guide covers the 14 pages of block code logic and controller mappings derived from the master PDF.
+            </p>
+            
+            <!-- Variable Key -->
+            <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-4xl">
+                <h3 class="text-blue-800 font-bold mb-2 text-sm uppercase">Quick Reference Key</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div><span class="code-font font-bold text-purple-700">taisheng</span> = Lift Motor</div>
+                    <div><span class="code-font font-bold text-purple-700">fanzhuan</span> = Flip Motor</div>
+                    <div><span class="code-font font-bold text-purple-700">dipan</span> = Drive Base</div>
+                    <div><span class="code-font font-bold text-purple-700">goubeam</span> = Hook State</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 space-y-16">
+
+        <!-- SECTION 2: Initialization & Reset -->
+        <section id="init" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">1</div>
+                <h2 class="text-2xl font-bold text-slate-900">System Initialization</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Page 3 -->
+                <div class="bg-white p-4 rounded-lg shadow border">
+                    <h3 class="font-bold text-blue-700 mb-2">Init (Page 3)</h3>
+                    <div class="h-80 placeholder-img rounded-lg mb-3">
+                        <i class="fas fa-code text-3xl mb-2"></i>
+                        <span>Paste Page 3</span>
+                    </div>
+                    <p class="text-xs text-gray-600">Sets Max Torque (100%), Brake Mode to Hold, and retracts all pneumatics.</p>
+                </div>
+
+                <!-- Page 4 -->
+                <div class="bg-white p-4 rounded-lg shadow border">
+                    <h3 class="font-bold text-blue-700 mb-2">Lift Reset (Page 4)</h3>
+                    <div class="h-80 placeholder-img rounded-lg mb-3">
+                        <i class="fas fa-code text-3xl mb-2"></i>
+                        <span>Paste Page 4</span>
+                    </div>
+                    <p class="text-xs text-gray-600"><strong>Stall Detection:</strong> Moves <code class="code-font">taisheng</code> down until speed < 30%, then resets encoder to 0.</p>
+                </div>
+
+                <!-- Page 5 -->
+                <div class="bg-white p-4 rounded-lg shadow border">
+                    <h3 class="font-bold text-blue-700 mb-2">Pin Reset (Page 5)</h3>
+                    <div class="h-80 placeholder-img rounded-lg mb-3">
+                        <i class="fas fa-code text-3xl mb-2"></i>
+                        <span>Paste Page 5</span>
+                    </div>
+                    <p class="text-xs text-gray-600">Moves <code class="code-font">fanzhuan</code> down until speed < 10%, resets 0, then lifts 10°.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Interface & Drive -->
+        <section id="drive" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">2</div>
+                <h2 class="text-2xl font-bold text-slate-900">Telemetry & Driving</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Page 6 -->
+                <div class="bg-white p-6 rounded-lg shadow border">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Screen Telemetry (Page 6)</h3>
+                            <p class="text-sm text-gray-500">Real-time debugging dashboard</p>
+                        </div>
+                    </div>
+                    <div class="h-64 placeholder-img rounded-lg mb-4">
+                        <i class="fas fa-desktop text-3xl mb-2"></i>
+                        <span>Paste Page 6</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Displays "Beam" state, Lift degrees, and Flip degrees on the Brain screen. Clears screen every loop.</p>
+                </div>
+
+                <!-- Page 7 -->
+                <div class="bg-white p-6 rounded-lg shadow border">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Drive Control (Page 7)</h3>
+                            <p class="text-sm text-gray-500">Chassis logic with Safety Lock</p>
+                        </div>
+                    </div>
+                    <div class="h-64 placeholder-img rounded-lg mb-4">
+                        <i class="fas fa-gamepad text-3xl mb-2"></i>
+                        <span>Paste Page 7</span>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <strong>Safety Lock:</strong> Only drives if <code class="code-font">dipan == 1</code>. 
+                        Includes Deadzone logic (< 20% ignores input) for clean control.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Controller Button Logic -->
+        <section id="buttons" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">3</div>
+                <h2 class="text-2xl font-bold text-slate-900">Button Logic Mapping</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Page 8 -->
+                <div class="bg-white p-3 rounded shadow border">
+                    <h4 class="font-bold text-sm mb-2">Page 8: D, R3, L-Up</h4>
+                    <div class="h-48 placeholder-img rounded mb-2 text-xs">Page 8</div>
+                    <ul class="text-xs list-disc pl-4 text-gray-600">
+                        <li><strong>D:</strong> Hang 121 Base (Pin=8)</li>
+                        <li><strong>R3:</strong> Lower 121 Base (Pin=9)</li>
+                        <li><strong>L-Up:</strong> Beam State Increment (1->2->3)</li>
+                    </ul>
+                </div>
+                <!-- Page 9 -->
+                <div class="bg-white p-3 rounded shadow border">
+                    <h4 class="font-bold text-sm mb-2">Page 9: E-Up, R-Down</h4>
+                    <div class="h-48 placeholder-img rounded mb-2 text-xs">Page 9</div>
+                    <ul class="text-xs list-disc pl-4 text-gray-600">
+                        <li><strong>E-Up:</strong> Open Hook (Beam=0)</li>
+                        <li><strong>R-Down:</strong> Tower Height Toggle (Pin 0/1)</li>
+                    </ul>
+                </div>
+                <!-- Page 10 -->
+                <div class="bg-white p-3 rounded shadow border">
+                    <h4 class="font-bold text-sm mb-2">Page 10: F-Buttons</h4>
+                    <div class="h-48 placeholder-img rounded mb-2 text-xs">Page 10</div>
+                    <ul class="text-xs list-disc pl-4 text-gray-600">
+                        <li><strong>F-Down:</strong> Triangle Height (Pin 2/3)</li>
+                        <li><strong>F-Up:</strong> Manual Grip (Jia +/- 1)</li>
+                    </ul>
+                </div>
+                <!-- Page 11 -->
+                <div class="bg-white p-3 rounded shadow border">
+                    <h4 class="font-bold text-sm mb-2">Page 11: E-Down</h4>
+                    <div class="h-48 placeholder-img rounded mb-2 text-xs">Page 11</div>
+                    <ul class="text-xs list-disc pl-4 text-gray-600">
+                        <li><strong>Station Pile Logic:</strong></li>
+                        <li>Pin=4: Approach</li>
+                        <li>Pin=5: Grip & Lift</li>
+                        <li>Pin=7: Reset</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Automated Sequences -->
+        <section id="logic" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">4</div>
+                <h2 class="text-2xl font-bold text-slate-900">Automated Lift Sequences</h2>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Page 12 & 13 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Start & Grip Sequence (Pages 12 & 13)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="h-64 placeholder-img rounded-lg mb-2"><i class="fas fa-code"></i> Page 12</div>
+                            <p class="text-sm text-gray-600"><strong>Auto Reset:</strong> Continuously checks if Beam=0. If so, keeps lift at 40° and retracts pneumatics.</p>
+                        </div>
+                        <div>
+                            <div class="h-64 placeholder-img rounded-lg mb-2"><i class="fas fa-code"></i> Page 13</div>
+                            <p class="text-sm text-gray-600"><strong>Grip (Beam=1):</strong> Disables Drive (<code class="code-font">dipan=0</code>). Drives backward, lifts down, clamps beam, then restores Drive (<code class="code-font">dipan=1</code>).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 14 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Lift Heights (Page 14)</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                             <div class="h-64 placeholder-img rounded-lg mb-2"><i class="fas fa-code"></i> Page 14</div>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-sm text-gray-600 mb-4"><strong>State Machine for Lift:</strong></p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><span class="w-20 font-bold bg-blue-100 text-blue-800 px-2 rounded mr-2">Beam=2</span> <span>Go to 91 Height (Speed 300)</span></li>
+                                <li class="flex items-center"><span class="w-20 font-bold bg-indigo-100 text-indigo-800 px-2 rounded mr-2">Beam=3</span> <span>Go to 121 Height (Speed 580)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 15 & 16 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Release Sequences (L-Down) (Pages 15 & 16)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="h-80 placeholder-img rounded-lg mb-2"><i class="fas fa-code"></i> Page 15</div>
+                            <p class="text-sm text-gray-600"><strong>91 Release:</strong> If Beam=2, it lowers to 265°, opens claw, lifts to 350°, resets variables, and waits 3 seconds.</p>
+                        </div>
+                        <div>
+                            <div class="h-80 placeholder-img rounded-lg mb-2"><i class="fas fa-code"></i> Page 16</div>
+                            <p class="text-sm text-gray-600"><strong>121 Release:</strong> If Beam=3, lowers lift, waits, opens claw, and resets. Includes timeout protection (2 seconds) to prevent burnout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-2 font-bold text-white">VEX IQ 2025-2026 Season Documentation</p>
+            <p class="text-xs">Generated for educational purposes. All code logic derived from provided PDF.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
