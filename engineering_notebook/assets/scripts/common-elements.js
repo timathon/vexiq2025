@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         indicator.classList.add('a4-height-indicator');
         sheet.prepend(indicator);
 
-        // Check if it's a cover page (heuristic: h1 has a very large font size)
+        // Check if it's a cover page (heuristic: has .cover-page class or h1 has a very large font size)
         const h1 = sheet.querySelector('h1');
-        const isCoverPage = h1 && (h1.style.fontSize === '56px' || h1.style.fontSize === '48px');
+        const isCoverPage = sheet.classList.contains('cover-page') || (h1 && (h1.style.fontSize === '56px' || h1.style.fontSize === '48px'));
 
         if (!isCoverPage) {
             const pageNumberEl = sheet.querySelector('.page-number');

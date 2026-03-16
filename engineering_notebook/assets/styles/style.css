@@ -419,6 +419,29 @@ th {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
 }
 
+#toggle-background-paper-print-btn {
+    position: fixed;
+    top: 140px;
+    right: 20px;
+    padding: 15px 25px;
+    background-color: #95A5A6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+#toggle-background-paper-print-btn:hover {
+    background-color: #7F8C8D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
 /* STATE: Hide Dark Text
    Keeps the layout/colors, but makes text invisible
 */
@@ -522,11 +545,19 @@ body.hide-other-elements .page-number {
         background-image: none !important;
     }
 
+    /* Allow printing background if class is present */
+    body.print-background .sheet {
+        background-image: url('../general/background.webp') !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
     #navigation-menu,
     .page-number,
     .a4-height-indicator,
     #toggle-dark-text-btn,
-    #toggle-other-elements-btn {
+    #toggle-other-elements-btn,
+    #toggle-background-paper-print-btn {
         display: none;
     }
 }
@@ -712,7 +743,9 @@ body.hide-other-elements .page-number {
 
 /* Hide navigation buttons when printing */
 @media print {
-    .chapter-nav-btn {
-        display: none;
+    .chapter-nav-btn,
+    #prev-chapter-btn,
+    #next-chapter-btn {
+        display: none !important;
     }
 }

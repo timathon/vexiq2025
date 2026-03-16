@@ -9,12 +9,20 @@ document.addEventListener('DOMContentLoaded', function() {
     otherElementsBtn.onclick = toggleOtherElements;
     otherElementsBtn.textContent = '🎨 装饰元素：显示';
 
+    const backgroundPaperPrintBtn = document.createElement('button');
+    backgroundPaperPrintBtn.id = 'toggle-background-paper-print-btn';
+    backgroundPaperPrintBtn.classList.add('toggle-background-paper-print-btn');
+    backgroundPaperPrintBtn.onclick = toggleBackgroundPaperPrint;
+    backgroundPaperPrintBtn.textContent = '📄 打印背景：隐藏';
+
+    document.body.prepend(backgroundPaperPrintBtn);
     document.body.prepend(otherElementsBtn);
     document.body.prepend(darkTextBtn);
 });
 
 let darkTextVisible = true;
 let otherElementsVisible = true;
+let backgroundPaperPrintVisible = false;
 
 function toggleDarkText() {
     darkTextVisible = !darkTextVisible;
@@ -42,6 +50,21 @@ function toggleOtherElements() {
     } else {
         document.body.classList.add('hide-other-elements');
         btn.textContent = '🎨 装饰元素：隐藏';
+        btn.style.backgroundColor = '#95A5A6';
+    }
+}
+
+function toggleBackgroundPaperPrint() {
+    backgroundPaperPrintVisible = !backgroundPaperPrintVisible;
+    const btn = document.getElementById('toggle-background-paper-print-btn');
+
+    if (backgroundPaperPrintVisible) {
+        document.body.classList.add('print-background');
+        btn.textContent = '📄 打印背景：显示';
+        btn.style.backgroundColor = '#27AE60';
+    } else {
+        document.body.classList.remove('print-background');
+        btn.textContent = '📄 打印背景：隐藏';
         btn.style.backgroundColor = '#95A5A6';
     }
 }
