@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 2: Rules Unveiled (2276A)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        th,
+        td {
+            padding: 0
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, th {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td, .sticky-note, .img-caption, .chinese-label, .dialogue {
+            font-family: 'Architects Daughter', cursive;
+        }
+    </style>
+</head>
+
+
+<body class="theme-orange">
+    <!-- ================= PAGE 21: CHAPTER COVER ================= -->
+    <div class="sheet">
+
+        <div style="text-align: center; margin-top: 100px;">
+            <h1 style="font-size: 56px; border: none; color: #E67E22;">Rules Unveiled</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">Chapter 2: 2025-2026 Game Rule Analysis</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Rules & Strategy Math</h3>
+
+            <div style="width: 80%; height: 8px; background: #FF9F43; margin: 40px auto; border-radius: 5px;"></div>
+
+            <div style="text-align: left; margin: 30px 80px; font-size: 20px; line-height: 2;">
+                <p style="margin-top: 10px;"><span class="chinese-label">Subject:</span> Mix & Match Game Manual</p>
+                <p style="margin-top: 10px;"><span class="chinese-label">Researchers:</span> All Mech Dreamers members</p>
+                <p style="margin-top: 10px;"><span class="chinese-label">Big Finding:</span> The Beam is a score multiplier!</p>
+            </div>
+
+            <div class="sticky-note" style="width: 70%; margin: 20px auto;">
+                <span class="chinese-label">Our Strategy Manifesto:</span><br>
+                Know yourself and your enemy, and you will never be defeated!<br>Use the Beam wisely to win!<br>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 22: 2.1 OVERVIEW ================= -->
+    <div class="sheet">
+
+        <h1>2.1 What Kind of Game is This?</h1>
+
+        <p>Looking at the thick game manual made our heads spin. But when we watched the videos, we found out this game is super fun!</p>
+
+        <img src="../assets/ch02/Teamwork Challenge.webp"
+            alt="Robots in a legal pre-Match starting position in a Teamwork Challenge"
+            style="width: 100%; height: auto; display: block; margin: 15px 0;">
+        <p class="img-caption">Robots in legal starting positions during a Teamwork Match</p>
+
+        <p>The game is called <strong>Mix & Match</strong>. We use our robots to pick up different colored <strong>Pins</strong> and long <strong>Beams</strong>, stack them into tall towers, and place them in special <strong>Goals</strong>.</p>
+
+
+        <p><span class="chinese-label">Match Modes:</span>
+            <br>1. <span class="chinese-label">Teamwork Challenge:</span> Two robots team up for 60 seconds to get the highest score possible!
+            <br>2. <span class="chinese-label">Robot Skills Challenge:</span>
+            One robot on the field alone! There are two types: Driving Skills (remote control) and Autonomous Skills (the robot moves on its own with code).
+        </p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 23: 2.2 Pins ================= -->
+    <div class="sheet">
+
+        <h1>2.2 Treasures on the Field: Pins</h1>
+
+        <div class="sticky-note">
+            We touched and studied everything on the field and found some secrets!
+        </div>
+
+        <p><strong>1. Pin</strong></p>
+        <p>This is the basic item, like a little mushroom. They come in Red, Blue, and Orange.</p>
+
+        <p class="dialogue"><span class="chinese-label">Yingjun's Finding:</span>
+            "Look! They have grooves on top and bumps on the bottom, so they can be stacked one by one! But they're so slippery. We should add rubber bands to our claws, or we'll definitely drop them."</p>
+
+        <img src="../assets/ch02/pins.webp" alt="VEX IQ Pins" style="height: 200px; display: block; margin: 15px auto;">
+
+
+        <p><span class="chinese-label">Quantity:</span> Most are Orange, but there are also Red and Blue ones. we need to collect them like precious gems!</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 24: 2.2 Beams ================= -->
+    <div class="sheet">
+
+        <h1>2.2 Treasures on the Field: Beams</h1>
+
+        <p><strong>2. Beam</strong></p>
+        <p>A long gray bar with many holes in it.</p>
+
+        <p class="dialogue"><span class="chinese-label">Xiaomi's Observation:</span>
+            "Oh my gosh, it's so heavy! and long! If our robot doesn't have a good center of gravity, it'll definitely tip over. It's going to be hard to handle."</p>
+
+        <img src="../assets/ch02/beam.webp" alt="VEX IQ Pins" style="height: 250px; display: block; margin: 15px auto;">
+
+
+
+
+    </div>
+
+    <!-- ================= PAGE 25: 2.2 Goals ================= -->
+    <div class="sheet">
+
+        <h1>2.2 Treasures on the Field: Goals</h1>
+
+        <p><strong>3. Goals</strong></p>
+        <p>There are 5 Goals on the floor and one tall <strong>Standoff Goal</strong> in the middle.</p>
+
+        <div style="text-align: center;">
+            <div style="display: inline-block; width: 30%; text-align: center; vertical-align: top; margin: 1%;">
+                <img src="../assets/ch02/triangle_goal.webp" alt="Triangle Goal" style="width:100%">
+                <p><strong>Triangle Goals:</strong> Red and Blue. In the corners. Can hold up to 3 Stacks.</p>
+            </div>
+            <div style="display: inline-block; width: 30%; text-align: center; vertical-align: top; margin: 1%;">
+                <img src="../assets/ch02/square_goal.webp" alt="Square Goal" style="width:100%">
+                <p><strong>Square Goals:</strong> Red and Blue. Can hold 1 Stack.</p>
+            </div>
+            <div style="display: inline-block; width: 30%; text-align: center; vertical-align: top; margin: 1%;">
+                <img src="../assets/ch02/floor_goal_and_standoff_goal.webp" alt="Floor Goal and Standoff Goal"
+                    style="width:100%">
+                <p><strong>Floor Goal:</strong> The center area with white cicles is <strong>Orange</strong>. Can hold 4 Stacks.</p>
+                <p><strong>Standoff Goal:</strong> The pillar in the middle is also <strong>Orange</strong>!</p>
+            </div>
+        </div>
+
+        <p><span class="chinese-label">Yuanbao's Reminder:</span> "Watch the colors! You only get points if you put Red Pins in Red Goals. Since the Floor Goal and Standoff Goal are Orange, you get matching points for putting Orange Pins at the bottom!"</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 26: 2.3 Robot Size ================= -->
+    <div class="sheet">
+
+        <h1>2.3 How Big Can the Robot Be?</h1>
+
+        <p>We measured the starting box very carefully. If we're even a tiny bit too big, we can't even play!</p>
+
+        <h2>Size Limit &lt;R5&gt;</h2>
+        <p>At the start of the match, the robot must fit in a small space:</p>
+        <div class="math-paper" style="text-align: center; font-size: 24px; color: var(--primary-color);">
+            11" x 20" x 15"<br>
+            (279.4mm x 508mm x 381.0mm)
+        </div>
+        <p class="dialogue"><span class="chinese-label">Yingjun:</span>
+            "That's so small! 15 inches high isn't enough to reach the Standoff Goal! The pole is almost 12 inches high, plus the Pins. How can I fit a lift in there?"</p>
+
+        <h2>Expansion Magic &lt;SG3&gt;</h2>
+        <p><strong>Xiaomi</strong> pointed to the rules and shouted: "Look! After the match starts, <strong>infinite vertical expansion</strong>!"</p>
+        <p><span class="chinese-label">Everyone:</span> Yay! That means we can make a "Giraffe Robot" that grows tall once the game begins!</p>
+
+    </div>
+
+
+
+
+    <!-- ================= PAGE 27: 2.4 Feeding ================= -->
+    <div class="sheet">
+
+        <h1>2.4 How to Feed the Robot</h1>
+
+        <p>In this game, we can be Loaders and feed Pins to our robot.</p>
+        <br><img src="../assets/ch02/load_zone.webp" alt="Load Zone"
+            style="width: 50%; display: block; margin: 15px auto;">
+
+        <div class="sticky-note">
+            <span class="chinese-label">&lt;SG6&gt; Rules:</span>
+            1. One by one! No handfuls.<br>
+            2. Place it gently and let it stop before the robot takes it.<br>
+            3. It must touch the Red or Blue bar when placed.
+        </div>
+
+        <p>If we're too fast or the robot grabs it too soon, the judge will warn us. We need to practice our timing!</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 28: 2.5 Scoring ================= -->
+    <div class="sheet">
+
+        <h1>2.5 How to Get High Scores?</h1>
+
+        <p><strong>Yuanbao</strong> is our "mathematician," and he helped us calculate the scores.</p>
+        <ul style="margin-top: 5px; margin-bottom: 5px;">
+            <li><span class="chinese-label">Connected Pins &lt;SC3&gt;:</span> +1 point. That's just basic work.</li>
+            <li><span class="chinese-label">Connected Beam &lt;SC3&gt;:</span> +10 points. <strong>Huge money!</strong> We must get this!</li>
+            <li><span class="chinese-label">2-Color Match &lt;SC4&gt;:</span> +5 points. Not bad.</li>
+            <li><span class="chinese-label">3-Color Match &lt;SC4&gt;:</span> +15 points. <strong>Super bonus!</strong> We must stack all 3 colors!</li>
+        </ul>
+        <p>And there are more Bonuses!</p>
+
+        <ul style="margin-top: 5px; margin-bottom: 5px;">
+            <li><span class="chinese-label">Matching Bonus &lt;SC6&gt;:</span> +10 points. Red in Red, Blue in Blue.</li>
+            <li><span class="chinese-label">Standoff Bonus &lt;SC5&gt;:</span> +10 points. For hanging items on the middle tower.</li>
+            <li><span class="chinese-label">Cleared Stake &lt;SC7&gt;:</span> +2 points. For removing Pins from starting stakes.</li>
+            <li><span class="chinese-label">Contact Bonus &lt;SC8&gt;:</span> +2 points. For touching items at the end.</li>
+        </ul>
+
+        <div class="sticky-note">
+            <span class="chinese-label">Yuanbao's Finding:</span><br>
+            If we just stack one color, 10 Pins only get 10 points.<br>
+            But if we make a "Perfect Stack" (3 colors + Color Matching), that's 3 + 15 + 10 = 28 points!<br>
+            <strong>Quality is better than quantity!</strong>
+        </div>
+
+
+
+    </div>
+    <!-- ================= PAGE 29: 2.4 Matching ================= -->
+    <div class="sheet">
+
+        <h1>2.5.1 The Secret of Color Matching</h1>
+
+        <p>We studied the Matching Goal Bonus &lt;SC6&gt;. A Stack gets 10 extra points if:</p>
+        <ol>
+            <li>The bottom Pin matches the Goal color.</li>
+            <img src="../assets/ch02/matching_goal_1.webp" alt="Matching 1"
+                style="width: 50%; display: block; margin: 15px auto;">
+            <br>
+            <li>The Stack is connected to a Beam (doesn't matter where it's placed!).</li>
+            <img src="../assets/ch02/matching_goal_2.webp" alt="Matching 2"
+                style="width: 50%; display: block; margin: 15px auto;">
+        </ol>
+        <br>
+        <p>Note: Each Stack can only get the matching bonus once. If it's on a Beam, you don't need to match the floor color too.</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 30: 2.5.2 Penalties ================= -->
+    <div class="sheet">
+
+        <h1>2.5.2 Don't Get Penalized!</h1>
+
+        <h3>1. What is "Connected"? &lt;SC3&gt;</h3>
+        <p>To be "Connected," a Pin must:</p>
+        <ol>
+            <li>Be fully 'nested' in another scoring item.</li>
+            <img src="../assets/ch02/nested_and_non_nested.webp" alt="Nested"
+                style="width: 100%; display: block; margin: 15px auto;">
+            <li>Not be touching the robot!</li>
+            <li>Be "mostly vertical." If a stack falls over, it's 0 points!</li>
+
+        </ol>
+
+        <h3>2. Contact Bonus &lt;SC8&gt;</h3>
+        <p>At the end, you can get 2 points if the robot is touching items:</p>
+        <ol>
+            <li>Touching two or more items at once.</li>
+            <li>Touching an item that is nested in other items.</li>
+        </ol>
+        <p>But don't touch a good stack just for 2 points! If the robot touches a stack, the connection points are gone, which is much worse!</p>
+
+
+
+    </div>
+    <!-- ================= PAGE 31: Scoring Examples ================= -->
+
+    <div class="sheet">
+
+        <h1>2.5.3 Scoring Challenge</h1>
+
+        <p>We practiced with these 10 examples from the manual!</p>
+        <table>
+            <tr>
+                <th style="width: 15%;">Example</th>
+                <th style="width: 20%;">Image</th>
+                <th>Score Details</th>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE1&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE1.webp" style="height: 100px;">
+                </td>
+                <td>Everything connected. 6 Pins + 1 Beam + 3x 3-color bonus + 3x Matching.<br><strong>Total: 91 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE2&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE2.webp" style="height: 100px;">
+                </td>
+                <td>Same as above. All connected.<br><strong>Total: 91 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE3&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE3.webp" style="height: 100px;">
+                </td>
+                <td>Top stack is crooked and not connected. Only the bottom counts.<br>4 Pins + 1 Beam + 2x 3-color + 2x Matching.<br><strong>Total: 64 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE4&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE4.webp" style="height: 100px;">
+                </td>
+                <td>Beam is not connected! Only Pins are together. No Matching bonus.<br>4 Pins + 0 Beams + 2x 2-color stack.<br><strong>Total: 14 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE5&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE5.webp" style="height: 100px;">
+                </td>
+                <td>Everything fell over. Not vertical.<br><strong>Total: 0 points</strong></td>
+            </tr>
+        </table>
+
+
+
+    </div>
+    <!-- ================= PAGE 32: Scoring Examples (Continued) ================= -->
+    <div class="sheet">
+
+        <h1>2.5.3 Scoring Challenge (Continued)</h1>
+
+
+        <table>
+            <tr>
+                <th style="width: 15%;">Example</th>
+                <th style="width: 20%;">Image</th>
+                <th>Score Details</th>
+            </tr>
+
+            <tr>
+                <td><strong>&lt;SE6&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE6.webp" style="height: 100px;">
+                </td>
+                <td>Pins connected in matching Goal, and on Standoff.<br>3 Pins + 3-color stack + Matching + Standoff.<br><strong>Total: 38 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE7&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE7.webp" style="height: 100px;">
+                </td>
+                <td><strong>Perfect!</strong> Beam on Standoff, Pins on Beam.<br>Beam creates 3 independent stacks, all bonuses count!<br><strong>Total: 121 points</strong>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE8&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE8.webp" style="height: 100px;">
+                </td>
+                <td>Robot touched the stack! All connection points are void.<br>Only contact bonus.<br><strong>Total: 2 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE9&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE9.webp" style="height: 100px;">
+                </td>
+                <td>Robot touched the bottom right stack. That one is void, but others count.<br><strong>Total: 66 points</strong></td>
+            </tr>
+            <tr>
+                <td><strong>&lt;SE10&gt;</strong></td>
+                <td>
+                    <img src="../assets/ch02/SE10.webp" style="height: 100px;">
+                </td>
+                <td>Robot touched the Beam. Everything connected to it is void.<br>Only contact bonus.<br><strong>Total: 2 points</strong></td>
+            </tr>
+        </table>
+
+
+
+    </div>
+
+
+    <!-- ================= PAGE 33: Switch Rule &lt;GG11&gt; ================= -->
+    <div class="sheet">
+
+        <h1>2.6 Teamwork Challenge: The Scary Switch</h1>
+        <p>Xiaomi is most worried about this rule as a driver. You must switch drivers between 35s and 25s.</p>
+
+        <p class="dialogue">"What happens if we're late?"</p>
+        <p>Teacher Wang says: "Disqualification! 0 points for that match!"</p>
+
+        <p><span class="chinese-label">Our Plan:</span></p>
+        <ul>
+            <li>Watch the timer. At 35s, signal "Switch!"</li>
+            <li>Stop immediately, even if you're about to score.</li>
+            <li>Hands off the controller so the robot stops completely.</li>
+        </ul>
+
+    </div>
+
+
+    <!-- ================= PAGE 34: Skills Rules ================= -->
+    <div class="sheet">
+
+        <h1>2.7 Special Rules for Skills Challenge</h1>
+
+        <p>Skills matches are a bit different.</p>
+        <ul>
+            <li><span class="chinese-label">Red Zone Only:</span> Robot must start in the Red Triangle.</li>
+            <li><span class="chinese-label">Loading Limit:</span> Only use the Red Load Zone. Blue is off-limits!</li>
+        </ul>
+
+        <div class="sticky-note">
+            This means our autonomous code must return to the red zone, or we need a "big belly" robot to carry lots of pins at once.
+        </div>
+        <p><strong>Rule &lt;RSC7&gt;</strong>: No touching the controller during Autonomous. We must stand still like statues!</p>
+
+        <p>If the robot gets stuck, we can request a reset <strong>&lt;RSC5&gt;</strong>, but we lose any items it's holding. We need stable code!</p>
+        <br>
+        <h1>2.8 Design Constraints Summary</h1>
+
+        <p>Based on these rules, our design team has these "Must-Haves":</p>
+
+        <ol>
+            <li><span class="chinese-label">Must be foldable:</span> Start in a 15-inch tall box.</li>
+            <li><span class="chinese-label">Must grab Beams:</span> Easy Matching bonuses.</li>
+            <li><span class="chinese-label">Must lift high:</span> For Standoff bonuses.</li>
+        </ol>
+
+
+    </div>
+
+
+
+
+    <!-- ================= PAGE 36: Strategy Brainstorm ================= -->
+    <div class="sheet">
+
+        <div style="text-align: center; margin-top: 100px;">
+            <h1 style="font-size: 48px; color: #2E86C1;">2.9 Our Tactical Practice</h1>
+
+            <img src="../assets/ch02/brain_storm.webp"
+                style="height: 380px; display: block; margin: 50px auto; border-radius: 15px;">
+            <p style="font-size: 20px; text-align: center;">This is our brainstorming core! We imagined four different playstyles:</p>
+
+            <div style="display: flex; justify-content: center;">
+                <ul style="text-align: left;">
+                    <li>Strategy A: Low & Fast</li>
+                    <li>Strategy B: Tower Builder</li>
+                    <li>Strategy C: Beam Strategist</li>
+                    <li>Strategy D: High Stake Grail</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 37: Strategy A ================= -->
+    <div class="sheet">
+
+        <h1>Strategy A: Low & Fast</h1>
+
+        <p><span class="chinese-label">Idea:</span> Xiaomi suggested a super fast robot that focuses on floor goals and ignores the tower.</p>
+
+        <p><span class="chinese-label">Goal:</span> Fill the Red/Blue Triangles, Squares, and the Floor Goal with 3-color stacks.</p>
+
+        <div class="math-paper">
+            <h3>🧮 Score Draft</h3>
+            <p>Assuming we make 8 3-color stacks:</p>
+            <p>
+                <span class="chinese-label">One Stack:</span><br>
+                3 Pins (3) + 3-color (15) + Matching (10) = <strong>28 points</strong>
+            </p>
+            <p>
+                <span class="chinese-label">Total:</span><br>
+                Stack points: 8 x 28 = 224 points<br>
+                Cleared stakes: 4 x 2 = 8 points<br>
+                Contact: 2 points
+            </p>
+            <p style="border-top: 2px dashed #888; margin-top: 10px; padding-top: 10px;">
+                <strong>Estimated Total: 234 points</strong>
+            </p>
+        </div>
+
+        <h3>Strategy A Evaluation</h3>
+        <p><span class="chinese-label">Pros:</span> Simple robot, low center of gravity, fast, won't tip over.</p>
+        <p><span class="chinese-label">Cons:</span> Requires perfect driving. Skipping the Beam's 10 points is a waste.</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 38: Strategy B ================= -->
+    <div class="sheet">
+
+        <h1>Strategy B: Tower Builder</h1>
+
+        <p><span class="chinese-label">Idea:</span> Items on the Standoff Goal get 10 extra points.</p>
+
+        <p><span class="chinese-label">Goal:</span> Like Strategy A, but put one Orange 3-color stack on the Standoff Goal. No Beams used.</p>
+
+        <img src="../assets/ch02/SE6.webp" style="margin:0 auto;display: block;">
+        <div class="math-paper">
+            <h3>🧮 Score Draft</h3>
+            <p>10 more points than Strategy A.</p>
+            <p style="border-top: 2px dashed #888; margin-top: 10px; padding-top: 10px;">
+                <strong>Estimated Total: 244 points</strong>
+            </p>
+        </div>
+        <h3>Strategy B Evaluation</h3>
+        <p>Lifting 3 Pins that high is hard for only 10 extra points. Let's look at Beams for more points!</p>
+
+
+
+    </div>
+
+
+
+    <!-- ================= PAGE 39: Strategy C ================= -->
+    <div class="sheet">
+
+        <h1>Strategy C: Beam Strategist</h1>
+
+        <p><span class="chinese-label">Idea:</span> Beams give 10 points and automatic Matching bonuses for connected stacks.</p>
+
+        <p><span class="chinese-label">Goal:</span> Build two "Trophy Stacks" (Pins on a Beam) and some floor stacks.</p>
+
+
+        <img src="../assets/ch02/SE2-2.webp" style="height:500px;display: block;margin:0 auto;">
+
+
+
+
+    </div>
+
+    <!-- ================= PAGE 40: Strategy C Math ================= -->
+    <div class="sheet">
+
+        <h1>Strategy C: Detailed Math</h1>
+
+        <div class="math-paper">
+            <h3>🧮 Score Draft</h3>
+            <p>
+                <span class="chinese-label">One Trophy Stack:</span><br>
+                Pins (6) + Beam (10) + 3-color (3*15) + Matching (3*10) = <strong>91 points</strong>
+            </p>
+            <p>
+                <span class="chinese-label">One 3-color Stack:</span> <strong>28 points</strong>
+            </p>
+            <p>
+                <span class="chinese-label">Total:</span><br>
+                Floor stacks: 2 x 28 = 56<br>
+                Trophy stacks: 2 x 91 = 182<br>
+                Cleared: 8 + Contact: 2
+            </p>
+            <p style="border-top: 2px dashed #888; margin-top: 10px; padding-top: 10px;">
+                <strong>Estimated Total: 248 points</strong>
+            </p>
+        </div>
+        <h3>Strategy C Evaluation</h3>
+        <p>Easier than matching colors on the floor, but the score isn't much higher. Let's try putting the Beam on the tower!</p>
+
+
+
+    </div>
+
+
+    <!-- ================= PAGE 41: Strategy D ================= -->
+    <div class="sheet">
+
+        <h1>Strategy D: High Stake Grail</h1>
+
+        <p><span class="chinese-label">Idea:</span> A "Trophy Stack" on the Standoff Goal gets 3x Standoff bonuses (30 points extra!).</p>
+
+        <p><span class="chinese-label">Goal:</span> Put a full Trophy Stack on the Standoff Goal.</p>
+
+        <img src="../assets/ch02/SE7-2.webp" alt="Standoff Goal with Beam and Pins"
+            style="height: 350px; display: block; margin: 20px auto; border-radius: 20px;">
+        <div class="math-paper">
+            <h3>🧮 Score Draft</h3>
+            <p>Strategy C plus 30 points for the Standoff bonus.</p>
+            <p style="border-top: 2px dashed #888; margin-top: 10px; padding-top: 10px;">
+                <strong>Estimated Total: 278 points</strong>
+            </p>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= PAGE 42: Strategy D Eval ================= -->
+    <div class="sheet">
+
+        <h1>Strategy D: Evaluation</h1>
+
+        <p>278 points is 30 points higher than Strategy C! Conquering the tower is worth it.</p>
+
+        <h3>Pros</h3>
+        <p>Huge score potential. Very competitive for winning matches.</p>
+
+        <h3>Cons</h3>
+        <p>Very difficult technically. The robot needs:</p>
+        <ul>
+            <li>A long lift arm that can handle the heavy Beam.</li>
+            <li>Precise positioning to hook the Beam on the Standoff Goal.</li>
+            <li>Great balance to avoid tipping.</li>
+        </ul>
+        <p class="dialogue"><span class="chinese-label">Yingjun:</span> "This is like weightlifting for the robot! It needs a strong 'core'!"</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 43: Final Decision ================= -->
+    <div class="sheet">
+
+        <h1>Final Strategy Decision</h1>
+
+        <p>We voted and chose <strong>Strategy D: High Stake Grail</strong> as our main development path!</p>
+
+        <div class="sticky-note">
+            <p><strong>Our Conclusion:</strong></p>
+            <p>It's hard, but it's the best way to win. We accept the challenge! Everything we do next will be about achieving the "High Stake Grail."</p>
+            <p><strong>Let's do it!</strong></p>
+        </div>
+
+        <p>Starting next chapter, we'll turn this dream into reality with our robot design!</p>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 44: Summary ================= -->
+    <div class="sheet">
+
+        <h1>Chapter 2 Summary: Right Direction!</h1>
+
+        <div class="sticky-note">
+            <p>
+                Studying the rules was so worth it!
+            </p>
+            <p>
+                Without this, we might have built a simple robot that just pushes things around. Now we know:
+            </p>
+            <ul>
+                <li><span class="chinese-label">Beams are vital:</span> They are score multipliers.</li>
+                <li><span class="chinese-label">The Tower is the game-changer:</span> It makes our score fly!</li>
+            </ul>
+        </div>
+
+        <img src="../assets/ch02/ch2-sum.webp" style="margin:0 auto;display: block;">
+
+
+    </div>
+
+    <!-- ================= PAGE 45: Appendix ================= -->
+    <div class="sheet">
+
+        <h1>Appendix: My Rule Cheat Sheet</h1>
+        <div class="math-paper">
+            <p><strong>SC3:</strong> Connected = Vertical + Not touching robot</p>
+            <p><strong>SC6:</strong> Matching Goal = Color to color</p>
+            <p><strong>Beam:</strong> 10 pts + Auto Matching + Multi-color bonus!</p>
+        </div>
+        <div class="math-paper">
+            <p><strong>RSC3:</strong> Skills = Red start + Red loading</p>
+            <p><strong>GG11:</strong> Switch time = 35s - 25s</p>
+        </div>
+        <div class="math-paper">
+            <p><strong>R5:</strong> Start size = 11 x 20 x 15 inch</p>
+            <p><strong>SG3:</strong> Vertical Expansion = Infinite!</p>
+        </div>
+
+
+    </div>
+
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 6: Testing & Practical Evaluation (2276A)</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* --- Cover Page Styling --- */
+        .cover-section {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .cover-section h1 {
+            font-size: 56px;
+            border: none;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .cover-section h2 {
+            font-size: 36px;
+            background: none;
+            color: #555;
+            padding: 0;
+            margin: 5px 0;
+            border: none;
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .cover-section h3 {
+            font-size: 24px;
+            color: #888;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .cover-divider {
+            width: 80%;
+            height: 8px;
+            background-color: var(--primary-color);
+            margin: 40px auto;
+            border-radius: 5px;
+        }
+
+        .cover-intro {
+            margin: 60px 80px;
+            font-size: 20px;
+            line-height: 2;
+            text-align: left;
+            color: #444;
+        }
+
+        /* --- Log & Content Specific Styles --- */
+        .log-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        /* Utility text classes */
+        .text-error {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .text-success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .text-highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Table extensions */
+        .strategy-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .strategy-table td {
+            vertical-align: top;
+        }
+
+        .result-table th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Box variations */
+        .result-summary {
+            background-color: #f8f9fa;
+            border: 2px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body class="theme-cyan">
+
+    <!-- ================= PAGE 109: CHAPTER COVER ================= -->
+    <div class="sheet">
+
+        <div class="cover-section">
+            <h1 style="font-size: 56px; ">Testing & Evaluation</h1>
+            <h2>Chapter 6: Gen 1 Verification & Competition Analysis</h2>
+            <h3>System Testing & Competition Analysis</h3>
+
+            <div class="cover-divider"></div>
+
+            <div class="cover-intro">
+                <p>
+                    This chapter records the performance testing of "Gen 1" after assembly, and its real-world performance in the "WRC Beijing Qualifier" and "Beijing Urban Competition."
+                </p>
+                <p>
+                    Through detailed logs (June 30 - Aug 12), we review technical bottlenecks in movement, grabbing stability, and autonomous control, along with our engineering fixes.
+                </p>
+                <p>
+                    <strong>Core Task:</strong> Evaluate the Gen 1 design, verify 91/110 point strategies, and provide data for the development of Gen 2.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 110: TESTING LOG - GRABBING ================= -->
+    <div class="sheet">
+        <h1>6.1 Unit Test: Chassis & Intake System</h1>
+
+        <p>In early tests, we found the pneumatic claw slipped on smooth Pins, and the chassis had significant drift.</p>
+
+        <div class="highlight-box type-cyan">
+            <p class="meeting-id"><strong>Date:</strong> June 30, 2025 | <strong>Location:</strong> Jianwai SOHO</p>
+
+            <ul class="log-list" style="margin-top: 0;">
+                <li style="font-size: 20px;">
+                    <span class="text-error">Issue A: Chassis Drift</span><br>
+                    <strong>Phenomenon:</strong> The robot couldn't drive straight, drifting left or right, causing big errors over long distances.<br>
+                    <strong>Diagnosis:</strong> Power mismatch between the two drive motors.<br>
+                    <strong>Fix:</strong> <span class="text-success">Motor Replacement</span> - Tested for motor consistency, replaced them with a matched pair, and updated firmware.
+                </li>
+
+                <li style="font-size: 20px;">
+                    <span class="text-error">Issue B: Gripper Slip</span><br>
+                    <strong>Phenomenon:</strong> Pins weren't held securely; they would shift or fall during 180-degree flips due to centrifugal force.<br>
+                    <strong>Fix:</strong> <span class="text-success">Added Friction</span> - Added rubber bands to the inner claw for better grip.
+                    <span class="text-success">Structural Tweak</span> - Adjusted cylinder limits so force is applied directly to the Pin's center of gravity.
+                </li>
+            </ul>
+            <img src="../assets/ch06/6_1_1.webp" alt="Modified claw with rubber bands"
+                style="height:260px; display: block; margin: 20px auto; border-radius: 10px;">
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 111: TESTING LOG - STRUCTURE ================= -->
+    <div class="sheet">
+        <h1>6.2 Function Test: Stacking & Hooking</h1>
+
+        <p>In practice for "two-layer stacking" and "Beam dragging," we fixed hook slippage and stability issues, letting the driver complete complex moves smoothly.</p>
+
+        <div class="highlight-box type-cyan">
+            <p class="meeting-id"><strong>Date:</strong> July 6, 2025 | <strong>Location:</strong> Jianwai SOHO</p>
+
+            <ul class="log-list">
+                <li>
+                    <span class="text-error">Issue A: Beam Unhooking</span><br>
+                    <strong>Phenomenon:</strong> The hook would slip off when dragging the Beam.<br>
+                    <strong>Fix:</strong> <span class="text-success">Optimized Hook Angle</span> -
+                    Re-bent the hook's end so it locks deeper into the Beam structure.
+                </li>
+
+                <li>
+                    <span class="text-error">Issue B: Uncoordinated Moves</span><br>
+                    <strong>Phenomenon:</strong> "Dragging + Flipping" at the same time caused the robot to lose balance and drift.<br>
+                    <strong>Fix:</strong> <span class="text-success">Space Re-allocation</span> -
+                    Repositioned the chassis, intake, hook, and flip components to better balance the robot's weight.
+                </li>
+            </ul>
+            <img src="../assets/ch06/6_2_1.webp" alt="Optimized hook"
+                style="height:260px; display: block; margin: 20px auto; border-radius: 10px;">
+
+        </div>
+    </div>
+
+    <!-- ================= PAGE 112: TESTING LOG - AUTOMATION ================= -->
+    <div class="sheet">
+        <h1>6.3 System Integration: Semi-Auto Logic</h1>
+
+        <p>To help the driver during intense matches, we added sensor-assisted logic based on July 6th feedback.</p>
+
+        <div class="highlight-box type-cyan">
+            <p><strong>Software Update: Auto-Grab</strong></p>
+            <p><strong>Background (July 6th Recap):</strong> Driver had to do too much manual micro-adjusting, leading to fatigue and errors late in the match.</p>
+            <p><strong>Technical Fix:</strong> Integrated the front Distance Sensor.</p>
+            <ul>
+                <li><strong>Logic:</strong> When Distance < 50mm (Pin detected) → Automatically trigger the claw to close.</li>
+                <li><strong>Benefit:</strong> Upgraded from "visual judgment" to "sensor trigger," saving about 0.5s per grab.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 113: SIMULATED MATCHES ================= -->
+    <div class="sheet">
+        <h1>6.4 Simulation: Teamwork Drills</h1>
+
+        <div class="knowledge-card">
+            <h3>Simulation Match Info</h3>
+            <p><strong>Time:</strong> July 16, 2025</p>
+            <p><strong>Content:</strong> Full-process simulated match</p>
+            <p><strong>Purpose:</strong> Expose non-mechanical teamwork issues</p>
+        </div>
+
+        <p>Just a month before the Beijing City Competition, we did a full simulation. It exposed some serious teamwork gaps:</p>
+
+        <div class="two-column-layout">
+            <div class="column">
+                <h3 class="text-error" style="margin-top: 0; margin-bottom: 0;">Issues Exposed</h3>
+                <ul class="notebook-list" style="margin-top: 5px; margin-bottom: 5px;">
+                    <li><strong>Strategy Confusion:</strong> Members weren't sure of routes and couldn't explain them well to alliance partners.</li>
+                    <li><strong>Messy Handovers:</strong> During the 25-35s driver switch, the team got in each other's way, causing the robot to stop unexpectedly.</li>
+                    <li><strong>Poor Records:</strong> Pre-match meeting notes were incomplete, missing rule details.</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3 class="text-success" style="margin-top: 0; margin-bottom: 0;">Actions Taken</h3>
+                <ul class="notebook-list" style="margin-top: 5px; margin-bottom: 5px;">
+                    <li><strong>Description Training:</strong> Members must be able to clearly explain "Far" and "Near" route logic.</li>
+                    <li><strong>Standardized Zones:</strong> Defined exactly where each driver stands and how to pass the controller.</li>
+                    <li><strong>Intensive Drills:</strong> Practiced "perfect timing" handovers and pre-match strategy communication.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>6.5 WRC Beijing Qualifier (1)</h1>
+
+        <div class="highlight-box type-default">
+            <p><strong>Event:</strong> 2025-2026 WRC (World Robot Contest) Beijing Qualifier</p>
+            <p><strong>Time:</strong> July 18 - 20, 2025</p>
+            <p><strong>Location:</strong> Beijing No. 11 School Fengtai Middle School</p>
+            <p><strong>Goal:</strong> Qualify for the WRC National Finals in August.</p>
+        </div>
+
+        <h3>(I) Match Schedule</h3>
+        <p>Our first time facing a formal, large-scale event. The schedule was packed!</p>
+
+        <ul class="log-list">
+            <li>
+                <strong>July 18 (Day 0):</strong><br>
+                14:00-18:00 Check-in, robot inspection, and team registration.
+            </li>
+            <li>
+                <strong>July 19 (Day 1): Qualifying Matches</strong><br>
+                08:00 Entry and pits setup.<br>
+                09:30 <strong>Driver Meeting:</strong> Review rules and get the Match List.<br>
+                10:00-18:00 <strong>Qualifiers:</strong> High-intensity matches all day!
+            </li>
+            <li>
+                <strong>July 20 (Day 2): Finals Day</strong><br>
+                08:00-09:00 <strong>Alliance Selection:</strong> Top teams pick their partners.<br>
+                09:00-12:00 <strong>Finals:</strong> Deciding the champions.<br>
+                13:00 Awards Ceremony.
+            </li>
+        </ul>
+    </div>
+
+    <div class="sheet">
+        <h1>6.5 WRC Beijing Qualifier (2): Match Play & Faults</h1>
+
+        <h3>(II) Performance & Recap</h3>
+        <p><strong>Allies:</strong> 71548B, 1853A, 12609A, 88299C, 1853C</p>
+
+        <div class="two-column-layout">
+            <div class="column">
+                <h3 class="text-highlight">First Impressions</h3>
+                <p><strong>Schedule Shock:</strong> Seeing three pages of matches was overwhelming. We spent a lot of time just highlighting our team number.</p>
+                <p><strong>Alliance Challenges:</strong> It was loud and crowded! Finding our partners was harder than expected. We learned the importance of "loud communication" and being proactive.</p>
+            </div>
+            <div class="column">
+                <h3 class="text-error">Major Failure: Mid-Match Power Loss</h3>
+                <p><strong>Partner:</strong> 12609A</p>
+                <p><strong>Phenomenon:</strong> During a turn to stack on the tower, the robot just died. Buttons didn't work, and the screen went black.</p>
+                <p><strong>Handling:</strong> Signaled the ref, but couldn't restart it. We had to quit the match.</p>
+                <p><strong>Result:</strong> <span class="text-error">0 points</span> (really hurt our ranking).</p>
+            </div>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>6.5 WRC Beijing Qualifier (3): Final Results</h1>
+
+        <h3 class="text-highlight">Finals Comeback</h3>
+        <p>Despite the failure, we did well enough in other matches to make the finals!</p>
+        <ul>
+            <li><strong>Finals Partner:</strong> 22988A</li>
+            <li><strong>Final Score:</strong> <strong>86 points</strong></li>
+            <li><strong>Award:</strong> <strong>Second Prize</strong> - Qualified!</li>
+        </ul>
+        <img src="../assets/ch06/6_5_1.webp" alt="Second Prize Award"
+            style="height:400px; display: block; margin: 20px auto; border-radius: 10px;">
+
+    </div>
+
+    <div class="sheet">
+        <h1 style="font-size: 26px;">6.5 WRC Beijing Qualifier (4): Post-Match Analysis</h1>
+
+        <h3>(III) Analysis & Lessons Learned</h3>
+
+        <table class="strategy-table">
+            <thead>
+                <tr>
+                    <th width="18%">Category</th>
+                    <th width="35%">Issues</th>
+                    <th>Action Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Process</strong></td>
+                    <td>
+                        <span class="text-error">Too Passive</span><br>
+                        Wait for partners to find us, losing practice time.
+                    </td>
+                    <td style="font-size: 20px;">Create an "Alliance Script" and proactively find partners according to the schedule.</td>
+                </tr>
+                <tr>
+                    <td><strong>Strategy</strong></td>
+                    <td>
+                        <span class="text-error">Rigid Routes</span><br>
+                        If Pins were scattered, we didn't know how to adapt.
+                    </td>
+                    <td style="font-size: 20px;">Add "Messy Field" simulation drills to practice recovery strategies.</td>
+                </tr>
+                <tr>
+                    <td><strong>Logistics</strong></td>
+                    <td>
+                        <span class="text-error">Power Supply Fail</span><br>
+                        Only brought 2 batteries and no power strip! Very stressful.
+                    </td>
+                    <td style="font-size: 20px;">Added "Power Strip" and "Minimum 4 full batteries" to our Mandatory Checklist.</td>
+                </tr>
+                <tr>
+                    <td><strong>Engineering</strong></td>
+                    <td>
+                        <span class="text-error">Unexpected Shutdown</span><br>
+                        A fatal error during the match.
+                    </td>
+                    <td style="font-size: 20px;"><strong>Immediate Action:</strong> Check battery ports and Brain firmware; perform vibration tests.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="color: #444;"><strong>Summary:</strong> We qualified, but our logistics and stability issues MUST be fixed before the big finals in August.</p>
+    </div>
+
+    <!-- ================= PAGE 114: TRAINING LOGS ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 28px;">6.6 Specialized Training: Road to Shijiazhuang</h1>
+
+        <p>To prep for the Shijiazhuang event, we did high-intensity drills focused on high-scoring moves.</p>
+
+        <div class="highlight-box type-cyan">
+            <p class="meeting-id"><strong>Date:</strong> Aug 12, 2025 | <strong>Location:</strong> Jianwai SOHO</p>
+            <p><strong>Focus:</strong> Preparing for the Shijiazhuang Match</p>
+
+            <div style="bborder-radius: 8px; margin-bottom: 20px;">
+                <p class="text-highlight">Core Training Goals</p>
+
+                <ol style="margin-top: 5px;">
+                    <li>Push for maximum points!</li>
+                    <li>Perfect the angle for sending Pins to the Center Island.</li>
+                    <li>Improve High Tower accuracy and release timing.</li>
+                    <li>Practice Triangle Zone Pin delivery angles.</li>
+                    <li>Driver 1 must call out time for Driver 2.</li>
+                    <li>Repeatedly drill "91 point Low Tower" route.</li>
+                </ol>
+            </div>
+
+            <p class="text-highlight">Review & Summary</p>
+            <ul class="log-list">
+                <li>
+                    <span class="text-error">Issue 1: Slow Flip</span><br>
+                    <strong>Phenomenon:</strong> Waiting until we reached the zone to flip the wrist, wasting time.<br>
+                    <strong>Fix:</strong> <span class="text-success">Time Tracking</span> - Monitor and force the flip to happen while the robot is moving.
+                </li>
+
+                <li>
+                    <span class="text-error">Issue 2: Center Island Misses</span><br>
+                    <strong>Phenomenon:</strong> Often had to readjust position to drop Pins correctly.<br>
+                    <strong>Fix:</strong> <span class="text-success">Visual Cues</span> - Use field lines as reference points for the approach route.
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>6.6 Specialized Training (Cont.)</h1>
+        <p class="text-highlight">Review & Summary (Cont.)</p>
+        <ul class="log-list">
+            <li>
+                <span class="text-error">Issue 3: High Tower Beam Toppling</span><br>
+                <strong>Phenomenon:</strong> Beam often fell over during release on the high tower.<br>
+                <strong>Fix:</strong> <span class="text-success">Timing Drills</span> - Practiced micro-timing for the claw release to find the sweet spot.
+            </li>
+
+            <li>
+                <span class="text-error">Issue 4: Triangle Zone Difficulty</span><br>
+                <strong>Phenomenon:</strong> Either knocked Pins over or struggled to get them in.<br>
+                <strong>Fix:</strong> <span class="text-success">Data Tweaking</span> - Adjusted delivery angles and raised arm height in the program.
+            </li>
+        </ul>
+    </div>
+
+    <!-- ================= PAGE 115: COMPETITION OVERVIEW ================= -->
+    <div class="sheet">
+        <h1>6.7 Beijing Urban Competition (1)</h1>
+
+        <div class="highlight-box type-default">
+            <p><strong>Event:</strong> 2025 Beijing Urban Competition (Shengxuan)</p>
+            <p><strong>Time:</strong> Aug 19 - 21, 2025</p>
+            <p><strong>Robot:</strong> Gen 1</p>
+        </div>
+
+        <h3>Standard Strategies</h3>
+        <p>We developed scoring models to fit different alliance partners:</p>
+
+        <table class="strategy-table">
+            <thead>
+                <tr>
+                    <th width="25%">Strategy</th>
+                    <th>Core Actions</th>
+                    <th width="15%">Score (Gen 1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>91 points</strong><br>(Low Tower)</td>
+                    <td>
+                        - Focus on low tower stacking<br>
+                        - Center Zone: 2 matching stacks<br>
+                        - Skip Triangle Zone
+                    </td>
+                    <td>105 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>110 points</strong><br>(High Tower)</td>
+                    <td>
+                        - Push for the High Tower<br>
+                        - Center Zone: 2 matching stacks<br>
+                        - Requires perfect release timing
+                    </td>
+                    <td>144 pts</td>
+                </tr>
+                <tr>
+                    <td><strong>Skills Match</strong><br>(Manual)</td>
+                    <td>
+                        - Stable route, skip high-risk High Tower
+                    </td>
+                    <td>144 pts</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= PAGE 116: RESULTS & REVIEW ================= -->
+    <div class="sheet">
+        <h1>6.7 Beijing Urban Competition (2): Evaluation</h1>
+
+        <p>Even though Gen 1 was slow and had limited reach, our hook and friction claw optimizations made it very stable in real matches.</p>
+
+        <h3>Key Highlights</h3>
+        <ul>
+            <li><strong>Stability:</strong> The friction claw never dropped a Pin all tournament!</li>
+            <li><strong>High Tower Challenge:</strong> As feared, the High Tower was tricky and Beams sometimes fell, limited by our arm length.</li>
+            <li><strong>Chassis Bottleneck:</strong> The 2x speed chassis was too slow for high-efficiency scoring and still drifted slightly on smooth mats.</li>
+        </ul>
+
+    </div>
+    <div class="sheet">
+        <h1>6.7 Beijing Urban Competition (3): Final Standings</h1>
+        <h3>Final Results</h3>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Stage</th>
+                    <th>Match ID</th>
+                    <th>Score</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Qualifiers</td>
+                    <td>Match #38</td>
+                    <td>249 pts</td>
+                    <td>8th Place</td>
+                </tr>
+                <tr>
+                    <td>Finals</td>
+                    <td>Finals Match #1-14</td>
+                    <td>254 pts</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="result-summary">
+            <h2 style="margin: 0; color: #333;">Final Standing: Runner-up (2nd Place)</h2>
+            <p style="color: #666; margin-top: 5px;">2025 VEX IQ Robotics Competition - Beijing Urban Series</p>
+        </div>
+        <img src="../assets/ch06/6_6_2.webp" alt="Trophy" style="height:300px; margin: 30px auto;border-radius: 10px;">
+
+    </div>
+
+    <!-- ================= PAGE 117: SUMMARY & GEN 2 PLAN ================= -->
+    <div class="sheet">
+        <h1>Chapter 6 Summary: Verification & Iteration</h1>
+
+        <p>
+            The Beijing Urban Competition proved Gen 1 was a successful "proof-of-concept." It validated our pneumatic design but showed our hardware limits.
+        </p>
+
+        <h3>Gen 2 R&D Plan</h3>
+        <p>Based on our data, here's the plan for the next version:</p>
+
+        <ol style="line-height: 1.8;">
+            <li><strong>Faster Chassis:</strong> Speed up the gear ratio without losing control.</li>
+            <li><strong>High Tower Optimization:</strong> Longer arm for easier release and better timing logic.</li>
+            <li><strong>Triangle Zone:</strong> Add a dedicated mechanism to score in Triangles.</li>
+            <li><strong>Coordination:</strong> Better alignment between Driver and Loader.</li>
+        </ol>
+
+        <p style="margin-top: 40px;">
+            <strong>Decision:</strong> Gen 1 is officially retired. Build for Gen 2 starts immediately!
+        </p>
+    </div>
+
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

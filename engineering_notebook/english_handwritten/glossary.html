@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - English Glossary</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+
+        body {
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #444;
+            text-align: center;
+            font-family: 'Patrick Hand', cursive !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-family: 'Patrick Hand', cursive !important;
+        }
+
+        .type-game { color: #008080; }
+        .type-game-element { color: #2E86C1; }
+        .type-game-action { color: #27AE60; }
+        .type-game-rule { color: #E74C3C; }
+        .type-game-mode { color: #8E44AD; }
+        .type-game-role { color: #F39C12; }
+        .type-game-strategy { color: #D35400; }
+        .type-robot-component { color: #2C3E50; }
+        .type-mechanical-concept { color: #7D3C98; }
+        .type-programming-concept { color: #1ABC9C; }
+        .type-team { color: #2980B9; }
+        .type-general { color: #7F8C8D; }
+
+        @media print {
+            @page { size: A4 landscape; }
+            body { column-count: 2; font-size: 14px; }
+            table { font-size: 12px; }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>English Glossary</h1>
+    <table>
+        <tr>
+            <th>English Term</th>
+            <th>Chinese Translation</th>
+            <th>Type</th>
+        </tr>
+        <tr class="type-mechanical-concept">
+            <td>4-Bar Linkage</td>
+            <td>四连杆</td>
+            <td>Mechanical Concept</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Beam</td>
+            <td>梁</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-general">
+            <td>BOM (Bill of Materials)</td>
+            <td>核心零件清单</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-game-rule">
+            <td>Bonus</td>
+            <td>奖励分</td>
+            <td>Game Rule</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Brain</td>
+            <td>主控</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Claw</td>
+            <td>主动夹爪</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-game-action">
+            <td>Cleared</td>
+            <td>清空起始桩</td>
+            <td>Game Action</td>
+        </tr>
+        <tr class="type-programming-concept">
+            <td>Closed Loop</td>
+            <td>闭环控制</td>
+            <td>Programming Concept</td>
+        </tr>
+        <tr class="type-game-action">
+            <td>Connected</td>
+            <td>连接</td>
+            <td>Game Action</td>
+        </tr>
+        <tr class="type-game-rule">
+            <td>Constraints</td>
+            <td>约束</td>
+            <td>Game Rule</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Controller</td>
+            <td>遥控器</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-general">
+            <td>Design Iteration & Optimization</td>
+            <td>赛车优化改进与迭代过程</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Distance Sensor</td>
+            <td>距离传感器</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-game-rule">
+            <td>DQ (Disqualification)</td>
+            <td>取消资格</td>
+            <td>Game Rule</td>
+        </tr>
+        <tr class="type-mechanical-concept">
+            <td>DR4B (Double Reverse Four Bar)</td>
+            <td>双反四连杆</td>
+            <td>Mechanical Concept</td>
+        </tr>
+        <tr class="type-game-action">
+            <td>Flip</td>
+            <td>翻转</td>
+            <td>Game Action</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Floor Goal</td>
+            <td>地面区</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Fork</td>
+            <td>铲子</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-team">
+            <td>Gen 1 / Gen 2 / Gen 3</td>
+            <td>一代车 / 二代车 / 三代车</td>
+            <td>Team</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Goal</td>
+            <td>得分区</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Gyro</td>
+            <td>陀螺仪</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-general">
+            <td>Integration Test</td>
+            <td>集成测试</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-general">
+            <td>Iteration</td>
+            <td>迭代</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Left Drive / Right Drive</td>
+            <td>左/右驱动轮</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Lift</td>
+            <td>抬升臂</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-game-role">
+            <td>Loader</td>
+            <td>装填手</td>
+            <td>Game Role</td>
+        </tr>
+        <tr class="type-game-action">
+            <td>Loading</td>
+            <td>装填</td>
+            <td>Game Action</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Load Zone</td>
+            <td>装填区</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-game-strategy">
+            <td>Low & Fast</td>
+            <td>低空快跑流</td>
+            <td>Game Strategy</td>
+        </tr>
+        <tr class="type-programming-concept">
+            <td>Macro</td>
+            <td>宏/自动化序列</td>
+            <td>Programming Concept</td>
+        </tr>
+        <tr class="type-game-rule">
+            <td>Major Violation</td>
+            <td>严重违规</td>
+            <td>Game Rule</td>
+        </tr>
+        <tr class="type-game-rule">
+            <td>Matching</td>
+            <td>颜色匹配</td>
+            <td>Game Rule</td>
+        </tr>
+        <tr class="type-general">
+            <td>Mathematics</td>
+            <td>数学</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-team">
+            <td>Mech Dreamers</td>
+            <td>机甲梦想家</td>
+            <td>Team</td>
+        </tr>
+        <tr class="type-game-rule">
+            <td>Minor Violation</td>
+            <td>轻微违规</td>
+            <td>Game Rule</td>
+        </tr>
+        <tr class="type-game">
+            <td>Mix & Match</td>
+            <td>混合与匹配</td>
+            <td>Game Name</td>
+        </tr>
+        <tr class="type-general">
+            <td>Mock Match</td>
+            <td>模拟比赛</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Motor</td>
+            <td>智能电机</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Omni Wheel</td>
+            <td>全向轮</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-general">
+            <td>PIT Check</td>
+            <td>赛前检查</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Pin</td>
+            <td>销钉</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-mechanical-concept">
+            <td>Pneumatics</td>
+            <td>气动系统</td>
+            <td>Mechanical Concept</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Port Map</td>
+            <td>端口映射</td>
+            <td>Robot Component</td>
+        </tr>
+        <tr class="type-game-mode">
+            <td>Skills Challenge</td>
+            <td>技能赛</td>
+            <td>Game Mode</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Square Goals</td>
+            <td>正方区</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-game-action">
+            <td>Stacking</td>
+            <td>堆叠</td>
+            <td>Game Action</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Standoff Goal</td>
+            <td>高塔</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-programming-concept">
+            <td>STEM</td>
+            <td>科学、技术、工程、数学</td>
+            <td>General</td>
+        </tr>
+        <tr class="type-programming-concept">
+            <td>Tank Drive</td>
+            <td>双摇杆模式</td>
+            <td>Programming Concept</td>
+        </tr>
+        <tr class="type-game-mode">
+            <td>Teamwork Challenge</td>
+            <td>团队赛</td>
+            <td>Game Mode</td>
+        </tr>
+        <tr class="type-game-element">
+            <td>Triangle Goals</td>
+            <td>三角区</td>
+            <td>Game Element</td>
+        </tr>
+        <tr class="type-robot-component">
+            <td>Wrist</td>
+            <td>手腕/翻转机构</td>
+            <td>Robot Component</td>
+        </tr>
+    </table>
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+
+</body>
+
+</html>

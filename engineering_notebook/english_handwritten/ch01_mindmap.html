@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competition Training Mindmap</title>
+  <!-- ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Patrick Hand', cursive;
+      background-color: #f8fafc;
+    }
+
+    #chart-container {
+      width: 100%;
+      height: calc(100vh - 60px);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col h-screen">
+
+  <!-- Header Toolbar -->
+  <div class="bg-white shadow-sm p-4 flex justify-between items-center z-10 relative">
+    <div>
+      <h1 class="text-xl font-bold text-slate-800">Competition Training System Mindmap</h1>
+      <p class="text-xs text-slate-500">Click nodes to expand/collapse | Scroll to zoom | Drag to pan</p>
+    </div>
+    <div class="space-x-2">
+      <button onclick="expandAll()"
+        class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm transition">Expand All</button>
+      <button onclick="collapseAll()"
+        class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm transition">Collapse All</button>
+    </div>
+  </div>
+
+  <!-- Chart Container -->
+  <div id="chart-container"></div>
+
+  <script>
+    var dom = document.getElementById('chart-container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    // Data Structure
+    const data = {
+      name: "Core Competition System",
+      children: [
+        {
+          name: "Learning Goals",
+          itemStyle: { color: '#3b82f6' }, // Blue
+          children: [
+            {
+              name: "Improve Abilities",
+              children: [
+                { name: "Design Ability" },
+                { name: "Building Skills" },
+                { name: "Programming" },
+                { name: "Teamwork" },
+                { name: "Problem Solving" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Learning Rules",
+          itemStyle: { color: '#10b981' }, // Emerald
+          children: [
+            { name: "Game Manual" },
+            {
+              name: "Game Elements",
+              children: [
+                { name: "Robot" },
+                { name: "Pins" },
+                { name: "Beams" },
+                { name: "Field" },
+                { name: "Scoring Rules" },
+                { name: "Violations" },
+                { name: "Driver Roles" },
+                { name: "Team Plates" },
+                { name: "Specific Formats" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Applying Rules & Training",
+          itemStyle: { color: '#f59e0b' }, // Amber
+          children: [
+            {
+              name: "Engineering Cycle",
+              children: [
+                { name: "Build" },
+                { name: "Test" },
+                { name: "Solve Issues" },
+                { name: "Iteration" }
+              ]
+            },
+            {
+              name: "Execution Flow",
+              children: [
+                { name: "Set Strategy" },
+                { name: "Daily Drills" },
+                { name: "Find Problems" },
+                { name: "Solve Problems" }
+              ]
+            },
+            {
+              name: "Specialized Practice",
+              children: [
+                {
+                  name: "High Goals / Advanced",
+                  children: [
+                    {
+                      name: "Far / Near Routes",
+                      children: [
+                        { name: "Center Island" },
+                        { name: "Triangle Zones" },
+                        { name: "Edge Goals" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: "Low Goals / Basic",
+                  children: [
+                    {
+                      name: "Far / Near Routes",
+                      children: [
+                        { name: "Center Island" },
+                        { name: "Triangle Zones" },
+                        { name: "Edge Goals" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "Closed-loop Optimization",
+              children: [
+                { name: "Identify Gaps" },
+                { name: "Technical Fixes" },
+                { name: "Strategy Refinement" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Real Matches",
+          itemStyle: { color: '#ef4444' }, // Red
+          children: [
+            {
+              name: "Pre-match Prep",
+              children: [
+                { name: "Alliance Communication" },
+                { name: "Know Your Strength" },
+                { name: "Finalize Strategy" },
+                { name: "On-field Readiness" }
+              ]
+            },
+            {
+              name: "Post-match Recap",
+              children: [
+                { name: "Analysis & Review" },
+                { name: "Summarize Experience" },
+                { name: "Solve Leftover Issues" }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    function processLevelStyles(node, level) {
+      let fontSize = 14; 
+      let symbolSize = 10; 
+
+      if (level === 0) {
+        fontSize = 22; 
+        symbolSize = 25;
+      } else if (level === 1) {
+        fontSize = 18; 
+        symbolSize = 16;
+      } else if (level === 2) {
+        fontSize = 16; 
+        symbolSize = 12;
+      }
+
+      node.label = {
+        fontSize: fontSize
+      };
+      node.symbolSize = symbolSize;
+
+      if (node.children) {
+        node.children.forEach(child => processLevelStyles(child, level + 1));
+      }
+    }
+
+    processLevelStyles(data, 0);
+
+    var option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove',
+        formatter: '{b}'
+      },
+      series: [
+        {
+          type: 'tree',
+          data: [data],
+          top: '5%',
+          left: '10%',
+          bottom: '5%',
+          right: '25%',
+          layout: 'orthogonal',
+          orient: 'LR', 
+          label: {
+            position: 'left',
+            verticalAlign: 'middle',
+            align: 'right',
+            color: '#333'
+          },
+          leaves: {
+            label: {
+              position: 'right',
+              verticalAlign: 'middle',
+              align: 'left'
+            }
+          },
+          emphasis: {
+            focus: 'descendant'
+          },
+          expandAndCollapse: true,
+          initialTreeDepth: 2, 
+          lineStyle: {
+            color: '#ccc',
+            curveness: 0.5
+          },
+          itemStyle: {
+            color: '#fff',
+            borderColor: '#666',
+            borderWidth: 2
+          }
+        }
+      ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+
+    function expandAll() {
+      myChart.setOption({
+        series: [{
+          initialTreeDepth: 10
+        }]
+      });
+    }
+
+    function collapseAll() {
+      myChart.setOption({
+        series: [{
+          initialTreeDepth: 1 
+        }]
+      });
+    }
+
+  </script>
+</body>
+
+</html>

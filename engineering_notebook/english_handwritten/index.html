@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEX IQ 2025 Engineering Notebook</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, .title {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td {
+            font-family: 'Architects Daughter', cursive;
+        }
+    </style>
+</head>
+
+<body class="theme-index">
+
+
+
+    <!-- ================= COVER PAGE ================= -->
+    <div class="sheet cover-page" style="
+        background-color: white;
+        background-image: url('../assets/ch00/cover.webp'); 
+        /* Change this line: auto width, 100% height */
+        background-size: auto 100%; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        box-shadow: inset 0 0 40px 20px rgba(255, 255, 255, 1);
+    ">
+    </div>
+
+    <!-- ================= PREFACE ================= -->
+    <div class="sheet no-footer">
+        <h1>Preface</h1>
+        <img src="../assets/ch00/preface.webp" style="width: 100%;margin:30px auto;display: block;border-radius: 10px;">
+
+        <!-- Placeholder for a team photo or other image -->
+        <p>Dear Judges,</p>
+        <p>Our engineering notebook is a super important part of our robotics journey! It captures all our building details, creative ideas, competition stories, and what we learned along the way. It's like a diary of how our team grew, with every page showing our hard work and how we helped each other. It’s a record of our team spirit, our progress, and our big dreams for the competition.</p>
+        <p>Thank you so much for reading this! We hope to get your helpful advice to help us keep growing and exploring the world of VEX robotics.</p>
+        <p>Our team number is 2276A. Thanks again for all your support!</p>
+        <p style="text-align: right; margin-top: 40px;">— Members of Team 2276A</p>
+    </div>
+
+    <!-- ================= TABLE OF CONTENTS PAGE 1 ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 48px; border: none; color: #005f9e; text-align: center; margin-bottom: 20px;">
+            Table of Contents</h1>
+        <!-- Centered Container for TOC -->
+        <div style="display: flex; justify-content: center;">
+            <ul
+                style="font-size: 18px; line-height: 1.2; list-style-type: none; padding: 0; width: fit-content; min-width: 50%;">
+
+                <!-- Chapter 1 -->
+                <li style="margin: 2px 0;"><strong><a href="ch01.html">Chapter 1: Where the Dream Begins</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">1.1 Our Big Family</li>
+                        <li style="margin: 1px 0;">1.2 Meet the Team</li>
+                        <li style="margin: 1px 0;">1.3 Team Roles & Rules</li>
+                        <li style="margin: 1px 0;">1.4 Managing the Team & Solving Problems</li>
+                        <li style="margin: 1px 0;">1.5 Season Overview</li>
+                        <li style="margin: 1px 0;">1.6 Meeting Minutes</li>
+                    </ul>
+                </li>
+
+                <!-- Chapter 2 -->
+                <li style="margin: 2px 0;"><strong><a href="ch02.html">Chapter 2: 2025-2026 Game Rule Analysis</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">2.1 What Kind of Game is This?</li>
+                        <li style="margin: 1px 0;">2.2 Treasures on the Field</li>
+                        <li style="margin: 1px 0;">2.3 How Big Can the Robot Be?</li>
+                        <li style="margin: 1px 0;">2.4 How to Feed the Robot?</li>
+                        <li style="margin: 1px 0;">2.5 How to Get High Scores?</li>
+                        <li style="margin: 1px 0;">2.6 Teamwork Challenge: The Scary Switch</li>
+                        <li style="margin: 1px 0;">2.7 Special Rules for Skills Challenge</li>
+                        <li style="margin: 1px 0;">2.8 Design Constraints Summary</li>
+                        <li style="margin: 1px 0;">2.9 Our Tactical Practice</li>
+                    </ul>
+                </li>
+                <!-- Chapter 3 -->
+                <li style="margin: 2px 0;"><strong><a href="ch03.html">Chapter 3: STEM Concepts & Design Overview</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">3.1 What is STEM?</li>
+                        <li style="margin: 1px 0;">3.2 Freedom Within the "Boundaries"</li>
+                        <li style="margin: 1px 0;">3.3 Mechanical Magic</li>
+                        <li style="margin: 1px 0;">3.4 Making the Robot Smart</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= TABLE OF CONTENTS PAGE 2 ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 40px; border: none; color: #005f9e; text-align: center; margin-bottom: 20px;">
+            Table of Contents (Cont'd)</h1>
+        <div style="display: flex; justify-content: center;">
+            <ul
+                style="font-size: 18px; line-height: 1.2; list-style-type: none; padding: 0; width: fit-content; min-width: 50%;">
+
+                <!-- Chapter 4 -->
+                <li style="margin: 2px 0;"><strong><a href="ch04.html">Chapter 4: Concept Design & Solution Discussion</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">4.1 Game Rule Analysis & Feature Definition</li>
+                        <li style="margin: 1px 0;">4.2 System Architecture & Module Division</li>
+                        <li style="margin: 1px 0;">4.3 Evaluating & Eliminating Options</li>
+                        <li style="margin: 1px 0;">4.4 Finalizing Gen 1 Design</li>
+                        <li style="margin: 1px 0;">4.5 Pre-set Game Strategy</li>
+                    </ul>
+                </li>
+
+                <!-- Chapter 5 -->
+                <li style="margin: 2px 0;"><strong><a href="ch05.html">Chapter 5: Building & Software Configuration</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">5.1 Resource Planning & Port Mapping</li>
+                        <li style="margin: 1px 0;">5.2 Mechanical Assembly: Chassis System</li>
+                        <li style="margin: 1px 0;">5.3 Mechanical Assembly: Arm & Pneumatic Claw</li>
+                        <li style="margin: 1px 0;">5.4 System Integration & Wiring</li>
+                        <li style="margin: 1px 0;">5.5 Software: Device Initialization</li>
+                        <li style="margin: 1px 0;">5.6 Remote Control Logic Design</li>
+                        <li style="margin: 1px 0;">5.7 Sensor Integration & Automation Testing</li>
+                    </ul>
+                </li>
+                <!-- Chapter 6 -->
+                <li style="margin: 2px 0;"><strong><a href="ch06.html">Chapter 6: Gen 1 Practical Verification & Competition Season</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">6.1 Unit Testing: Chassis & Claw System</li>
+                        <li style="margin: 1px 0;">6.2 Feature Testing: Improving Stacking & Hooks</li>
+                        <li style="margin: 1px 0;">6.3 System Integration: Adding Semi-Auto Logic</li>
+                        <li style="margin: 1px 0;">6.4 Mock Matches: Teamwork Practice</li>
+                        <li style="margin: 1px 0;">6.5 WRC Beijing Qualifiers</li>
+                        <li style="margin: 1px 0;">6.6 Special Training: Getting Ready for Shijiazhuang</li>
+                        <li style="margin: 1px 0;">6.7 Shengxuan Beijing City Competition</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= TABLE OF CONTENTS PAGE 3 ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 40px; border: none; color: #005f9e; text-align: center; margin-bottom: 20px;">
+            Table of Contents (Cont'd)</h1>
+        <div style="display: flex; justify-content: center;">
+            <ul
+                style="font-size: 18px; line-height: 1.2; list-style-type: none; padding: 0; width: fit-content; min-width: 50%;">
+
+                <!-- Chapter 7 -->
+                <li style="margin: 2px 0;"><strong><a href="ch07.html">Chapter 7: The Evolution of Gen 2</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">7.1 Iteration Start: Improving on Gen 1 Pain Points</li>
+                        <li style="margin: 1px 0;">7.2 Mechanical Optimization 1: Chassis & Movement Control</li>
+                        <li style="margin: 1px 0;">7.3 Mechanical Opt. 2: All-in-One Claw & Hook System</li>
+                        <li style="margin: 1px 0;">7.4 Mechanical Opt. 3: Lift Tuning & Height Optimization</li>
+                        <li style="margin: 1px 0;">7.5 Mechanical Opt. 4: Pneumatic Positioning Corner</li>
+                        <li style="margin: 1px 0;">7.6 Programming Optimization (1-3)</li>
+                        <li style="margin: 1px 0;">7.7 Gen 2 Iteration Records (Detailed Process)</li>
+                        <li style="margin: 1px 0;">7.8 Gen 2 Core Bill of Materials (BOM)</li>
+                        <li style="margin: 1px 0;">7.9 Performance Testing & Final Tuning Summary</li>
+                        <li style="margin: 1px 0;">7.10 General Strategy Planning</li>
+                        <li style="margin: 1px 0;">7.11 Strategy Based on Gen 2 Features</li>
+                        <li style="margin: 1px 0;">7.12 Pre-match Training & Inspection</li>
+                        <li style="margin: 1px 0;">7.13 Asia Open North China Regional</li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= TABLE OF CONTENTS PAGE 4 (APPENDIX) ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 40px; border: none; color: #005f9e; text-align: center; margin-bottom: 20px;">
+            Table of Contents (Cont'd)</h1>
+        <div style="display: flex; justify-content: center;">
+            <ul
+                style="font-size: 18px; line-height: 1.2; list-style-type: none; padding: 0; width: fit-content; min-width: 50%;">
+
+                <!-- Chapter 8 -->
+                <li style="margin: 2px 0;"><strong><a href="ch08.html">Chapter 8: Gen 3 Development & Real Battles</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 1px 0;">8.1 Gen 3 Design: Core Improvements from Experience</li>
+                        <li style="margin: 1px 0;">8.2 Mechanical Build: Three Core Structural Upgrades</li>
+                        <li style="margin: 1px 0;">8.3 Programming & Automation: Pursuing Ultimate Smoothness</li>
+                        <li style="margin: 5px 0;">8.4 Training & Testing: A Leap in Performance</li>
+                        <li style="margin: 5px 0;">8.5 Beijing Inter-school League</li>
+                        <li style="margin: 5px 0;">8.6 Xicheng District Youth Robotics Competition</li>
+                        <li style="margin: 5px 0;">8.7 Beijing Youth Robotics Competition</li>
+                        <li style="margin: 5px 0;">8.8 Comparing Scoring Strategies Across Generations</li>
+                        <li style="margin: 5px 0;">8.9 Season Summary: Heading Toward a New Journey</li>
+                    </ul>
+                </li>
+
+                <!-- Chapter 9 -->
+                <li style="margin: 5px 0;"><strong><a href="ch09.html">Chapter 9: Gen 4 Programming Upgrade</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 5px 0;">9.1 System Initialization</li>
+                        <li style="margin: 5px 0;">9.2 Telemetry & Drivetrain</li>
+                        <li style="margin: 5px 0;">9.3 Button Logic Mapping</li>
+                        <li style="margin: 5px 0;">9.4 Automated Lift Sequences</li>
+                    </ul>
+                </li>
+
+                <!-- Appendix -->
+                <li style="margin: 5px 0;"><strong><a href="chzz.html">Appendix: Thoughts, Growth & Award Records</a></strong>
+                    <ul style="padding-left: 20px; font-size: 16px; list-style-type: none;">
+                        <li style="margin: 5px 0;">ZZ.1 Thoughts & Growth</li>
+                        <li style="margin: 5px 0;">ZZ.2 Past Awards (1)</li>
+                        <li style="margin: 5px 0;">ZZ.3 Past Awards (2)</li>
+                        <li style="margin: 5px 0;">ZZ.4 Past Awards (3)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- <script src="../assets/scripts/common-elements.js"></script> -->
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+
+</body>
+
+</html>

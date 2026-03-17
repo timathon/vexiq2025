@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 3: Little Scientists in the Making (2276A)</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+            font-family: 'Architects Daughter', cursive;
+        }
+    </style>
+</head>
+
+<body class="theme-green">
+
+    <div class="sheet">
+
+        <div style="text-align: center; margin-top: 120px;">
+            <h1 style="font-size: 56px; border: none;">I am a Little Scientist</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">Chapter 3: STEM Concepts & Design Theory</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">STEM Education & Engineering Principles</h3>
+
+            <div
+                style="width: 80%; height: 8px; background: var(--secondary-color); margin: 20px auto; border-radius: 5px;">
+            </div>
+
+            <div style="text-align: left; margin: 40px 80px; font-size: 20px; line-height: 2;">
+                <p><strong>What we're learning:</strong> Physics, Math, Engineering, Programming</p>
+                <p><strong>Our Goal:</strong> To build a smarter robot!</p>
+            </div>
+
+            <div class="sticky-note" style="width: 70%; margin: 50px auto;">
+                <strong>Our Slogan:</strong><br>
+                Not just hands-on, but brains-on!<br>
+                Theory is a practitioner's best friend!
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 55: WHAT IS STEM? ================= -->
+    <div class="sheet">
+
+        <h1>3.1 What is STEM?</h1>
+
+        <p>STEM is the super-combo of <strong>Science, Technology, Engineering, and Mathematics</strong>!</p>
+
+        <div class="knowledge-card">
+            <h3>S - Science</h3>
+            <p><strong>Definition:</strong> Like friction, center of gravity, and leverage from physics class.</p>
+            <p><strong>Our Application:</strong>
+                <br>For example, when Hengjia was designing the claw to grab slippery Pins, he thought of <strong>friction</strong>. He wrapped rubber bands around the claw, and the Pins didn't fall off anymore!
+            </p>
+        </div>
+
+        <img src="../assets/ch03/3_1_s.webp" alt="Friction diagram" style="height: 350px; display: block; margin: 15px auto;">
+
+        <p class="dialogue"><strong>Hengjia:</strong> "Wow, rubber bands are so powerful! That's the power of science!"</p>
+
+    </div>
+
+    <!-- ================= PAGE 56: TECHNOLOGY & ENGINEERING ================= -->
+    <div class="sheet">
+
+        <h1>3.1 What is STEM? (Cont.)</h1>
+
+        <div class="knowledge-card" style="margin-bottom:0">
+            <h3>T - Technology</h3>
+            <p style="font-size: 20px;"><strong>Definition:</strong> High-tech gear like sensors and programming software.</p>
+            <p style="font-size: 20px;"><strong>Our Application:</strong>
+                We use a <strong>Gyro</strong> to help the robot drive in a straight line, and a <strong>Distance Sensor</strong> to tell it when a wall is ahead.
+            </p>
+        </div>
+        <img src="../assets/ch03/3_1_te.webp" alt="Technology illustration" style="width: 100%; display: block; margin: 10px auto;">
+
+        <div class="knowledge-card" style="margin-top:0">
+            <h3>E - Engineering</h3>
+            <p style="font-size: 20px;"><strong>Definition:</strong> Thinking like an engineer to turn ideas into reality.</p>
+            <p style="font-size: 20px;"><b>Our Application:</b> We followed the Engineering Design Process:
+            <ul>
+                <li style="font-size: 20px;"><b>Ask:</b> Understand the game rules and challenges.</li>
+                <li style="font-size: 20px;"><b>Imagine & Plan:</b> Brainstorm solutions and draw sketches.</li>
+                <li style="font-size: 20px;"><b>Create:</b> Build our ideas from the drawings into a real robot.</li>
+                <li style="font-size: 20px;"><b>Iterate:</b> We aren't afraid of failure! We use the "test and improve" loop to make our robot stronger and stronger!</li>
+            </ul>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 57: MATHEMATICS ================= -->
+    <div class="sheet">
+
+        <h1>3.1 What is STEM? (Cont.)</h1>
+
+        <div class="knowledge-card">
+            <h3>M - Mathematics</h3>
+            <p style="font-size: 20px;"><strong>Definition:</strong> Arithmetic! Addition, subtraction, multiplication, and division!</p>
+            <p style="font-size: 20px;"><strong>Our Application:</strong>
+                <br>Math is everywhere!
+                <br>1. Scoring: We calculate which strategy gives the highest score (we did this in Chapter 2).
+                <br>2. Gear Ratios: We calculate how fast the robot goes with different gear combinations.
+                <br>3. Angles: In autonomous, we calculate how many degrees to turn to aim at the Goal perfectly.
+            </p>
+        </div>
+        <img src="../assets/ch03/3_1_m.webp" alt="Power of Math" style="height:320px; display: block; margin: 0 auto;">
+
+        <p class="dialogue" style="font-size: 20px;">Learning STEM feels like learning a secret superpower! But theory isn't enough. Real engineers solve problems within "boundaries" or constraints. Let's see what boundaries this year's game has set for us!</p>
+
+
+    </div>
+
+    <!-- ================= PAGE 58: RULES AS CONSTRAINTS (Part 1) ================= -->
+    <div class="sheet">
+
+        <h1>3.2 Freedom within "Boundaries" (Constraints)</h1>
+
+        <p>Teacher Wang says real engineers always work under <strong>Constraints</strong>. For us, the rules are our constraints.</p>
+
+        <h3>1. That Little Box &lt;R5&gt;</h3>
+        <p><strong>Constraint:</strong> The robot must fit in a 11" x 20" x 15" box at the start.</p>
+        <p><strong>Our Challenge:</strong> According to the manual, the High Tower is 9.5" tall. With a Pin on top, it's super tall! If we build a fixed long neck, it won't fit in the box.</p>
+        <p><strong>Hengjia's Solution:</strong> Rule &lt;SG3&gt; says robots can expand vertically without limit! We can build a multi-stage lift like a forklift. It stays small to fit in the box and "grows" tall during the match.</p>
+        <br>
+        <img src="../assets/ch03/3_2_vertical.webp" alt="Vertical Expansion" style="height:320px; display: block; margin: 0 auto;">
+
+
+    </div>
+
+    <!-- ================= PAGE 59: RULES AS CONSTRAINTS (Part 2) ================= -->
+    <div class="sheet">
+
+        <h1>3.2 Freedom within "Boundaries" (Cont.)</h1>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">2. Only 6 Motors &lt;R11&gt;</h3>
+        <p><strong>Constraint:</strong> We can only use 6 Smart Motors.</p>
+        <p><strong>Our Math:</strong>
+            <br>- <strong>Drivetrain:</strong> Needs at least 2 (left and right) to move.
+            <br>- <strong>Lift:</strong> Beams are heavy, so maybe 1 or 2 motors to lift them.
+            <br>- <strong>Grabber:</strong> Needs 1 to open and close the claw.
+            <br>- <strong>Wrist:</strong> Needs 1 more if we want to tilt the claw.
+        </p>
+
+        <p class="dialogue" style="margin-top: 0; margin-bottom: 0;"><strong>Shuyue:</strong> "Oh no, we're running out of motors! I wanted to build a fancy 4-wheel drive car, but I guess that's not happening."</p>
+        <p><strong>Decision:</strong> We have to be careful. We'll stick to 2 motors for the drivetrain.</p>
+        <img src="../assets/ch03/3_2_motors.webp" alt="Motor constraints" style="height:260px; display: block; margin: 0 auto;">
+
+        <p class="dialogue" style="margin-top: 0; margin-bottom: 0;">These "boundaries" might limit us, but they also spark our creativity! To do our best within these rules, we need our "secret weapon"—Mechanical Principles! Let's see how gears and levers can create big energy!</p>
+
+
+    </div>
+
+    <!-- ================= PAGE 60: MECHANICAL MAGIC - GEARS ================= -->
+    <div class="sheet">
+
+        <h1>3.3 Mechanical Magic: Gear Transmission</h1>
+
+        <p style="font-size: 20px;">Gears are the heart of robot power. They can magically adjust power, letting you decide if your robot is a "sprinter" or a "weightlifter."</p>
+
+        <div class="knowledge-card">
+            <h3>Big Gear Driving Small Gear</h3>
+            <p style="font-size: 20px;"><strong>Effect:</strong> Speed - It goes fast!</p>
+            <p style="font-size: 20px;"><strong>Analogy:</strong> Like riding a bike downhill; pedal once, and the wheels spin many times!</p>
+            <p style="font-size: 20px;"><strong>Plan:</strong> Let's try a 2:1 speed ratio on our first-gen chassis to make it fly!</p>
+        </div>
+
+        <div class="knowledge-card">
+            <h3>Small Gear Driving Big Gear</h3>
+            <p style="font-size: 20px;"><strong>Effect:</strong> Torque - It's strong!</p>
+            <p style="font-size: 20px;"><strong>Analogy:</strong> Like riding a bike uphill; you pedal many times for the wheel to turn once. It's slow, but it has the strength to climb!</p>
+            <p style="font-size: 20px;"><strong>Plan:</strong> The lift arm needs to carry Beams, so we'll use reduction gears to give it strength.</p>
+        </div>
+
+        <img src="../assets/ch03/3_3_gears.webp" alt="Gear transmission" style="height:230px; display: block; margin: 0 auto;">
+
+
+    </div>
+
+    <!-- ================= PAGE 61: MECHANICAL MAGIC - TORQUE ================= -->
+    <div class="sheet">
+
+        <h1>3.3 Mechanical Magic: Torque & Levers</h1>
+
+        <p>We need a long arm to reach the High Tower, but the longer the arm, the harder the motor has to work.</p>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">Leverage Principle</h3>
+        <p><span>Handi's Discovery:</span> I tried holding a long stick. If I hang a weight at the far end, my wrist almost snaps! That's <strong>Torque</strong>! (<b>Torque</b> = Force &times; Distance). But when I put a pivot point close to the weight, I can lift it easily!</p>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">How to help the motor?</h3>
+        <p>Hengjia thought of a clever trick: <strong>Rubber Bands!</strong></p>
+        <p>We attach rubber bands to the back of the arm to help the motor pull. This is called <strong>"Gravity Compensation."</strong> Just like a seesaw, if someone helps push one side, the other side goes up much easier!</p>
+
+        <img src="../assets/ch03/3_3_seesaw.webp" alt="Leverage principle" style="height:230px; display: block; margin: 0 auto;">
+
+        <p class="dialogue">With mechanical magic, our robot has a strong "body." But a body needs a smart "brain" to command it! Let's dive into the world of programming to see how we bring the robot to life!</p>
+
+
+    </div>
+
+    <!-- ================= PAGE 62: PROGRAMMING CONCEPTS ================= -->
+    <div class="sheet">
+
+        <h1>3.4 Making the Robot Smart: Open vs. Closed Loop</h1>
+
+        <p style="font-size: 20px;">Hengrui gave us a programming lesson. He said robots are actually quite silly, and we have to be like animal trainers, telling them exactly what to do at every step.</p>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">"Open Loop" vs. "Closed Loop"</h3>
+        <p style="font-size: 20px;">These are two different styles of doing things:</p>
+
+        <div class="knowledge-card">
+            <h4 style="margin-top: 0; margin-bottom: 0;">Open Loop - "Walking with eyes closed"</h4>
+            <p style="font-size: 20px;"><strong>How it works:</strong> Just give a command and don't check the result, e.g., "Robot, drive forward for 2 seconds!"</p>
+            <p style="font-size: 20px;"><strong>Problem:</strong> If the floor is slippery or the battery is low, the robot might not end up where you want. It's like walking with your eyes shut—you think you've walked ten steps, but you might just be sliding in place.</p>
+            <p style="font-size: 20px;"><strong>Conclusion:</strong> Open loop is simple, but not reliable.</p>
+        </div>
+
+        <div class="knowledge-card">
+            <h4 style="margin-top: 0; margin-bottom: 0;">Closed Loop - "Walking with eyes open"</h4>
+            <p style="font-size: 20px;"><strong>How it works:</strong> Constantly "looking" (using sensors) and adjusting. For example: "Robot, drive forward until your 'eyes' (Distance Sensor) see the wall is only 10cm away."</p>
+            <p style="font-size: 20px;"><strong>Benefit:</strong> The robot adjusts based on reality (feedback). Whether the floor is slippery or not, it will always stop exactly 10cm from the wall. This creates a "Goal -> Action -> Feedback -> Adjustment" loop.</p>
+            <p style="font-size: 20px;"><strong>Conclusion:</strong> Closed loop is much smarter and is the foundation for our autonomous programs.</p>
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 62.5: WHAT IS PID? ================= -->
+    <div class="sheet">
+
+        <h1>3.4 Cont: Brain of Closed Loop - PID</h1>
+
+        <p style="font-size: 20px;">There are many ways to do closed-loop control, and PID is one of the smartest and most common!</p>
+
+        <p style="font-size: 20px;">Imagine our <strong>Goal</strong> is "keep the robot driving in a perfect straight line."</p>
+
+        <div class="dialogue" style="padding: 15px; border-left: 5px solid var(--primary-color);">
+            <p style="font-size: 20px;"><strong>P (Proportional) - the "Present":</strong> "How far am I off the path right now?"<br>
+                If the robot drifts a little, the driver turns the wheel slightly. If it drifts a lot, he turns it sharply. <strong>The further off-course, the harder the correction.</strong></p>
+
+            <p style="font-size: 20px;"><strong>I (Integral) - the "Past":</strong> "Have I been drifting right for a long time?"<br>
+                The driver has a good memory. If he notices the robot keeps drifting right (maybe because one wheel has more friction), he remembers this "accumulated error" and gives the wheel a steady push to the left to cancel it out. <strong>It fixes those annoying little habits.</strong></p>
+
+            <p style="font-size: 20px;"><strong>D (Derivative) - the "Future":</strong> "Am I correcting too fast?"<br>
+                The driver is predictive. When he sees the robot quickly returning to the path, he thinks, "At this speed, I'll zoom right past the center!" So, he eases up early to let the robot land perfectly on the line without wobbling. <strong>It makes the movements smooth and prevents overshooting.</strong>
+            </p>
+        </div>
+
+        <div class="sticky-note" style="font-size: 22px;">
+            <strong>PID in one sentence:</strong> It's a smart algorithm that lets our robot drive like a pro—fast, smooth, and accurate!
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 63: SUMMARY ================= -->
+    <div class="sheet">
+
+        <h1>Chapter 3 Summary: Ready to Build!</h1>
+
+        <div class="knowledge-card">
+            <p>
+                We've learned so much theory in this chapter! Even though we haven't touched the pieces yet, we already feel like real engineers!
+            </p>
+            <ul>
+                <li><strong>We know our constraints:</strong> No more designing robots that are too big!</li>
+                <li><strong>We understand the principles:</strong> We know how to make the chassis fast and the arm strong.</li>
+                <li><strong>We understand intelligence:</strong> We've decided to use more sensors instead of just guessing.</li>
+            </ul>
+        </div>
+
+        <p><strong>Next Step:</strong> Grab pen and paper, and start sketching! We'll draw our ideas and pick the best one to start building our first-generation robot!</p>
+
+        <img src="../assets/ch03/3_z_ready_to_go.webp" alt="Ready to Go" style="height:300px; display: block; margin: 50px auto;">
+
+    </div>
+
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

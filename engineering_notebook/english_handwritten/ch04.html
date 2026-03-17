@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 4: Concept Design & Strategy (2276A)</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+            font-family: 'Architects Daughter', cursive;
+        }
+    </style>
+</head>
+
+<body class="theme-purple">
+
+    <!-- ================= PAGE 61: CHAPTER COVER ================= -->
+    <div class="sheet">
+
+        <div style="text-align: center; margin-top: 120px;">
+            <h1 style="font-size: 56px; border: none; color: var(--primary-color);">Design Origin</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">Chapter 4: Concept Design & Strategy</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Conceptualization & Strategic Planning</h3>
+
+            <div
+                style="width: 80%; height: 8px; background: var(--secondary-color); margin: 40px auto; border-radius: 5px;">
+            </div>
+
+            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+                <p>
+                    This chapter records team 2276A's deep analysis and concept design process based on the 2025-2026 VEX IQ Mix & Match rules.
+                </p>
+                <p>
+                    Starting from competition requirements, we'll break down the robot's core modules, compare mechanical options, and finalize the blueprint for our "Gen 1" robot.
+                </p>
+                <p>
+                    <strong>Core Task:</strong> Establish the design blueprint and technical route for the Gen 1 robot.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 62: REQUIREMENT ANALYSIS ================= -->
+    <div class="sheet">
+        <h1>4.1 Game Rule Analysis & Function Definition</h1>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">Task Breakdown</h3>
+        <p>By studying the "Game Manual" and watching official demos, we analyzed the scoring mechanisms. To maximize efficiency, we summarized <strong>6 core functions</strong> our robot must have:</p>
+
+        <div class="highlight-box type-default">
+            <ol style="line-height: 1.5;">
+                <li><strong>Fast Movement:</strong> Navigate the field flexibly and reach scoring zones quickly.</li>
+                <img src="../assets/ch04/4_n_1_1.webp" alt="Movement illustration"
+                    style="height:200px; display: block; margin: 0 auto;">
+
+                <li><strong>Pin Grabbing:</strong> Grab Pins accurately and securely without dropping them during transit.</li>
+                <img src="../assets/ch04/4_n_1_2.webp" alt="Grabbing illustration"
+                    style="height:150px; display: block; margin: 0 auto;">
+                <li><strong>Pin Stacking:</strong> Vertical lift mechanism to stack Pins multiple layers high for extra points.</li>
+            </ol>
+        </div>
+
+
+    </div>
+
+    <div class="sheet">
+        <h1>4.1 Game Rule Analysis & Function Definition (Cont.)</h1>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">Task Breakdown (Cont.)</h3>
+
+        <div class="highlight-box type-default">
+            <ol start="4" style="line-height: 1.5;">
+                <li><strong>Beam Hooking:</strong> Accurately hook and move the Beams across the field.</li>
+                <img src="../assets/ch04/4_n_1_3.webp" alt="Hooking illustration"
+                    style="height:200px; display: block; margin: 0 auto;border-radius: 10px;">
+
+                <li><strong>Forward Stacking:</strong> Combine Beams and Pins for bonus points using the lift.</li>
+                <li><strong>Reverse Stacking:</strong> The grabber must flip horizontally to stack Pins onto Beams in reverse.</li>
+            </ol>
+        </div>
+
+        <p style="margin-top: 20px;"><strong>Design Constraints:</strong> All functions must fit within the size limit (11"x20"x15"), stay within the 12-port limit of the Brain, and follow pneumatic usage rules.</p>
+
+    </div>
+
+    <!-- ================= PAGE 63: MODULAR ARCHITECTURE ================= -->
+    <div class="sheet">
+        <h1>4.2 System Architecture & Module Division</h1>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">Modular Design Thinking</h3>
+        <p>Based on our needs, we divided the Gen 1 robot into four independent subsystems that work together:</p>
+
+        <div class="two-column-layout">
+            <div class="column">
+                <ul class="notebook-list">
+                    <li>
+                        <strong>1. Chassis System</strong>
+                        <br>Function: Responsible for field positioning and movement.
+                        <br>Requirement: Stable structure with a balance of speed and torque.
+                    </li>
+                    <li>
+                        <strong>2. Intake System</strong>
+                        <br>Function: Responsible for acquiring and holding Pins.
+                        <br>Requirement: Strong grip and high compatibility.
+                    </li>
+                    <li>
+                        <strong>3. Hook System</strong>
+                        <br>Function: Responsible for moving Beams.
+                        <br>Requirement: Located at the rear, avoiding interference with the main intake.
+                    </li>
+                    <li>
+                        <strong>4. Lift & Flip System</strong>
+                        <br>Function: Vertical movement and end-effector orientation adjustment.
+                        <br>Requirement: Precise movement with 180-degree flip capability.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sheet">
+
+        <h1 style="font-size: 26px;">4.2 System Architecture & Module Division (Cont'd)</h1>
+        <h3>Modular Design Thinking (Cont'd)</h3>
+        <img src="../assets/ch04/4_n_2.webp" alt="System layout diagram" style="height:350px; display: block; margin: 0 auto;">
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">Resource Allocation Plan</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
+            <tr style="background: #eee;">
+                <th style="border: 1px solid #999; padding: 5px; width: 16%; font-size: 20px;">Subsystem</th>
+                <th style="border: 1px solid #999; padding: 5px; width: 35%; font-size: 20px;">Power Source</th>
+                <th style="border: 1px solid #999; padding: 5px; font-size: 20px;">Design Consideration</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">Chassis</td>
+                <td style="border: 1px solid #999; padding: 5px;">2 x Smart Motors</td>
+                <td style="border: 1px solid #999; padding: 5px; font-size: 20px;">Differential drive for balance of speed and power.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">Lift</td>
+                <td style="border: 1px solid #999; padding: 5px;">1 x Smart Motor</td>
+                <td style="border: 1px solid #999; padding: 5px; font-size: 20px;">Linkage drive with rubber band gravity compensation.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">Flip</td>
+                <td style="border: 1px solid #999; padding: 5px;">1 x Smart Motor</td>
+                <td style="border: 1px solid #999; padding: 5px; font-size: 20px;">180-degree wrist rotation for reverse stacking.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #999; padding: 5px;">Intake</td>
+                <td style="border: 1px solid #999; padding: 5px;"><strong>Pneumatic System</strong></td>
+                <td style="border: 1px solid #999; padding: 5px; font-size: 20px;">Uses cylinders to save motors and provide instant grip force.</td>
+            </tr>
+        </table>
+
+    </div>
+    <!-- ================= PAGE 64: OPTION EVALUATION ================= -->
+    <div class="sheet">
+        <h1>4.3 Alternative Options Evaluation & Elimination</h1>
+
+        <p style="font-size: 20px;">During the early design phase, we proposed several mechanical structures. We evaluated them based on feasibility, complexity, and resource usage.</p>
+
+        <div style="border-bottom: 1px solid #eee; padding-bottom: 0; display: flex; align-items: flex-start;">
+            <div style="flex: 1;">
+                <h4>Option A: Roller Intake - <span style="color: red;">ELIMINATED</span></h4>
+                <p style="font-size: 20px;"><strong>Description:</strong> Using high-speed flexible rollers to "suck" Pins into the robot.</p>
+            </div>
+            <img src="../assets/ch04/4_3_1_roller-intake-1.png" alt="Roller intake example" style="width: 180px; border-radius: 8px; margin-left: 20px;">
+        </div>
+        <p style="font-size: 20px; width: 100%;"><strong>Reason for Elimination:</strong>
+            1. Pin shape is irregular; it's hard to control final orientation for precise stacking.
+            2. Mechanism is too bulky to integrate a flip system within the size limits.
+        </p>
+
+        <div style="border-bottom: 1px solid #eee; padding-bottom: 0; display: flex; align-items: flex-start;">
+            <div style="flex: 1;">
+                <h4>Option B: H-Drive (Omni) - <span style="color: red;">ELIMINATED</span></h4>
+                <p style="font-size: 20px;"><strong>Description:</strong> Adding a sideways wheel to a 4-wheel chassis for omnidirectional movement.</p>
+            </div>
+            <img src="../assets/ch04/4_3_2_h-drive.png" alt="H-Drive example" style="width: 180px; border-radius: 8px; margin-left: 20px;">
+        </div>
+        <p style="font-size: 20px; width: 100%;"><strong>Reason for Elimination:</strong>
+            1. Needs 3-5 motors, exceeding our motor budget.
+            2. Sideways wheels have poor traction on VEX IQ field tiles and lose pushing power.
+        </p>
+
+        <div style="display: flex; align-items: flex-start;">
+            <div style="flex: 1;">
+                <h4>Option C: Double Reverse Four-Bar (DR4B) - <span style="color: red;">ELIMINATED</span></h4>
+                <p style="font-size: 20px;"><strong>Description:</strong> A high-reach scissor or multi-linkage lift structure.</p>
+            </div>
+            <img src="../assets/ch04/4_3_3_dr4b.png" alt="DR4B example" style="width: 140px; border-radius: 8px; margin-left: 20px;">
+        </div>
+        <p style="font-size: 20px; width: 100%;"><strong>Reason for Elimination:</strong>
+            1. Too heavy, making the center of gravity too high and prone to tipping.
+            2. Gen 1 principle is "Stability First"—DR4B is just too complex for now.
+        </p>
+
+    </div>
+
+    <!-- ================= PAGE 65: FINAL DESIGN ================= -->
+    <div class="sheet">
+        <h1>4.4 Gen 1 Design Finalization</h1>
+
+        <h3 style="margin-top: 0; margin-bottom: 0;">Technical Route Confirmed</h3>
+        <p>After many rounds of discussion, we finalized the Gen 1 design. This plan focuses on simple, reliable hardware to ensure core scoring functions.</p>
+
+        <h4>1. Chassis System: 4-Wheel Differential Drive</h4>
+        <p>Classic left-right motor drive with 4 Omni Wheels to reduce turning friction. We're using a 2x speed gear ratio (48:24) for a balance of speed and pushing power.</p>
+        
+        <div style="height:150px; display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc; margin: 10px auto; border-radius: 15px; width: 80%;">
+            [Sketch Placeholder: Gen 1 Chassis Concept]
+        </div>
+
+        <h4>2. Intake System: Pneumatic Claw</h4>
+        <p>Using pneumatics for instant response, we designed an L-shaped claw. It closes to grab when the cylinder extends and opens when it retracts. This saves motor ports and provides constant grip.</p>
+        
+        <div style="height:200px; display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc; margin: 10px auto; border-radius: 15px; width: 80%;">
+            [Sketch Placeholder: Pneumatic Claw Concept]
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="sheet">
+        <h1>4.4 Gen 1 Design Finalization (Cont.)</h1>
+
+        <h4>3. Lift System: Single-Motor Linkage</h4>
+        <p>A single-driven four-bar linkage with rubber band compensation. This reach is enough for stacking Pins two layers high.</p>
+
+        <h4>4. Flip System: Rotating Wrist</h4>
+        <p>Integrated flip motor at the end of the arm to switch the grabber between 0-180 degrees, enabling reverse stacking.</p>
+
+        <h3 style="margin-top: 0; margin-bottom: 0;">Gen 1 Overall Concept Design Sketch</h3>
+
+        <div style="height:400px; display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc; margin: 10px auto; border-radius: 15px; width: 90%;">
+            [Sketch Placeholder: Gen 1 Overall Concept Layout]
+        </div>
+
+    </div>
+
+
+    <!-- ================= PAGE 66: STRATEGY PLANNING ================= -->
+    <div class="sheet">
+        <h1>4.5 Preliminary Match Strategy</h1>
+
+        <p>While finalizing hardware, we also planned our initial match strategy to guide our building and programming.</p>
+
+        <h3>Strategic Highlights</h3>
+        <ol>
+            <li>
+                <strong>Core Scoring: Pin Stacking</strong>
+                <br>Since Pins are worth high points, ensuring the pneumatic claw's success rate is our top priority.
+            </li>
+            <li>
+                <strong>Space Usage: Field Corners</strong>
+                <br>We've kept the robot compact to ensure it can smoothly enter scoring Goals in the field corners.
+            </li>
+            <li>
+                <strong>Operation Optimization: Semi-Auto Logic</strong>
+                <br>To help the driver, we'll program "one-button grab" and "one-button release" functions using the pneumatic system's on/off nature.
+            </li>
+        </ol>
+
+        <div>
+            <h3>Next Steps</h3>
+            <ol>
+                <li><strong>Material Prep:</strong> Specifically checking all pneumatic parts for leaks.</li>
+                <li><strong>Physical Build:</strong> Assemble the chassis and arm according to our final drawings.</li>
+                <li><strong>Programming:</strong> Implement basic controls for motor and pneumatic coordination.</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <!-- ================= PAGE 67: SUMMARY ================= -->
+    <div class="sheet">
+        <h1>Chapter 4 Summary: Design Complete</h1>
+
+        <p>
+            This chapter took us from requirement analysis to final design.
+        </p>
+        <p>
+            By dissecting the rules, we defined the boundaries of our robot's functions. With limited resources, we made rational choices, rejecting risky complex structures in favor of a "Stable Chassis + Efficient Pneumatic Claw" route.
+        </p>
+        <p>
+            This design theoretically meets all our core needs for movement, grabbing, stacking, and flipping, and it has high feasibility.
+        </p>
+        <p>
+            Next, we move into manufacturing and debugging to see how this concept performs in the physical world!
+        </p>
+        <br>
+        <img src="../assets/ch04/4_n_z.webp" alt="Ready to build"
+            style="height:380px; display: block; margin: 10px auto; border-radius: 15px;">
+
+
+    </div>
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

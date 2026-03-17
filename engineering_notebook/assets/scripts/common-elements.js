@@ -57,9 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
         indicator.classList.add('a4-height-indicator');
         sheet.prepend(indicator);
 
-        // Check if it's a cover page (heuristic: has .cover-page class or h1 has a very large font size)
+        // Check if it's a cover page or explicitly marked to have no footer
         const h1 = sheet.querySelector('h1');
-        const isCoverPage = sheet.classList.contains('cover-page') || (h1 && (h1.style.fontSize === '56px' || h1.style.fontSize === '48px'));
+        const isCoverPage = sheet.classList.contains('cover-page') || 
+                            sheet.classList.contains('no-footer') ||
+                            (h1 && (h1.style.fontSize === '56px' || h1.style.fontSize === '48px'));
 
         if (!isCoverPage) {
             const pageNumberEl = sheet.querySelector('.page-number');
@@ -79,7 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create recorder box
             const recorderBox = document.createElement('span');
-            recorderBox.innerHTML = '<span class="footer-label">记录人：</span><span class="footer-recorder">' + recorder + '</span>';
+            const recorderLabel = window.location.pathname.includes('/english_handwritten/') ? 'Recorder: ' : '记录人：';
+            recorderBox.innerHTML = '<span class="footer-label">' + recorderLabel + '</span><span class="footer-recorder">' + recorder + '</span>';
             footer.appendChild(recorderBox);
             
             if (pageNumberEl) {

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 7: Design Iteration: Gen 2 (2276A)</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* --- Cover Page Styling --- */
+        .cover-section {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .cover-section h1 {
+            font-size: 56px;
+            border: none;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cover-section h2 {
+            font-size: 36px;
+            background: none;
+            color: #555;
+            padding: 0;
+            margin: 5px 0;
+            border: none;
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .cover-section h3 {
+            font-size: 24px;
+            color: #888;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .cover-divider {
+            width: 80%;
+            height: 8px;
+            background-color: var(--secondary-color);
+            margin: 40px auto;
+            border-radius: 5px;
+        }
+
+        .cover-intro {
+            margin: 60px 80px;
+            font-size: 20px;
+            line-height: 2;
+            text-align: left;
+            color: #444;
+        }
+
+        /* --- Content Styling --- */
+        .comparison-table,
+        .parts-table,
+        .training-table,
+        .debug-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .comparison-table th,
+        .parts-table th,
+        .training-table th,
+        .debug-table th {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px;
+        }
+
+        .comparison-table td,
+        .parts-table td,
+        .training-table td,
+        .debug-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .highlight-cell {
+            background-color: #f3e5f5;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Utility Classes */
+        .text-purple {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .box-purple {
+            background-color: #F2ECF7;
+            border: 1px solid var(--secondary-color);
+            padding: 0 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .analysis-section {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
+        /* Two Column Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Two equal columns */
+            gap: 20px;
+            /* Space between images */
+            margin-top: 20px;
+        }
+
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .caption {
+            margin-top: 8px;
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+        }
+
+        .strategy-card {
+            background-color: #E0F2F1;
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .text-teal {
+            color: var(--primary-color);
+        }
+
+        .text-red {
+            color: #c0392b;
+        }
+
+        .text-green {
+            color: #27ae60;
+        }
+    </style>
+</head>
+
+<body class="theme-purple-7">
+
+    <!-- ================= PAGE 117: CHAPTER COVER ================= -->
+    <div class="sheet">
+        <div class="cover-section">
+            <h1 style="font-size: 56px;">Iteration & Optimization</h1>
+            <h2>Chapter 7: The Evolution of Gen 2</h2>
+            <h3>Design Iteration: Gen 2</h3>
+
+            <div class="cover-divider"></div>
+
+            <div class="cover-intro">
+                <p>
+                    This chapter records the full journey of developing Gen 2, based on the drift, reach, and accuracy issues identified in Gen 1.
+                </p>
+                <p>
+                    Key upgrades: Optimized chassis speed (1.5x ratio), integrated 4X beam intake, physical limit tuning for the lift, pneumatic aligners, and one-button automated macros.
+                </p>
+                <p>
+                    <strong>Core Task:</strong> Build a more capable, flexible, and stable robot for high-level competition.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 118: ITERATION START ================= -->
+    <div class="sheet">
+        <h1>7.1 Iteration Start: Fixing Version 1.0</h1>
+
+        <p>Based on our Beijing Urban Competition data, we set four technical goals for Gen 2:</p>
+
+        <div class="highlight-box type-purple">
+            <h3>Gen 2 Design Goals</h3>
+            <ol style="line-height: 2;">
+                <li><strong>Chassis Stability:</strong> Fix the high-speed drift of the 2x chassis by tuning it to a 1.5x effective ratio via software.</li>
+                <li><strong>Intake Precision:</strong> Use an integrated 4X beam to fix friction points and reduce Pin offset during flips.</li>
+                <li><strong>Lift Tuning:</strong> Recalculate arm length and rotation for the Center Tower to balance height and stability.</li>
+                <li><strong>Triangle Zone Efficiency:</strong> Introduce movable aligners and automation for fast, precise entry into Triangle Goals.</li>
+            </ol>
+        </div>
+        <img src="../assets/ch07/7_1_1.webp" alt="Gen 2 Side View"
+            style="display: block;height:300px; margin: 10px auto; border-radius: 10px;">
+
+    </div>
+
+    <!-- ================= PAGE 119: CHASSIS OPTIMIZATION ================= -->
+    <div class="sheet">
+        <h1>7.2 Optimization 1: Chassis & Motion Control</h1>
+
+        <div class="highlight-box type-default">
+            <p class="text-purple">Fix 1: Gear Relocation (Ground Clearance)</p>
+            <p><strong>Pain Point:</strong> Gen 1 gears were too low, scraping against Loading Beams. We moved the gear assembly up to eliminate ground interference.</p>
+
+            <p class="text-purple">Fix 2: Speed Dampening (Motion Control)</p>
+            <p><strong>Improvement:</strong> Reduced the gear ratio from 2x to 1.5x. We also added a 0.75x software stability coefficient to the drive output.</p>
+            <p><strong>Result:</strong> Much smoother movement. It no longer scatters Pins at high speed, making pre-grab positioning far more accurate.</p>
+        </div>
+        <img src="../assets/ch07/7_2_1.webp" alt="Gen 2 Chassis"
+            style="display: block;height:350px; margin: 20px auto; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 120: INTAKE SYSTEM ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 28px;">7.3 Optimization 2: Integrated Intake & Hook</h1>
+
+        <div class="two-column-layout">
+            <div class="column">
+                <h3 class="text-purple" style="margin-top: 10px; margin-bottom: 5px;">1. Integrated 4X Beam Intake</h3>
+                <p><strong>Action:</strong> Switched to an integrated 4X beam and wrapped rubber bands for extra friction.</p>
+                <p><strong>Advantage:</strong> Fixed friction points ensure Pins don't shift during flips. Grab success rate is now 95%.</p>
+            </div>
+            <img src="../assets/ch07/7_3_1.webp" alt="Gen 2 Claw"
+                style="display: block;height:200px; margin: 10px auto; border-radius: 10px;">
+
+            <div class="column">
+                <h3 class="text-purple" style="margin-top: 10px; margin-bottom: 5px;">2. Hook Arch Optimization</h3>
+                <p><strong>Action:</strong> Adjusted the hook angle to center it on the Beam and optimized physical limits to prevent vibration-induced slippage.</p>
+                <p><strong>Advantage:</strong> Dual-function hook for both Beams and Pins provides a solid foundation for lifting and stacking.</p>
+            </div>
+            <img src="../assets/ch07/7_3_2.webp" alt="Gen 2 Hook"
+                style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+        </div>
+    </div>
+
+    <!-- ================= PAGE 121: LIFT TUNING ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 28px;">7.4 Opt. 3: Lift Geometry & Height Redundancy</h1>
+
+        <h3 class="text-purple">Diagnosis: Height vs. Stability Imbalance</h3>
+        <p>In version 1.0, the robot struggled to reach the second layer of the High Tower. The short arm caused high motor load and severe wobbling, often toppling the stack.</p>
+
+        <h3 class="text-purple">Improvement: Geometric Reconstruction</h3>
+        <p><strong>1. Lengthened Arm:</strong> Increased the lift arm by 2.5 inches. While this increased torque load, we used a 1:5 gear reduction to compensate, gaining significant reach.</p>
+        <p><strong>2. Retained Precision:</strong> Kept the physical limits for the Pin base to ensure grabbing accuracy wasn't sacrificed for height.</p>
+
+        <h3 class="text-purple">Evaluation:</h3>
+        <p>Stacking height now comfortably meets requirements with much better stability.</p>
+
+        <img src="../assets/ch07/7_4_1.webp" alt="Gen 2 Stacking Reach"
+            style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 122: TRIANGLE ALIGNERS ================= -->
+    <div class="sheet">
+        <h1 style="font-size: 28px;">7.5 Optimization 4: Pneumatic Aligner System</h1>
+
+        <div class="analysis-section">
+            <p class="text-purple">Background: Solving Entry Interference</p>
+            <p>Fixed aligners often got stuck on the Triangle Goal edges. This fix uses pneumatics to clear obstacles and speed up scoring.</p>
+        </div>
+
+        <div class="box-purple">
+            <h3 class="text-purple" style="margin-top: 10px; margin-bottom: 5px;">Core Solution: Pneumatic Retraction + Automation</h3>
+            <ul style="margin-top: 5px; margin-bottom: 5px;">
+                <li style="font-size: 20px;"><strong>Structure:</strong> Added a cylinder module to auto-lift/retract the aligner near edges, avoiding physical friction.</li>
+                <li style="font-size: 20px;"><strong>One-Key Macro:</strong> Developed the <code>Score_In_Triangle()</code> function to automate the "lift-align-reverse" sequence.</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box type-purple" style="margin-top: 20px;">
+            <h3 style="margin-top: 10px; margin-bottom: 5px;">Efficiency Gains</h3>
+            <ul style="margin-top: 5px; margin-bottom: 5px;">
+                <li style="font-size: 20px;"><strong>1. Smooth Action:</strong> Complex alignment is now a single automated button press.</li>
+                <li style="font-size: 20px;"><strong>2. Speed Boost:</strong> Delivery time dropped from <strong>6s to 2.5s</strong>, allowing for 2 more stacks per match.</li>
+            </ul>
+        </div>
+
+        <img src="../assets/ch07/7_5_1.webp" alt="Gen 2 Aligner Up"
+            style="display: block;height:250px; margin: 10px auto; border-radius: 10px;">
+
+    </div>
+
+    <!-- ================= PAGE 123: AUTOMATION PROGRAMMING ================= -->
+    <div class="sheet">
+        <h1>7.6 Programming Optimization (1)</h1>
+
+        <p>To improve efficiency, we added "Auto-Zeroing" and "Status Feedback": using motor stall detection to correct arm errors, and LED colors (Red/Yellow/Purple/Green) to show distance—like a "Traffic Light" for the driver.</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="../assets/ch07/image20.png" alt="Lifting Reset">
+                <div class="caption">Fig 7.6.1 Lifting Reset on Stall</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch07/image21.png" alt="Flip Reset">
+                <div class="caption">Fig 7.6.2 Flip Reset Logic</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch07/image30.png" alt="Combo Keys">
+                <div class="caption">Fig 7.6.3 Combo Key Controls</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch07/image31.png" alt="Traffic Light">
+                <div class="caption">Fig 7.6.4 Distance Feedback LEDs</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="sheet">
+        <h1>7.6 Programming Optimization (2)</h1>
+
+        <p>The "Initialization" module prepares the robot for match-start: it auto-locks cylinders and sets motor torque to prevent mechanism sag, ensuring the robot is always ready.</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="../assets/ch07/image22.png" alt="Init Sequence">
+                <div class="caption">Fig 7.6.5 Match Start: Lock & Set Torque</div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="sheet">
+        <h1>7.6 Programming Optimization (3)</h1>
+
+        <p>Chassis controls now include a "Deadband" filter: the system ignores small joystick vibrations, ensuring movement only happens when intended for a smooth drive.</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="../assets/ch07/image23.png" alt="Joystick Deadband">
+                <div class="caption">Fig 7.6.6 Smooth Joystick Deadband Code</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 124: TRAINING RECORDS ================= -->
+    <div class="sheet">
+        <h1>7.7 Gen 2 Iterative Training Logs</h1>
+
+        <table class="training-table">
+            <thead>
+                <tr>
+                    <th width="10%">Session</th>
+                    <th>Issues Found</th>
+                    <th>Improvement</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Chassis drift, unstable intake</td>
+                    <td>Lowered speed coefficient, fixed friction</td>
+                    <td>Better stability and grab rate</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>High Tower reach limited</td>
+                    <td>Lengthened arm, new pivot angle</td>
+                    <td>Reached max tower, structure is solid</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Aligner getting stuck on Goals</td>
+                    <td>Added pneumatic aligner retraction</td>
+                    <td>Smooth entry, no physical interference</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Slow manual flip/lift transitions</td>
+                    <td>Programmed continuous action macros</td>
+                    <td>Simplified ops, higher scoring speed</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Poor overall coordination in simulation</td>
+                    <td>Adjusted motor sync for match rhythm</td>
+                    <td>Precise movements, ready for matches</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= PAGE BOM ================= -->
+    <div class="sheet">
+        <h1>7.8 Gen 2 Core BOM - Part 1</h1>
+
+        <table class="parts-table">
+            <thead>
+                <tr>
+                    <th width="12%">Category</th>
+                    <th width="25%">Part Name</th>
+                    <th width="8%">Qty</th>
+                    <th width="25%">Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Electronics</td>
+                    <td>Brain / Controller</td>
+                    <td>1 / 1</td>
+                    <td><img src="../assets/ch07/v5_controller_remote.png" alt="Brain & Controller" style="max-width:100%; max-height:100px;"></td>
+                </tr>
+                <tr>
+                    <td>Sensors</td>
+                    <td>Distance Sensor</td>
+                    <td>2</td>
+                    <td><img src="../assets/ch07/distance_sensor.png" alt="Distance Sensor" style="max-width:100%; max-height:100px;"></td>
+                </tr>
+                <tr>
+                    <td>Sensors</td>
+                    <td>Touch LED</td>
+                    <td>1</td>
+                    <td><img src="../assets/ch07/touch_led.png" alt="Touch LED" style="max-width:100%; max-height:100px;"></td>
+                </tr>
+                <tr>
+                    <td>Power</td>
+                    <td>Smart Motors</td>
+                    <td>6</td>
+                    <td><img src="../assets/ch07/v5_smart_motor.png" alt="Smart Motor" style="max-width:100%; max-height:100px;"></td>
+                </tr>
+                <tr>
+                    <td>Pneumatics</td>
+                    <td>Air Tank / Pump</td>
+                    <td>2 / 1</td>
+                    <td><img src="../assets/ch07/air_tank_pump.png" alt="Air Tank & Pump" style="max-width:100%; max-height:100px;"></td>
+                </tr>
+                <tr>
+                    <td>Pneumatics</td>
+                    <td>Cylinders (Long/Short)</td>
+                    <td>2 / 1</td>
+                    <td><img src="../assets/ch07/long_short_cylinder.png" alt="Cylinders" style="max-width:100%; max-height:100px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= PAGE 126: PERFORMANCE SPECS ================= -->
+    <div class="sheet">
+        <h1>7.9 Performance Metrics & Tuning Summary</h1>
+
+        <h3>Core Metrics Comparison (Gen 1 vs Gen 2)</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th width="15%">Strategy</th>
+                    <th width="20%">Gen 1 Performance</th>
+                    <th width="15%">Gen 2 Tested</th>
+                    <th>Key Improvement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>91 pt Strategy</strong></td>
+                    <td>105 pts (No Triangles)</td>
+                    <td class="highlight-cell">166 pts</td>
+                    <td>Fast aligner deploy, added Triangles</td>
+                </tr>
+                <tr>
+                    <td><strong>110 pt Strategy</strong></td>
+                    <td>144 pts (Unstable)</td>
+                    <td class="highlight-cell">178 pts</td>
+                    <td>Longer arm, 100% tower success</td>
+                </tr>
+                <tr>
+                    <td><strong>Skills Match</strong></td>
+                    <td>144 pts (No Tower)</td>
+                    <td class="highlight-cell">184 pts</td>
+                    <td>Auto-flip for 3-color center task</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="box-purple">
+            <h3>Tuning Conclusion</h3>
+            <ul>
+                <li><strong>Lift:</strong> Longer arm solved the height limit and improved anti-tip stability by shifting CG rearward.</li>
+                <li><strong>Aligners:</strong> Pneumatics were the "Efficiency Black Tech" of this version, making Triangle tasks easy.</li>
+                <li><strong>Overall:</strong> Gen 2 fixed Gen 1's stability issues and used hardware-software synergy to go from "just running" to "winning."</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sheet">
+        <h1>7.10-7.13 WRC North China Regional (Shijiazhuang)</h1>
+        <div class="strategy-card">
+            <h4>Tournament Highlights:</h4>
+            <ul>
+                <li><strong>Stats:</strong> 277 high score, 17th place final rank.</li>
+                <li><strong>Success:</strong> First prize award (qualified for nationals).</li>
+                <li><strong>Crisis:</strong> Motors overheated under high load; snapped pins required emergency field repairs.</li>
+                <li><strong>Lessons:</strong> Need dedicated cooling (spray) and a mandatory spares checklist (motors, pins, tubes).</li>
+            </ul>
+        </div>
+        <p><strong>Decision:</strong> While Gen 2 is strong, Shijiazhuang proved it has cooling and stability limits for long events. We must start <strong>Gen 3</strong> immediately to prepare for nationals.</p>
+    </div>
+
+    <div class="sheet">
+        <h1>Chapter 7 Summary: The Imperfect Gen 2</h1>
+
+        <div class="cover-intro" style="margin: 40px 0;">
+            <p>
+                This chapter recorded Gen 2 from design to real matches. We fixed Gen 1's pain points and boosted performance with pneumatics and automation.
+            </p>
+            <p>
+                However, Gen 2 isn't the finish line. Overheating and emergency failures in Shijiazhuang showed us we need even more reliability for long schedules.
+            </p>
+            <p>
+                <strong>Next Steps:</strong>
+                Gen 2's "imperfections" are our motivation. We're launching Gen 3 to tackle autonomous mode challenges and explore a completely new mechanical layout.
+            </p>
+        </div>
+        <img src="../assets/ch07/7_z.webp" alt="Gen 2 Top View"
+            style="display: block;height:220px; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

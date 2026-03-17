@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 9: Gen 4 - Coding Upgrade (2276A)</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        .cover-section {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .cover-section h1 {
+            font-size: 56px;
+            border: none;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cover-section h2 {
+            font-size: 36px;
+            background: none;
+            color: #555;
+            padding: 0;
+            margin: 5px 0;
+            border: none;
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        
+        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .cover-divider {
+            width: 80%;
+            height: 8px;
+            background-color: var(--secondary-color);
+            margin: 40px auto;
+            border-radius: 5px;
+        }
+
+        .cover-intro {
+            margin: 40px 80px;
+            font-size: 20px;
+            line-height: 2;
+            text-align: left;
+            color: #444;
+        }
+
+        .text-purple {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="theme-ch09">
+
+    <!-- ================= PAGE 1: COVER ================= -->
+    <div class="sheet">
+        <div class="cover-section">
+            <h1 style="font-size: 56px;">Gen 4: Coding Architecture Upgrade</h1>
+            <h2>Chapter 9: The Software Engineering Leap</h2>
+
+            <div class="cover-divider"></div>
+
+            <div class="cover-intro">
+                <p>
+                    As our understanding of VEX IQ grew, we realized mechanical iterations alone weren't enough. To achieve stable and efficient automation, we launched a full upgrade of our coding architecture.
+                </p>
+                <p>
+                    This chapter details how we applied software engineering principles to refactor our modular code, leading to a leap in robot performance.
+                </p>
+                <p>
+                    <strong>Core Task:</strong> Build a clear, scalable, and high-fault-tolerant programming framework for complex autonomous and strategic execution.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 2: System Initialization ================= -->
+    <div class="sheet">
+        <h1>9.1 System Initialization</h1>
+        <p>A reliable system starts with a precise initialization. We defined three core steps to ensure the robot starts in peak condition.</p>
+        <h3 class="text-purple">1. Device Initialization (Init)</h3>
+        <p>Sets all motor torques to 100% and brake modes to "Hold" to resist external forces. Also initializes all pneumatic systems.</p>
+        <img src="../assets/ch09/1-system initialization-1-init.jpg" alt="Init"
+            style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>9.1 System Initialization (Cont'd)</h1>
+        <h3 class="text-purple">2. Lift Reset</h3>
+        <p>Uses "Stall Detection" to precisely zero the lift arm encoder. The motor drives down until its speed drops below 30%, signaling it has reached the physical bottom.</p>
+        <img src="../assets/ch09/1-system initialization-2-lift reset.png" alt="Lift Reset"
+            style="max-width: 85%; border-radius:8px; margin-top: 10px;">
+
+        <h3 class="text-purple">3. Pin Reset (Flip Reset)</h3>
+        <p>Similar to the lift, the flip mechanism drives down until speed is <10%, zeroes the encoder, then lifts 10° for operation clearance.</p>
+        <img src="../assets/ch09/1-system initialization-3-pin reset.png" alt="Pin Reset"
+            style="max-width: 85%; border-radius: 10px; margin-top: 10px;">
+    </div>
+
+    <!-- ================= PAGE 3: Telemetry & Driving ================= -->
+    <div class="sheet">
+        <h1>9.2 Telemetry & Driving</h1>
+        <p>Precise control and fast debugging are keys to victory. We designed a real-time telemetry interface and a drive system with safety locks.</p>
+
+        <h3 class="text-purple">1. Screen Telemetry</h3>
+        <p>Displays critical variables like "Beam" state, Lift angle, and Flip angle directly on the Brain's screen for fast on-field diagnosis.</p>
+        <img src="../assets/ch09/2-telemetry and driving-1-screen telemetry.jpg" alt="Screen Telemetry"
+            style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>9.2 Telemetry & Driving (Cont'd)</h1>
+        <h3 class="text-purple">2. Drive Control</h3>
+        <p>Introduced a "Safety Lock" mechanism: the robot only responds to sticks when the chassis variable (dipan) is active. We also added a 20% Deadzone to avoid stick-drift errors. This ensures the robot won't move accidentally if the driver bumps a stick during a precise automated sequence.</p>
+                <img src="../assets/ch09/2-telemetry and driving-2-drive control.jpg" alt="Drive Control"
+                    style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+    </div>
+
+    <!-- ================= PAGE 4: Button Logic Mapping ================= -->
+    <div class="sheet">
+        <h1>9.3 Button Logic Mapping (1)</h1>
+        <p>Every button on the controller has a clear, intuitive function, with complex logic encapsulated behind the scenes.</p>
+
+        <div>
+            <h3 class="text-purple">D, R3, L-Up</h3>
+            <img src="../assets/ch09/3-button logic mapping-1-d r3 l-up.jpg" alt="Button Logic 1"
+                style="max-width: 75%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>D:</strong> Move to 121 Base (Pin=8)</li>
+                <li><strong>R3:</strong> Drop to 121 Base (Pin=9)</li>
+                <li><strong>L-Up:</strong> Increment Beam State (1->2->3)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.3 Button Logic Mapping (2)</h1>
+        <div>
+            <h3 class="text-purple">E-Up, R-Down</h3>
+            <img src="../assets/ch09/3-button logic mapping-2-e-up r-down.png" alt="Button Logic 2"
+                style="max-width: 100%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>E-Up:</strong> Open Hook (Beam=0)</li>
+                <li><strong>R-Down:</strong> Toggle Tower Height (Pin 0/1)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.3 Button Logic Mapping (3)</h1>
+        <div>
+            <h3 class="text-purple">F-Buttons</h3>
+            <img src="../assets/ch09/3-button logic mapping-3-f-buttons.png" alt="Button Logic 3"
+                style="max-width: 90%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>F-Down:</strong> Toggle Triangle Height (Pin 2/3)</li>
+                <li><strong>F-Up:</strong> Manual Grab Adjust (Jia +/- 1)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.3 Button Logic Mapping (4)</h1>
+        <div>
+            <h3 class="text-purple">E-Down</h3>
+            <img src="../assets/ch09/3-button logic mapping-4-e-down.jpg" alt="Button Logic 4"
+                style="max-width: 100%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>Loading Logic:</strong></li>
+                <li>Pin=4: Approach</li>
+                <li>Pin=5: Grip & Lift</li>
+                <li>Pin=7: Reset</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 5: Automated Lift Sequences ================= -->
+    <div class="sheet">
+        <h1>9.4 Automated Lift Sequences (1)</h1>
+        <p>Automation is our scoring multiplier. We break complex flows into states controlled by precise code.</p>
+
+        <h3 class="text-purple">1. Start & Grip Sequence</h3>
+        <img src="../assets/ch09/4-automatated lift sequences-1-start and grip sequence-a.jpg" alt="Start and Grip A"
+            style="max-width: 80%; border-radius: 10px;">
+        <div style="display: flex; align-items: flex-start; gap: 15px;">
+            <p style="flex: 1;padding:10px">When Beam=0, the system stays in a 40° ready state. When Beam=1, the robot auto-completes the "Reverse -> Drop -> Grip -> Lift" sequence and hands control back to the driver.</p>
+            <img src="../assets/ch09/4-automatated lift sequences-1-start and grip sequence-b.jpg" alt="Start and Grip B"
+                style="max-width: 52%; border-radius: 10px;">
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.4 Automated Lift Sequences (2)</h1>
+        <h3 class="text-purple">2. Lift Heights</h3>
+        <p>A simple State Machine manages target heights. Beam=2 targets the 91-height; Beam=3 targets the 121-height, ensuring reliable positioning for different scoring tasks.</p>
+        <img src="../assets/ch09/4-automatated lift sequences-2-lift heights.png" alt="Lift Heights"
+            style="max-width: 90%; border-radius: 10px; margin-top: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>9.4 Automated Lift Sequences (3)</h1>
+        <h3 class="text-purple">3. Release Sequence</h3>
+        <p>Pressing L-Down executes different steps based on state. At 91-height, it drops to 265°, opens the claw, rises to 350°, and resets—all in one button press.</p>
+        <img src="../assets/ch09/4-automatated lift sequences-3-release sequence-a.jpg" alt="Release A"
+            style="max-width: 70%; border-radius: 10px;">
+        <img src="../assets/ch09/4-automatated lift sequences-3-release sequence-b.jpg" alt="Release B"
+            style="max-width: 70%; border-radius: 10px;">
+    </div>
+
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

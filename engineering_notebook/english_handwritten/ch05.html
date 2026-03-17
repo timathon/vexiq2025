@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Notebook - Chapter 5: System Implementation & Assembly (2276A)</title>
+    <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
+    <style>
+        /* Two Column Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Two equal columns */
+            gap: 20px;
+            /* Space between images */
+            margin-top: 20px;
+        }
+
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            /* Limit height to fit page */
+        }
+
+        /* Floating scroll buttons */
+        .scroll-buttons {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px); /* Slight blur effect */
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(70, 70, 70, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Print styles - hide buttons when printing */
+        @media print {
+            .scroll-buttons {
+                display: none;
+            }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Patrick Hand', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .caption {
+            margin-top: 8px;
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* BOM Table Styles */
+        .parts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .parts-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .parts-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body class="theme-reddish-brown">
+
+    <!-- ================= PAGE 91: CHAPTER COVER ================= -->
+    <div class="sheet">
+
+        <div style="text-align: center; margin-top: 120px;">
+            <h1 style="font-size: 56px; border: none; color: #E74C3C;">System Implementation</h1>
+            <h2 style="font-size: 36px; background: none; color: #555;">Chapter 5: Physical Assembly & Software Configuration</h2>
+            <h3 style="font-size: 24px; color: #888; border: none;">Conceptual Design to Reality</h3>
+
+            <div style="width: 80%; height: 8px; background: #E74C3C; margin: 40px auto; border-radius: 5px;"></div>
+
+            <div style="text-align: left; margin: 60px 80px; font-size: 20px; line-height: 2;">
+                <p>
+                    This chapter details the process of transforming our design drawings into a real robot.
+                </p>
+                <p>
+                    It covers selecting and organizing key parts, assembly techniques for each subsystem, integrating pneumatics and electronics, and writing the core control code.
+                </p>
+                <p>
+                    <strong>Core Task:</strong> Complete the assembly and debugging of the Gen 1 robot, ensuring it's ready for competition.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 92: RESOURCE ORGANIZATION ================= -->
+    <div class="sheet">
+
+        <h1>5.1 Resource Planning & Port Mapping</h1>
+
+        <p>Before assembly, the team checked the Bill of Materials (BOM) based on our Chapter 4 design and planned the port mapping for the VEX IQ Brain.</p>
+
+        <h3>Gen 1 Core Parts List (BOM)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">Category</th>
+                    <th width="35%">Part Name</th>
+                    <th width="12%">Qty</th>
+                    <th width="25%">Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Electronics</td>
+                    <td>Brain</td>
+                    <td>1</td>
+                    <td><img src="../assets/ch05/image34.png" alt="Robot Brain" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Electronics</td>
+                    <td>Smart Battery</td>
+                    <td>1</td>
+                    <td><img src="../assets/ch05/battery.png" alt="Robot Battery" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Electronics</td>
+                    <td>Controller</td>
+                    <td>1</td>
+                    <td><img src="../assets/ch05/image38.png" alt="Controller" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Electronics</td>
+                    <td>Smart Motor</td>
+                    <td>6</td>
+                    <td><img src="../assets/ch05/image40.png" alt="Smart Motor" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Pneumatics</td>
+                    <td>Air Tank / Pump</td>
+                    <td>2 / 1</td>
+                    <td><img src="../assets/ch05/image46.png" alt="Air Pump" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Pneumatics</td>
+                    <td>Solenoid / Cylinder</td>
+                    <td>2 / 2-3</td>
+                    <td><img src="../assets/ch05/image44.png" alt="Pneumatic Solenoid" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+    <div class="sheet">
+
+        <h1>5.1 Resource Planning & Port Mapping (Cont'd)</h1>
+
+        <h3>Gen 1 Core Parts List (BOM) (Cont'd)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">Category</th>
+                    <th width="35%">Part Name</th>
+                    <th width="12%">Qty</th>
+                    <th width="25%">Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Transmission</td>
+                    <td>48T / 24T Gears</td>
+                    <td>4 / 4</td>
+                    <td><img src="../assets/ch05/image37.png" alt="Gear" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Transmission</td>
+                    <td>Omni Wheels</td>
+                    <td>4</td>
+                    <td><img src="../assets/ch05/image42.png" alt="Omni-Directional Wheel" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Structure</td>
+                    <td>2x16 / 2x20 Beams</td>
+                    <td>4 / 4-6</td>
+                    <td><img src="../assets/ch05/image77.png" alt="Beam" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Structure</td>
+                    <td>1x Beams</td>
+                    <td>Various</td>
+                    <td><img src="../assets/ch05/image81.png" alt="Beam" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Structure</td>
+                    <td>Corner Connectors / Rubber Bands</td>
+                    <td>8+ / 10+</td>
+                    <td><img src="../assets/ch05/image67.png" alt="Corner Connector" style="max-width:100%; max-height:80px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+                <tr>
+                    <td>Structure</td>
+                    <td>Connector Pins (Black/Blue)</td>
+                    <td>200+</td>
+                    <td><img src="../assets/ch05/image63.png" alt="Connector Pin" style="max-width:100%; max-height:40px; display:block; margin:0 auto; border-radius:5px;"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <div class="sheet">
+
+        <h1 style="font-size: 26px;">5.1 Resource Planning & Port Mapping (Cont'd)</h1>
+        <h3>Port Mapping Table</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;">
+            <tr style="background-color: #eee;">
+                <th style="border: 1px solid #ccc; padding: 5px;">Port</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">Device</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">Type</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">Notes</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">Port 1</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Left Drive Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Reversed</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">Port 6</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Right Drive Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Reversed</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">Port 4</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Lift Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">Port 11</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Flip Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Motor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">Port 2</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Gyro Sensor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Sensor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;">Port 3</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Distance Sensor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;">Sensor</td>
+                <td style="border: 1px solid #ccc; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>Port 10</strong></td>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>Pneumatic Solenoid</strong></td>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>Digital Output</strong></td>
+                <td style="border: 1px solid #ccc; padding: 5px;"><strong>Digital Port</strong></td>
+            </tr>
+        </table>
+        <img src="../assets/ch05/5_1_4.webp" alt="Main Computer Connection"
+            style="height:300px; display: block; margin: 0 auto; border-radius: 10px;">
+
+    </div>
+
+    <!-- ================= PAGE 93: CHASSIS ASSEMBLY ================= -->
+    <div class="sheet">
+
+        <h1>5.2 Mechanical Assembly: Chassis System</h1>
+
+        <div class="build-log">
+            <p><strong>Subsystem Description:</strong> Dual-motor differential drive chassis.</p>
+            <p><strong>Transmission:</strong> Using 48T:24T gears for a 1:2 speed ratio. This design ensures the robot can cover the field quickly.</p>
+            <p><strong>Engineering Challenge:</strong> High-speed gears require high structural rigidity. Early tests showed the chassis risked deforming under high torque.</p>
+            <p><strong>Solution:</strong> Added an "H" type reinforcement beam structure in the middle and extra bearing supports for the gear shafts, significantly improving rigidity.</p>
+        </div>
+        <br>
+
+        <img src="../assets/ch05/5_2_1_chassis.webp" alt="Chassis build"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 94: LIFT ARM & CLAW ================= -->
+    <div class="sheet">
+
+        <h1>5.3 Mechanical Assembly: Lift Arm & Pneumatic Claw</h1>
+
+        <div class="build-log">
+            <p><strong>Lift Mechanism:</strong> Built a single-sided four-bar linkage. To lower motor load, we added a rubber band gravity compensation system. Tests show the motor needs very little current to hover.</p>
+            <p><strong>Pneumatic Claw:</strong></p>
+            <ul>
+                <li><strong>Actuators:</strong> Installed two single-acting cylinders.</li>
+                <li><strong>Air Circuit:</strong> Tank -> Switch -> Regulator -> Solenoid -> Cylinder.</li>
+                <li><strong>End Treatment:</strong> Added rubber pads to the inner claw to stop slippery Pins from falling out.</li>
+            </ul>
+        </div>
+
+        <img src="../assets/ch05/5_2_2_claw.webp" alt="Claw build"
+            style="height:400px; display: block; margin: 10px auto; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 95: SYSTEM INTEGRATION ================= -->
+    <div class="sheet">
+
+        <h1>5.4 System Integration & Wiring</h1>
+
+        <div class="build-log">
+            <p>With subsystems complete, we integrated everything, focusing on wiring and air tube placement.</p>
+        </div>
+
+        <h3>Cable Management</h3>
+        <p>To keep wires away from moving parts, we:</p>
+        <ul>
+            <li><strong>Zoned the Wiring:</strong> Put power/signal lines and air tubes on opposite sides of the arm to prevent tangling.</li>
+            <li><strong>Handled the Flip Joint:</strong> For the 180-degree wrist, we used a spiral wrap for the air tubes to allow for extension without stress.</li>
+            <li><strong>Secured Everything:</strong> Used nylon zip ties along the beams to keep the robot neat and easy to maintain.</li>
+        </ul>
+        <img src="../assets/ch05/5_4_1.webp" alt="Wiring layout"
+            style="height:300px; display: block; margin: 10px auto; border-radius: 10px;">
+
+    </div>
+
+    <!-- ================= PAGE 96: SOFTWARE CONFIG ================= -->
+    <div class="sheet">
+        <h1>5.5 Programming</h1>
+
+        <p>This section records how we gave our robot "life" with code, turning complex manual moves into one-button smart commands. This makes the movements smooth and accurate.</p>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="../assets/ch05/image11.png" alt="Optimization Diagram 1">
+                <div class="caption">Fig 5.5.1 Initial status check</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch05/image12.png" alt="Optimization Diagram 2">
+                <div class="caption">Fig 5.5.2 Action flow diagram</div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="sheet">
+        <h1>5.5 Programming (Cont.)</h1>
+
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="../assets/ch05/image15.png" alt="Optimization Diagram 5">
+                <div class="caption">Fig 5.5.3 Logic structure</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch05/image14.png" alt="Optimization Diagram 4">
+                <div class="caption">Fig 5.5.4 Angle correction</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch05/image13.png" alt="Optimization Diagram 3">
+                <div class="caption">Fig 5.5.5 Lift diagram</div>
+            </div>
+            <div class="image-item">
+                <img src="../assets/ch05/image16.png" alt="Optimization Diagram 6">
+                <div class="caption">Fig 5.5.6 Load response curve</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ================= PAGE 97: TELEOP LOGIC ================= -->
+    <div class="sheet">
+
+        <h1>5.6 Remote Control Logic (Teleop)</h1>
+
+        <div class="build-log">
+            <p>To help the driver react quickly, we set up the following controller logic:</p>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <tr style="background: #eee;">
+                <th style="width: 20%;border: 1px solid #ccc; padding: 5px;">Module</th>
+                <th style="width: 20%;border: 1px solid #ccc; padding: 5px;">Button</th>
+                <th style="border: 1px solid #ccc; padding: 5px;">Description</th>
+            </tr>
+            <tr>
+                <td>Chassis Movement</td>
+                <td>Joysticks (A/B/C/D)</td>
+                <td>Tank Drive mode: Left and right sticks control each side independently.</td>
+            </tr>
+            <tr>
+                <td>Pneumatic Claw</td>
+                <td>R Up / R Down</td>
+                <td>R1 to Close (Grab), R2 to Open (Release). Instant response for fast grabbing.</td>
+            </tr>
+            <tr>
+                <td>Flip Wrist</td>
+                <td>L Down</td>
+                <td>Single button toggle. Press to flip to 180°, press again to reset to 0°.</td>
+            </tr>
+        </table>
+
+        <img src="../assets/ch05/5_6_1.webp" alt="Controller layout"
+            style="height:300px; display: block; margin: 40px auto; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 98: SENSORS & AUTOMATION ================= -->
+    <div class="sheet">
+
+        <h1>5.7 Sensor Integration & Automation Testing</h1>
+
+        <div class="build-log">
+            <p>To improve environmental awareness and autonomous performance, we added these sensors:</p>
+        </div>
+
+        <div class="two-column-layout">
+            <div class="column">
+                <h4>Distance Sensor</h4>
+                <p>Front-mounted. Used for "proximity detection": if an object is closer than 100mm, it auto-brakes to prevent collisions.</p>
+            </div>
+        </div>
+
+        <h3>Autonomous Testing</h3>
+        <p>Wrote a basic routine: Move forward -> Gyro correction -> Distance sensor stop -> Release claw -> Back up. 90% success rate!</p>
+    </div>
+
+    <!-- ================= PAGE 99: SUMMARY ================= -->
+    <div class="sheet">
+
+        <h1>Chapter 5 Summary: System Ready!</h1>
+
+        <p>
+            After two weeks of designing and building, Gen 1 is fully assembled and basic software is debugged.
+        </p>
+        <p>
+            <strong>Implementation Highlights:</strong>
+            <br>1. <strong>Pneumatics:</strong> Successfully applied with great grab force and speed—our biggest technical win.
+            <br>2. <strong>Mechanics:</strong> Chassis and arm run smoothly and are strong enough for matches.
+            <br>3. <strong>Software:</strong> Implemented semi-auto features like speed limiting for precision.
+        </p>
+        <p>
+            The robot is in great shape for testing. Next, we'll hit simulated matches and the upcoming Beijing City Competition!
+        </p>
+
+        <img src="../assets/ch05/5_z.webp" alt="Gen 1 Complete Form"
+            style="height:300px; display: block; margin: 40px auto; border-radius: 10px;">
+    </div>
+
+    <script src="../assets/scripts/toggle-buttons.js"></script>
+    <script src="../assets/scripts/navigation-button.js"></script>
+    <script src="../assets/scripts/common-elements.js"></script>
+    <script src="../assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>

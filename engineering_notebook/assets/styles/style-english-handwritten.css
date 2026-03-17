@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Patrick+Hand&display=swap');
+@import url('style.css');
+
+:root {
+    --primary-color: #D35400;
+    --secondary-color: #E67E22;
+    --tertiary-color: #FF9F43;
+    --quaternary-color: #FFCC80;
+    --background-color-light: #FFF3E0;
+    --sheet-border-color: transparent;
+    --chapter-marker-color: #FF9F43;
+    --chapter-marker-top: 56mm;
+}
+
+/* Inherit themes from main style.css or redefine if necessary */
+/* For now, I'll include the base styles and override fonts */
+
+body {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 20px;
+}
+
+h1, h2, h3, h4, th, .page-number, .footer-label {
+    font-family: 'Patrick Hand', cursive !important;
+    text-transform: uppercase; /* More professional engineering look */
+    letter-spacing: 1px;
+}
+
+p, li, td, .meeting-id, .math-paper, .sticky-note, .dialogue, .img-caption, .footer-value, .blackboard, .highlight-box, div:not([class*="theme-"]):not([class*="sheet"]) {
+    font-family: 'Architects Daughter', cursive;
+}
+
+/* Specific adjustments for handwritten font */
+p, li, td {
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+h1 { font-size: 34px; }
+h2 { font-size: 26px; }
+h3 { font-size: 22px; }
+
+.meeting-info-table td {
+    font-size: 20px;
+}
+.sticky-note {
+    font-size: 24px;
+}
