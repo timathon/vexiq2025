@@ -100,6 +100,58 @@
             color: var(--primary-color);
             font-weight: bold;
         }
+
+        /* --- Tournament Report Styles --- */
+        .info-box {
+            background: #f4f4f4;
+            padding: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .two-column-layout .column {
+            flex: 1;
+        }
+
+        .text-teal {
+            color: var(--primary-color);
+        }
+
+        .text-red {
+            color: #c0392b;
+        }
+
+        .text-green {
+            color: #27ae60;
+        }
+
+        .strategy-card {
+            background-color: #E0F2F1;
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -251,6 +303,65 @@
             style="max-width: 70%; border-radius: 10px;">
         <img src="../assets/ch09/4-automatated lift sequences-3-release sequence-b.jpg" alt="Release B"
             style="max-width: 70%; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 6: WRC Finals ================= -->
+    <div class="sheet">
+        <h1>9.5 Gen 4 Competitions: WRC Finals</h1>
+
+        <div class="info-box" style="margin-bottom: 0;">
+            <p style="font-size: 20px;"><strong>Tournament:</strong> 2025 World Robot Contest Finals (WRCF)</p>
+            <p style="font-size: 20px;"><strong>Date:</strong> Jan 8 - Jan 11, 2026 &nbsp;&nbsp;&nbsp; <strong>Venue:</strong> Wuxi Xishan High School</p>
+            <p style="font-size: 20px;"><strong>Awards:</strong> Design Award, Second Prize</p>
+        </div>
+
+        <div class="two-column-layout" style="margin-bottom: 0;">
+            <div class="column">
+                <h3 class="text-teal" style="margin-top: 10px; margin-bottom: 10px;">Highlights & Analysis</h3>
+                <div class="analysis-section">
+                    <span class="analysis-title text-green" style="margin-bottom: 0;">1. Design Award: A Victory for Software Architecture</span>
+                    <p style="font-size: 20px;">The judges highly praised our Gen 4 programming framework. The modular logic, rigorous initialization, and robust telemetry helped us stand out from many strong teams, securing the <strong>Design Award</strong> and qualifying us for the VEX Worlds.</p>
+                </div>
+            </div>
+            <div class="column">
+                <img src="../assets/ch09/5-matches-1.webp" alt="WRC Matches"
+                    style="display: block; width: 100%; border-radius: 10px; margin-top: 15px;">
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title text-teal">2. Consistent Performance: Skills & Teamwork</span>
+            <ul style="font-size: 20px;">
+                <li style="font-size: 20px;"><strong>Skills:</strong> With high stability in autonomous programs, we scored <strong>341 points</strong>, ranking <strong>7th overall</strong>.</li>
+                <li style="font-size: 20px;"><strong>Teamwork:</strong> Completed 7 matches with a high score of <strong>367</strong>. The Gen 4 code showed extreme robustness in variable environments.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 7: Shanghai Elite ================= -->
+    <div class="sheet">
+        <h1>9.5 Gen 4 Competitions: Shanghai Elite</h1>
+
+        <div class="info-box" style="margin-bottom: 0;">
+            <p style="font-size: 20px;"><strong>Tournament:</strong> National VEX Robotics Elite Competition</p>
+            <p style="font-size: 20px;"><strong>Date:</strong> Feb 1 - 4, 2026 &nbsp;&nbsp;&nbsp; <strong>Venue:</strong> Shanghai Jiao Tong University</p>
+            <p style="font-size: 20px;"><strong>Awards:</strong> Second Prize</p>
+        </div>
+
+        <h3 class="text-teal" style="margin-top: 5px; margin-bottom: 5px;">Summary & Outlook</h3>
+        <div class="analysis-section" style="margin-bottom: 10px;">
+            <span class="analysis-title text-green" style="margin-bottom: 0;">1. Validating State Machine Logic</span>
+            <p style="font-size: 20px;">During this Elite competition, our "One-Button Scoring" state machine performed near-perfectly. Our drivers reported significantly lower stress, allowing them to focus entirely on on-field strategy.</p>
+        </div>
+
+        <img src="../assets/ch09/5-matches-2.webp" alt="Shanghai Matches"
+            style="display: block; height: 300px; margin: 10px auto; border-radius: 10px;">
+
+        <div class="analysis-section" style="margin-bottom: 10px;">
+            <span class="analysis-title text-teal" style="margin-bottom: 0;">2. Road to VEX Worlds: St. Louis 2026</span>
+            <p style="font-size: 20px;">The successful conclusion of the Elite competition is just a stepping stone.</p>
+            <p style="font-size: 20px;">From April 28-30, we will represent China in St. Louis, Missouri, taking our battle-tested Gen 4 architecture to the highest level of global competition. The journey continues!</p>
+        </div>
     </div>
 
     <script src="../assets/scripts/toggle-buttons.js"></script>

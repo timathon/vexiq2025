@@ -56,6 +56,58 @@
             color: var(--primary-color);
             font-weight: bold;
         }
+
+        /* --- Tournament Report Styles --- */
+        .info-box {
+            background: #f4f4f4;
+            padding: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .analysis-title {
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .two-column-layout .column {
+            flex: 1;
+        }
+
+        .text-teal {
+            color: var(--primary-color);
+        }
+
+        .text-red {
+            color: #c0392b;
+        }
+
+        .text-green {
+            color: #27ae60;
+        }
+
+        .strategy-card {
+            background-color: #E0F2F1;
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -222,6 +274,66 @@
             style="max-width: 70%; border-radius: 10px;">
         <img src="assets/ch09/4-automatated lift sequences-3-release sequence-b.jpg" alt="Release B"
             style="max-width: 70%; border-radius: 10px;">
+    </div>
+
+    <!-- ================= PAGE 6: WRC Finals ================= -->
+    <div class="sheet">
+        <h1>9.5 四代车实战：世界机器人大赛总决赛</h1>
+
+        <div class="info-box" style="margin-bottom: 0;">
+            <p><strong>赛事名称：</strong> 2025世界机器人大赛总决赛 (WRCF)</p>
+            <p><strong>时间：</strong> 2026年1月8日 - 1月11日</p>
+            <p><strong>地点：</strong> 无锡市锡山高级中学</p>
+            <p><strong>成绩：</strong> 最佳设计奖 (Design Award)、二等奖</p>
+        </div>
+
+        <div class="two-column-layout" style="margin-bottom: 0;">
+            <div class="column">
+                <h3 class="text-teal" style="margin-top: 10px; margin-bottom: 10px;">赛况亮点与分析</h3>
+                <div class="analysis-section">
+                    <span class="analysis-title text-green">1. 最佳设计奖：编程架构的胜利</span>
+                    <p>在本次大赛中，评委对我队“四代车”的编程架构给予了高度评价。模块化的逻辑、严谨的初始化流程以及完善的遥测系统，帮助我们从众多强队中脱颖而出，成功斩获<strong>最佳设计奖 (Design Award)</strong>，并由此获得了参加VEX世锦赛的晋级资格。</p>
+                </div>
+            </div>
+            <div class="column">
+                <img src="assets/ch09/5-matches-1.webp" alt="WRC Matches"
+                    style="display: block; width: 100%; border-radius: 10px; margin-top: 15px;">
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title text-teal">2. 稳定输出：技能赛与积分赛</span>
+            <ul>
+                <li><strong>技能赛：</strong> 凭借自动程序的极高稳定性，我们以 <strong>341分</strong> 的总成绩位列全场 <strong>第7名</strong>。</li>
+                <li><strong>积分赛：</strong> 完成 7 局对抗，最高打出 <strong>367分</strong>。四代车的代码在多变赛场环境下表现出了极强的鲁棒性。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 7: Shanghai Elite ================= -->
+    <div class="sheet">
+        <h1>9.5 四代车实战：科创青禾全国精英赛</h1>
+
+        <div class="info-box" style="margin-bottom: 0;">
+            <p><strong>赛事名称：</strong> 科创青禾全国VEX机器人精英赛</p>
+            <p><strong>时间：</strong> 2026年2月1日 - 2月4日 &nbsp;&nbsp;&nbsp; <strong>地点：</strong> 上海交通大学</p>
+            <p><strong>成绩：</strong> 二等奖</p>
+        </div>
+
+        <h3 class="text-teal" style="margin-top: 5px; margin-bottom: 5px;">总结与展望</h3>
+        <div class="analysis-section">
+            <span class="analysis-title text-green" style="margin-bottom: 0;">1. 状态机逻辑的实战验证</span>
+            <p>在这次精英赛中，四代车的“一键得分”状态机表现近乎完美。操作手反馈，相比三代车，四代车的代码逻辑大大降低了心理压力，使其能将更多精力投入到场地的战略布局中。</p>
+        </div>
+
+        <img src="assets/ch09/5-matches-2.webp" alt="Shanghai Matches"
+            style="display: block; height: 300px; margin: 10px auto; border-radius: 10px;">
+
+        <div class="analysis-section">
+            <span class="analysis-title text-teal" style="margin-bottom: 0;">2. 进军世锦赛：剑指 2026 VEX Worlds</span>
+            <p>精英赛的顺利完成是我们通往更高舞台的跳板。</p>
+            <p>2026年4月28日至30日，我们将代表中国赛队前往美国圣路易斯，在最高级别的技术竞技场上，向全球展示 2276A 的卓越与智慧。我们的征途是星辰大海，圣路易斯，我们来了！</p>
+        </div>
     </div>
 
     <script src="assets/scripts/toggle-buttons.js"></script>
