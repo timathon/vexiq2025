@@ -217,6 +217,16 @@
       /* Each takes equal width */
       height: 100%;
     }
+
+    /* 4 Pictures: 2x2 Grid */
+    .gallery-2-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      height: 800px;
+      margin-top: 20px;
+    }
   </style>
   </head>
 
@@ -304,7 +314,7 @@
     <div class="sheet">
       <h1>曾获奖项（3）</h1>
 
-      <div class="gallery-1-1">
+      <div class="gallery-2-1">
         <div class="img-placeholder">
           <img src="assets/chzz/image6.png" alt="2276A军团"
             style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
@@ -313,20 +323,32 @@
           <img src="assets/chzz/image7.png" alt="2276A军团"
             style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
         </div>
-      </div>
-    </div>
-    <div class="sheet">
-      <h1>曾获奖项（4）</h1>
-
-      <div class="gallery-1-1">
         <div class="img-placeholder">
           <img src="assets/chzz/image11.webp" alt="2276A军团"
-            style="display: block;height:500px; margin: 10px auto; border-radius: 10px;">
-        </div>
-        <!-- <div class="img-placeholder">
-          <img src="assets/chzz/image7.png" alt="2276A军团"
             style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
-        </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <h1>曾获奖项（4）</h1>
+      <div class="gallery-2-2">
+        <div class="img-placeholder">
+          <img src="assets/chzz/image12.webp" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image13.webp" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image14.webp" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
+        <div class="img-placeholder">
+          <img src="assets/chzz/image15.webp" alt="2276A军团"
+            style="display: block;height:340px; margin: 10px auto; border-radius: 10px;">
+        </div>
       </div>
     </div>
 

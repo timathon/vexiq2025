@@ -81,8 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create recorder box
             const recorderBox = document.createElement('span');
+            const h1Text = h1 ? h1.textContent : '';
+            const isAwardsPage = h1Text.startsWith('Awards') || h1Text.startsWith('曾获奖项');
+            
             const recorderLabel = window.location.pathname.includes('/english_handwritten/') ? 'Recorder: ' : '记录人：';
             recorderBox.innerHTML = '<span class="footer-label">' + recorderLabel + '</span><span class="footer-recorder">' + recorder + '</span>';
+            
+            if (isAwardsPage) {
+                recorderBox.style.visibility = 'hidden';
+            }
+            
             footer.appendChild(recorderBox);
             
             if (pageNumberEl) {

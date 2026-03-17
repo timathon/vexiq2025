@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程笔记 - 第九章：四代车编程升级 (2276A)</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        .cover-section {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .cover-section h1 {
+            font-size: 56px;
+            border: none;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cover-section h2 {
+            font-size: 36px;
+            background: none;
+            color: #555;
+            padding: 0;
+            margin: 5px 0;
+            border: none;
+        }
+
+        .cover-section h3 {
+            font-size: 24px;
+            color: #888;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .cover-divider {
+            width: 80%;
+            height: 8px;
+            background-color: var(--secondary-color);
+            margin: 40px auto;
+            border-radius: 5px;
+        }
+
+        .cover-intro {
+            margin: 60px 80px;
+            font-size: 20px;
+            line-height: 2;
+            text-align: left;
+            color: #444;
+        }
+
+        .text-purple {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="theme-ch09">
+
+    <!-- ================= PAGE 1: COVER ================= -->
+    <div class="sheet">
+        <div class="cover-section">
+            <h1 style="font-size: 56px;">四代车：编程架构升级</h1>
+            <h2>第九章：第四代机器人编程升级</h2>
+            <h3>Chapter 9: Gen 4 - Coding Upgrade</h3>
+
+            <div class="cover-divider"></div>
+
+            <div class="cover-intro">
+                <p>
+                    随着我们对VEX IQ竞赛理解的深入，我们发现纯粹的机械迭代已经无法满足我们对更高性能的追求。为了实现更稳定、更高效的自动化控制，我们启动了第四代车的编程架构升级。
+                </p>
+                <p>
+                    本章将详细介绍我们如何借鉴专业软件工程的思维，对原有的模块化代码进行重构和优化，从而实现机器人性能的飞跃。
+                </p>
+                <p>
+                    <strong>本章核心任务：</strong> 建立一个清晰、可扩展、高容错的编程框架，为更复杂的自动程序和战术执行提供坚实基础。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 2: System Initialization ================= -->
+    <div class="sheet">
+        <h1>9.1 系统初始化 (System Initialization)</h1>
+        <p>一个稳定可靠的系统始于一个精确的初始化流程。我们定义了三个核心初始化步骤，确保机器人在启动时处于最佳状态。</p>
+        <h3 class="text-purple">1. 设备初始化 (Init)</h3>
+        <p>设置所有马达的最大扭矩为100%，并将刹车模式设为“保持(Hold)”，以确保在静止时能抵抗外力。同时，初始化所有气动设备。</p>
+        <img src="assets/ch09/1-system initialization-1-init.jpg" alt="Init"
+            style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>9.1 系统初始化（续）</h1>
+        <h3 class="text-purple">2. 抬升复位 (Lift Reset)</h3>
+        <!-- <p>通过“堵转检测(Stall Detection)”实现抬升臂（taisheng）的精确复位。</p> -->
+        <p>程序驱动抬升臂向下运动，直到速度低于30%，此时判断已到达底部，将编码器清零。</p>
+        <img src="assets/ch09/1-system initialization-2-lift reset.png" alt="Lift Reset"
+            style="max-width: 85%; border-radius:8px; margin-top: 10px;">
+
+        <h3 class="text-purple">3. 销钉复位 (Pin Reset)</h3>
+        <p>与抬升复位类似，翻转机构（fanzhuan）向下运动，直到速度低于10%，编码器清零，然后抬升10度，为后续动作做准备。</p>
+        <img src="assets/ch09/1-system initialization-3-pin reset.png" alt="Pin Reset"
+            style="max-width: 85%; border-radius: 10px; margin-top: 10px;">
+    </div>
+
+    <!-- ================= PAGE 3: Telemetry & Driving ================= -->
+    <div class="sheet">
+        <h1>9.2 遥测与驱动 (Telemetry & Driving)</h1>
+        <p>高效的调试和精准的操控是比赛获胜的关键。我们设计了实时遥测界面和带安全锁的驱动系统。</p>
+
+        <h3 class="text-purple">1. 屏幕遥测 (Screen Telemetry)</h3>
+        <p>在“大脑”屏幕上实时显示关键变量，如“Beam”状态、抬升臂角度和翻转机构角度。这为我们现场快速诊断问题提供了极大的便利。</p>
+        <img src="assets/ch09/2-telemetry and driving-1-screen telemetry.jpg" alt="Screen Telemetry"
+            style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>9.2 遥测与驱动（续）</h1>
+        <h3 class="text-purple">2. 驱动控制 (Drive Control)</h3>
+        <p>引入了“安全锁”机制，只有在底盘变量（dipan）为1时，机器人才响应遥控。同时，加入了输入死区（Deadzone <
+                20%），有效避免了遥感漂移带来的误操作。该安全锁的核心目的是防止在执行复杂、精确的自动化序列（如抓取、抬升）时，操作手的无意触碰遥感可能导致的意外移动。这在分秒必争的比赛中至关重要，它确保了自动化流程的完整性和稳定性，避免了因机器人意外位移而导致的定位失败或与场地元素碰撞。</p>
+                <img src="assets/ch09/2-telemetry and driving-2-drive control.jpg" alt="Drive Control"
+                    style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+    </div>
+
+    <!-- ================= PAGE 4: Button Logic Mapping ================= -->
+    <div class="sheet">
+        <h1>9.3 按键逻辑映射（1）</h1>
+        <p>我们将遥控器上的每一个按键都赋予了清晰、直观的功能，并对复杂逻辑进行了封装。</p>
+
+
+        <div>
+            <h3 class="text-purple">D, R3, L-Up</h3>
+            <img src="assets/ch09/3-button logic mapping-1-d r3 l-up.jpg" alt="Button Logic 1"
+                style="max-width: 75%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>D:</strong> 挂121底座 (Pin=8)</li>
+                <li><strong>R3:</strong> 降下121底座 (Pin=9)</li>
+                <li><strong>L-Up:</strong> Beam状态递增 (1->2->3)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.3 按键逻辑映射（2）</h1>
+        <div>
+            <h3 class="text-purple">E-Up, R-Down</h3>
+            <img src="assets/ch09/3-button logic mapping-2-e-up r-down.png" alt="Button Logic 2"
+                style="max-width: 100%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>E-Up:</strong> 打开钩子 (Beam=0)</li>
+                <li><strong>R-Down:</strong> 塔高度切换 (Pin 0/1)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.3 按键逻辑映射（3）</h1>
+        <div>
+
+            <h3 class="text-purple">F-Buttons</h3>
+            <img src="assets/ch09/3-button logic mapping-3-f-buttons.png" alt="Button Logic 3"
+                style="max-width: 90%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>F-Down:</strong> 三角区高度 (Pin 2/3)</li>
+                <li><strong>F-Up:</strong> 手动抓取 (Jia +/- 1)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.3 按键逻辑映射（4）</h1>
+
+        <div>
+            <h3 class="text-purple">E-Down</h3>
+            <img src="assets/ch09/3-button logic mapping-4-e-down.jpg" alt="Button Logic 4"
+                style="max-width: 100%; border-radius: 10px;">
+            <ul style="font-size: 14px;">
+                <li><strong>补给站逻辑:</strong></li>
+                <li>Pin=4: 接近</li>
+                <li>Pin=5: 抓取并抬升</li>
+                <li>Pin=7: 复位</li>
+            </ul>
+        </div>
+
+
+
+    </div>
+
+    <!-- ================= PAGE 5: Automated Lift Sequences ================= -->
+    <div class="sheet">
+        <h1>9.4 自动化抬升序列（1）</h1>
+        <p>自动化是得分效率的倍增器。我们将复杂的流程分解为多个状态，并用程序精确控制。</p>
+
+        <h3 class="text-purple">1. 开始与抓取序列 (Start & Grip Sequence)</h3>
+        <!-- <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <img src="assets/ch09/4-automatated lift sequences-1-start and grip sequence-a.jpg" alt="Start and Grip A"
+            style="max-width: 70%; border-radius: 10px;">
+            <img src="assets/ch09/4-automatated lift sequences-1-start and grip sequence-b.jpg" alt="Start and Grip B"
+            style="max-width: 50%; border-radius: 10px;">
+        </div> -->
+        <img src="assets/ch09/4-automatated lift sequences-1-start and grip sequence-a.jpg" alt="Start and Grip A"
+            style="max-width: 80%; border-radius: 10px;">
+        <div style="display: flex; align-items: flex-start; gap: 15px;">
+            <p style="flex: 1;padding:10px">我们设计了自动复位和一键抓取功能。当Beam=0时，系统自动保持在40度预备状态。当Beam=1时，机器人自动完成后退、下降、夹取、抬升等一系列动作，并将底盘控制权交还给操作手。</p>
+            <img src="assets/ch09/4-automatated lift sequences-1-start and grip sequence-b.jpg" alt="Start and Grip B"
+                style="max-width: 52%; border-radius: 10px;">
+        </div>
+    </div>
+    <div class="sheet">
+        <h1>9.4 自动化抬升序列（2）</h1>
+        <h3 class="text-purple">2. 抬升高度 (Lift Heights)</h3>
+        <p>通过一个简单的状态机（State Machine）来管理抬升高度。Beam=2时，自动抬升至91高度；Beam=3时，自动抬升至121高度。这种基于状态机的管理方式，确保了机器人能够在不同任务需求下，精确、可靠地将抬升臂调整到预设的高度，极大地提高了操作的精准度和效率。例如，91高度可能用于抓取特定高度的物体，而121高度则可能针对比赛场地上更高得分区的目标。</p>
+        <img src="assets/ch09/4-automatated lift sequences-2-lift heights.png" alt="Lift Heights"
+            style="max-width: 90%; border-radius: 10px; margin-top: 10px;">
+    </div>
+    <div class="sheet">
+        <h1>9.4 自动化抬升序列（3）</h1>
+        <h3 class="text-purple">3. 释放序列 (Release Sequence)</h3>
+        <p>按下L-Down，程序会根据Beam状态，执行不同的动作。例如，在91高度时，它会降到265度，松开爪子，升到350度，复位。</p>
+        <img src="assets/ch09/4-automatated lift sequences-3-release sequence-a.jpg" alt="Release A"
+            style="max-width: 70%; border-radius: 10px;">
+        <img src="assets/ch09/4-automatated lift sequences-3-release sequence-b.jpg" alt="Release B"
+            style="max-width: 70%; border-radius: 10px;">
+    </div>
+
+    <script src="assets/scripts/toggle-buttons.js"></script>
+    <script src="assets/scripts/navigation-button.js"></script>
+    <script src="assets/scripts/common-elements.js"></script>
+    <script src="assets/scripts/scroll-navigation.js"></script>
+</body>
+
+</html>
