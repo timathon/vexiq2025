@@ -45,6 +45,22 @@
             .scroll-buttons {
                 display: none;
             }
+            .cover-page {
+                background-image: url('../assets/ch00/cover.webp') !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        .cover-page {
+            background-image: url('../assets/ch00/cover.webp') !important;
+        }
+
+        /* Ensure cover page image is not replaced by notebook paper background when toggled */
+        body.print-background .sheet.cover-page {
+            background-image: url('../assets/ch00/cover.webp') !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         
         h1, h2, h3, .title {
@@ -55,6 +71,20 @@
         
         body, p, li, td {
             font-family: 'Architects Daughter', cursive;
+        }
+
+        /* TOC link styles */
+        .sheet ul li a {
+            color: black !important;
+            text-decoration: none;
+        }
+        .sheet ul li a:visited, 
+        .sheet ul li a:active,
+        .sheet ul li a:hover {
+            color: black !important;
+        }
+        .sheet ul li a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>

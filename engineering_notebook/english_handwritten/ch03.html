@@ -247,52 +247,30 @@
     <!-- ================= PAGE 62: PROGRAMMING CONCEPTS ================= -->
     <div class="sheet">
 
-        <h1>3.4 Making the Robot Smart: Open vs. Closed Loop</h1>
-
-        <p style="font-size: 20px;">Hengrui gave us a programming lesson. He said robots are actually quite silly, and we have to be like animal trainers, telling them exactly what to do at every step.</p>
-
-        <h3 style="margin-top: 10px; margin-bottom: 5px;">"Open Loop" vs. "Closed Loop"</h3>
-        <p style="font-size: 20px;">These are two different styles of doing things:</p>
-
-        <div class="knowledge-card">
-            <h4 style="margin-top: 0; margin-bottom: 0;">Open Loop - "Walking with eyes closed"</h4>
-            <p style="font-size: 20px;"><strong>How it works:</strong> Just give a command and don't check the result, e.g., "Robot, drive forward for 2 seconds!"</p>
-            <p style="font-size: 20px;"><strong>Problem:</strong> If the floor is slippery or the battery is low, the robot might not end up where you want. It's like walking with your eyes shut—you think you've walked ten steps, but you might just be sliding in place.</p>
-            <p style="font-size: 20px;"><strong>Conclusion:</strong> Open loop is simple, but not reliable.</p>
+        <div style="position: relative; border-bottom: 4px dashed var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="color: var(--primary-color); border: none; padding: 0; margin: 0; text-align: center;">3.4 Making the Robot Smart</h1>
         </div>
 
-        <div class="knowledge-card">
-            <h4 style="margin-top: 0; margin-bottom: 0;">Closed Loop - "Walking with eyes open"</h4>
-            <p style="font-size: 20px;"><strong>How it works:</strong> Constantly "looking" (using sensors) and adjusting. For example: "Robot, drive forward until your 'eyes' (Distance Sensor) see the wall is only 10cm away."</p>
-            <p style="font-size: 20px;"><strong>Benefit:</strong> The robot adjusts based on reality (feedback). Whether the floor is slippery or not, it will always stop exactly 10cm from the wall. This creates a "Goal -> Action -> Feedback -> Adjustment" loop.</p>
-            <p style="font-size: 20px;"><strong>Conclusion:</strong> Closed loop is much smarter and is the foundation for our autonomous programs.</p>
+        <p style="font-size: 20px;">Hengrui gave us a programming lesson. He said robots are actually quite silly, and we have to tell them exactly what to do at every step.</p>
+
+        <h3 style="margin-top: 10px; margin-bottom: 5px;">1. Closed Loop Control (Closed Loop)</h3>
+        
+        <p style="font-size: 20px;">The Silly Way: "Drive forward for 2 seconds." If the battery is low or the wheels slip, it won't get where it needs to go.</p>
+        
+        <p style="font-size: 20px;">The Smart Way: "Drive forward until your eyes (sensors) see the wall is only 10 cm away." That's closed loop!</p>
+
+        <h3 style="margin-top: 15px; margin-bottom: 5px;">2. PID (Proportional-Integral-Derivative) Algorithm</h3>
+        
+        <p style="font-size: 20px;">This sounds fancy! Hengrui says it's like when we walk crooked and automatically fix it. PID is the magic tool for making the robot drive in a straight line.</p>
+
+        <div class="sticky-note" style="margin: 0;">
+            Even though PID is hard, Hengrui says he'll work hard to learn it for those high autonomous scores!
         </div>
 
-    </div>
-
-    <!-- ================= PAGE 62.5: WHAT IS PID? ================= -->
-    <div class="sheet">
-
-        <h1>3.4 Cont: Brain of Closed Loop - PID</h1>
-
-        <p style="font-size: 20px;">There are many ways to do closed-loop control, and PID is one of the smartest and most common!</p>
-
-        <p style="font-size: 20px;">Imagine our <strong>Goal</strong> is "keep the robot driving in a perfect straight line."</p>
-
-        <div class="dialogue" style="padding: 15px; border-left: 5px solid var(--primary-color);">
-            <p style="font-size: 20px;"><strong>P (Proportional) - the "Present":</strong> "How far am I off the path right now?"<br>
-                If the robot drifts a little, the driver turns the wheel slightly. If it drifts a lot, he turns it sharply. <strong>The further off-course, the harder the correction.</strong></p>
-
-            <p style="font-size: 20px;"><strong>I (Integral) - the "Past":</strong> "Have I been drifting right for a long time?"<br>
-                The driver has a good memory. If he notices the robot keeps drifting right (maybe because one wheel has more friction), he remembers this "accumulated error" and gives the wheel a steady push to the left to cancel it out. <strong>It fixes those annoying little habits.</strong></p>
-
-            <p style="font-size: 20px;"><strong>D (Derivative) - the "Future":</strong> "Am I correcting too fast?"<br>
-                The driver is predictive. When he sees the robot quickly returning to the path, he thinks, "At this speed, I'll zoom right past the center!" So, he eases up early to let the robot land perfectly on the line without wobbling. <strong>It makes the movements smooth and prevents overshooting.</strong>
-            </p>
-        </div>
-
-        <div class="sticky-note" style="font-size: 22px;">
-            <strong>PID in one sentence:</strong> It's a smart algorithm that lets our robot drive like a pro—fast, smooth, and accurate!
+        <div style="margin-top: 30px; line-height: 1.6;">
+            <p style="font-size: 20px;">P: (Proportional) Looking at the present. The further off-course, the harder the correction.</p>
+            <p style="font-size: 20px;">I: (Integral) Looking at the past. It has a good memory. For example, if the car drifts right (maybe due to friction), it remembers this "accumulated error" and gives a steady push to the left to cancel it out. It fixes those stubborn little habits.</p>
+            <p style="font-size: 20px;">D: (Derivative) Looking at the future. The "little driver" is predictive and eases up early to return to the path smoothly without wobbling. It prevents overshooting and makes movements smooth.</p>
         </div>
 
     </div>
