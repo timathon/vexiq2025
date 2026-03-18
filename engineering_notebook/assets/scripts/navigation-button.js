@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     menu.appendChild(linksContainer);
 
                                                                                                                     const chapterPageCounts = {
-        "index": 5,
+        "index": 7,
         "glossary": 0,
         "ch01": 27,
         "ch02": 24,
@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const sheets = document.querySelectorAll('.sheet');
         sheets.forEach((sheet, index) => {
+            if (sheet.classList.contains('cover-page')) return;
             const pageNumberDiv = document.createElement('div');
             pageNumberDiv.classList.add('page-number');
             pageNumberDiv.textContent = calculatedPageStart + index;
@@ -146,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const sheets = document.querySelectorAll('.sheet');
         sheets.forEach((sheet, index) => {
+            if (sheet.classList.contains('cover-page')) return;
             const pageNumberDiv = document.createElement('div');
             pageNumberDiv.classList.add('page-number');
             pageNumberDiv.textContent = calculatedPageStart + index;
@@ -157,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const sheets = document.querySelectorAll('.sheet');
         sheets.forEach((sheet, index) => {
+            if (sheet.classList.contains('cover-page')) return;
             const pageNumberDiv = document.createElement('div');
             pageNumberDiv.classList.add('page-number');
             pageNumberDiv.textContent = calculatedPageStart + index;
