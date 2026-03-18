@@ -51,122 +51,15 @@
         font-family: 'Patrick Hand', cursive;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
     
     body, p, li, td, .sticky-note, .dialogue, .img-caption {
         font-family: 'Architects Daughter', cursive;
     }
 
-    /* --- Cover Page Styling --- */
-    .cover-section {
-      text-align: center;
-      margin-top: 120px;
-    }
-
-    .cover-section h1 {
-      font-size: 56px;
-      border: none;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-
-    .cover-section h2 {
-      font-size: 36px;
-      background: none;
-      color: #555;
-      padding: 0;
-      margin: 5px 0;
-      border: none;
-    }
-
-    .cover-section h3 {
-      font-size: 24px;
-      color: #888;
-      border: none;
-      padding: 0;
-      margin-top: 5px;
-    }
-
-    .cover-divider {
-      width: 80%;
-      height: 8px;
-      background-color: var(--secondary-color);
-      margin: 40px auto;
-      border-radius: 5px;
-    }
-
-    .cover-intro {
-      margin: 60px 80px;
-      font-size: 20px;
-      line-height: 2;
-      text-align: left;
-      color: #444;
-    }
-
     /* --- Content Components --- */
-    .strategy-card {
-      background-color: #E0F2F1;
-      border-left: 5px solid var(--primary-color);
-      padding: 0 15px;
-      margin-bottom: 20px;
-    }
-
-    .checklist-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    .checklist-table td {
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .checklist-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Match Record Table */
-    .match-table th {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 10px;
-    }
-
-    .match-table td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: center;
-    }
-
-    .match-table td.desc {
-      text-align: left;
-    }
-
-    /* Analysis Sections */
-    .analysis-section {
-      margin-bottom: 20px;
-    }
-
-    .analysis-title {
-      font-weight: bold;
-      font-size: 22px;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .text-teal {
-      color: var(--primary-color);
-    }
-
-    .text-red {
-      color: #c0392b;
-    }
-
-    .text-green {
-      color: #27ae60;
-    }
-
     .highlight-box.type-teal {
       border-left: 5px solid #008080;
       padding-left: 15px;
@@ -202,18 +95,6 @@
       grid-column: span 2;
     }
 
-    /* 2 Pictures: Left and Right */
-    .gallery-1-1 {
-      display: flex;
-      gap: 20px;
-      height: 800px;
-    }
-
-    .gallery-1-1 .img-placeholder {
-      flex: 1;
-      height: 100%;
-    }
-
     /* 4 Pictures: 2x2 Grid */
     .gallery-2-2 {
       display: grid;
@@ -221,6 +102,10 @@
       grid-template-rows: 1fr 1fr;
       gap: 20px;
       height: 800px;
+    }
+    
+    .text-teal {
+      color: var(--primary-color);
     }
   </style>
   </head>

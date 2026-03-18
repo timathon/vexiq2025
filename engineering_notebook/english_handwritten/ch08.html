@@ -7,7 +7,6 @@
     <title>Engineering Notebook - Chapter 8: Gen 3 Build & Competitions (2276A)</title>
     <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
     <style>
-        /* --- Cover Page Styling --- */
         .cover-section {
             text-align: center;
             margin-top: 120px;
@@ -86,10 +85,8 @@
             font-family: 'Patrick Hand', cursive;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        h1 {
-            font-size: 26px;
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
 
         body,
@@ -106,12 +103,12 @@
             width: 80%;
             height: 8px;
             background-color: var(--secondary-color);
-            margin: 30px auto;
+            margin: 40px auto;
             border-radius: 5px;
         }
 
         .cover-intro {
-            margin: 30px 60px;
+            margin: 40px 80px;
             font-size: 20px;
             line-height: 2;
             text-align: left;
@@ -131,12 +128,6 @@
             padding: 10px;
         }
 
-        .comparison-table.small-font th,
-        .comparison-table.small-font td {
-            font-size: 18px;
-            padding: 8px;
-        }
-
         .comparison-table td {
             padding: 10px;
             border: 1px solid #ddd;
@@ -144,7 +135,6 @@
         }
 
         .highlight-cell {
-            background-color: #f3e5f5;
             font-weight: bold;
             color: var(--primary-color);
         }
@@ -153,29 +143,6 @@
             margin-bottom: 20px;
             border-left: 4px solid var(--primary-color);
             padding-left: 15px;
-        }
-
-        .highlight-box {
-            font-size: 22px;
-        }
-
-        .highlight-box h3 {
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
-
-        .highlight-box ol {
-            margin-top: 5px;
-            margin-bottom: 10px;
-        }
-
-        .checklist-table td {
-            font-size: inherit;
-        }
-
-        .checklist-table.large-font td {
-            font-size: 20px;
-            padding: 4px 8px;
         }
 
         .analysis-title {
@@ -219,205 +186,205 @@
         .text-green {
             color: #27ae60;
         }
+
+        /* --- Tournament Report Styles --- */
+        .info-box {
+            background: #f4f4f4;
+            padding: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 
 <body class="theme-teal">
 
-    <!-- ================= PAGE 128: CHAPTER COVER ================= -->
+    <!-- ================= PAGE: COVER ================= -->
     <div class="sheet">
         <div class="cover-section">
-            <h1 style="font-size: 56px;">Gen 3: Pursuing Excellence</h1>
-            <h2>Chapter 8: The Road to Perfection</h2>
-            <h3>R&D, Optimizations, and Match Analysis</h3>
+            <h1 style="font-size: 56px;">Gen 3: Striving for Excellence</h1>
+            <h2>Chapter 8: R&D and Competition Season</h2>
 
             <div class="cover-divider"></div>
 
             <div class="cover-intro">
                 <p>
-                    After facing the intense battles with Gen 2, we were thrilled by its progress but also recognized
-                    its limitations in stability and heat dissipation during long tournaments. These "imperfections"
-                    became the primary motivation for developing Gen 3.
+                    After enduring the trials of Gen 2, we were thrilled by the progress but also aware of the stability
+                    and thermal bottlenecks during high-intensity, long-duration matches. These "imperfections" became
+                    the strongest motivation for Gen 3.
                 </p>
                 <p>
-                    This chapter details how Gen 3 underwent structural optimizations to address the core pain points of
-                    Gen 2, and its performance in subsequent key competitions.
+                    This chapter records how Gen 3 underwent structural optimizations to address core pain points and
+                    details its performance in key season events.
                 </p>
                 <p>
-                    <strong>Core Objective:</strong> To build a faster, more flexible, and more stable all-around
-                    competition machine and verify its performance in real-world matches.
+                    <strong>Core Mission:</strong> Build a faster, more flexible, and more stable all-around machine and
+                    validate its performance in the field.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- ================= PAGE: DESIGN GOALS ================= -->
+    <!-- ================= PAGE: DESIGN IMPROVEMENTS ================= -->
     <div class="sheet">
-        <h1>8.1 Gen 3 Design: Core Improvements from Combat</h1>
-        <p>Based on the issues exposed in competitions like the North China Regional, we established core design goals
-            for Gen 3, aiming for comprehensive performance superiority.</p>
+        <h1>8.1 Gen 3 Design: Improvements from the Field</h1>
+        <p>Based on issues exposed during the Asia Open and other events, we established core goals for Gen 3 to achieve
+            comprehensive performance gains.</p>
 
         <div class="highlight-box type-purple">
             <h3>Gen 3 Design Goals</h3>
             <ol style="line-height: 2;">
-                <li><strong>Chassis Clearance Optimization:</strong> Eliminate friction between chassis gears and
-                    Loading Beams for barrier-free passage.</li>
-                <li><strong>Triangle Zone Efficiency Boost:</strong> Optimize the aligner structure for faster response
-                    times across different scoring scenarios.</li>
-                <li><strong>Stacking Stability Enhancement:</strong> Upgrade lower pin positioning from "point" support
-                    to "surface" support to prevent toppling in high stacks.</li>
-                <li><strong>Refined Automation Workflow:</strong> Smooth out complex automated sequences like continuous
-                    grabbing and stacking for higher reliability.</li>
+                <li><strong>Chassis Clearance:</strong> Completely solve the friction between the chassis gears and the
+                    "Loading Beam."</li>
+                <li><strong>Triangle Efficiency:</strong> Optimize the Aligner structure to reduce operation time in
+                    various scenarios.</li>
+                <li><strong>Stacking Stability:</strong> Upgrade pin support from "Point-based" to "Surface-based" to
+                    prevent high-level tip-overs.</li>
+                <li><strong>Workflow Automation:</strong> Refine code for smoother transitions between grabbing and
+                    stacking sequences.</li>
             </ol>
         </div>
         <img src="../assets/ch08/gen3_overview.webp" alt="Gen 3 Overview"
-            style="display: block; height: 250px; margin: 20px auto; border-radius: 10px;">
+            style="display: block; max-height: 280px; margin: 20px auto; border-radius: 10px;">
     </div>
 
-    <!-- ================= PAGE: CHASSIS OPTIMIZATION ================= -->
+    <!-- ================= PAGE: CHASSIS OPT ================= -->
     <div class="sheet">
-        <h1>8.2 Mechanical Build: Chassis Optimization</h1>
-
-        <h3 class="text-purple">1. Chassis Tuning: Gear Relocation</h3>
-        <p><strong>Modification:</strong> Moved the entire transmission gear assembly upward by one unit height.</p>
-        <p><strong>Result:</strong> Completely eliminated physical friction between the chassis and the "Loading Beams."
-            Compared to Gen 2, Gen 3 moves through loading zones much more smoothly and quickly, saving precious seconds
-            during matches.</p>
+        <h1>8.2 Mech Opt: Chassis</h1>
+        <h3 class="text-purple">1. Gear Shift Upwards</h3>
+        <p><strong>Action:</strong> Moved the entire drivetrain gear assembly up by one unit height.</p>
+        <p><strong>Result:</strong> Eliminated physical friction with the "Loading Beam." Gen 3 moves through the loading
+            zone much more smoothly and faster than Gen 2, saving precious seconds.</p>
         <br>
         <div style="text-align: center;">
             <img src="../assets/ch08/gen3_chassis_old.webp"
                 style="display: block; max-height: 220px; margin: 10px auto; border-radius: 10px;" alt="Old Chassis">
             <p class="img-caption">Old Chassis (Lower gear position)</p>
+            <br>
             <img src="../assets/ch08/gen3_chassis_new.webp"
                 style="display: block; max-height: 220px; margin: 10px auto; border-radius: 10px;" alt="New Chassis">
-            <p class="img-caption">New Chassis (Gears relocated upward)</p>
+            <p class="img-caption">New Chassis (Gears shifted up)</p>
         </div>
     </div>
 
-    <!-- ================= PAGE: ALIGNER OPTIMIZATION ================= -->
+    <!-- ================= PAGE: ALIGNER OPT ================= -->
     <div class="sheet">
-        <h1>8.2 Mechanical Build (Cont'd): Aligner Optimization</h1>
-
-        <h3 class="text-purple" style="margin-top: 20px;">2. Triangle Aligner: Semi-Retracted Structure</h3>
-        <p><strong>Modification:</strong> Changed the aligner from fully retracted to "semi-retracted" and swapped the
-            long pneumatic cylinders for short ones to reduce travel distance.</p>
-        <p><strong>Result:</strong> Retained flexibility while significantly speeding up the aligner's response, making
-            scoring in the Triangle Zone much faster.</p>
+        <h1>8.2 Mech Opt: Aligner</h1>
+        <h3 class="text-purple">2. Semi-Retracted Structure</h3>
+        <p><strong>Action:</strong> Changed the aligners from fully retracted to a "semi-retracted" state and swapped
+            long pneumatic rods for short ones.</p>
+        <p><strong>Result:</strong> Maintained flexibility while significantly increasing response speed, making scoring
+            in the Triangle Zone much faster.</p>
         <br>
-        <img src="../assets/ch08/aligner_above.webp" alt="Aligner Top View"
+        <img src="../assets/ch08/aligner_above.webp" alt="Top View"
             style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
-        <p class="img-caption">Triangle Aligner: Top View</p>
-
-        <img src="../assets/ch08/aligner_below.webp" alt="Aligner Bottom View"
+        <p class="img-caption">Aligner Top View</p>
+        <img src="../assets/ch08/aligner_below.webp" alt="Bottom View"
             style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
-        <p class="img-caption">Triangle Aligner: Bottom View</p>
+        <p class="img-caption">Aligner Bottom View</p>
     </div>
 
-    <!-- ================= PAGE: STACKING OPTIMIZATION ================= -->
+    <!-- ================= PAGE: STACKING OPT ================= -->
     <div class="sheet">
-        <h1>8.2 Mechanical Build (Cont'd): Stacking Optimization</h1>
-        <h3 class="text-purple">3. Stacking Structure: Surface Support</h3>
-        <p><strong>Modification:</strong> Upgraded the "point-based" support for securing lower pins in Gen 2 to a
-            "surface-based" support structure.</p>
-        <p><strong>Result:</strong> The new structure secures the base pin much more firmly, drastically reducing the
-            risk of toppling due to robot movements or collisions during high-layer stacking, greatly improving
-            consistency.</p>
+        <h1>8.2 Mech Opt: Stacking</h1>
+        <h3 class="text-purple">3. Surface-based Support</h3>
+        <p><strong>Action:</strong> Upgraded the "point-based" support structure for the bottom pin to a
+            "surface-based" support.</p>
+        <p><strong>Result:</strong> The new structure holds the bottom pin much more securely, drastically reducing the
+            risk of high stacks tipping over due to robot movement or collisions.</p>
         <br>
-        <div>
-            <img src="../assets/ch08/aligner_2.webp" alt="Gen 3 Surface Support"
-                style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
-            <p class="img-caption">Gen 3: Surface-based Support</p>
-        </div>
+        <img src="../assets/ch08/aligner_2.webp" alt="Surface Support"
+            style="display: block; max-height: 250px; margin: 10px auto; border-radius: 10px;">
+        <p class="img-caption">Gen 3: Surface-based Support</p>
     </div>
 
-    <!-- ================= PAGE: PROGRAMMING & AUTOMATION ================= -->
+    <!-- ================= PAGE: PROGRAMMING ================= -->
     <div class="sheet">
-        <h1>8.3 Programming & Automation: Pursuit of Fluidity</h1>
-        <p>The mechanical optimizations of Gen 3 provided the foundation for more advanced automation. Our programming
-            focus was on integrating independent functions into a seamless "one-button" scoring system.</p>
+        <h1>8.3 Coding & Automation: Seeking Fluidity</h1>
+        <p>Mech optimizations paved the way for higher-level automation. We focused on chaining independent functions
+            into an "One-Button" scoring workflow.</p>
 
-        <h3 class="text-purple">Core Software Upgrades</h3>
+        <h3 class="text-purple">Core Code Optimizations</h3>
         <ul>
-            <li><strong>Refined Triangle Zone Macros:</strong> Integrated the new "semi-retracted" aligners into faster
-                automated sequences for entry, scoring, and exit, minimizing driver burden.</li>
-            <li><strong>Optimized Continuous Stacking:</strong> Fine-tuned the lift's acceleration curves and flip
-                timing for high stacks, reducing idle time and making the process feel "all-in-one."</li>
+            <li><strong>Refined Triangle Control:</strong> Used the semi-retracted aligners to write faster Enter-Score-Exit
+                sequences, minimizing driver burden.</li>
+            <li><strong>Optimized Multi-Stacking:</strong> Tweaked the lift curves and flip timing for high stacks,
+                reducing wait times for a seamless flow.</li>
         </ul>
 
         <h3 class="text-purple">Training Results</h3>
-        <p>After multiple rounds of testing, the Gen 3 automation reached the desired levels of stability and speed. The
-            success rate for continuous operations is significantly higher than that of Gen 2, especially under
-            high-pressure, fast-paced match simulations.</p>
+        <p>Testing confirmed that Gen 3's automation reached competition requirements for stability and speed. Continuous
+            operation success rates are significantly higher than Gen 2, even under high-pressure simulations.</p>
     </div>
 
-    <!-- ================= PAGE: TRAINING & SPECS ================= -->
+    <!-- ================= PAGE: TRAINING ================= -->
     <div class="sheet">
-        <h1>8.4 Training & Testing: Performance Leap</h1>
-
+        <h1>8.4 Training & Testing: A Performance Leap</h1>
         <h3 class="text-purple">Gen 3 Training Log Summary</h3>
         <table class="comparison-table small-font">
             <thead>
                 <tr>
-                    <th width="6%">Session</th>
-                    <th>Core Focus</th>
+                    <th width="10%">Session</th>
+                    <th>Focus</th>
                     <th>Issues Found</th>
-                    <th>Improvements</th>
-                    <th>Outcome</th>
+                    <th>Actions Taken</th>
+                    <th>Result</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1-3</td>
-                    <td>Chassis & Beam Clearance</td>
+                    <td>Chassis & Zone Clearance</td>
                     <td>Unstable grip, slow lift</td>
-                    <td>Added intake friction, tuned lift lever</td>
-                    <td>Smooth clearance, efficient grab/lift</td>
+                    <td>Added grip friction, improved lift arm</td>
+                    <td>Smooth clearance, better efficiency</td>
                 </tr>
                 <tr>
                     <td>4-6</td>
                     <td>Triangle Scoring</td>
-                    <td>Slow aligner response</td>
-                    <td>Adopted semi-retracted structure</td>
-                    <td>Faster Triangle Zone operations</td>
+                    <td>Slow aligner adjustment</td>
+                    <td>Semi-retracted structure, code opt</td>
+                    <td>Faster triangle operations</td>
                 </tr>
                 <tr>
                     <td>7-10</td>
-                    <td>High Stacking & Continuity</td>
-                    <td>Slight wobble in high stacks</td>
-                    <td>Tuned lift angles, tightened joints</td>
-                    <td>Improved precision and stability</td>
+                    <td>High Stacking & Flow</td>
+                    <td>Inaccuracy at height, jitter</td>
+                    <td>Fine-tuned lift angles, tightened parts</td>
+                    <td>Improved accuracy and stability</td>
                 </tr>
             </tbody>
         </table>
 
-        <h3 class="text-purple" style="margin-top:20px;">Gen 2 vs Gen 3 Core Metrics</h3>
+        <h3 class="text-purple" style="margin-top:20px;">Gen 2 vs Gen 3 Performance</h3>
         <table class="comparison-table small-font">
             <thead>
                 <tr>
                     <th>Metric</th>
                     <th>Gen 2</th>
                     <th>Gen 3</th>
-                    <th width="30%">Improvement Notes</th>
+                    <th width="30%">Improvement</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Beam Clearance Time</strong></td>
-                    <td>~2.5s</td>
-                    <td class="highlight-cell">~1.5s</td>
-                    <td>Relocated gears, zero friction</td>
+                    <td><strong>Loading Zone Time</strong></td>
+                    <td>~2.5 seconds</td>
+                    <td class="highlight-cell">~1.5 seconds</td>
+                    <td>Zero friction gear shift</td>
                 </tr>
                 <tr>
                     <td><strong>Triangle Efficiency</strong></td>
-                    <td>Flexible but slow travel</td>
-                    <td class="highlight-cell">Semi-retracted, instant</td>
-                    <td>Short cylinders, tight code integration</td>
+                    <td>Flexible but slow cycles</td>
+                    <td class="highlight-cell">Faster Semi-Retract</td>
+                    <td>Short stroke rods, tighter code</td>
                 </tr>
                 <tr>
-                    <td><strong>Stacking Stability</strong></td>
-                    <td>High</td>
-                    <td class="highlight-cell">Extremely High</td>
-                    <td>Surface support prevents toppling</td>
+                    <td><strong>High Stack Stability</strong></td>
+                    <td>Decent</td>
+                    <td class="highlight-cell">Extreme</td>
+                    <td>Surface-based support structure</td>
                 </tr>
             </tbody>
         </table>
@@ -425,188 +392,159 @@
 
     <!-- ================= PAGE: BEIJING LEAGUE 1 ================= -->
     <div class="sheet">
-        <h1>8.5 Beijing Inter-School League (1)</h1>
-
-        <div class="info-box"
-            style="background: #f4f4f4; padding: 15px; border-left: 5px solid #008080; margin-bottom: 20px; font-size: 20px;">
-            <p><strong>Tournament:</strong> 1st Beijing Inter-School League (2025-2026 Season)</p>
+        <h1>8.5 Beijing School League (1)</h1>
+        <div class="info-box">
+            <p><strong>Event:</strong> 1st Beijing School League (VEX 2025-2026)</p>
             <p><strong>Date:</strong> Oct 25 - Oct 26, 2025</p>
-            <p><strong>Venue:</strong> USTB (Shahe Campus)</p>
-            <p><strong>Goal:</strong> Qualify for the National Championship in Shanghai</p>
+            <p><strong>Venue:</strong> USTB Shahe Campus</p>
+            <p><strong>Nature:</strong> Qualifier for National Elite (Shanghai Jiao Tong University)</p>
         </div>
 
         <h3 class="text-teal">I. Schedule</h3>
-        <table class="checklist-table" style="font-size: 20px; margin-bottom: 20px;">
+        <table class="checklist-table" style="font-size: 14px; margin-bottom: 20px;">
             <tr style="background-color: #f9f9f9;">
-                <td width="20%"><strong>Oct 25</strong></td>
-                <td>
-                    13:00 - 14:30 Registration & Inspection<br>
-                    15:00 - 17:30 Meeting & <strong>Skills Matches</strong>
-                </td>
+                <td width="20%"><strong>10.25</strong></td>
+                <td>Registration, Inspection, Driver Meeting, <strong>Skills Matches</strong></td>
             </tr>
             <tr>
-                <td><strong>Oct 26</strong></td>
-                <td>
-                    08:00 - 08:30 Preparation<br>
-                    08:30 - 12:30 Qualifications<br>
-                    13:30 - 15:00 Finals<br>
-                    15:00 - 16:30 Awards Ceremony
-                </td>
+                <td><strong>10.26</strong></td>
+                <td>Qualifications, Finals, Awards Ceremony</td>
             </tr>
         </table>
 
-        <h3 class="text-teal">II. Performance & Results</h3>
-        <div class="two-column-layout">
-            <div class="column">
-                <ul>
-                    <li><strong>Driving Skills:</strong> Scored <strong>184 pts</strong>, excellent performance.</li>
-                    <li><strong>Auto Skills:</strong> Scored <strong>91 pts</strong>, a massive improvement.</li>
-                    <li><strong>Final Rankings:</strong>
-                        <br><span class="text-red" style="font-weight:bold;">🏆 Skills Match Runner-up</span>
-                        <br><span class="text-teal" style="font-weight:bold;">🥉 Qualification 3rd Place</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <h3 class="text-teal">II. Performance Summary</h3>
+        <ul>
+            <li><strong>Driving Skills:</strong> Scored <strong>184 pts</strong>, excellent performance.</li>
+            <li><strong>Auto Skills:</strong> Obtained <strong>91 pts</strong>, a huge step forward.</li>
+            <li><strong>Final Ranking:</strong>
+                <br><span class="text-red" style="font-weight:bold;">🏆 Skills Runner-up (2nd Place)</span>
+                <br><span class="text-teal" style="font-weight:bold;">🥉 Quals 3rd Place</span>
+            </li>
+        </ul>
     </div>
 
     <!-- ================= PAGE: BEIJING LEAGUE 2 ================= -->
     <div class="sheet">
-        <h1>8.5 Beijing Inter-School League (2) Post-Match Analysis</h1>
+        <h1>8.5 Beijing School League (2): Review</h1>
+        <p>This event secured our National ticket and validated our Gen 2 upgrade strategy, while highlighting process
+            management gaps.</p>
 
-        <p>This tournament not only secured our ticket to Nationals but also validated our Gen 2 upgrade strategy while
-            exposing critical process management flaws.</p>
-
-        <h3 class="text-teal">Summary (Post-Match Analysis)</h3>
-
+        <h3 class="text-teal">Post-Match Analysis</h3>
         <div class="analysis-section">
             <span class="analysis-title text-green">1. Technical Validation: Gen 2 Shows Its Edge</span>
             <p>We upgraded to the <strong>Gen 2 configuration</strong> right before the event with optimized routing.
             </p>
             <ul>
-                <li><strong>Tower Optimization:</strong> Target modifications for the High Tower improved accuracy to
-                    nearly <strong>100%</strong>.</li>
-                <li><strong>Efficiency:</strong> Structural tuning shaved <strong>2-3s</strong> off total run time,
-                    providing more buffer for complex moves.</li>
+                <li><strong>Tower Optimization:</strong> Changes to high tower scoring reached <strong>~100%</strong>
+                    accuracy.</li>
+                <li><strong>Efficiency:</strong> Mech improvements saved <strong>2-3s</strong> per run, giving us more
+                    room for complex moves.</li>
             </ul>
         </div>
-        <img src="../assets/ch08/8_5_1.webp" alt="Tournament Photo"
+        <img src="../assets/ch08/8_5_1.webp" alt="Match Photo"
             style="display: block;height:300px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE: BEIJING LEAGUE 3 ================= -->
     <div class="sheet">
-        <h1>8.5 Beijing Inter-School League (3) Post-Match Analysis (Cont'd)</h1>
+        <h1>8.5 Beijing School League (3): Review</h1>
         <div class="analysis-section">
-            <span class="analysis-title text-teal">2. Alliance Strategy Evolution: Data Management</span>
-            <p>Learning from the past, we introduced a new <strong>"Alliance Log Sheet,"</strong> boosting scouting
-                efficiency.</p>
-            <table class="checklist-table large-font" style="font-size: 20px;">
+            <span class="analysis-title text-teal">2. Scouting Evolution: Data-Driven</span>
+            <p>Based on previous lessons, we used a new <strong>Scouting Log</strong> to boost alliance efficiency.</p>
+            <table class="checklist-table" style="font-size: 13px;">
                 <tr>
-                    <td style="background:#e0f2f1; width: 30%;"><strong>Recording Metric</strong></td>
+                    <td style="background:#e0f2f1; width: 30%;"><strong>Metric</strong></td>
                     <td style="background:#e0f2f1;"><strong>Purpose</strong></td>
                 </tr>
                 <tr>
-                    <td>Teammate Motor/Chassis Data</td>
-                    <td>Evaluate speed/pushing power for role allocation.</td>
+                    <td>Motor/Chassis Data</td>
+                    <td>Evaluate partner's torque and speed for roles.</td>
                 </tr>
                 <tr>
-                    <td>Preferred Paths</td>
+                    <td>Preferred Routes</td>
                     <td>Predict path overlaps to avoid field collisions.</td>
                 </tr>
                 <tr>
                     <td>Historical Scores</td>
-                    <td>Select the best partner for the Finals based on data.</td>
+                    <td>Select the best finals partner based on data.</td>
                 </tr>
             </table>
         </div>
 
         <div class="analysis-section">
-            <span class="analysis-title text-red">3. Painful Lesson: Process & Mindset</span>
+            <span class="analysis-title text-red">3. Hard Lesson: Process vs. Mindset</span>
             <div class="highlight-box type-default" style="background-color: #fff5f5; border-left-color: #c0392b;">
-                <p style="font-size: 20px;"><strong>Incident: Code Flashed in Reverse</strong></p>
-                <p style="font-size: 20px;"><strong>Root Cause:</strong> Overconfidence. After a small tweak, we assumed it was simple and
-                    <strong>skipped the test run</strong> before the match.</p>
-                <p style="font-size: 20px;"><strong>Result:</strong> Claw and hook movements were swapped. We lost the auto points and the
-                    driver's confidence took a hit.</p>
-                <p style="font-size: 20px;"><strong>Corrective Action:</strong> Established a Golden Rule: <strong>"Every code change must pass a
-                        test run on the robot before being locked."</strong></p>
+                <p><strong>Incident: Code Upload Inversion</strong></p>
+                <p><strong>Cause:</strong> Overconfidence. After a small logic fix, we went to the field <strong>without
+                        a single test run</strong>.</p>
+                <p><strong>Effect:</strong> In the match, the claw and hook actions were reversed. Zero points for the
+                    run and a huge hit to driver morale.</p>
+                <p><strong>Correction:</strong> New Iron Rule—<strong>"Any code change MUST pass a test run before
+                        staging."</strong></p>
             </div>
         </div>
     </div>
 
     <!-- ================= PAGE: XICHENG 1 ================= -->
     <div class="sheet">
-        <h1>8.6 Xicheng District Youth Competition (1)</h1>
-
-        <div class="info-box"
-            style="background: #e3f2fd; padding: 15px; border-left: 5px solid #2196F3; margin-bottom: 20px; font-size: 20px;">
-            <p><strong>Tournament:</strong> 2025 Xicheng Youth Robot Intelligence Competition</p>
+        <h1>8.6 Xicheng District Competition (1)</h1>
+        <div class="info-box" style="background: #e3f2fd; border-left-color: #2196F3;">
+            <p><strong>Event:</strong> 2025 Xicheng District Youth Robotics Competition</p>
             <p><strong>Date:</strong> Nov 2, 2025 (Afternoon)</p>
-            <p><strong>Venue:</strong> BNU No.2 High School (Underground Gym)</p>
-            <p><strong>Goal:</strong> Qualify for the Beijing Municipal Competition</p>
+            <p><strong>Venue:</strong> BNU No.2 Middle School (Underground Gym)</p>
+            <p><strong>Nature:</strong> Qualifier for Beijing Municipal Competition</p>
         </div>
 
         <h3 class="text-teal">I. Timeline</h3>
-        <table class="checklist-table" style="font-size: 20px; margin-bottom: 20px;">
+        <table class="checklist-table" style="font-size: 14px; margin-bottom: 20px;">
             <tr style="background-color: #f9f9f9;">
                 <td width="25%"><strong>12:20 - 12:50</strong></td>
-                <td>Team entry and inspection.</td>
+                <td>Registration & Inspection</td>
             </tr>
             <tr>
                 <td><strong>13:00 - 17:30</strong></td>
-                <td>
-                    Qualification Matches<br>
-                    Autonomous Skills Matches
-                </td>
+                <td>Qualifications & Auto Skills</td>
             </tr>
         </table>
-        <img src="../assets/ch08/8_6_1.webp" alt="Xicheng Tournament Photo"
+        <img src="../assets/ch08/8_6_1.webp" alt="Competition Hall"
             style="display: block;height:300px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE: XICHENG 2 ================= -->
     <div class="sheet">
-        <h1>8.6 Xicheng District Youth Competition (2)</h1>
-
-        <h3 class="text-teal" style="margin-top: 10px; margin-bottom: 5px;">II. Performance</h3>
-        <ul style="margin:0">
-            <li style="font-size: 20px;"><strong>Matches:</strong> Completed 6 qualification rounds.</li>
-            <li style="font-size: 20px;"><strong>High Point:</strong> Partnered with <strong>Team Q59</strong> for <span
-                    class="text-teal"><strong>302 pts</strong></span> (we contributed 194).</li>
-            <li style="font-size: 20px;"><strong>Low Point:</strong> Partnered with Team Q83, scoring only 163 pts due to teammate error (they
-                contributed 2).</li>
-            <li style="font-size: 20px;"><strong>Result:</strong> Stable performance, successfully advanced.</li>
+        <h1>8.6 Xicheng District Competition (2)</h1>
+        <h3 class="text-teal">II. Performance</h3>
+        <ul>
+            <li><strong>Matches:</strong> 6 Teamwork Qualification matches.</li>
+            <li><strong>Peak:</strong> Scored <strong>302 pts</strong> with Alliance Q59 (Our contribution: 194).</li>
+            <li><strong>Valley:</strong> Scored only 163 pts with Q83 due to teammate errors (Teammate contribution: 2).
+            </li>
+            <li><strong>Result:</strong> Consistent enough to advance.</li>
+            <li><strong>Auto Skills:</strong> <strong>91 pts</strong>. Failed the second run, missing targets.</li>
+            <li><strong>Environment:</strong> The underground gym had zero signal, causing initial team panic.</li>
         </ul>
 
-        <ul style="margin: 0">
-            <li style="font-size: 20px;"><strong>Auto Skills:</strong> <strong>91 pts</strong>. Errors in the second run led to sub-optimal
-                results.</li>
-            <li style="font-size: 20px;"><strong>Environment:</strong> Total isolation and a signal blackout at the venue left the team feeling rattled at first.</li>
-        </ul>
-
-        <h3 style="margin-top: 10px; margin-bottom: 5px;">III. Emergencies & Process Gaps</h3>
-
+        <h3>III. Operational Gaps</h3>
         <div class="analysis-section">
-            <span class="analysis-title text-teal">1. Scouting System Failure</span>
-            <p style="font-size: 20px;">Scouting efficiency collapsed, leading to one match where we couldn't find our teammate, forcing a
-                last-second strategy chat at the field.</p>
-            <table class="checklist-table large-font" style="font-size: 20px;">
+            <span class="analysis-title text-teal">1. Scouting Breakdown</span>
+            <p>Severe efficiency issues in scouting led to missing contact with one partner until right before the
+                match.</p>
+            <table class="checklist-table" style="font-size: 13px;">
                 <tr>
-                    <td style="background:#ffebee; width: 22%;"><strong>Root Problem</strong></td>
-                    <td style="background:#ffebee;"><strong>Manifestation</strong></td>
+                    <td style="background:#ffebee; width: 22%;"><strong>Root Cause</strong></td>
+                    <td style="background:#ffebee;"><strong>Evidence</strong></td>
                 </tr>
                 <tr>
                     <td>ID Confusion</td>
-                    <td>The event used "Sort IDs" instead of Team Numbers (e.g., 2276A) for the first time.</td>
+                    <td>First time using "Sort IDs" instead of VEX Team IDs (2276A).</td>
                 </tr>
                 <tr>
-                    <td>Lagging Info</td>
-                    <td>Match lists were only posted on a wall, not handed out to teams.</td>
+                    <td>Information Lag</td>
+                    <td>Match schedule was only on a wall, no paper copies provided.</td>
                 </tr>
                 <tr>
-                    <td>Consequence</td>
-                    <td>Preparation time compressed by pinpointing teammates, many matches were won by luck rather than planning.</td>
+                    <td>Effect</td>
+                    <td>Lost prep time, relied on luck for several matches.</td>
                 </tr>
             </table>
         </div>
@@ -614,173 +552,134 @@
 
     <!-- ================= PAGE: XICHENG 3 ================= -->
     <div class="sheet">
-        <h1>8.6 Xicheng District Youth Competition (3)</h1>
-
-        <h3>III. Emergencies & Process Gaps (Cont'd)</h3>
-
+        <h1>8.6 Xicheng District Competition (3)</h1>
         <div class="analysis-section">
-            <span class="analysis-title text-teal">2. Technical & Process Lessons</span>
+            <span class="analysis-title text-teal">2. Workflow & Technical Lessons</span>
             <ul>
-                <li>
-                    <strong>Mode Switching Accident:</strong>
-                    Moving the robot from the flight case to the field for auto mode was clumsy and nearly delayed a
-                    match.
-                    <br><strong>→ Improvement:</strong> Optimize the staging and robot handling workflow.
-                </li>
-                <li>
-                    <strong>Auto Stability:</strong>
-                    Only 91 pts with errors.
-                    <br><strong>→ Decision:</strong> Re-establish rigorous training for every auto segment; no more
-                    "hoping for the best."
-                </li>
+                <li><strong>Staging Incident:</strong> Robot was tucked in a corner of the flight case during switching,
+                    almost delaying our entry. <br><strong>→ Fix:</strong> Optimize staging zone layout.</li>
+                <li><strong>Auto Consistency:</strong> Only hit 91 pts. <br><strong>→ Fix:</strong> Strict training plans
+                    for every auto segment; no more relying on "hope."</li>
             </ul>
         </div>
-        <h3>IV. Final Result</h3>
-        <p>Despite the scares, our qualification performance was solid, and we successfully secured a spot in the
-            <strong>Beijing Municipal Competition.</strong></p>
+        <h3>IV. Results</h3>
+        <p>Despite the scares, we secured our spot in the <strong>Beijing Municipal Competition</strong>.</p>
     </div>
 
     <!-- ================= PAGE: BEIJING MUNICIPAL 1 ================= -->
     <div class="sheet">
         <h1>8.7 Beijing Municipal Competition (1)</h1>
-
-        <div class="info-box"
-            style="background: #e8eaf6; padding: 15px; border-left: 5px solid #3f51b5; margin-bottom: 20px;">
-            <p style="font-size: 20px;"><strong>Tournament:</strong> 2025 Beijing Youth Robot Intelligence Competition</p>
-            <p style="font-size: 20px;"><strong>Date:</strong> Nov 15 - Nov 16, 2025</p>
-            <p style="font-size: 20px;"><strong>Venue:</strong> Beijing Institute of Technology (Liangxiang Campus)</p>
-            <p style="font-size: 20px;"><strong>Status:</strong> Highest-level youth robot event in the city</p>
+        <div class="info-box" style="background: #e8eaf6; border-left-color: #3f51b5;">
+            <p><strong>Event:</strong> 2025 Beijing Municipal Youth Robotics Competition</p>
+            <p><strong>Date:</strong> Nov 15 - Nov 16, 2025</p>
+            <p><strong>Venue:</strong> Beijing Institute of Technology (Liangxiang)</p>
+            <p><strong>Nature:</strong> Highest-level city-wide youth robotics event</p>
         </div>
 
         <h3 class="text-teal">I. Timeline</h3>
-        <table class="checklist-table" style="font-size: 20px; margin-bottom: 20px;">
+        <table class="checklist-table" style="font-size: 14px; margin-bottom: 20px;">
             <tr style="background-color: #f9f9f9;">
-                <td width="30%"><strong>Nov 15 (Day 1)</strong></td>
-                <td>
-                    08:00 - 09:00 Inspection & Practice<br>
-                    09:00 - 09:30 Opening Ceremony<br>
-                    09:30 - 17:30 Qualification Matches
-                </td>
+                <td width="20%"><strong>11.15 (Day 1)</strong></td>
+                <td>Qualifications Day</td>
             </tr>
             <tr>
-                <td><strong>Nov 16 (Day 2)</strong></td>
-                <td>
-                    09:00 - 09:30 Check-in & Prep<br>
-                    09:30 - 17:30 Remaining Quals & Skills<br>
-                    17:30 Departure
-                </td>
+                <td><strong>11.16 (Day 2)</strong></td>
+                <td>Remaining Matches & Skills</td>
             </tr>
         </table>
 
-        <h3 class="text-teal">II. Performance</h3>
-        <h4>Qualifications: The High Points</h4>
-        <p>Thanks to clear table assignments and excellent staging prep, our performance was top-tier.</p>
+        <h3 class="text-teal">II. Match Performance</h3>
+        <h4>Teamwork: The High Point</h4>
+        <p>Strong scouting and prep led to a dominant performance in Teamwork.</p>
         <ul>
-            <li><strong>Max Score:</strong> <span class="text-teal"><strong>310 pts</strong></span> (Partnered with
-                Sanlihe Elementary).</li>
-            <li><strong>Min Score:</strong> 186 pts (Partnered with Chen Jinglun Branch).</li>
-            <li><strong>Ranking:</strong> Secured <strong>1st Place in the Elementary Division</strong> for
-                Qualifications.</li>
+            <li><strong>High Score:</strong> <strong>310 pts</strong> (with Sanlihe No.3 School).</li>
+            <li><strong>Low Score:</strong> 186 pts (with Chen Jinglun School).</li>
+            <li><strong>Ranking:</strong> Finished <strong>1st Place</strong> in the Elementary division for Teamwork.
+            </li>
         </ul>
     </div>
 
     <!-- ================= PAGE: BEIJING MUNICIPAL 2 ================= -->
     <div class="sheet">
         <h1>8.7 Beijing Municipal Competition (2)</h1>
-        <h3 class="text-teal">II. Performance (Cont'd)</h3>
-
-        <h4>Skills Match: The Dark Hour</h4>
-        <p>Double Failure</p>
-        <p>
-            1. <strong>Wrong Program:</strong> Selected the wrong code slot for the first run, resulting in 0
-            points.<br>
-            2. <strong>Panic:</strong> The first failure led to severe anxiety on Day 2, causing mechanical handling
-            errors.
+        <h4>Skills: The Darkest Hour</h4>
+        <p>Two runs, both failed.</p>
+        <p>1. <strong>Wrong Slot:</strong> Driver picked the wrong code slot, resulting in 0 pts.<br>
+            2. <strong>Morale Collapse:</strong> The Day 1 failure created anxiety, leading to manual errors on Day 2.
         </p>
 
-        <div class="strategy-card" style="margin-top: 10px; background-color: #fff3e0; border-left-color: #ff9800;">
-            <h4 style="margin-top: 0; color: #e65100;">Final Result: 3rd Prize</h4>
-            <p>Despite ranking <strong>1st</strong> in Qualifications, the massive failures in Auto Skills dragged down
-                our total score. We ended with a 3rd prize—a painful reminder of the "Weak Link" effect.</p>
+        <div class="strategy-card" style="background-color: #fff3e0; border-left-color: #ff9800;">
+            <h4 style="color: #e65100;">Final Result: Third Prize</h4>
+            <p>Despite being <strong>Ranked #1</strong> in Teamwork, the Skills failures dragged down our overall
+                standing to a Third Prize. A painful validation of the "Barrel Theory."</p>
         </div>
-        <img src="../assets/ch08/8_7_1.webp" alt="Pre-match Checklist"
+        <img src="../assets/ch08/8_7_1.webp" alt="Checklist in Action"
             style="display: block;height:280px; margin: 10px auto; border-radius: 10px;">
     </div>
 
     <!-- ================= PAGE: BEIJING MUNICIPAL 3 ================= -->
     <div class="sheet">
         <h1>8.7 Beijing Municipal Competition (3)</h1>
-        <h3 class="text-teal">III. Deep Dive & Lessons</h3>
-
+        <h3 class="text-teal">III. Deep Dive (Post-Match Analysis)</h3>
         <div class="analysis-section">
-            <span class="analysis-title text-teal">1. Systematic Failure in Auto</span>
-            <p>Crashing in auto across three major events (North China, Xicheng, Beijing) pointed to deeper issues:</p>
+            <span class="analysis-title text-teal">1. Systemic Auto Collapse</span>
+            <p>Failures across three events (North, Xicheng, Beijing) revealed deep issues:</p>
             <ul>
-                <li><strong>Lack of Training:</strong> Auto was undervalued and became the team's "Achilles' heel."</li>
-                <li><strong>Chaos in Process:</strong> Team roles weren't strictly followed at the field, leading to
-                    collaboration errors.</li>
-                <li><strong>Rough Details:</strong> The "Switching" process and <strong>Pin placement</strong> lacked
-                    precision, affecting the robot's trajectory.</li>
+                <li><strong>Training Gap:</strong> Auto wasn't prioritized enough; it became our Achilles' heel.</li>
+                <li><strong>Role Confusion:</strong> Field roles weren't followed under pressure.</li>
+                <li><strong>Detail Neglect:</strong> Inaccurate <strong>Pin placement</strong> affected paths.</li>
             </ul>
         </div>
 
         <div class="analysis-section">
-            <span class="analysis-title text-teal">2. Mechanical Risks Found</span>
+            <span class="analysis-title text-teal">2. Mech Risks Identified</span>
             <ul>
-                <li><strong>Part Loss:</strong> In two matches, the robot dropped Pins during the "lift-flip" sequence.
-                </li>
-                <li><strong>Countermeasure:</strong> Need to immediately check intake grip strength and lift stability.
-                </li>
+                <li><strong>Dropping Parts:</strong> Robot dropped pins twice during complex moves.</li>
+                <li><strong>Action:</strong> Need to check grip strength and flip smoothness immediately.</li>
             </ul>
         </div>
 
-        <div class="highlight-box type-teal" style="font-size: 22px;">
-            <strong>Psychological Resilience:</strong><br>
-            On a positive note, despite the Day 1 skills failure, the team bounced back to dominate the Day 2
-            Qualifications. This mental "rebound" was a valuable takeaway.
+        <div class="highlight-box type-teal">
+            <strong>Mental Resilience:</strong><br>
+            Despite the Day 1 blow, the team bounced back to dominate Day 2 Teamwork. This "Resilience" was our most
+            valuable takeaway.
         </div>
     </div>
 
     <!-- ================= PAGE: ASIA OPEN 1 ================= -->
     <div class="sheet">
-        <h1>8.8 VEX Asia Open International Signature Event (1)</h1>
-
-        <div class="info-box"
-            style="background: #fff8e1; padding: 15px; border-left: 5px solid #f39c12; margin-bottom: 20px; font-size: 20px;">
-            <p><strong>Tournament:</strong> 2025-2026 VEX Asia Open International Signature Event</p>
+        <h1>8.8 VEX Asia Open Signature (1)</h1>
+        <div class="info-box" style="background: #fff8e1; border-left-color: #f39c12;">
+            <p><strong>Event:</strong> 2025-2026 VEX Asia Open Signature Event</p>
             <p><strong>Date:</strong> Dec 18 - Dec 21, 2025</p>
-            <p><strong>Venue:</strong> Shougang Park, Beijing</p>
-            <p><strong>Nature:</strong> International Signature Event</p>
+            <p><strong>Venue:</strong> Shougang International Convention Center, Beijing</p>
+            <p><strong>Nature:</strong> Signature Event (Highest Tier Series)</p>
         </div>
 
         <h3 class="text-teal">I. Schedule</h3>
-        <table class="checklist-table" style="font-size: 20px; margin-bottom: 20px;">
+        <table class="checklist-table" style="font-size: 14px; margin-bottom: 20px;">
             <tr style="background-color: #f9f9f9;">
-                <td><strong>Dec 18</strong></td>
+                <td width="20%"><strong>12.18</strong></td>
                 <td>Registration & Inspection</td>
             </tr>
             <tr>
-                <td><strong>Dec 19</strong></td>
+                <td><strong>12.19-20</strong></td>
                 <td>Practice, Quals, Skills</td>
             </tr>
             <tr style="background-color: #f9f9f9;">
-                <td><strong>Dec 20</strong></td>
-                <td>Quals / Skills</td>
-            </tr>
-            <tr>
-                <td><strong>Dec 21</strong></td>
-                <td>Finals</td>
+                <td><strong>12.21</strong></td>
+                <td>Finals & Awards</td>
             </tr>
         </table>
 
         <h3 class="text-teal">II. Performance</h3>
         <div class="two-column-layout">
             <div class="column">
-                <p>As the final major event of the season, our goal was to test Gen 3's limit. However, the journey was
-                    rocky, exposing issues in stability under high pressure.</p>
+                <p>This year-end Signature event was meant to push Gen 3 to its limits. However, the path was rocky,
+                    testing our stability and adaptability under extreme pressure.</p>
             </div>
             <div class="column">
-                <img src="../assets/ch08/8_8_1.webp" alt="Tournament Site"
+                <img src="../assets/ch08/8_8_1.webp" alt="Shougang Venue"
                     style="display: block;max-height:250px; margin: 10px auto; border-radius: 10px;">
             </div>
         </div>
@@ -789,14 +688,12 @@
     <!-- ================= PAGE: ASIA OPEN 2 ================= -->
     <div class="sheet">
         <h1>8.8 VEX Asia Open (2)</h1>
-
-        <h3 class="text-teal">III. Core Issue: Triangle Scoring Instability</h3>
+        <h3 class="text-teal">III. Core Issue: Triangle Instability</h3>
         <div class="analysis-section">
-            <span class="analysis-title text-teal">1. Failure & Temporary Fixes</span>
-            <p>We repeatedly faced <strong>"Triangle errors and unstable claw height."</strong> Automated paths failed,
-                leading to missed scoring opportunities.</p>
+            <span class="analysis-title text-teal">1. Symptoms & Fixes</span>
+            <p>We hit a recurring issue where <strong>"Triangle cycles failed due to unstable grip height."</strong></p>
             <ul>
-                <li><strong>Root Cause:</strong> Post-match analysis showed imprecise variables for lift height.</li>
+                <li><strong>Root Cause:</strong> Post-event analysis found imprecise variables for the lift motor.</li>
                 <li><strong>Quick Fix:</strong> The driver had to manually compensate for the angle, costing
                     <strong>2-3s</strong> per operation.</li>
                 <li><strong>Field Adjustments:</strong> We boosted the lift height variable (`PIN=5`) by 3 degrees,
@@ -896,9 +793,41 @@
             style="display: block;max-height:800px; margin: 10px auto; border-radius: 10px;">
     </div>
 
+    <!-- ================= PAGE: WRC Finals ================= -->
+    <div class="sheet">
+        <h1>8.10 World Robot Contest Finals (WRCF)</h1>
+
+        <div class="info-box" style="margin-bottom: 0;">
+            <p><strong>Tournament:</strong> 2025 World Robot Contest Finals (WRCF)</p>
+            <p><strong>Date:</strong> Jan 8 - 11, 2026 &nbsp;&nbsp;&nbsp; <strong>Venue:</strong> Wuxi Xishan High School</p>
+            <p><strong>Awards:</strong> Design Award, Second Prize</p>
+        </div>
+
+        <div class="analysis-section" style="border-left: 4px solid var(--primary-color); padding-left: 15px; margin-top: 20px;">
+            <span class="analysis-title text-teal">1. Consistent Performance: Skills & Teamwork</span>
+            <ul>
+                <li><strong>Skills:</strong> With high stability in autonomous programs, we scored <strong>341 points</strong>, ranking <strong>7th overall</strong>.</li>
+                <li><strong>Teamwork:</strong> Completed 7 matches with a high score of <strong>367</strong>. The Gen 3 code showed extreme robustness in variable environments.</li>
+            </ul>
+        </div>
+
+        <div class="two-column-layout" style="margin-bottom: 0;">
+            <div class="column">
+                <div class="analysis-section" style="border-left: 4px solid var(--primary-color); padding-left: 15px;">
+                    <span class="analysis-title text-green">2. Design Award: Gen 3's Peak Performance</span>
+                    <p>At the WRCF, judges highly praised our robot's structural design and our excellent defense performance. Gen 3 stood out from strong competitors with its rock-solid mechanical reliability and optimized autonomous code, securing the <strong>Design Award</strong> and a spot at the VEX Worlds.</p>
+                </div>
+            </div>
+            <div class="column">
+                <img src="../assets/ch09/5-matches-1.webp" alt="WRC Matches"
+                    style="display: block; width: 100%; border-radius: 10px; margin-top: 0;">
+            </div>
+        </div>
+    </div>
+
     <!-- ================= PAGE: SEASON SUMMARY ================= -->
     <div class="sheet">
-        <h1>8.10 Season Summary: Towards a New Journey</h1>
+        <h1>8.11 Season Summary: Towards a New Journey</h1>
         <h3 class="text-purple">From Imperfection to Excellence</h3>
         <p>Looking back at the season, from the initial exploration of Gen 1 to the battlefield trials of Gen 2, and
             finally to the maturity of Gen 3, every step was full of challenges and growth. The "imperfections" of Gen 2

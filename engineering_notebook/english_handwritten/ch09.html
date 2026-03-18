@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Notebook - Chapter 9: Gen 4 - Coding Upgrade (2276A)</title>
+    <title>Engineering Notebook - Chapter 9: Gen 4 Coding Upgrade (2276A)</title>
     <link rel="stylesheet" href="../assets/styles/style-english-handwritten.css">
     <style>
         .cover-section {
@@ -28,6 +28,14 @@
             border: none;
         }
 
+        .cover-section h3 {
+            font-size: 24px;
+            color: #888;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
         /* Floating scroll buttons */
         .scroll-buttons {
             position: fixed;
@@ -44,7 +52,8 @@
             height: 50px;
             border-radius: 50%;
             border: none;
-            background-color: rgba(50, 50, 50, 0.6); /* Half transparent */
+            background-color: rgba(50, 50, 50, 0.6);
+            /* Half transparent */
             color: white;
             font-size: 24px;
             cursor: pointer;
@@ -53,7 +62,8 @@
             justify-content: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-            backdrop-filter: blur(4px); /* Slight blur effect */
+            backdrop-filter: blur(4px);
+            /* Slight blur effect */
         }
 
         .scroll-btn:hover {
@@ -67,16 +77,25 @@
                 display: none;
             }
         }
-        
-        h1, h2, h3, h4 {
+
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Patrick Hand', cursive;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 10px;
             margin-bottom: 5px;
         }
-        
-        body, p, li, td, .sticky-note, .dialogue, .img-caption {
+
+        body,
+        p,
+        li,
+        td,
+        .sticky-note,
+        .dialogue,
+        .img-caption {
             font-family: 'Architects Daughter', cursive;
         }
 
@@ -89,7 +108,7 @@
         }
 
         .cover-intro {
-            margin: 40px 80px;
+            margin: 60px 60px;
             font-size: 20px;
             line-height: 2;
             text-align: left;
@@ -160,20 +179,24 @@
     <!-- ================= PAGE 1: COVER ================= -->
     <div class="sheet">
         <div class="cover-section">
-            <h1 style="font-size: 56px;">Gen 4: Coding Architecture Upgrade</h1>
-            <h2>Chapter 9: The Software Engineering Leap</h2>
+            <h1 style="font-size: 56px;">Gen 4: Coding Upgrade</h1>
+            <h2>Chapter 9: Fourth-Generation Programming</h2>
 
             <div class="cover-divider"></div>
 
             <div class="cover-intro">
                 <p>
-                    As our understanding of VEX IQ grew, we realized mechanical iterations alone weren't enough. To achieve stable and efficient automation, we launched a full upgrade of our coding architecture.
+                    As our understanding of VEX IQ deepened, we realized that mechanical iterations alone couldn't meet
+                    our performance goals. To achieve more stable and efficient control, we launched a complete
+                    overhaul of the robot's coding architecture.
                 </p>
                 <p>
-                    This chapter details how we applied software engineering principles to refactor our modular code, leading to a leap in robot performance.
+                    This chapter details how we applied software engineering principles to refactor our modular code,
+                    resulting in a massive performance leap.
                 </p>
                 <p>
-                    <strong>Core Task:</strong> Build a clear, scalable, and high-fault-tolerant programming framework for complex autonomous and strategic execution.
+                    <strong>Core Mission:</strong> Establish a clear, scalable, and fault-tolerant programming framework
+                    to support complex autonomous logic and tactical execution.
                 </p>
             </div>
         </div>
@@ -182,21 +205,25 @@
     <!-- ================= PAGE 2: System Initialization ================= -->
     <div class="sheet">
         <h1>9.1 System Initialization</h1>
-        <p>A reliable system starts with a precise initialization. We defined three core steps to ensure the robot starts in peak condition.</p>
-        <h3 class="text-purple">1. Device Initialization (Init)</h3>
-        <p>Sets all motor torques to 100% and brake modes to "Hold" to resist external forces. Also initializes all pneumatic systems.</p>
+        <p>A reliable system starts with a precise initialization. We defined three core steps to ensure the robot starts
+            in an optimal state.</p>
+        <h3 class="text-purple">1. Device Init</h3>
+        <p>Set all motor torque to 100% and brake modes to "Hold" to resist external forces. Initialize all pneumatic
+            subsystems simultaneously.</p>
         <img src="../assets/ch09/1-system initialization-1-init.jpg" alt="Init"
             style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
     </div>
     <div class="sheet">
         <h1>9.1 System Initialization (Cont'd)</h1>
         <h3 class="text-purple">2. Lift Reset</h3>
-        <p>Uses "Stall Detection" to precisely zero the lift arm encoder. The motor drives down until its speed drops below 30%, signaling it has reached the physical bottom.</p>
+        <p>The program drives the lift arm downward until speed drops below 30%, signaling it has hit the physical limit.
+            The encoder is then zeroed.</p>
         <img src="../assets/ch09/1-system initialization-2-lift reset.png" alt="Lift Reset"
             style="max-width: 85%; border-radius:8px; margin-top: 10px;">
 
-        <h3 class="text-purple">3. Pin Reset (Flip Reset)</h3>
-        <p>Similar to the lift, the flip mechanism drives down until speed is <10%, zeroes the encoder, then lifts 10° for operation clearance.</p>
+        <h3 class="text-purple">3. Pin Reset</h3>
+        <p>Similar to the lift, the flip mechanism (fanzhuan) moves down until speed is below 10%, zeroes the encoder,
+            and raises 10 degrees for readiness.</p>
         <img src="../assets/ch09/1-system initialization-3-pin reset.png" alt="Pin Reset"
             style="max-width: 85%; border-radius: 10px; margin-top: 10px;">
     </div>
@@ -204,34 +231,41 @@
     <!-- ================= PAGE 3: Telemetry & Driving ================= -->
     <div class="sheet">
         <h1>9.2 Telemetry & Driving</h1>
-        <p>Precise control and fast debugging are keys to victory. We designed a real-time telemetry interface and a drive system with safety locks.</p>
+        <p>Efficient debugging and precise control are match-winners. We designed a real-time telemetry UI and a
+            drive system with safety locks.</p>
 
         <h3 class="text-purple">1. Screen Telemetry</h3>
-        <p>Displays critical variables like "Beam" state, Lift angle, and Flip angle directly on the Brain's screen for fast on-field diagnosis.</p>
+        <p>The Brain screen displays key variables like "Beam" state, lift angle, and flip angle in real-time, allowing
+            for rapid field diagnostics.</p>
         <img src="../assets/ch09/2-telemetry and driving-1-screen telemetry.jpg" alt="Screen Telemetry"
             style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
     </div>
     <div class="sheet">
         <h1>9.2 Telemetry & Driving (Cont'd)</h1>
-        <h3 class="text-purple">2. Drive Control</h3>
-        <p>Introduced a "Safety Lock" mechanism: the robot only responds to sticks when the chassis variable (dipan) is active. We also added a 20% Deadzone to avoid stick-drift errors. This ensures the robot won't move accidentally if the driver bumps a stick during a precise automated sequence.</p>
-                <img src="../assets/ch09/2-telemetry and driving-2-drive control.jpg" alt="Drive Control"
-                    style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
+        <h3 class="text-purple">2. Drive Control & Safety Lock</h3>
+        <p>We introduced a "Safety Lock" mechanism where the robot only responds to sticks when the `dipan` variable is
+            set to 1. A deadzone of < 20% was added to prevent stick drift.</p>
+        <p>The core purpose is to prevent accidental stick movement from interrupting precise automated sequences like
+            grabbing or lifting. This ensures the integrity of the automation flow during the most intense match
+            moments.</p>
+        <img src="../assets/ch09/2-telemetry and driving-2-drive control.jpg" alt="Drive Control"
+            style="max-width: 100%; border-radius: 10px; margin-top: 10px;">
     </div>
 
     <!-- ================= PAGE 4: Button Logic Mapping ================= -->
     <div class="sheet">
         <h1>9.3 Button Logic Mapping (1)</h1>
-        <p>Every button on the controller has a clear, intuitive function, with complex logic encapsulated behind the scenes.</p>
+        <p>Every controller button has a clear, intuitive function, with complex logic encapsulated into simple
+            presses.</p>
 
         <div>
             <h3 class="text-purple">D, R3, L-Up</h3>
             <img src="../assets/ch09/3-button logic mapping-1-d r3 l-up.jpg" alt="Button Logic 1"
                 style="max-width: 75%; border-radius: 10px;">
             <ul style="font-size: 14px;">
-                <li><strong>D:</strong> Move to 121 Base (Pin=8)</li>
-                <li><strong>R3:</strong> Drop to 121 Base (Pin=9)</li>
-                <li><strong>L-Up:</strong> Increment Beam State (1->2->3)</li>
+                <li><strong>D:</strong> Hang 121 base (Pin=8)</li>
+                <li><strong>R3:</strong> Lower 121 base (Pin=9)</li>
+                <li><strong>L-Up:</strong> Cycle Beam state (1->2->3)</li>
             </ul>
         </div>
     </div>
@@ -242,8 +276,8 @@
             <img src="../assets/ch09/3-button logic mapping-2-e-up r-down.png" alt="Button Logic 2"
                 style="max-width: 100%; border-radius: 10px;">
             <ul style="font-size: 14px;">
-                <li><strong>E-Up:</strong> Open Hook (Beam=0)</li>
-                <li><strong>R-Down:</strong> Toggle Tower Height (Pin 0/1)</li>
+                <li><strong>E-Up:</strong> Open hook (Beam=0)</li>
+                <li><strong>R-Down:</strong> Toggle Tower heights (Pin 0/1)</li>
             </ul>
         </div>
     </div>
@@ -254,8 +288,8 @@
             <img src="../assets/ch09/3-button logic mapping-3-f-buttons.png" alt="Button Logic 3"
                 style="max-width: 90%; border-radius: 10px;">
             <ul style="font-size: 14px;">
-                <li><strong>F-Down:</strong> Toggle Triangle Height (Pin 2/3)</li>
-                <li><strong>F-Up:</strong> Manual Grab Adjust (Jia +/- 1)</li>
+                <li><strong>F-Down:</strong> Triangle heights (Pin 2/3)</li>
+                <li><strong>F-Up:</strong> Manual grip (Jia +/- 1)</li>
             </ul>
         </div>
     </div>
@@ -266,9 +300,9 @@
             <img src="../assets/ch09/3-button logic mapping-4-e-down.jpg" alt="Button Logic 4"
                 style="max-width: 100%; border-radius: 10px;">
             <ul style="font-size: 14px;">
-                <li><strong>Loading Logic:</strong></li>
+                <li><strong>Loading Station Logic:</strong></li>
                 <li>Pin=4: Approach</li>
-                <li>Pin=5: Grip & Lift</li>
+                <li>Pin=5: Grip and Lift</li>
                 <li>Pin=7: Reset</li>
             </ul>
         </div>
@@ -277,13 +311,16 @@
     <!-- ================= PAGE 5: Automated Lift Sequences ================= -->
     <div class="sheet">
         <h1>9.4 Automated Lift Sequences (1)</h1>
-        <p>Automation is our scoring multiplier. We break complex flows into states controlled by precise code.</p>
+        <p>Automation is our scoring multiplier. We broke down complex workflows into states controlled precisely by
+            code.</p>
 
         <h3 class="text-purple">1. Start & Grip Sequence</h3>
         <img src="../assets/ch09/4-automatated lift sequences-1-start and grip sequence-a.jpg" alt="Start and Grip A"
             style="max-width: 80%; border-radius: 10px;">
         <div style="display: flex; align-items: flex-start; gap: 15px;">
-            <p style="flex: 1;padding:10px">When Beam=0, the system stays in a 40° ready state. When Beam=1, the robot auto-completes the "Reverse -> Drop -> Grip -> Lift" sequence and hands control back to the driver.</p>
+            <p style="flex: 1;padding:10px">We designed an auto-reset and one-key grip. When `Beam=0`, the system holds at
+                a 40° prep angle. When `Beam=1`, the robot automatically backs up, lowers, grips, and lifts, then
+                returns drive control to the operator.</p>
             <img src="../assets/ch09/4-automatated lift sequences-1-start and grip sequence-b.jpg" alt="Start and Grip B"
                 style="max-width: 52%; border-radius: 10px;">
         </div>
@@ -291,76 +328,48 @@
     <div class="sheet">
         <h1>9.4 Automated Lift Sequences (2)</h1>
         <h3 class="text-purple">2. Lift Heights</h3>
-        <p>A simple State Machine manages target heights. Beam=2 targets the 91-height; Beam=3 targets the 121-height, ensuring reliable positioning for different scoring tasks.</p>
+        <p>A State Machine manages height presets. `Beam=2` targets the 91 height; `Beam=3` targets 121. This ensures the
+            lift arm moves reliably to exact positions, greatly boosting scoring speed and accuracy across different
+            field elements.</p>
         <img src="../assets/ch09/4-automatated lift sequences-2-lift heights.png" alt="Lift Heights"
             style="max-width: 90%; border-radius: 10px; margin-top: 10px;">
     </div>
     <div class="sheet">
         <h1>9.4 Automated Lift Sequences (3)</h1>
         <h3 class="text-purple">3. Release Sequence</h3>
-        <p>Pressing L-Down executes different steps based on state. At 91-height, it drops to 265°, opens the claw, rises to 350°, and resets—all in one button press.</p>
+        <p>Pressing L-Down triggers a logic branch based on current Beam state. For instance, at 91 height, it lowers to
+            265°, releases the claw, raises to 350°, and resets.</p>
         <img src="../assets/ch09/4-automatated lift sequences-3-release sequence-a.jpg" alt="Release A"
             style="max-width: 70%; border-radius: 10px;">
         <img src="../assets/ch09/4-automatated lift sequences-3-release sequence-b.jpg" alt="Release B"
             style="max-width: 70%; border-radius: 10px;">
     </div>
 
-    <!-- ================= PAGE 6: WRC Finals ================= -->
+    <!-- ================= PAGE 6: Shanghai Elite ================= -->
     <div class="sheet">
-        <h1>9.5 Gen 4 Competitions: WRC Finals</h1>
+        <h1 style="font-size: 30px;">9.5 Gen 4 Performance: Shanghai National Elite</h1>
 
-        <div class="info-box" style="margin-bottom: 0;">
-            <p style="font-size: 20px;"><strong>Tournament:</strong> 2025 World Robot Contest Finals (WRCF)</p>
-            <p style="font-size: 20px;"><strong>Date:</strong> Jan 8 - Jan 11, 2026 &nbsp;&nbsp;&nbsp; <strong>Venue:</strong> Wuxi Xishan High School</p>
-            <p style="font-size: 20px;"><strong>Awards:</strong> Design Award, Second Prize</p>
+        <div class="info-box" style="margin-bottom: 0; padding: 5px 15px;">
+            <p><strong>Tournament:</strong> Kechuang Qinghe VEX National Elite</p>
+            <p><strong>Date:</strong> Feb 1-4, 2026&nbsp; <strong>Venue:</strong> Shanghai Jiao Tong
+                University</p>
+            <p><strong>Award:</strong> Second Prize</p>
         </div>
 
-        <div class="two-column-layout" style="margin-bottom: 0;">
-            <div class="column">
-                <h3 class="text-teal" style="margin-top: 10px; margin-bottom: 10px;">Highlights & Analysis</h3>
-                <div class="analysis-section">
-                    <span class="analysis-title text-green" style="margin-bottom: 0;">1. Design Award: A Victory for Software Architecture</span>
-                    <p style="font-size: 20px;">The judges highly praised our Gen 4 programming framework. The modular logic, rigorous initialization, and robust telemetry helped us stand out from many strong teams, securing the <strong>Design Award</strong> and qualifying us for the VEX Worlds.</p>
-                </div>
-            </div>
-            <div class="column">
-                <img src="../assets/ch09/5-matches-1.webp" alt="WRC Matches"
-                    style="display: block; width: 100%; border-radius: 10px; margin-top: 15px;">
-            </div>
-        </div>
-
-        <div class="analysis-section">
-            <span class="analysis-title text-teal">2. Consistent Performance: Skills & Teamwork</span>
-            <ul style="font-size: 20px;">
-                <li style="font-size: 20px;"><strong>Skills:</strong> With high stability in autonomous programs, we scored <strong>341 points</strong>, ranking <strong>7th overall</strong>.</li>
-                <li style="font-size: 20px;"><strong>Teamwork:</strong> Completed 7 matches with a high score of <strong>367</strong>. The Gen 4 code showed extreme robustness in variable environments.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- ================= PAGE 7: Shanghai Elite ================= -->
-    <div class="sheet">
-        <h1>9.5 Gen 4 Competitions: Shanghai Elite</h1>
-
-        <div class="info-box" style="margin-bottom: 0;">
-            <p style="font-size: 20px;"><strong>Tournament:</strong> National VEX Robotics Elite Competition</p>
-            <p style="font-size: 20px;"><strong>Date:</strong> Feb 1 - 4, 2026 &nbsp;&nbsp;&nbsp; <strong>Venue:</strong> Shanghai Jiao Tong University</p>
-            <p style="font-size: 20px;"><strong>Awards:</strong> Second Prize</p>
-        </div>
-
-        <h3 class="text-teal" style="margin-top: 5px; margin-bottom: 5px;">Summary & Outlook</h3>
-        <div class="analysis-section" style="margin-bottom: 10px;">
-            <span class="analysis-title text-green" style="margin-bottom: 0;">1. Validating State Machine Logic</span>
-            <p style="font-size: 20px;">During this Elite competition, our "One-Button Scoring" state machine performed near-perfectly. Our drivers reported significantly lower stress, allowing them to focus entirely on on-field strategy.</p>
+        <h3 class="text-teal" style="margin-top: 5px; margin-bottom: 5px;">Summary & Future</h3>
+        <div class="analysis-section" style="margin-bottom: 0;">
+            <span class="analysis-title text-green" style="margin-bottom: 0;">1. State Machine Logic Validation</span>
+            <p>Gen 4's "one-key scoring" performed nearly perfectly. Driver feedback indicated that the new logic
+                significantly reduced mental fatigue, allowing more focus on field strategy and positioning.</p>
         </div>
 
         <img src="../assets/ch09/5-matches-2.webp" alt="Shanghai Matches"
             style="display: block; height: 300px; margin: 10px auto; border-radius: 10px;">
 
-        <div class="analysis-section" style="margin-bottom: 10px;">
-            <span class="analysis-title text-teal" style="margin-bottom: 0;">2. Road to VEX Worlds: St. Louis 2026</span>
-            <p style="font-size: 20px;">The successful conclusion of the Elite competition is just a stepping stone.</p>
-            <p style="font-size: 20px;">From April 28-30, we will represent China in St. Louis, Missouri, taking our battle-tested Gen 4 architecture to the highest level of global competition. The journey continues!</p>
+        <div class="analysis-section">
+            <span class="analysis-title text-teal" style="margin-bottom: 0;">2. Road to the Worlds: 2026 VEX Worlds</span>
+            <p>Successfully completing the Elite tournament is our springboard to the global stage. From April 28-30, 2026, we will represent China at the VEX Worlds in St. Louis, USA. We aim to showcase
+                2276A's excellence and meet fellow VEX enthusiasts from around the globe!</p>
         </div>
     </div>
 

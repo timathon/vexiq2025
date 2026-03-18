@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "ch05": 12,
         "ch06": 15,
         "ch07": 23,
-        "ch08": 30,
-        "ch09": 12,
+        "ch08": 31,
+        "ch09": 13,
         "chzz": 6
     };
 

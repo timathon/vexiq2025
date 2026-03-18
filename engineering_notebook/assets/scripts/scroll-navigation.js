@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Determine current chapter from URL
     const path = window.location.pathname;
+    const isEnglish = path.includes('/english_handwritten/');
     const currentPage = path.split("/").pop().replace('.html', '');
 
     // Extract chapter number from filename (e.g., ch01 -> 1, ch02 -> 2)
@@ -16,19 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
         currentChapterNum = 0; // Special case for index page
     }
     
+    // Labels based on language
+    const nextLabel = isEnglish ? 'Go to Next Chapter' : '转到下一章';
+    const prevLabel = isEnglish ? 'Go to Previous Chapter' : '转到上一章';
+
     // Create next chapter button
     const nextChapterButton = document.createElement('button');
     nextChapterButton.id = 'next-chapter-btn';
     nextChapterButton.className = 'chapter-nav-btn next-chapter-btn';
-    nextChapterButton.textContent = '转到下一章';
-    nextChapterButton.setAttribute('aria-label', '转到下一章');
+    nextChapterButton.textContent = nextLabel;
+    nextChapterButton.setAttribute('aria-label', nextLabel);
 
     // Create previous chapter button
     const prevChapterButton = document.createElement('button');
     prevChapterButton.id = 'prev-chapter-btn';
     prevChapterButton.className = 'chapter-nav-btn prev-chapter-btn';
-    prevChapterButton.textContent = '转到上一章';
-    prevChapterButton.setAttribute('aria-label', '转到上一章');
+    prevChapterButton.textContent = prevLabel;
+    prevChapterButton.setAttribute('aria-label', prevLabel);
 
     // Add buttons to body - add prev button first so it appears above the scroll buttons
     document.body.appendChild(prevChapterButton);
@@ -43,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentChapterNum !== null) {
             if (currentChapterNum === 0) { // Index page - next is ch01
                 nextChapterButton.style.display = 'block';
-            } else if (currentChapterNum < 8) { // Regular chapters
+            } else if (currentChapterNum < 9) { // Regular chapters 1-8
                 nextChapterButton.style.display = 'block';
-            } else if (currentChapterNum === 8) { // Chapter 8 - next is chzz
+            } else if (currentChapterNum === 9) { // Chapter 9 - next is chzz
                 nextChapterButton.style.display = 'block';
             }
         }
@@ -56,9 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentChapterNum !== null) {
             if (currentChapterNum === 1) { // Chapter 1 - previous is index
                 prevChapterButton.style.display = 'block';
-            } else if (currentChapterNum > 1 && currentChapterNum <= 8) { // Chapters 2-8
+            } else if (currentChapterNum > 1 && currentChapterNum <= 9) { // Chapters 2-9
                 prevChapterButton.style.display = 'block';
-            } else if (currentChapterNum === 'zz') { // chzz - previous is ch08
+            } else if (currentChapterNum === 'zz') { // chzz - previous is ch09
                 prevChapterButton.style.display = 'block';
             }
         }
@@ -75,13 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let nextChapterFile;
         if (currentChapterNum === 0) { // From index page
             nextChapterFile = 'ch01.html';
-        } else if (currentChapterNum < 8) { // Regular chapters
+        } else if (currentChapterNum < 9) { // Regular chapters 1-8
             const nextChapterNum = currentChapterNum + 1;
             nextChapterFile = 'ch' + String(nextChapterNum).padStart(2, '0') + '.html';
-        } else if (currentChapterNum === 8) { // From ch08 to chzz
+        } else if (currentChapterNum === 9) { // From ch09 to chzz
             nextChapterFile = 'chzz.html';
         }
-        window.location.href = nextChapterFile;
+        if (nextChapterFile) window.location.href = nextChapterFile;
     });
 
     // Handle previous chapter button click
@@ -89,17 +94,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let prevChapterFile;
         if (currentChapterNum === 1) { // From chapter 1 to index
             prevChapterFile = 'index.html';
-        } else if (currentChapterNum > 1 && currentChapterNum <= 8) { // From chapters 2-8 to previous
+        } else if (currentChapterNum > 1 && currentChapterNum <= 9) { // From chapters 2-9 to previous
             const prevChapterNum = currentChapterNum - 1;
             prevChapterFile = 'ch' + String(prevChapterNum).padStart(2, '0') + '.html';
-        } else if (currentChapterNum === 'zz') { // From chzz to ch08
-            prevChapterFile = 'ch08.html';
+        } else if (currentChapterNum === 'zz') { // From chzz to ch09
+            prevChapterFile = 'ch09.html';
         }
 
-        // Store in sessionStorage that we want to scroll to bottom after loading
-        // This applies to all previous chapter navigations to maintain consistency
-        sessionStorage.setItem('scrollToBottomOnLoad', 'true');
-        window.location.href = prevChapterFile;
+        if (prevChapterFile) {
+            // Store in sessionStorage that we want to scroll to bottom after loading
+            // This applies to all previous chapter navigations to maintain consistency
+            sessionStorage.setItem('scrollToBottomOnLoad', 'true');
+            window.location.href = prevChapterFile;
+        }
     });
 
     // Check if we need to scroll to bottom after loading
@@ -178,9 +185,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create the scroll buttons container
         const scrollButtonsDiv = document.createElement('div');
         scrollButtonsDiv.className = 'scroll-buttons';
+        
+        const topTitle = isEnglish ? 'Back to Top' : '回到顶部';
+        const bottomTitle = isEnglish ? 'Go to Bottom' : '跳转底部';
+        
         scrollButtonsDiv.innerHTML = `
-            <button id="scrollToTopBtn" class="scroll-btn" title="回到顶部">↑</button>
-            <button id="scrollToBottomBtn" class="scroll-btn" title="跳转底部">↓</button>
+            <button id="scrollToTopBtn" class="scroll-btn" title="${topTitle}">↑</button>
+            <button id="scrollToBottomBtn" class="scroll-btn" title="${bottomTitle}">↓</button>
         `;
         document.body.appendChild(scrollButtonsDiv);
 
